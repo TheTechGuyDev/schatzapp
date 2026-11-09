@@ -10,21 +10,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: "17"
-
       - uses: subosito/flutter-action@v2
         with:
           channel: stable
           cache: true
-
       - run: flutter --version
       - run: flutter pub get
+      - name: Add JitPack repository
+        run: sed -i "s#mavenCentral()#mavenCentral()\n        maven { url 'https://jitpack.io' }#" android/build.gradle
       - run: flutter build apk --release
-
       - uses: actions/upload-artifact@v4
         with:
           name: schatzapp-apk
