@@ -1,0 +1,11 @@
+import '/flutter_flow/flutter_flow_util.dart';
+import 'donation_page_widget.dart' show DonationPageWidget;
+import 'package:flutter/material.dart';
+
+class DonationPageModel extends FlutterFlowModel<DonationPageWidget> {
+  @override
+  void initState(BuildContext context) {}
+
+  @override
+  void dispose() {}
+}

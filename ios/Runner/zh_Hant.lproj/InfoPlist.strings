@@ -1,0 +1,2 @@
+NSCameraUsageDescription = "SchatzApp 需要存取相機才能進行視訊通話";
+NSContactsUsageDescription = "SchatzApp 需要存取聯絡人訊息，以便協助您找到已經在應用程式上的朋友。";

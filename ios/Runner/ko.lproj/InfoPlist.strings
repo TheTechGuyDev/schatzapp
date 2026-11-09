@@ -1,0 +1,2 @@
+NSCameraUsageDescription = "SchatzApp은 영상 통화를 위해 카메라 접근 권한이 필요합니다.";
+NSContactsUsageDescription = "SchatzApp은 앱에 이미 있는 친구를 찾을 수 있도록 연락처 접근 권한이 필요합니다.";

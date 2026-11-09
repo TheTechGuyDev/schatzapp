@@ -1,0 +1,2 @@
+NSCameraUsageDescription = "SchatzApp potrzebuje dostępu do kamery do połączeń wideo";
+NSContactsUsageDescription = "Aplikacja SchatzApp potrzebuje dostępu do kontaktów, aby pomóc Ci znaleźć znajomych, którzy już korzystają z aplikacji";
