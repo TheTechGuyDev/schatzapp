@@ -24,12 +24,16 @@ class CreateagroupModel extends FlutterFlowModel<CreateagroupWidget> {
           int index, Function(GroupMemberStructStruct) updateFn) =>
       selectedMembers[index] = updateFn(selectedMembers[index]);
 
+  bool isPrivateGroup = false;
+
   ///  State fields for stateful widgets in this component.
 
   // Stores action output result for [Custom Action - createGroupConversation] action in Button widget.
   String? newConversationId;
   // Stores action output result for [Custom Action - pickAndUploadGroupAvatar] action in Stack widget.
   String? avatarUrl;
+  // State field(s) for PrivateChatLockgroupSwitch widget.
+  bool? privateChatLockgroupSwitchValue;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode1;
   TextEditingController? textController1;

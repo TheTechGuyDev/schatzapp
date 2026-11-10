@@ -73,6 +73,11 @@ class _GroupChatpageWidgetState extends State<GroupChatpageWidget> {
         widget.groupConversationId!,
         currentUserUid,
       );
+      _model.lockResult2 = await actions.isPrivateLocked(
+        widget.groupConversationId!,
+      );
+      _model.isPrivateLocked = _model.lockResult2!;
+      safeSetState(() {});
     });
 
     _model.textFieldMessageMoodTextController ??= TextEditingController();
@@ -412,158 +417,228 @@ class _GroupChatpageWidgetState extends State<GroupChatpageWidget> {
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  _model.callResult2 = await actions.startCall(
-                                    widget.groupConversationId!,
-                                    currentUserUid,
-                                    'video',
-                                  );
-                                  if (_model.callResult2 != null) {
-                                    context.pushNamed(
-                                      ActiveCallScreenWidget.routeName,
-                                      queryParameters: {
-                                        'callId': serializeParam(
-                                          _model.callResult2?.callId,
-                                          ParamType.String,
-                                        ),
-                                        'conversationId': serializeParam(
-                                          widget.groupConversationId,
-                                          ParamType.String,
-                                        ),
-                                        'calleeName': serializeParam(
-                                          widget.groupNameParam,
-                                          ParamType.String,
-                                        ),
-                                        'calleeAvatar': serializeParam(
-                                          widget.groupAvatarParam,
-                                          ParamType.String,
-                                        ),
-                                        'callType': serializeParam(
-                                          'video',
-                                          ParamType.String,
-                                        ),
-                                        'agoraChannelName': serializeParam(
-                                          _model.callResult2?.agoraChannelName,
-                                          ParamType.String,
-                                        ),
-                                        'agoraToken': serializeParam(
-                                          _model.callResult2?.agoraToken,
-                                          ParamType.String,
-                                        ),
-                                        'agoraUid': serializeParam(
-                                          _model.callResult2?.agoraUid,
-                                          ParamType.int,
-                                        ),
-                                      }.withoutNulls,
+                              if (_model.isPrivateLocked == false)
+                                InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    _model.callResult2 =
+                                        await actions.startCall(
+                                      widget.groupConversationId!,
+                                      currentUserUid,
+                                      'video',
                                     );
-                                  } else {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                        content: Text(
-                                          'Couldn’t start the call, please try again',
-                                          style: TextStyle(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
+                                    if (_model.callResult2 != null) {
+                                      context.pushNamed(
+                                        ActiveCallScreenWidget.routeName,
+                                        queryParameters: {
+                                          'callId': serializeParam(
+                                            _model.callResult2?.callId,
+                                            ParamType.String,
                                           ),
-                                        ),
-                                        duration: Duration(milliseconds: 4000),
-                                        backgroundColor:
-                                            FlutterFlowTheme.of(context)
-                                                .secondary,
-                                      ),
-                                    );
-                                  }
-
-                                  safeSetState(() {});
-                                },
-                                child: Icon(
-                                  Icons.videocam_outlined,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  size: 30.0,
-                                ),
-                              ),
-                              InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  _model.callResult = await actions.startCall(
-                                    widget.groupConversationId!,
-                                    currentUserUid,
-                                    'voice',
-                                  );
-                                  if (_model.callResult != null) {
-                                    context.pushNamed(
-                                      ActiveCallScreenWidget.routeName,
-                                      queryParameters: {
-                                        'callId': serializeParam(
-                                          _model.callResult?.callId,
-                                          ParamType.String,
-                                        ),
-                                        'conversationId': serializeParam(
-                                          widget.groupConversationId,
-                                          ParamType.String,
-                                        ),
-                                        'calleeName': serializeParam(
-                                          widget.groupNameParam,
-                                          ParamType.String,
-                                        ),
-                                        'calleeAvatar': serializeParam(
-                                          widget.groupAvatarParam,
-                                          ParamType.String,
-                                        ),
-                                        'callType': serializeParam(
-                                          'voice',
-                                          ParamType.String,
-                                        ),
-                                        'agoraChannelName': serializeParam(
-                                          _model.callResult?.agoraChannelName,
-                                          ParamType.String,
-                                        ),
-                                        'agoraToken': serializeParam(
-                                          _model.callResult?.agoraToken,
-                                          ParamType.String,
-                                        ),
-                                        'agoraUid': serializeParam(
-                                          _model.callResult?.agoraUid,
-                                          ParamType.int,
-                                        ),
-                                      }.withoutNulls,
-                                    );
-                                  } else {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                        content: Text(
-                                          'Couldn’t start the call, please try again',
-                                          style: TextStyle(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
+                                          'conversationId': serializeParam(
+                                            widget.groupConversationId,
+                                            ParamType.String,
                                           ),
+                                          'calleeName': serializeParam(
+                                            widget.groupNameParam,
+                                            ParamType.String,
+                                          ),
+                                          'calleeAvatar': serializeParam(
+                                            widget.groupAvatarParam,
+                                            ParamType.String,
+                                          ),
+                                          'callType': serializeParam(
+                                            'video',
+                                            ParamType.String,
+                                          ),
+                                          'agoraChannelName': serializeParam(
+                                            _model
+                                                .callResult2?.agoraChannelName,
+                                            ParamType.String,
+                                          ),
+                                          'agoraToken': serializeParam(
+                                            _model.callResult2?.agoraToken,
+                                            ParamType.String,
+                                          ),
+                                          'agoraUid': serializeParam(
+                                            _model.callResult2?.agoraUid,
+                                            ParamType.int,
+                                          ),
+                                        }.withoutNulls,
+                                      );
+                                    } else {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                            'Couldn’t start the call, please try again',
+                                            style: TextStyle(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                            ),
+                                          ),
+                                          duration:
+                                              Duration(milliseconds: 4000),
+                                          backgroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .secondary,
                                         ),
-                                        duration: Duration(milliseconds: 4000),
-                                        backgroundColor:
-                                            FlutterFlowTheme.of(context)
-                                                .secondary,
-                                      ),
-                                    );
-                                  }
+                                      );
+                                    }
 
-                                  safeSetState(() {});
-                                },
-                                child: Icon(
-                                  Icons.call_outlined,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  size: 25.0,
+                                    safeSetState(() {});
+                                  },
+                                  child: Icon(
+                                    Icons.videocam_outlined,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    size: 30.0,
+                                  ),
                                 ),
-                              ),
+                              if (_model.isPrivateLocked == false)
+                                InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    _model.callResult = await actions.startCall(
+                                      widget.groupConversationId!,
+                                      currentUserUid,
+                                      'voice',
+                                    );
+                                    if (_model.callResult != null) {
+                                      context.pushNamed(
+                                        ActiveCallScreenWidget.routeName,
+                                        queryParameters: {
+                                          'callId': serializeParam(
+                                            _model.callResult?.callId,
+                                            ParamType.String,
+                                          ),
+                                          'conversationId': serializeParam(
+                                            widget.groupConversationId,
+                                            ParamType.String,
+                                          ),
+                                          'calleeName': serializeParam(
+                                            widget.groupNameParam,
+                                            ParamType.String,
+                                          ),
+                                          'calleeAvatar': serializeParam(
+                                            widget.groupAvatarParam,
+                                            ParamType.String,
+                                          ),
+                                          'callType': serializeParam(
+                                            'voice',
+                                            ParamType.String,
+                                          ),
+                                          'agoraChannelName': serializeParam(
+                                            _model.callResult?.agoraChannelName,
+                                            ParamType.String,
+                                          ),
+                                          'agoraToken': serializeParam(
+                                            _model.callResult?.agoraToken,
+                                            ParamType.String,
+                                          ),
+                                          'agoraUid': serializeParam(
+                                            _model.callResult?.agoraUid,
+                                            ParamType.int,
+                                          ),
+                                        }.withoutNulls,
+                                      );
+                                    } else {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                            'Couldn’t start the call, please try again',
+                                            style: TextStyle(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                            ),
+                                          ),
+                                          duration:
+                                              Duration(milliseconds: 4000),
+                                          backgroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .secondary,
+                                        ),
+                                      );
+                                    }
+
+                                    safeSetState(() {});
+                                  },
+                                  child: Icon(
+                                    Icons.call_outlined,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    size: 25.0,
+                                  ),
+                                ),
+                              if (_model.isPrivateLocked == true)
+                                InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    _model.bimpSent = await actions.sendBimp(
+                                      widget.groupConversationId!,
+                                      currentUserUid,
+                                    );
+                                    if (_model.bimpSent == true) {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                            '',
+                                            style: TextStyle(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                            ),
+                                          ),
+                                          duration:
+                                              Duration(milliseconds: 4000),
+                                          backgroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .secondary,
+                                        ),
+                                      );
+                                    } else {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                            'Could not send Bimp',
+                                            style: TextStyle(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                            ),
+                                          ),
+                                          duration:
+                                              Duration(milliseconds: 4000),
+                                          backgroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .secondary,
+                                        ),
+                                      );
+                                    }
+
+                                    safeSetState(() {});
+                                  },
+                                  child: Icon(
+                                    Icons.notifications_none,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    size: 24.0,
+                                  ),
+                                ),
                             ].divide(SizedBox(width: 20.0)),
                           ),
                         ),
@@ -1432,6 +1507,15 @@ class _GroupChatpageWidgetState extends State<GroupChatpageWidget> {
                                       },
                                     ),
                                   ),
+                                  Container(
+                                    width: 1.0,
+                                    height: 1.0,
+                                    child: custom_widgets.PrivateScreenGuard(
+                                      width: 1.0,
+                                      height: 1.0,
+                                      enabled: _model.isPrivateLocked,
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
@@ -1679,20 +1763,87 @@ class _GroupChatpageWidgetState extends State<GroupChatpageWidget> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [
-                                            InkWell(
-                                              splashColor: Colors.transparent,
-                                              focusColor: Colors.transparent,
-                                              hoverColor: Colors.transparent,
-                                              highlightColor:
-                                                  Colors.transparent,
-                                              onTap: () async {
-                                                await actions
-                                                    .pickAndSendDocument(
-                                                  widget.groupConversationId!,
-                                                  currentUserUid,
-                                                );
-                                              },
-                                              child: Column(
+                                            if (_model.isPrivateLocked == false)
+                                              InkWell(
+                                                splashColor: Colors.transparent,
+                                                focusColor: Colors.transparent,
+                                                hoverColor: Colors.transparent,
+                                                highlightColor:
+                                                    Colors.transparent,
+                                                onTap: () async {
+                                                  await actions
+                                                      .pickAndSendDocument(
+                                                    widget
+                                                        .groupConversationId!,
+                                                    currentUserUid,
+                                                  );
+                                                },
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Container(
+                                                      width: 45.0,
+                                                      height: 30.0,
+                                                      decoration: BoxDecoration(
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .primaryBackground,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(20.0),
+                                                      ),
+                                                      child: Icon(
+                                                        Icons
+                                                            .insert_drive_file_outlined,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                        size: 24.0,
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      FFLocalizations.of(
+                                                              context)
+                                                          .getText(
+                                                        'wg9oo2k1' /* Document */,
+                                                      ),
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                font: GoogleFonts
+                                                                    .plusJakartaSans(
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontStyle,
+                                                                ),
+                                                                fontSize: 10.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontWeight,
+                                                                fontStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontStyle,
+                                                              ),
+                                                    ),
+                                                  ].divide(
+                                                      SizedBox(height: 5.0)),
+                                                ),
+                                              ),
+                                            if (_model.isPrivateLocked == false)
+                                              Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
                                                   Container(
@@ -1708,7 +1859,7 @@ class _GroupChatpageWidgetState extends State<GroupChatpageWidget> {
                                                     ),
                                                     child: Icon(
                                                       Icons
-                                                          .insert_drive_file_outlined,
+                                                          .location_on_outlined,
                                                       color:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -1719,7 +1870,7 @@ class _GroupChatpageWidgetState extends State<GroupChatpageWidget> {
                                                   Text(
                                                     FFLocalizations.of(context)
                                                         .getText(
-                                                      'wg9oo2k1' /* Document */,
+                                                      '6v9cp5i2' /* Location */,
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -1754,40 +1905,55 @@ class _GroupChatpageWidgetState extends State<GroupChatpageWidget> {
                                                   ),
                                                 ].divide(SizedBox(height: 5.0)),
                                               ),
-                                            ),
-                                            Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Container(
-                                                  width: 45.0,
-                                                  height: 30.0,
-                                                  decoration: BoxDecoration(
-                                                    color: FlutterFlowTheme.of(
+                                            if (_model.isPrivateLocked == false)
+                                              Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Container(
+                                                    width: 45.0,
+                                                    height: 30.0,
+                                                    decoration: BoxDecoration(
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .primaryBackground,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              20.0),
+                                                    ),
+                                                    child: Icon(
+                                                      Icons
+                                                          .cancel_schedule_send_outlined,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryText,
+                                                      size: 24.0,
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    FFLocalizations.of(context)
+                                                        .getText(
+                                                      'lcbqsh40' /* Schedule message */,
+                                                    ),
+                                                    style: FlutterFlowTheme.of(
                                                             context)
-                                                        .primaryBackground,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            20.0),
-                                                  ),
-                                                  child: Icon(
-                                                    Icons.location_on_outlined,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryText,
-                                                    size: 24.0,
-                                                  ),
-                                                ),
-                                                Text(
-                                                  FFLocalizations.of(context)
-                                                      .getText(
-                                                    '6v9cp5i2' /* Location */,
-                                                  ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        font: GoogleFonts
-                                                            .plusJakartaSans(
+                                                        .bodyMedium
+                                                        .override(
+                                                          font: GoogleFonts
+                                                              .plusJakartaSans(
+                                                            fontWeight:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontWeight,
+                                                            fontStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontStyle,
+                                                          ),
+                                                          fontSize: 10.0,
+                                                          letterSpacing: 0.0,
                                                           fontWeight:
                                                               FlutterFlowTheme.of(
                                                                       context)
@@ -1799,56 +1965,58 @@ class _GroupChatpageWidgetState extends State<GroupChatpageWidget> {
                                                                   .bodyMedium
                                                                   .fontStyle,
                                                         ),
-                                                        fontSize: 10.0,
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .fontWeight,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .fontStyle,
-                                                      ),
-                                                ),
-                                              ].divide(SizedBox(height: 5.0)),
-                                            ),
-                                            Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Container(
-                                                  width: 45.0,
-                                                  height: 30.0,
-                                                  decoration: BoxDecoration(
-                                                    color: FlutterFlowTheme.of(
+                                                  ),
+                                                ].divide(SizedBox(height: 5.0)),
+                                              ),
+                                            if (_model.isPrivateLocked == false)
+                                              Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Container(
+                                                    width: 45.0,
+                                                    height: 30.0,
+                                                    decoration: BoxDecoration(
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .primaryBackground,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              20.0),
+                                                    ),
+                                                    child: Icon(
+                                                      Icons
+                                                          .account_circle_outlined,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryText,
+                                                      size: 24.0,
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    FFLocalizations.of(context)
+                                                        .getText(
+                                                      'o5nuqwtd' /* Share Contact */,
+                                                    ),
+                                                    style: FlutterFlowTheme.of(
                                                             context)
-                                                        .primaryBackground,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            20.0),
-                                                  ),
-                                                  child: Icon(
-                                                    Icons
-                                                        .cancel_schedule_send_outlined,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryText,
-                                                    size: 24.0,
-                                                  ),
-                                                ),
-                                                Text(
-                                                  FFLocalizations.of(context)
-                                                      .getText(
-                                                    'lcbqsh40' /* Schedule message */,
-                                                  ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        font: GoogleFonts
-                                                            .plusJakartaSans(
+                                                        .bodyMedium
+                                                        .override(
+                                                          font: GoogleFonts
+                                                              .plusJakartaSans(
+                                                            fontWeight:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontWeight,
+                                                            fontStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontStyle,
+                                                          ),
+                                                          fontSize: 10.0,
+                                                          letterSpacing: 0.0,
                                                           fontWeight:
                                                               FlutterFlowTheme.of(
                                                                       context)
@@ -1860,83 +2028,9 @@ class _GroupChatpageWidgetState extends State<GroupChatpageWidget> {
                                                                   .bodyMedium
                                                                   .fontStyle,
                                                         ),
-                                                        fontSize: 10.0,
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .fontWeight,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .fontStyle,
-                                                      ),
-                                                ),
-                                              ].divide(SizedBox(height: 5.0)),
-                                            ),
-                                            Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Container(
-                                                  width: 45.0,
-                                                  height: 30.0,
-                                                  decoration: BoxDecoration(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryBackground,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            20.0),
                                                   ),
-                                                  child: Icon(
-                                                    Icons
-                                                        .account_circle_outlined,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryText,
-                                                    size: 24.0,
-                                                  ),
-                                                ),
-                                                Text(
-                                                  FFLocalizations.of(context)
-                                                      .getText(
-                                                    'o5nuqwtd' /* Share Contact */,
-                                                  ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        font: GoogleFonts
-                                                            .plusJakartaSans(
-                                                          fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
-                                                                  .fontStyle,
-                                                        ),
-                                                        fontSize: 10.0,
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .fontWeight,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .fontStyle,
-                                                      ),
-                                                ),
-                                              ].divide(SizedBox(height: 5.0)),
-                                            ),
+                                                ].divide(SizedBox(height: 5.0)),
+                                              ),
                                           ],
                                         ),
                                       ),

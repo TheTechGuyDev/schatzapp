@@ -122,4 +122,9 @@ class ProfilesRow extends SupabaseDataRow {
   DateTime? get walletSeenAt => getField<DateTime>('wallet_seen_at');
   set walletSeenAt(DateTime? value) =>
       setField<DateTime>('wallet_seen_at', value);
+
+  bool? get showLockedStoriesInNormal =>
+      getField<bool>('show_locked_stories_in_normal');
+  set showLockedStoriesInNormal(bool? value) =>
+      setField<bool>('show_locked_stories_in_normal', value);
 }

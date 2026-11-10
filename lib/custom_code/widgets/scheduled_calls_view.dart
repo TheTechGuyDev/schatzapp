@@ -142,7 +142,9 @@ class _ScheduledCallsViewState extends State<ScheduledCallsView> {
 
   Future<void> _load() async {
     try {
-      await _loadChats();
+      try {
+        await _loadChats().timeout(const Duration(seconds: 15));
+      } catch (_) {}
       final since = DateTime.now()
           .toUtc()
           .subtract(const Duration(hours: 2))
@@ -211,6 +213,7 @@ class _ScheduledCallsViewState extends State<ScheduledCallsView> {
     TimeOfDay? time;
     final titleCtrl = TextEditingController();
     bool saving = false;
+    String? err;
 
     await showModalBottomSheet(
       context: context,
@@ -229,34 +232,49 @@ class _ScheduledCallsViewState extends State<ScheduledCallsView> {
               _toast('Pick a time in the future');
               return;
             }
-            setSheet(() => saving = true);
+            final uid =
+                SupaFlow.client.auth.currentUser?.id ?? widget.currentUserId;
+            if (uid.isEmpty) {
+              setSheet(
+                  () => err = 'You are not signed in. Please log in again.');
+              return;
+            }
+            setSheet(() {
+              saving = true;
+              err = null;
+            });
             try {
               await SupaFlow.client.from('scheduled_calls').insert({
                 'conversation_id': chatId,
-                'creator_id': widget.currentUserId,
+                'creator_id': uid,
                 'title': titleCtrl.text.trim().isEmpty
                     ? null
                     : titleCtrl.text.trim(),
                 'call_type': type,
                 'scheduled_at': when.toUtc().toIso8601String(),
-              });
+              }).timeout(const Duration(seconds: 15));
               // Tell the chat members, so they get the reminder in the chat.
               final label = DateFormat('EEE d MMM, h:mm a').format(when);
               final t = titleCtrl.text.trim();
               try {
                 await SupaFlow.client.from('messages').insert({
                   'conversation_id': chatId,
-                  'sender_id': widget.currentUserId,
+                  'sender_id': uid,
                   'message_type': 'text',
                   'content':
                       'Scheduled ${type == 'video' ? 'video' : 'voice'} call${t.isEmpty ? '' : ' ($t)'}: $label',
-                });
+                }).timeout(const Duration(seconds: 10));
               } catch (_) {}
               if (ctx.mounted) Navigator.pop(ctx);
               _load();
             } catch (e) {
-              setSheet(() => saving = false);
-              _toast('Could not schedule the call');
+              final m = e.toString();
+              setSheet(() {
+                saving = false;
+                err = m.contains('TimeoutException')
+                    ? 'No response from the server. Check your connection and try again.'
+                    : 'Could not schedule: ${m.length > 160 ? m.substring(0, 160) : m}';
+              });
             }
           }
 
@@ -369,6 +387,13 @@ class _ScheduledCallsViewState extends State<ScheduledCallsView> {
                     ],
                   ),
                   const SizedBox(height: 18),
+                  if (err != null)
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 10),
+                      child: Text(err!,
+                          style:
+                              const TextStyle(color: Colors.red, fontSize: 13)),
+                    ),
                   SizedBox(
                     width: double.infinity,
                     height: 50,
@@ -555,5 +580,7 @@ class _ScheduledCallsViewState extends State<ScheduledCallsView> {
     );
   }
 }
+// Set your widget name, define your parameter, and then add the
+// boilerplate code using the `</>` button on the right!
 // Set your widget name, define your parameter, and then add the
 // boilerplate code using the `</>` button on the right!

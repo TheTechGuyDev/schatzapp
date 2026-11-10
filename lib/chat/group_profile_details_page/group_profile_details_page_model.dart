@@ -26,6 +26,8 @@ class GroupProfileDetailsPageModel
   bool? switchValue3;
   // State field(s) for Switch widget.
   bool? switchValue4;
+  // Stores action output result for [Custom Action - removePrivateGroup] action in Row widget.
+  bool? removed;
 
   @override
   void initState(BuildContext context) {}

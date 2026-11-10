@@ -196,3 +196,6 @@ export '/custom_code/actions/lookup_contact_preview.dart'
 export '/custom_code/actions/get_mutual_phone.dart' show getMutualPhone;
 export '/custom_code/actions/init_offline_store.dart' show initOfflineStore;
 export '/custom_code/actions/send_text_message.dart' show sendTextMessage;
+export '/custom_code/actions/is_private_locked.dart' show isPrivateLocked;
+export '/custom_code/actions/send_bimp.dart' show sendBimp;
+export '/custom_code/actions/remove_private_group.dart' show removePrivateGroup;

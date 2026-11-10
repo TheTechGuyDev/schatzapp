@@ -262,6 +262,8 @@ dynamic deserializeParam<T>(
             return CallParticipantsRow(data);
           case CallsRow:
             return CallsRow(data);
+          case CamouflageProfilesRow:
+            return CamouflageProfilesRow(data);
           case ChatListViewRow:
             return ChatListViewRow(data);
           case ContactsRow:
@@ -302,6 +304,8 @@ dynamic deserializeParam<T>(
             return OtpRateLimitRow(data);
           case PrivacySettingsRow:
             return PrivacySettingsRow(data);
+          case PrivateStoryRingViewRow:
+            return PrivateStoryRingViewRow(data);
           case ProfilesRow:
             return ProfilesRow(data);
           case ReloadlyTokensRow:

@@ -50,4 +50,8 @@ class CallsRow extends SupabaseDataRow {
 
   bool? get isGroup => getField<bool>('is_group');
   set isGroup(bool? value) => setField<bool>('is_group', value);
+
+  String? get videoRequestBy => getField<String>('video_request_by');
+  set videoRequestBy(String? value) =>
+      setField<String>('video_request_by', value);
 }

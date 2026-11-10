@@ -14,6 +14,8 @@ class LockChatPrivacyModel extends FlutterFlowModel<LockChatPrivacyWidget> {
   bool? switchValue1;
   // State field(s) for Switch widget.
   bool? switchValue2;
+  // State field(s) for Switch widget.
+  bool? switchValue3;
 
   @override
   void initState(BuildContext context) {}

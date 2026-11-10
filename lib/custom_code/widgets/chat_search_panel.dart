@@ -11,9 +11,10 @@ import 'package:flutter/material.dart' hide RepeatMode;
 // Begin custom widget code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import '/custom_code/actions/index.dart';
+import '/app_state.dart';
 import 'dart:async';
 import 'package:intl/intl.dart';
-import '/custom_code/actions/index.dart';
 
 class ChatSearchPanel extends StatefulWidget {
   const ChatSearchPanel({
@@ -40,6 +41,7 @@ class _ChatSearchPanelState extends State<ChatSearchPanel> {
   Map<String, String> _usernameByUser = {};
   List<_MessageMatch> _messageMatches = [];
   bool _passwordUnlocked = false;
+  Map<String, bool> _privateStories = {}; // userId -> has unviewed
 
   @override
   void initState() {
@@ -166,8 +168,22 @@ class _ChatSearchPanelState extends State<ChatSearchPanel> {
       }
     }
 
+    final privateStories = <String, bool>{};
+    if (passwordUnlocked) {
+      try {
+        final sr = await SupaFlow.client
+            .from('private_story_ring_view')
+            .select('user_id, has_unviewed');
+        for (final r in sr as List) {
+          privateStories[r['user_id'] as String] =
+              (r['has_unviewed'] as bool?) ?? false;
+        }
+      } catch (_) {}
+    }
+
     if (!mounted) return;
     setState(() {
+      _privateStories = privateStories;
       _chatRows = rows;
       _savedNameByUser = savedNameByUser;
       _usernameByUser = usernameByUser;
@@ -216,6 +232,33 @@ class _ChatSearchPanelState extends State<ChatSearchPanel> {
     if (diff == 1) return 'Yesterday';
     if (diff < 7) return DateFormat('EEEE').format(date);
     return DateFormat('MM/dd/yy').format(date);
+  }
+
+  Future<void> _openStory(String otherUserId) async {
+    try {
+      final groups = await getFriendsStories(widget.currentUserId);
+      final idx = groups.indexWhere((g) => g.userId == otherUserId);
+      if (idx < 0) {
+        if (!mounted) return;
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('No Stories to show right now')));
+        return;
+      }
+      FFAppState().update(() => FFAppState().friendsStoriesList = groups);
+      if (!mounted) return;
+      context.pushNamed(
+        'users_story',
+        queryParameters: {
+          'groupIndex': serializeParam(idx, ParamType.int),
+          'currentUserId':
+              serializeParam(widget.currentUserId, ParamType.String),
+        }.withoutNulls,
+      );
+    } catch (_) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Could not open the Story')));
+    }
   }
 
   void _openChat(String conversationId, bool isGroup, String otherUserId,
@@ -297,16 +340,40 @@ class _ChatSearchPanelState extends State<ChatSearchPanel> {
                     const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                 child: Row(
                   children: [
-                    CircleAvatar(
-                      radius: 24,
-                      backgroundImage:
-                          avatarUrl.isNotEmpty ? NetworkImage(avatarUrl) : null,
-                      child: avatarUrl.isEmpty
-                          ? Text(displayName.isNotEmpty
-                              ? displayName[0].toUpperCase()
-                              : '?')
-                          : null,
-                    ),
+                    Builder(builder: (context) {
+                      final avatar = CircleAvatar(
+                        radius: 24,
+                        backgroundImage: avatarUrl.isNotEmpty
+                            ? NetworkImage(avatarUrl)
+                            : null,
+                        child: avatarUrl.isEmpty
+                            ? Text(displayName.isNotEmpty
+                                ? displayName[0].toUpperCase()
+                                : '?')
+                            : null,
+                      );
+                      final hasStory = _passwordUnlocked &&
+                          !isGroup &&
+                          _privateStories.containsKey(otherUserId);
+                      if (!hasStory) return avatar;
+                      final unviewed = _privateStories[otherUserId] == true;
+                      return GestureDetector(
+                        onTap: () => _openStory(otherUserId),
+                        child: Container(
+                          padding: const EdgeInsets.all(2.5),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                              color: unviewed
+                                  ? const Color(0xFF935CCC)
+                                  : Colors.grey,
+                              width: 2.5,
+                            ),
+                          ),
+                          child: avatar,
+                        ),
+                      );
+                    }),
                     const SizedBox(width: 12),
                     Expanded(
                       child: Text(
@@ -409,5 +476,7 @@ class _MessageMatch {
   final String snippet;
   final String timeLabel;
 }
+// Set your widget name, define your parameter, and then add the
+// boilerplate code using the `</>` button on the right!
 // Set your widget name, define your parameter, and then add the
 // boilerplate code using the `</>` button on the right!

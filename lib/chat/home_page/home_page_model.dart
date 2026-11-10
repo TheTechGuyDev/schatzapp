@@ -1,6 +1,5 @@
 import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
-import '/chat/incomming_call/incomming_call_widget.dart';
 import '/components/email_verify_component_widget.dart';
 import '/components/phone_verify_component_widget.dart';
 import '/components/sign_up_component_widget.dart';
@@ -153,7 +152,6 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   double? eurToLocalRateResult;
   // Stores action output result for [Backend Call - Query Rows] action in HomePage widget.
   List<WalletTransactionsRow>? recentTransactionsList;
-  Stream<List<ActiveIncomingCallsRow>>? stackSupabaseStream;
   // State field(s) for TabBar widget.
   TabController? tabBarController1;
   int get tabBarCurrentIndex1 =>
@@ -167,16 +165,6 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   FocusNode? textForSearchFocusNode;
   TextEditingController? textForSearchTextController;
   String? Function(BuildContext, String?)? textForSearchTextControllerValidator;
-  // Stores action output result for [Custom Action - startCall] action in Icon widget.
-  CallStartResultStruct? contactVoiceCallResult;
-  // Stores action output result for [Custom Action - startCall] action in Icon widget.
-  CallStartResultStruct? contactVideoCallResult;
-  // Stores action output result for [Custom Action - startCall] action in Icon widget.
-  CallStartResultStruct? contactVoiceCallResult1;
-  // Stores action output result for [Custom Action - startCall] action in Icon widget.
-  CallStartResultStruct? contactVideoCallResult2;
-  // Stores action output result for [Custom Action - getCallHistory] action in CallSelectionBar widget.
-  List<CallHistoryEntryStruct>? callHistoryResultNew2;
   // State field(s) for TabBar widget.
   TabController? tabBarController2;
   int get tabBarCurrentIndex2 =>
@@ -213,8 +201,6 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
 
   // Stores action output result for [Custom Action - getHiddenFromList] action in IconButton widget.
   List<HiddenPersonStruct>? refreshedHiddenResult;
-  // Model for IncommingCall component.
-  late IncommingCallModel incommingCallModel;
 
   @override
   void initState(BuildContext context) {
@@ -225,7 +211,6 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
     phoneVerifyComponentModel =
         createModel(context, () => PhoneVerifyComponentModel());
     pinCodeEnter = TextEditingController();
-    incommingCallModel = createModel(context, () => IncommingCallModel());
   }
 
   @override
@@ -248,6 +233,5 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
     pinCodeEnter?.dispose();
 
     tabBarController3?.dispose();
-    incommingCallModel.dispose();
   }
 }

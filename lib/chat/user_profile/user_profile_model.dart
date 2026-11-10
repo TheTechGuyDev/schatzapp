@@ -16,12 +16,16 @@ class UserProfileModel extends FlutterFlowModel<UserProfileWidget> {
 
   String mutualPhone = ' ';
 
+  bool isPrivateLocked = false;
+
   ///  State fields for stateful widgets in this page.
 
   // Stores action output result for [Custom Action - getResolvedDisplayName] action in User_profile widget.
   String? resolvedNameResult;
   // Stores action output result for [Custom Action - getProfileStats] action in User_profile widget.
   ProfileStatsStruct? profileStatsResult;
+  // Stores action output result for [Custom Action - isPrivateLocked] action in User_profile widget.
+  bool? lockResult;
   // Stores action output result for [Custom Action - getMutualPhone] action in User_profile widget.
   String? phoneResult;
   // Stores action output result for [Custom Action - getResolvedDisplayName] action in Icon widget.

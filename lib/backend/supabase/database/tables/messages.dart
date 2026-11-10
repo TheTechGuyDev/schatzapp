@@ -103,4 +103,10 @@ class MessagesRow extends SupabaseDataRow {
 
   int? get mediaPages => getField<int>('media_pages');
   set mediaPages(int? value) => setField<int>('media_pages', value);
+
+  DateTime? get seenAt => getField<DateTime>('seen_at');
+  set seenAt(DateTime? value) => setField<DateTime>('seen_at', value);
+
+  String? get clientId => getField<String>('client_id');
+  set clientId(String? value) => setField<String>('client_id', value);
 }

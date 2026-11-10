@@ -10,11 +10,45 @@ import 'package:flutter/material.dart' hide RepeatMode;
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import '/flutter_flow/nav/nav.dart';
+
 Future<CallStartResultStruct?> startCall(
   String conversationId,
   String callerId,
   String callType,
 ) async {
+  // The database only knows 'voice' and 'video'. Anything else (for example
+  // 'audio' from older code paths, or a Bimp row being re-dialled) becomes voice.
+  final type = callType == 'video' ? 'video' : 'voice';
+  try {
+    return await _startCallInner(conversationId, callerId, type);
+  } catch (_) {
+    // Includes calls refused by Private Chat Lock on the server.
+    return null;
+  }
+}
+
+Future<CallStartResultStruct?> _startCallInner(
+  String conversationId,
+  String callerId,
+  String callType,
+) async {
+  final locked = await SupaFlow.client
+      .from('conversation_participants')
+      .select('user_id')
+      .eq('conversation_id', conversationId)
+      .eq('private_lock', true)
+      .isFilter('left_at', null)
+      .limit(1);
+  if ((locked as List).isNotEmpty) {
+    final ctx = appNavigatorKey.currentContext;
+    if (ctx != null) {
+      ScaffoldMessenger.of(ctx).showSnackBar(const SnackBar(
+          content: Text('Calls are disabled in a Private Chat Lock chat')));
+    }
+    return null;
+  }
+
   final nowIso = DateTime.now().toUtc().toIso8601String();
   final channelName = 'call_${DateTime.now().millisecondsSinceEpoch}';
   final agoraUid = DateTime.now().millisecondsSinceEpoch.remainder(100000);

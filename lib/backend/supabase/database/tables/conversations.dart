@@ -57,4 +57,7 @@ class ConversationsRow extends SupabaseDataRow {
 
   String? get deletedBy => getField<String>('deleted_by');
   set deletedBy(String? value) => setField<String>('deleted_by', value);
+
+  bool? get isPrivateGroup => getField<bool>('is_private_group');
+  set isPrivateGroup(bool? value) => setField<bool>('is_private_group', value);
 }

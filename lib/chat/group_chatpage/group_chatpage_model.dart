@@ -58,12 +58,16 @@ class GroupChatpageModel extends FlutterFlowModel<GroupChatpageWidget> {
       groupParticipantProfiles[index] =
           updateFn(groupParticipantProfiles[index]);
 
+  bool isPrivateLocked = false;
+
   ///  State fields for stateful widgets in this page.
 
   // Stores action output result for [Custom Action - getGroupMemberSummary] action in Group_chatpage widget.
   String? summaryResult;
   // Stores action output result for [Custom Action - getGroupParticipantProfiles] action in Group_chatpage widget.
   List<ProfilesRow>? groupParticipantProfilesResult;
+  // Stores action output result for [Custom Action - isPrivateLocked] action in Group_chatpage widget.
+  bool? lockResult2;
   Stream<List<ConversationParticipantsRow>>? wallpapperContainerSupabaseStream;
   // State field(s) for TextFieldMessageMood widget.
   FocusNode? textFieldMessageMoodFocusNode;
@@ -82,6 +86,8 @@ class GroupChatpageModel extends FlutterFlowModel<GroupChatpageWidget> {
   CallStartResultStruct? callResult2;
   // Stores action output result for [Custom Action - startCall] action in Icon widget.
   CallStartResultStruct? callResult;
+  // Stores action output result for [Custom Action - sendBimp] action in Icon widget.
+  bool? bimpSent;
 
   @override
   void initState(BuildContext context) {}

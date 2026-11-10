@@ -58,8 +58,12 @@ class ChatpageModel extends FlutterFlowModel<ChatpageWidget> {
           int index, Function(PendingWebImageStruct) updateFn) =>
       pendingWebChatImages[index] = updateFn(pendingWebChatImages[index]);
 
+  bool isPrivateLocked = false;
+
   ///  State fields for stateful widgets in this page.
 
+  // Stores action output result for [Custom Action - isPrivateLocked] action in chatpage widget.
+  bool? lockResult;
   // Stores action output result for [Backend Call - Query Rows] action in chatpage widget.
   List<ProfilesRow>? otherUserProfileResult;
   // Stores action output result for [Custom Action - pickMultipleWebChatMedia] action in Icon widget.
@@ -83,6 +87,8 @@ class ChatpageModel extends FlutterFlowModel<ChatpageWidget> {
   CallStartResultStruct? callResult;
   // Stores action output result for [Custom Action - startCall] action in Icon widget.
   CallStartResultStruct? callResult2;
+  // Stores action output result for [Custom Action - sendBimp] action in Icon widget.
+  bool? bimpSent;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController2;

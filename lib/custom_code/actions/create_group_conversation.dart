@@ -15,6 +15,7 @@ Future<String?> createGroupConversation(
   String? groupAvatarUrl,
   String creatorId,
   List<GroupMemberStructStruct> members,
+  bool isPrivateGroup,
 ) async {
   final trimmedName = groupName.trim();
   if (trimmedName.isEmpty || members.isEmpty) {
@@ -29,6 +30,7 @@ Future<String?> createGroupConversation(
         'name': trimmedName,
         'avatar_url': groupAvatarUrl,
         'created_by': creatorId,
+        'is_private_group': isPrivateGroup,
       })
       .select()
       .single();

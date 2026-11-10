@@ -63,4 +63,7 @@ class ConversationParticipantsRow extends SupabaseDataRow {
 
   String? get leftBy => getField<String>('left_by');
   set leftBy(String? value) => setField<String>('left_by', value);
+
+  bool? get privateLock => getField<bool>('private_lock');
+  set privateLock(bool? value) => setField<bool>('private_lock', value);
 }

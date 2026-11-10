@@ -1,3 +1,4 @@
+import '/auth/supabase_auth/auth_util.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/ff_builtin_enums.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -49,12 +50,17 @@ class _Profile3dotsMOREOPTIONSWidgetState
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<ConversationsRow>>(
-      future: ConversationsTable().querySingleRow(
-        queryFn: (q) => q.eqOrNull(
-          'id',
-          widget.conversationId,
-        ),
+    return FutureBuilder<List<ConversationParticipantsRow>>(
+      future: ConversationParticipantsTable().querySingleRow(
+        queryFn: (q) => q
+            .eqOrNull(
+              'conversation_id',
+              widget.conversationId,
+            )
+            .eqOrNull(
+              'user_id',
+              currentUserUid,
+            ),
       ),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
@@ -71,11 +77,12 @@ class _Profile3dotsMOREOPTIONSWidgetState
             ),
           );
         }
-        List<ConversationsRow> containerConversationsRowList = snapshot.data!;
+        List<ConversationParticipantsRow>
+            containerConversationParticipantsRowList = snapshot.data!;
 
-        final containerConversationsRow =
-            containerConversationsRowList.isNotEmpty
-                ? containerConversationsRowList.first
+        final containerConversationParticipantsRow =
+            containerConversationParticipantsRowList.isNotEmpty
+                ? containerConversationParticipantsRowList.first
                 : null;
 
         return Container(
@@ -328,7 +335,8 @@ class _Profile3dotsMOREOPTIONSWidgetState
                           ),
                           Switch.adaptive(
                             value: _model.switchValue ??=
-                                containerConversationsRow!.isLocked!,
+                                containerConversationParticipantsRow!
+                                    .privateLock!,
                             onChanged: (newValue) async {
                               safeSetState(
                                   () => _model.switchValue = newValue);

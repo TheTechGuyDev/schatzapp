@@ -4,7 +4,6 @@ import '/flutter_flow/ff_builtin_enums.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/settings_profile/app_password_gate/app_password_gate_widget.dart';
 import '/index.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
@@ -285,91 +284,25 @@ class _LockChatPrivacyWidgetState extends State<LockChatPrivacyWidget> {
                                       safeSetState(() =>
                                           _model.switchValue1 = newValue);
                                       if (newValue) {
-                                        await showModalBottomSheet(
-                                          isScrollControlled: true,
-                                          backgroundColor: Colors.transparent,
-                                          enableDrag: false,
-                                          context: context,
-                                          builder: (context) {
-                                            return GestureDetector(
-                                              onTap: () {
-                                                FocusScope.of(context)
-                                                    .unfocus();
-                                                FocusManager
-                                                    .instance.primaryFocus
-                                                    ?.unfocus();
-                                              },
-                                              child: Padding(
-                                                padding:
-                                                    MediaQuery.viewInsetsOf(
-                                                        context),
-                                                child: AppPasswordGateWidget(
-                                                  onVerified: (success) async {
-                                                    if (success == true) {
-                                                      await ProfilesTable()
-                                                          .update(
-                                                        data: {
-                                                          'lock_chat_privacy_enabled':
-                                                              true,
-                                                        },
-                                                        matchingRows: (rows) =>
-                                                            rows.eqOrNull(
-                                                          'id',
-                                                          currentUserUid,
-                                                        ),
-                                                      );
-                                                    } else {
-                                                      safeSetState(() {});
-                                                    }
-                                                  },
-                                                ),
-                                              ),
-                                            );
+                                        await ProfilesTable().update(
+                                          data: {
+                                            'lock_chat_privacy_enabled': true,
                                           },
-                                        ).then((value) => safeSetState(() {}));
+                                          matchingRows: (rows) => rows.eqOrNull(
+                                            'id',
+                                            currentUserUid,
+                                          ),
+                                        );
                                       } else {
-                                        await showModalBottomSheet(
-                                          isScrollControlled: true,
-                                          backgroundColor: Colors.transparent,
-                                          enableDrag: false,
-                                          context: context,
-                                          builder: (context) {
-                                            return GestureDetector(
-                                              onTap: () {
-                                                FocusScope.of(context)
-                                                    .unfocus();
-                                                FocusManager
-                                                    .instance.primaryFocus
-                                                    ?.unfocus();
-                                              },
-                                              child: Padding(
-                                                padding:
-                                                    MediaQuery.viewInsetsOf(
-                                                        context),
-                                                child: AppPasswordGateWidget(
-                                                  onVerified: (success) async {
-                                                    if (success == true) {
-                                                      await ProfilesTable()
-                                                          .update(
-                                                        data: {
-                                                          'lock_chat_privacy_enabled':
-                                                              false,
-                                                        },
-                                                        matchingRows: (rows) =>
-                                                            rows.eqOrNull(
-                                                          'id',
-                                                          currentUserUid,
-                                                        ),
-                                                      );
-                                                    } else {
-                                                      safeSetState(() {});
-                                                    }
-                                                  },
-                                                ),
-                                              ),
-                                            );
+                                        await ProfilesTable().update(
+                                          data: {
+                                            'lock_chat_privacy_enabled': false,
                                           },
-                                        ).then((value) => safeSetState(() {}));
+                                          matchingRows: (rows) => rows.eqOrNull(
+                                            'id',
+                                            currentUserUid,
+                                          ),
+                                        );
                                       }
                                     },
                                     activeColor: Color(0xFF935CCC),
@@ -567,97 +500,244 @@ class _LockChatPrivacyWidgetState extends State<LockChatPrivacyWidget> {
                                                       _model.switchValue2 =
                                                           newValue);
                                                   if (newValue) {
-                                                    await showModalBottomSheet(
-                                                      isScrollControlled: true,
-                                                      backgroundColor:
-                                                          Colors.transparent,
-                                                      enableDrag: false,
-                                                      context: context,
-                                                      builder: (context) {
-                                                        return GestureDetector(
-                                                          onTap: () {
-                                                            FocusScope.of(
-                                                                    context)
-                                                                .unfocus();
-                                                            FocusManager
-                                                                .instance
-                                                                .primaryFocus
-                                                                ?.unfocus();
-                                                          },
-                                                          child: Padding(
-                                                            padding: MediaQuery
-                                                                .viewInsetsOf(
-                                                                    context),
-                                                            child:
-                                                                AppPasswordGateWidget(
-                                                              onVerified:
-                                                                  (success) async {
-                                                                await ProfilesTable()
-                                                                    .update(
-                                                                  data: {
-                                                                    'off_notification_enabled':
-                                                                        true,
-                                                                  },
-                                                                  matchingRows:
-                                                                      (rows) =>
-                                                                          rows.eqOrNull(
-                                                                    'id',
-                                                                    currentUserUid,
-                                                                  ),
-                                                                );
-                                                              },
-                                                            ),
-                                                          ),
-                                                        );
+                                                    await ProfilesTable()
+                                                        .update(
+                                                      data: {
+                                                        'off_notification_enabled':
+                                                            true,
                                                       },
-                                                    ).then((value) =>
-                                                        safeSetState(() {}));
+                                                      matchingRows: (rows) =>
+                                                          rows.eqOrNull(
+                                                        'id',
+                                                        currentUserUid,
+                                                      ),
+                                                    );
                                                   } else {
-                                                    await showModalBottomSheet(
-                                                      isScrollControlled: true,
-                                                      backgroundColor:
-                                                          Colors.transparent,
-                                                      enableDrag: false,
-                                                      context: context,
-                                                      builder: (context) {
-                                                        return GestureDetector(
-                                                          onTap: () {
-                                                            FocusScope.of(
-                                                                    context)
-                                                                .unfocus();
-                                                            FocusManager
-                                                                .instance
-                                                                .primaryFocus
-                                                                ?.unfocus();
-                                                          },
-                                                          child: Padding(
-                                                            padding: MediaQuery
-                                                                .viewInsetsOf(
-                                                                    context),
-                                                            child:
-                                                                AppPasswordGateWidget(
-                                                              onVerified:
-                                                                  (success) async {
-                                                                await ProfilesTable()
-                                                                    .update(
-                                                                  data: {
-                                                                    'off_notification_enabled':
-                                                                        false,
-                                                                  },
-                                                                  matchingRows:
-                                                                      (rows) =>
-                                                                          rows.eqOrNull(
-                                                                    'id',
-                                                                    currentUserUid,
-                                                                  ),
-                                                                );
-                                                              },
-                                                            ),
-                                                          ),
-                                                        );
+                                                    await ProfilesTable()
+                                                        .update(
+                                                      data: {
+                                                        'off_notification_enabled':
+                                                            false,
                                                       },
-                                                    ).then((value) =>
-                                                        safeSetState(() {}));
+                                                      matchingRows: (rows) =>
+                                                          rows.eqOrNull(
+                                                        'id',
+                                                        currentUserUid,
+                                                      ),
+                                                    );
+                                                  }
+                                                },
+                                                activeColor: Color(0xFF935CCC),
+                                                activeTrackColor:
+                                                    Color(0xFF935CCC),
+                                                inactiveTrackColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .alternate,
+                                                inactiveThumbColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      Divider(
+                                        thickness: 1.0,
+                                        indent: 30.0,
+                                        color: FlutterFlowTheme.of(context)
+                                            .alternate,
+                                      ),
+                                    ],
+                                  ),
+                                  Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Expanded(
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  10.0, 0.0, 0.0, 0.0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                (FFMainAxisAlignment
+                                                        .spaceBetween)
+                                                    .flutterValue,
+                                            children: [
+                                              Expanded(
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Container(
+                                                      width: 40.0,
+                                                      height: 40.0,
+                                                      decoration: BoxDecoration(
+                                                        color:
+                                                            Color(0xFFEFEBF2),
+                                                        shape: BoxShape.circle,
+                                                      ),
+                                                      child: Align(
+                                                        alignment:
+                                                            AlignmentDirectional(
+                                                                0.0, 0.0),
+                                                        child: FaIcon(
+                                                          FaIconData(const IconData(
+                                                              /* bell */ 0xf0f3,
+                                                              fontFamily:
+                                                                  'FontAwesomeRegular',
+                                                              fontPackage:
+                                                                  'font_awesome_flutter')),
+                                                          color:
+                                                              Color(0xFF935CCC),
+                                                          size: 24.0,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Expanded(
+                                                      child: Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    10.0,
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0),
+                                                        child: Column(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          mainAxisAlignment:
+                                                              (FFMainAxisAlignment
+                                                                      .center)
+                                                                  .flutterValue,
+                                                          crossAxisAlignment:
+                                                              (FFCrossAxisAlignment
+                                                                      .start)
+                                                                  .flutterValue,
+                                                          textBaseline:
+                                                              TextBaseline
+                                                                  .alphabetic,
+                                                          children: [
+                                                            Text(
+                                                              FFLocalizations.of(
+                                                                      context)
+                                                                  .getText(
+                                                                '6yira923' /* Show locked chat Stories */,
+                                                              ),
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    font: GoogleFonts
+                                                                        .plusJakartaSans(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w600,
+                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontStyle,
+                                                                    ),
+                                                                    fontSize:
+                                                                        16.0,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w600,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .fontStyle,
+                                                                  ),
+                                                            ),
+                                                            Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          5.0),
+                                                              child: Text(
+                                                                FFLocalizations.of(
+                                                                        context)
+                                                                    .getText(
+                                                                  '25zar07l' /* Show Stories from your Private... */,
+                                                                ),
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      font: GoogleFonts
+                                                                          .plusJakartaSans(
+                                                                        fontWeight: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .fontWeight,
+                                                                        fontStyle: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .fontStyle,
+                                                                      ),
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .secondaryText,
+                                                                      fontSize:
+                                                                          12.0,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      fontWeight: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontWeight,
+                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontStyle,
+                                                                    ),
+                                                              ),
+                                                            ),
+                                                          ].divide(SizedBox(
+                                                              height: 5.0)),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Switch.adaptive(
+                                                value: _model.switchValue3 ??=
+                                                    lockChatPrivacyProfilesRow!
+                                                        .showLockedStoriesInNormal!,
+                                                onChanged: (newValue) async {
+                                                  safeSetState(() =>
+                                                      _model.switchValue3 =
+                                                          newValue);
+                                                  if (newValue) {
+                                                    await ProfilesTable()
+                                                        .update(
+                                                      data: {
+                                                        'show_locked_stories_in_normal':
+                                                            true,
+                                                      },
+                                                      matchingRows: (rows) =>
+                                                          rows.eqOrNull(
+                                                        'id',
+                                                        currentUserUid,
+                                                      ),
+                                                    );
+                                                  } else {
+                                                    await ProfilesTable()
+                                                        .update(
+                                                      data: {
+                                                        'show_locked_stories_in_normal':
+                                                            false,
+                                                      },
+                                                      matchingRows: (rows) =>
+                                                          rows.eqOrNull(
+                                                        'id',
+                                                        currentUserUid,
+                                                      ),
+                                                    );
                                                   }
                                                 },
                                                 activeColor: Color(0xFF935CCC),
