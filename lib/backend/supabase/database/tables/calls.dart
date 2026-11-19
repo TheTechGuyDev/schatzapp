@@ -54,4 +54,24 @@ class CallsRow extends SupabaseDataRow {
   String? get videoRequestBy => getField<String>('video_request_by');
   set videoRequestBy(String? value) =>
       setField<String>('video_request_by', value);
+
+  DateTime? get answeredAt => getField<DateTime>('answered_at');
+  set answeredAt(DateTime? value) => setField<DateTime>('answered_at', value);
+
+  DateTime? get endsAt => getField<DateTime>('ends_at');
+  set endsAt(DateTime? value) => setField<DateTime>('ends_at', value);
+
+  bool? get viaLink => getField<bool>('via_link');
+  set viaLink(bool? value) => setField<bool>('via_link', value);
+
+  DateTime? get aloneSince => getField<DateTime>('alone_since');
+  set aloneSince(DateTime? value) => setField<DateTime>('alone_since', value);
+
+  List<String> get invitedUserIds => getListField<String>('invited_user_ids');
+  set invitedUserIds(List<String>? value) =>
+      setListField<String>('invited_user_ids', value);
+
+  String? get agoraChannelName => getField<String>('agora_channel_name');
+  set agoraChannelName(String? value) =>
+      setField<String>('agora_channel_name', value);
 }

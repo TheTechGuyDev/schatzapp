@@ -11,7 +11,7 @@ import 'package:flutter/material.dart' hide RepeatMode;
 // Begin custom widget code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-class UserAvatarWidget extends StatelessWidget {
+class UserAvatarWidget extends StatefulWidget {
   const UserAvatarWidget({
     super.key,
     this.width,
@@ -19,6 +19,7 @@ class UserAvatarWidget extends StatelessWidget {
     this.avatarUrl,
     required this.displayName,
     this.radius,
+    this.userId,
   });
 
   final double? width;
@@ -26,18 +27,70 @@ class UserAvatarWidget extends StatelessWidget {
   final String? avatarUrl;
   final String displayName;
   final double? radius;
+  final String? userId;
+
+  @override
+  State<UserAvatarWidget> createState() => _UserAvatarWidgetState();
+}
+
+class _UserAvatarWidgetState extends State<UserAvatarWidget> {
+  bool _blocked = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _checkBlocked();
+  }
+
+  @override
+  void didUpdateWidget(covariant UserAvatarWidget old) {
+    super.didUpdateWidget(old);
+    if (old.userId != widget.userId) _checkBlocked();
+  }
+
+  // A block in either direction shows the grey default picture.
+  Future<void> _checkBlocked() async {
+    final id = widget.userId;
+    if (id == null || id.isEmpty) {
+      if (_blocked) setState(() => _blocked = false);
+      return;
+    }
+    try {
+      final res =
+          await SupaFlow.client.rpc('block_status', params: {'p_other': id});
+      if (!mounted) return;
+      final blocked = (res ?? 'none').toString() != 'none';
+      if (blocked != _blocked) setState(() => _blocked = blocked);
+    } catch (_) {}
+  }
 
   @override
   Widget build(BuildContext context) {
-    final hasAvatar = avatarUrl != null && avatarUrl!.isNotEmpty;
+    final r = widget.radius ?? 26;
+    if (_blocked) {
+      return CircleAvatar(
+        radius: r,
+        backgroundColor: const Color(0xFFE0E0E0),
+        child:
+            Icon(Icons.person, color: const Color(0xFF9E9E9E), size: r * 1.2),
+      );
+    }
+    final url = (widget.avatarUrl ?? '').trim();
+    // Stock placeholder links and bad values count as "no photo".
+    final hasAvatar = url.toLowerCase().startsWith('http') &&
+        !url.toLowerCase().contains('unsplash.com');
+    if (!hasAvatar) {
+      return CircleAvatar(
+        radius: r,
+        backgroundColor: const Color(0xFFEFEBF2),
+        child: Icon(Icons.person_outline,
+            color: const Color(0xFF935CCC), size: r * 1.1),
+      );
+    }
     return CircleAvatar(
-      radius: radius ?? 26,
-      backgroundImage: hasAvatar ? NetworkImage(avatarUrl!) : null,
-      child: hasAvatar
-          ? null
-          : Text(
-              displayName.isNotEmpty ? displayName[0].toUpperCase() : '?',
-            ),
+      radius: r,
+      backgroundColor: const Color(0xFFEFEBF2),
+      backgroundImage: NetworkImage(url),
     );
   }
 }

@@ -84,6 +84,7 @@ Future<CallStartResultStruct?> _startCallInner(
         'caller_id': callerId,
         'callee_id': isGroup ? null : calleeIds.first,
         'is_group': isGroup,
+        'invited_user_ids': isGroup ? calleeIds : <String>[],
         'caller_name': callerProfile['full_name'],
         'caller_avatar': callerProfile['avatar_url'],
         'call_type': callType,

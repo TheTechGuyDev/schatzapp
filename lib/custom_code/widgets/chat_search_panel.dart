@@ -41,7 +41,6 @@ class _ChatSearchPanelState extends State<ChatSearchPanel> {
   Map<String, String> _usernameByUser = {};
   List<_MessageMatch> _messageMatches = [];
   bool _passwordUnlocked = false;
-  Map<String, bool> _privateStories = {}; // userId -> has unviewed
 
   @override
   void initState() {
@@ -115,6 +114,13 @@ class _ChatSearchPanelState extends State<ChatSearchPanel> {
 
     if (query.isNotEmpty) {
       passwordUnlocked = await verifyAppPassword(query);
+      if (passwordUnlocked) {
+        // Remember the password was just entered, so Private Chat opens
+        // without asking again.
+        FFAppState().update(() {
+          FFAppState().privateUnlockedAt = DateTime.now();
+        });
+      }
 
       if (!passwordUnlocked) {
         final participantRows = await SupaFlow.client
@@ -168,22 +174,8 @@ class _ChatSearchPanelState extends State<ChatSearchPanel> {
       }
     }
 
-    final privateStories = <String, bool>{};
-    if (passwordUnlocked) {
-      try {
-        final sr = await SupaFlow.client
-            .from('private_story_ring_view')
-            .select('user_id, has_unviewed');
-        for (final r in sr as List) {
-          privateStories[r['user_id'] as String] =
-              (r['has_unviewed'] as bool?) ?? false;
-        }
-      } catch (_) {}
-    }
-
     if (!mounted) return;
     setState(() {
-      _privateStories = privateStories;
       _chatRows = rows;
       _savedNameByUser = savedNameByUser;
       _usernameByUser = usernameByUser;
@@ -191,6 +183,11 @@ class _ChatSearchPanelState extends State<ChatSearchPanel> {
       _passwordUnlocked = passwordUnlocked;
       _loading = false;
     });
+    if (passwordUnlocked) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) _openPrivate();
+      });
+    }
   }
 
   String _resolveName(Map<String, dynamic> row) {
@@ -208,9 +205,8 @@ class _ChatSearchPanelState extends State<ChatSearchPanel> {
   List<Map<String, dynamic>> get _nameMatches {
     final query = widget.query.trim().toLowerCase();
 
-    if (_passwordUnlocked) {
-      return _chatRows.where((r) => r['is_locked'] == true).toList();
-    }
+    // Locked chats never show here. They live in Private Chat.
+    if (_passwordUnlocked) return [];
 
     final unlocked = _chatRows.where((r) => r['is_locked'] != true);
 
@@ -234,31 +230,8 @@ class _ChatSearchPanelState extends State<ChatSearchPanel> {
     return DateFormat('MM/dd/yy').format(date);
   }
 
-  Future<void> _openStory(String otherUserId) async {
-    try {
-      final groups = await getFriendsStories(widget.currentUserId);
-      final idx = groups.indexWhere((g) => g.userId == otherUserId);
-      if (idx < 0) {
-        if (!mounted) return;
-        ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('No Stories to show right now')));
-        return;
-      }
-      FFAppState().update(() => FFAppState().friendsStoriesList = groups);
-      if (!mounted) return;
-      context.pushNamed(
-        'users_story',
-        queryParameters: {
-          'groupIndex': serializeParam(idx, ParamType.int),
-          'currentUserId':
-              serializeParam(widget.currentUserId, ParamType.String),
-        }.withoutNulls,
-      );
-    } catch (_) {
-      if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Could not open the Story')));
-    }
+  void _openPrivate() {
+    context.pushNamed('private_chat');
   }
 
   void _openChat(String conversationId, bool isGroup, String otherUserId,
@@ -325,6 +298,33 @@ class _ChatSearchPanelState extends State<ChatSearchPanel> {
       child: ListView(
         padding: const EdgeInsets.only(bottom: 70),
         children: [
+          if (_passwordUnlocked)
+            InkWell(
+              onTap: _openPrivate,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                child: Row(
+                  children: [
+                    const CircleAvatar(
+                      radius: 24,
+                      backgroundColor: Color(0xFFEFEBF2),
+                      child: Icon(Icons.lock_outline,
+                          color: Color(0xFF935CCC), size: 26),
+                    ),
+                    const SizedBox(width: 12),
+                    const Expanded(
+                      child: Text(
+                        'Open Private Chat',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 15),
+                      ),
+                    ),
+                    Icon(Icons.chevron_right, color: theme.secondaryText),
+                  ],
+                ),
+              ),
+            ),
           ...nameMatches.map((row) {
             final conversationId = row['conversation_id'] as String;
             final isGroup = row['type'] == 'group';
@@ -343,36 +343,23 @@ class _ChatSearchPanelState extends State<ChatSearchPanel> {
                     Builder(builder: (context) {
                       final avatar = CircleAvatar(
                         radius: 24,
-                        backgroundImage: avatarUrl.isNotEmpty
-                            ? NetworkImage(avatarUrl)
-                            : null,
-                        child: avatarUrl.isEmpty
-                            ? Text(displayName.isNotEmpty
-                                ? displayName[0].toUpperCase()
-                                : '?')
-                            : null,
+                        backgroundColor: const Color(0xFFEFEBF2),
+                        backgroundImage:
+                            (avatarUrl.toLowerCase().startsWith('http') &&
+                                    !avatarUrl
+                                        .toLowerCase()
+                                        .contains('unsplash.com'))
+                                ? NetworkImage(avatarUrl)
+                                : null,
+                        child: (avatarUrl.toLowerCase().startsWith('http') &&
+                                !avatarUrl
+                                    .toLowerCase()
+                                    .contains('unsplash.com'))
+                            ? null
+                            : const Icon(Icons.person_outline,
+                                color: Color(0xFF935CCC), size: 28),
                       );
-                      final hasStory = _passwordUnlocked &&
-                          !isGroup &&
-                          _privateStories.containsKey(otherUserId);
-                      if (!hasStory) return avatar;
-                      final unviewed = _privateStories[otherUserId] == true;
-                      return GestureDetector(
-                        onTap: () => _openStory(otherUserId),
-                        child: Container(
-                          padding: const EdgeInsets.all(2.5),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                              color: unviewed
-                                  ? const Color(0xFF935CCC)
-                                  : Colors.grey,
-                              width: 2.5,
-                            ),
-                          ),
-                          child: avatar,
-                        ),
-                      );
+                      return avatar;
                     }),
                     const SizedBox(width: 12),
                     Expanded(
@@ -410,14 +397,22 @@ class _ChatSearchPanelState extends State<ChatSearchPanel> {
                     children: [
                       CircleAvatar(
                         radius: 24,
-                        backgroundImage: match.avatarUrl.isNotEmpty
-                            ? NetworkImage(match.avatarUrl)
-                            : null,
-                        child: match.avatarUrl.isEmpty
-                            ? Text(match.displayName.isNotEmpty
-                                ? match.displayName[0].toUpperCase()
-                                : '?')
-                            : null,
+                        backgroundColor: const Color(0xFFEFEBF2),
+                        backgroundImage:
+                            (match.avatarUrl.toLowerCase().startsWith('http') &&
+                                    !match.avatarUrl
+                                        .toLowerCase()
+                                        .contains('unsplash.com'))
+                                ? NetworkImage(match.avatarUrl)
+                                : null,
+                        child:
+                            (match.avatarUrl.toLowerCase().startsWith('http') &&
+                                    !match.avatarUrl
+                                        .toLowerCase()
+                                        .contains('unsplash.com'))
+                                ? null
+                                : const Icon(Icons.person_outline,
+                                    color: Color(0xFF935CCC), size: 28),
                       ),
                       const SizedBox(width: 12),
                       Expanded(

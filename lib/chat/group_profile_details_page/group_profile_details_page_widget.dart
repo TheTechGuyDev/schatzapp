@@ -2,12 +2,16 @@ import '/auth/supabase_auth/auth_util.dart';
 import '/backend/supabase/supabase.dart';
 import '/chat/add_members_to_group/add_members_to_group_widget.dart';
 import '/chat/exit_group/exit_group_widget.dart';
+import '/flutter_flow/ff_builtin_enums.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/custom_code/actions/index.dart' as actions;
+import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/index.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'group_profile_details_page_model.dart';
@@ -40,8 +44,17 @@ class _GroupProfileDetailsPageWidgetState
     super.initState();
     _model = createModel(context, () => GroupProfileDetailsPageModel());
 
-    _model.switchValue1 = true;
-    _model.switchValue2 = true;
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.adminResult = await actions.isGroupAdmin(
+        widget.groupConversationId!,
+      );
+      _model.isAdmin = _model.adminResult!;
+      safeSetState(() {});
+    });
+
+    _model.switchValue1 = false;
+    _model.switchValue2 = false;
     _model.switchValue3 = true;
     _model.switchValue4 = true;
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -160,71 +173,45 @@ class _GroupProfileDetailsPageWidgetState
                                         alignment:
                                             AlignmentDirectional(1.0, 1.0),
                                         children: [
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 5.0, 0.0, 0.0),
-                                            child: Container(
+                                          Container(
+                                            width: 110.0,
+                                            height: 110.0,
+                                            child: custom_widgets.GroupAvatar(
                                               width: 110.0,
                                               height: 110.0,
-                                              decoration: BoxDecoration(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
-                                                image: DecorationImage(
-                                                  fit: BoxFit.cover,
-                                                  image: Image.network(
-                                                    valueOrDefault<String>(
-                                                      groupProfileDetailsPageConversationsRow
-                                                          ?.avatarUrl,
-                                                      'https://cdn.dribbble.com/userupload/23895431/file/original-881ed4ecb20e8298efa74459eebb58e6.jpg',
-                                                    ),
-                                                  ).image,
-                                                ),
-                                                boxShadow: [
-                                                  BoxShadow(
-                                                    blurRadius: 0.0,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryBackground,
-                                                    offset: Offset(
-                                                      0.0,
-                                                      0.0,
-                                                    ),
-                                                    spreadRadius: 2.0,
-                                                  )
-                                                ],
-                                                shape: BoxShape.circle,
-                                              ),
+                                              imageUrl:
+                                                  groupProfileDetailsPageConversationsRow!
+                                                      .avatarUrl!,
+                                              size: 110.0,
                                             ),
                                           ),
-                                          Container(
-                                            width: 35.0,
-                                            height: 35.0,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .alternate,
-                                              shape: BoxShape.circle,
-                                              border: Border.all(
+                                          if (_model.isAdmin == true)
+                                            FlutterFlowIconButton(
+                                              borderRadius: 8.0,
+                                              buttonSize: 40.0,
+                                              icon: Icon(
+                                                Icons.camera_alt_outlined,
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
-                                                width: 3.0,
+                                                        .primaryText,
+                                                size: 24.0,
                                               ),
+                                              onPressed: () async {
+                                                _model.avatarChanged =
+                                                    await actions
+                                                        .changeGroupAvatar(
+                                                  widget.groupConversationId!,
+                                                );
+                                                if (_model.avatarChanged ==
+                                                    true) {
+                                                  _model.isAdmin =
+                                                      _model.isAdmin;
+                                                  safeSetState(() {});
+                                                }
+
+                                                safeSetState(() {});
+                                              },
                                             ),
-                                            child: Align(
-                                              alignment: AlignmentDirectional(
-                                                  0.0, 0.0),
-                                              child: Icon(
-                                                Icons.photo_camera_outlined,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryText,
-                                                size: 23.0,
-                                              ),
-                                            ),
-                                          ),
                                         ],
                                       ),
                                       Flexible(
@@ -245,7 +232,7 @@ class _GroupProfileDetailsPageWidgetState
                                                   child: Text(
                                                     valueOrDefault<String>(
                                                       groupProfileDetailsPageConversationsRow
-                                                          ?.name,
+                                                          .name,
                                                       'KESTA WEALTH LANDLORD\'S',
                                                     ),
                                                     textAlign: TextAlign.center,
@@ -310,7 +297,7 @@ class _GroupProfileDetailsPageWidgetState
                                                 child: Text(
                                                   valueOrDefault<String>(
                                                     groupProfileDetailsPageConversationsRow
-                                                        ?.description,
+                                                        .description,
                                                     'This Group is for fun only 😄😅😂🤣',
                                                   ),
                                                   textAlign: TextAlign.center,
@@ -371,7 +358,7 @@ class _GroupProfileDetailsPageWidgetState
                                           queryFn: (q) => q.eqOrNull(
                                             'id',
                                             groupProfileDetailsPageConversationsRow
-                                                ?.createdBy,
+                                                .createdBy,
                                           ),
                                         ),
                                         builder: (context, snapshot) {
@@ -451,6 +438,58 @@ class _GroupProfileDetailsPageWidgetState
                                                       ),
                                                 ),
                                               ),
+                                              if (groupProfileDetailsPageConversationsRow
+                                                      .privateOrigin ==
+                                                  'converted')
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 10.0, 0.0, 0.0),
+                                                  child: Text(
+                                                    'Converted to Private Chat Lock on ${dateTimeFormat(
+                                                      "d/M/y",
+                                                      groupProfileDetailsPageConversationsRow
+                                                          .privateSince,
+                                                      locale:
+                                                          FFLocalizations.of(
+                                                                  context)
+                                                              .languageCode,
+                                                    )}',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          font: GoogleFonts
+                                                              .plusJakartaSans(
+                                                            fontWeight:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontWeight,
+                                                            fontStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontStyle,
+                                                          ),
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryText,
+                                                          fontSize: 13.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontWeight,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontStyle,
+                                                        ),
+                                                  ),
+                                                ),
                                             ],
                                           );
                                         },
@@ -473,11 +512,138 @@ class _GroupProfileDetailsPageWidgetState
                                             shrinkWrap: true,
                                             scrollDirection: Axis.vertical,
                                             children: [
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        2.0, 0.0, 0.0, 0.0),
-                                                child: InkWell(
+                                              if ((groupProfileDetailsPageConversationsRow
+                                                          .isPrivateGroup !=
+                                                      true) ||
+                                                  (_model.isAdmin == true))
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          2.0, 0.0, 0.0, 0.0),
+                                                  child: InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      await showModalBottomSheet(
+                                                        isScrollControlled:
+                                                            true,
+                                                        backgroundColor:
+                                                            Colors.transparent,
+                                                        enableDrag: false,
+                                                        context: context,
+                                                        builder: (context) {
+                                                          return GestureDetector(
+                                                            onTap: () {
+                                                              FocusScope.of(
+                                                                      context)
+                                                                  .unfocus();
+                                                              FocusManager
+                                                                  .instance
+                                                                  .primaryFocus
+                                                                  ?.unfocus();
+                                                            },
+                                                            child: Padding(
+                                                              padding: MediaQuery
+                                                                  .viewInsetsOf(
+                                                                      context),
+                                                              child:
+                                                                  AddMembersToGroupWidget(
+                                                                groupConversationId:
+                                                                    widget
+                                                                        .groupConversationId,
+                                                              ),
+                                                            ),
+                                                          );
+                                                        },
+                                                      ).then((value) =>
+                                                          safeSetState(() {}));
+                                                    },
+                                                    child: Container(
+                                                      width: 80.0,
+                                                      height: 80.0,
+                                                      decoration: BoxDecoration(
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .secondaryBackground,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(20.0),
+                                                        border: Border.all(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .alternate,
+                                                        ),
+                                                      ),
+                                                      child: Padding(
+                                                        padding:
+                                                            EdgeInsets.all(3.0),
+                                                        child: Column(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceEvenly,
+                                                          children: [
+                                                            Icon(
+                                                              Icons
+                                                                  .person_add_alt_outlined,
+                                                              color: Color(
+                                                                  0xFF935CCC),
+                                                              size: 30.0,
+                                                            ),
+                                                            Text(
+                                                              FFLocalizations.of(
+                                                                      context)
+                                                                  .getText(
+                                                                'fs3eobld' /* Add Members */,
+                                                              ),
+                                                              maxLines: 1,
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    font: GoogleFonts
+                                                                        .plusJakartaSans(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontStyle,
+                                                                    ),
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryText,
+                                                                    fontSize:
+                                                                        8.0,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .fontStyle,
+                                                                  ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              if (groupProfileDetailsPageConversationsRow
+                                                      .isPrivateGroup !=
+                                                  true)
+                                                InkWell(
                                                   splashColor:
                                                       Colors.transparent,
                                                   focusColor:
@@ -487,38 +653,17 @@ class _GroupProfileDetailsPageWidgetState
                                                   highlightColor:
                                                       Colors.transparent,
                                                   onTap: () async {
-                                                    await showModalBottomSheet(
-                                                      isScrollControlled: true,
-                                                      backgroundColor:
-                                                          Colors.transparent,
-                                                      enableDrag: false,
-                                                      context: context,
-                                                      builder: (context) {
-                                                        return GestureDetector(
-                                                          onTap: () {
-                                                            FocusScope.of(
-                                                                    context)
-                                                                .unfocus();
-                                                            FocusManager
-                                                                .instance
-                                                                .primaryFocus
-                                                                ?.unfocus();
-                                                          },
-                                                          child: Padding(
-                                                            padding: MediaQuery
-                                                                .viewInsetsOf(
-                                                                    context),
-                                                            child:
-                                                                AddMembersToGroupWidget(
-                                                              groupConversationId:
-                                                                  widget
-                                                                      .groupConversationId,
-                                                            ),
-                                                          ),
-                                                        );
-                                                      },
-                                                    ).then((value) =>
-                                                        safeSetState(() {}));
+                                                    await actions
+                                                        .showGroupInviteSheet(
+                                                      widget
+                                                          .groupConversationId!,
+                                                      valueOrDefault<String>(
+                                                        groupProfileDetailsPageConversationsRow
+                                                            .name,
+                                                        'Group',
+                                                      ),
+                                                      false,
+                                                    );
                                                   },
                                                   child: Container(
                                                     width: 80.0,
@@ -547,18 +692,22 @@ class _GroupProfileDetailsPageWidgetState
                                                             MainAxisAlignment
                                                                 .spaceEvenly,
                                                         children: [
-                                                          Icon(
-                                                            Icons
-                                                                .person_add_alt_outlined,
+                                                          FaIcon(
+                                                            FaIconData(const IconData(
+                                                                /* link */ 0xf0c1,
+                                                                fontFamily:
+                                                                    'FontAwesomeSolid',
+                                                                fontPackage:
+                                                                    'font_awesome_flutter')),
                                                             color: Color(
                                                                 0xFF935CCC),
-                                                            size: 30.0,
+                                                            size: 25.0,
                                                           ),
                                                           Text(
                                                             FFLocalizations.of(
                                                                     context)
                                                                 .getText(
-                                                              'fs3eobld' /* Add Members */,
+                                                              'hx372l07' /* Invite Via Link */,
                                                             ),
                                                             maxLines: 1,
                                                             style: FlutterFlowTheme
@@ -595,53 +744,74 @@ class _GroupProfileDetailsPageWidgetState
                                                     ),
                                                   ),
                                                 ),
-                                              ),
-                                              Container(
-                                                width: 80.0,
-                                                height: 80.0,
-                                                decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryBackground,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          20.0),
-                                                  border: Border.all(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .alternate,
-                                                  ),
-                                                ),
-                                                child: Padding(
-                                                  padding: EdgeInsets.all(3.0),
-                                                  child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceEvenly,
-                                                    children: [
-                                                      FaIcon(
-                                                        FaIconData(const IconData(
-                                                            /* link */ 0xf0c1,
-                                                            fontFamily:
-                                                                'FontAwesomeSolid',
-                                                            fontPackage:
-                                                                'font_awesome_flutter')),
-                                                        color:
-                                                            Color(0xFF935CCC),
-                                                        size: 25.0,
+                                              if (groupProfileDetailsPageConversationsRow
+                                                      .isPrivateGroup !=
+                                                  true)
+                                                InkWell(
+                                                  splashColor:
+                                                      Colors.transparent,
+                                                  focusColor:
+                                                      Colors.transparent,
+                                                  hoverColor:
+                                                      Colors.transparent,
+                                                  highlightColor:
+                                                      Colors.transparent,
+                                                  onTap: () async {
+                                                    await actions
+                                                        .showGroupInviteSheet(
+                                                      widget
+                                                          .groupConversationId!,
+                                                      valueOrDefault<String>(
+                                                        groupProfileDetailsPageConversationsRow
+                                                            .name,
+                                                        'Group',
                                                       ),
-                                                      Text(
-                                                        FFLocalizations.of(
-                                                                context)
-                                                            .getText(
-                                                          'hx372l07' /* Invite Via Link */,
-                                                        ),
-                                                        maxLines: 1,
-                                                        style:
+                                                      true,
+                                                    );
+                                                  },
+                                                  child: Container(
+                                                    width: 80.0,
+                                                    height: 80.0,
+                                                    decoration: BoxDecoration(
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .secondaryBackground,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              20.0),
+                                                      border: Border.all(
+                                                        color:
                                                             FlutterFlowTheme.of(
                                                                     context)
+                                                                .alternate,
+                                                      ),
+                                                    ),
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsets.all(3.0),
+                                                      child: Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceEvenly,
+                                                        children: [
+                                                          Icon(
+                                                            Icons
+                                                                .qr_code_2_sharp,
+                                                            color: Color(
+                                                                0xFF935CCC),
+                                                            size: 30.0,
+                                                          ),
+                                                          Text(
+                                                            FFLocalizations.of(
+                                                                    context)
+                                                                .getText(
+                                                              'lv1r3oye' /* QR Code */,
+                                                            ),
+                                                            maxLines: 1,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
                                                                 .bodyMedium
                                                                 .override(
                                                                   font: GoogleFonts
@@ -668,70 +838,113 @@ class _GroupProfileDetailsPageWidgetState
                                                                       .bodyMedium
                                                                       .fontStyle,
                                                                 ),
+                                                          ),
+                                                        ],
                                                       ),
-                                                    ],
+                                                    ),
                                                   ),
                                                 ),
-                                              ),
-                                              Container(
-                                                width: 80.0,
-                                                height: 80.0,
-                                                decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryBackground,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          20.0),
-                                                  border: Border.all(
+                                              InkWell(
+                                                splashColor: Colors.transparent,
+                                                focusColor: Colors.transparent,
+                                                hoverColor: Colors.transparent,
+                                                highlightColor:
+                                                    Colors.transparent,
+                                                onTap: () async {
+                                                  context.pushNamed(
+                                                    GroupChatpageWidget
+                                                        .routeName,
+                                                    queryParameters: {
+                                                      'groupConversationId':
+                                                          serializeParam(
+                                                        widget
+                                                            .groupConversationId,
+                                                        ParamType.String,
+                                                      ),
+                                                      'groupNameParam':
+                                                          serializeParam(
+                                                        groupProfileDetailsPageConversationsRow
+                                                            .name,
+                                                        ParamType.String,
+                                                      ),
+                                                      'groupAvatarParam':
+                                                          serializeParam(
+                                                        groupProfileDetailsPageConversationsRow
+                                                            .avatarUrl,
+                                                        ParamType.String,
+                                                      ),
+                                                      'displayName':
+                                                          serializeParam(
+                                                        groupProfileDetailsPageConversationsRow
+                                                            .name,
+                                                        ParamType.String,
+                                                      ),
+                                                      'conversationId':
+                                                          serializeParam(
+                                                        widget
+                                                            .groupConversationId,
+                                                        ParamType.String,
+                                                      ),
+                                                      'displayAvatar':
+                                                          serializeParam(
+                                                        groupProfileDetailsPageConversationsRow
+                                                            .avatarUrl,
+                                                        ParamType.String,
+                                                      ),
+                                                      'startSearch':
+                                                          serializeParam(
+                                                        true,
+                                                        ParamType.bool,
+                                                      ),
+                                                    }.withoutNulls,
+                                                  );
+                                                },
+                                                child: Container(
+                                                  width: 80.0,
+                                                  height: 80.0,
+                                                  decoration: BoxDecoration(
                                                     color: FlutterFlowTheme.of(
                                                             context)
-                                                        .alternate,
+                                                        .secondaryBackground,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            20.0),
+                                                    border: Border.all(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .alternate,
+                                                    ),
                                                   ),
-                                                ),
-                                                child: Padding(
-                                                  padding: EdgeInsets.all(3.0),
-                                                  child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceEvenly,
-                                                    children: [
-                                                      Icon(
-                                                        Icons.qr_code_2_sharp,
-                                                        color:
-                                                            Color(0xFF935CCC),
-                                                        size: 30.0,
-                                                      ),
-                                                      Text(
-                                                        FFLocalizations.of(
-                                                                context)
-                                                            .getText(
-                                                          'lv1r3oye' /* QR Code */,
+                                                  child: Padding(
+                                                    padding:
+                                                        EdgeInsets.all(3.0),
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceEvenly,
+                                                      children: [
+                                                        Icon(
+                                                          Icons.search,
+                                                          color:
+                                                              Color(0xFF935CCC),
+                                                          size: 30.0,
                                                         ),
-                                                        maxLines: 1,
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  font: GoogleFonts
-                                                                      .plusJakartaSans(
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .fontStyle,
-                                                                  ),
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryText,
-                                                                  fontSize: 8.0,
-                                                                  letterSpacing:
-                                                                      0.0,
+                                                        Text(
+                                                          FFLocalizations.of(
+                                                                  context)
+                                                              .getText(
+                                                            '6zp6yoow' /* Search Chat */,
+                                                          ),
+                                                          maxLines: 1,
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                font: GoogleFonts
+                                                                    .plusJakartaSans(
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .bold,
@@ -740,80 +953,23 @@ class _GroupProfileDetailsPageWidgetState
                                                                       .bodyMedium
                                                                       .fontStyle,
                                                                 ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                              Container(
-                                                width: 80.0,
-                                                height: 80.0,
-                                                decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryBackground,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          20.0),
-                                                  border: Border.all(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .alternate,
-                                                  ),
-                                                ),
-                                                child: Padding(
-                                                  padding: EdgeInsets.all(3.0),
-                                                  child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceEvenly,
-                                                    children: [
-                                                      Icon(
-                                                        Icons.search,
-                                                        color:
-                                                            Color(0xFF935CCC),
-                                                        size: 30.0,
-                                                      ),
-                                                      Text(
-                                                        FFLocalizations.of(
-                                                                context)
-                                                            .getText(
-                                                          '6zp6yoow' /* Search Chat */,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                                fontSize: 8.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                fontStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontStyle,
+                                                              ),
                                                         ),
-                                                        maxLines: 1,
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  font: GoogleFonts
-                                                                      .plusJakartaSans(
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .fontStyle,
-                                                                  ),
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryText,
-                                                                  fontSize: 8.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .fontStyle,
-                                                                ),
-                                                      ),
-                                                    ],
+                                                      ],
+                                                    ),
                                                   ),
                                                 ),
                                               ),
@@ -841,284 +997,272 @@ class _GroupProfileDetailsPageWidgetState
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
-                                                Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  2.0),
-                                                      child: Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        children: [
-                                                          Row(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            children: [
-                                                              Icon(
-                                                                Icons
-                                                                    .lock_outline_sharp,
-                                                                color: Color(
-                                                                    0xFF935CCC),
-                                                                size: 24.0,
-                                                              ),
-                                                              Column(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .max,
-                                                                crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .start,
-                                                                children: [
-                                                                  Text(
-                                                                    FFLocalizations.of(
-                                                                            context)
-                                                                        .getText(
-                                                                      'tw7ksehx' /* Group Type */,
-                                                                    ),
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .override(
-                                                                          font:
-                                                                              GoogleFonts.plusJakartaSans(
+                                                if (_model.isAdmin == true)
+                                                  Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0,
+                                                                    2.0),
+                                                        child: Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          children: [
+                                                            Row(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              children: [
+                                                                Icon(
+                                                                  Icons
+                                                                      .lock_outline_sharp,
+                                                                  color: Color(
+                                                                      0xFF935CCC),
+                                                                  size: 24.0,
+                                                                ),
+                                                                Column(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    Text(
+                                                                      FFLocalizations.of(
+                                                                              context)
+                                                                          .getText(
+                                                                        'tw7ksehx' /* Group Type */,
+                                                                      ),
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .override(
+                                                                            font:
+                                                                                GoogleFonts.plusJakartaSans(
+                                                                              fontWeight: FontWeight.w600,
+                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                            ),
+                                                                            letterSpacing:
+                                                                                0.0,
                                                                             fontWeight:
                                                                                 FontWeight.w600,
                                                                             fontStyle:
                                                                                 FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                           ),
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          fontWeight:
-                                                                              FontWeight.w600,
-                                                                          fontStyle: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
-                                                                              .fontStyle,
-                                                                        ),
-                                                                  ),
-                                                                  Text(
-                                                                    FFLocalizations.of(
-                                                                            context)
-                                                                        .getText(
-                                                                      'w8htxd75' /* Private */,
                                                                     ),
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .override(
-                                                                          font:
-                                                                              GoogleFonts.plusJakartaSans(
+                                                                    Text(
+                                                                      FFLocalizations.of(
+                                                                              context)
+                                                                          .getText(
+                                                                        'w8htxd75' /* Private */,
+                                                                      ),
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .override(
+                                                                            font:
+                                                                                GoogleFonts.plusJakartaSans(
+                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                            ),
+                                                                            fontSize:
+                                                                                12.0,
+                                                                            letterSpacing:
+                                                                                0.0,
                                                                             fontWeight:
                                                                                 FlutterFlowTheme.of(context).bodyMedium.fontWeight,
                                                                             fontStyle:
                                                                                 FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                           ),
-                                                                          fontSize:
-                                                                              12.0,
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          fontWeight: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
-                                                                              .fontWeight,
-                                                                          fontStyle: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
-                                                                              .fontStyle,
-                                                                        ),
-                                                                  ),
-                                                                ].divide(SizedBox(
-                                                                    height:
-                                                                        5.0)),
-                                                              ),
-                                                            ].divide(SizedBox(
-                                                                width: 20.0)),
-                                                          ),
-                                                          Switch.adaptive(
-                                                            value: _model
-                                                                .switchValue1!,
-                                                            onChanged:
-                                                                (newValue) async {
-                                                              safeSetState(() =>
-                                                                  _model.switchValue1 =
-                                                                      newValue);
-                                                            },
-                                                            activeColor: Color(
-                                                                0xFF935CCC),
-                                                            activeTrackColor:
-                                                                Color(
-                                                                    0xFF935CCC),
-                                                            inactiveTrackColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .alternate,
-                                                            inactiveThumbColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryBackground,
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                    Divider(
-                                                      thickness: 1.0,
-                                                      indent: 20.0,
-                                                      endIndent: 20.0,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .alternate,
-                                                    ),
-                                                  ],
-                                                ),
-                                                Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  2.0),
-                                                      child: Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        children: [
-                                                          Row(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            children: [
-                                                              Icon(
-                                                                Icons
-                                                                    .switch_access_shortcut_outlined,
-                                                                color: Color(
-                                                                    0xFF935CCC),
-                                                                size: 24.0,
-                                                              ),
-                                                              Column(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .max,
-                                                                crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .start,
-                                                                children: [
-                                                                  Text(
-                                                                    FFLocalizations.of(
-                                                                            context)
-                                                                        .getText(
-                                                                      'gj9v7od3' /* Permissions */,
                                                                     ),
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .override(
-                                                                          font:
-                                                                              GoogleFonts.plusJakartaSans(
+                                                                  ].divide(SizedBox(
+                                                                      height:
+                                                                          5.0)),
+                                                                ),
+                                                              ].divide(SizedBox(
+                                                                  width: 20.0)),
+                                                            ),
+                                                            Switch.adaptive(
+                                                              value: _model
+                                                                  .switchValue1!,
+                                                              onChanged:
+                                                                  (newValue) async {
+                                                                safeSetState(() =>
+                                                                    _model.switchValue1 =
+                                                                        newValue);
+                                                              },
+                                                              activeColor: Color(
+                                                                  0xFF935CCC),
+                                                              activeTrackColor:
+                                                                  Color(
+                                                                      0xFF935CCC),
+                                                              inactiveTrackColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .alternate,
+                                                              inactiveThumbColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryBackground,
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      Divider(
+                                                        thickness: 1.0,
+                                                        indent: 20.0,
+                                                        endIndent: 20.0,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .alternate,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                if (_model.isAdmin == true)
+                                                  Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0,
+                                                                    2.0),
+                                                        child: Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          children: [
+                                                            Row(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              children: [
+                                                                Icon(
+                                                                  Icons
+                                                                      .switch_access_shortcut_outlined,
+                                                                  color: Color(
+                                                                      0xFF935CCC),
+                                                                  size: 24.0,
+                                                                ),
+                                                                Column(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    Text(
+                                                                      FFLocalizations.of(
+                                                                              context)
+                                                                          .getText(
+                                                                        'gj9v7od3' /* Permissions */,
+                                                                      ),
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .override(
+                                                                            font:
+                                                                                GoogleFonts.plusJakartaSans(
+                                                                              fontWeight: FontWeight.w600,
+                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                            ),
+                                                                            letterSpacing:
+                                                                                0.0,
                                                                             fontWeight:
                                                                                 FontWeight.w600,
                                                                             fontStyle:
                                                                                 FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                           ),
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          fontWeight:
-                                                                              FontWeight.w600,
-                                                                          fontStyle: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
-                                                                              .fontStyle,
-                                                                        ),
-                                                                  ),
-                                                                  AutoSizeText(
-                                                                    FFLocalizations.of(
-                                                                            context)
-                                                                        .getText(
-                                                                      '1fmemk64' /* Only admins can send messages */,
                                                                     ),
-                                                                    minFontSize:
-                                                                        10.0,
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .override(
-                                                                          font:
-                                                                              GoogleFonts.plusJakartaSans(
+                                                                    AutoSizeText(
+                                                                      FFLocalizations.of(
+                                                                              context)
+                                                                          .getText(
+                                                                        '1fmemk64' /* Only admins can send messages */,
+                                                                      ),
+                                                                      minFontSize:
+                                                                          10.0,
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .override(
+                                                                            font:
+                                                                                GoogleFonts.plusJakartaSans(
+                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                            ),
+                                                                            fontSize:
+                                                                                12.0,
+                                                                            letterSpacing:
+                                                                                0.0,
                                                                             fontWeight:
                                                                                 FlutterFlowTheme.of(context).bodyMedium.fontWeight,
                                                                             fontStyle:
                                                                                 FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                           ),
-                                                                          fontSize:
-                                                                              12.0,
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          fontWeight: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
-                                                                              .fontWeight,
-                                                                          fontStyle: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
-                                                                              .fontStyle,
-                                                                        ),
-                                                                  ),
-                                                                ].divide(SizedBox(
-                                                                    height:
-                                                                        5.0)),
-                                                              ),
-                                                            ].divide(SizedBox(
-                                                                width: 20.0)),
-                                                          ),
-                                                          Switch.adaptive(
-                                                            value: _model
-                                                                .switchValue2!,
-                                                            onChanged:
-                                                                (newValue) async {
-                                                              safeSetState(() =>
-                                                                  _model.switchValue2 =
-                                                                      newValue);
-                                                            },
-                                                            activeColor: Color(
-                                                                0xFF935CCC),
-                                                            activeTrackColor:
-                                                                Color(
-                                                                    0xFF935CCC),
-                                                            inactiveTrackColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .alternate,
-                                                            inactiveThumbColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryBackground,
-                                                          ),
-                                                        ],
+                                                                    ),
+                                                                  ].divide(SizedBox(
+                                                                      height:
+                                                                          5.0)),
+                                                                ),
+                                                              ].divide(SizedBox(
+                                                                  width: 20.0)),
+                                                            ),
+                                                            Switch.adaptive(
+                                                              value: _model
+                                                                  .switchValue2!,
+                                                              onChanged:
+                                                                  (newValue) async {
+                                                                safeSetState(() =>
+                                                                    _model.switchValue2 =
+                                                                        newValue);
+                                                              },
+                                                              activeColor: Color(
+                                                                  0xFF935CCC),
+                                                              activeTrackColor:
+                                                                  Color(
+                                                                      0xFF935CCC),
+                                                              inactiveTrackColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .alternate,
+                                                              inactiveThumbColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryBackground,
+                                                            ),
+                                                          ],
+                                                        ),
                                                       ),
-                                                    ),
-                                                    Divider(
-                                                      thickness: 1.0,
-                                                      indent: 20.0,
-                                                      endIndent: 20.0,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .alternate,
-                                                    ),
-                                                  ],
-                                                ),
+                                                      Divider(
+                                                        thickness: 1.0,
+                                                        indent: 20.0,
+                                                        endIndent: 20.0,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .alternate,
+                                                      ),
+                                                    ],
+                                                  ),
                                                 Column(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
@@ -1289,7 +1433,7 @@ class _GroupProfileDetailsPageWidgetState
                                                                       FFLocalizations.of(
                                                                               context)
                                                                           .getText(
-                                                                        'xal5c6hp' /* Media Visibility */,
+                                                                        'xal5c6hp' /* Save to Gallary */,
                                                                       ),
                                                                       style: FlutterFlowTheme.of(
                                                                               context)
@@ -1504,6 +1648,272 @@ class _GroupProfileDetailsPageWidgetState
                                                                   0.0,
                                                                   5.0,
                                                                   0.0,
+                                                                  2.0),
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: [
+                                                          Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            children: [
+                                                              Icon(
+                                                                Icons
+                                                                    .color_lens_outlined,
+                                                                color: Color(
+                                                                    0xFF935CCC),
+                                                                size: 24.0,
+                                                              ),
+                                                              Column(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                crossAxisAlignment:
+                                                                    (FFCrossAxisAlignment
+                                                                            .start)
+                                                                        .flutterValue,
+                                                                textBaseline:
+                                                                    TextBaseline
+                                                                        .alphabetic,
+                                                                children: [
+                                                                  Text(
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      'dxnr3w0z' /* Chat theme */,
+                                                                    ),
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .override(
+                                                                          font:
+                                                                              GoogleFonts.plusJakartaSans(
+                                                                            fontWeight:
+                                                                                FontWeight.w600,
+                                                                            fontStyle:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                          ),
+                                                                          letterSpacing:
+                                                                              0.0,
+                                                                          fontWeight:
+                                                                              FontWeight.w600,
+                                                                          fontStyle: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .fontStyle,
+                                                                        ),
+                                                                  ),
+                                                                  Text(
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      '46yrhrkh' /* Pick your preference */,
+                                                                    ),
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .override(
+                                                                          font:
+                                                                              GoogleFonts.plusJakartaSans(
+                                                                            fontWeight:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                            fontStyle:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                          ),
+                                                                          fontSize:
+                                                                              12.0,
+                                                                          letterSpacing:
+                                                                              0.0,
+                                                                          fontWeight: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .fontWeight,
+                                                                          fontStyle: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .fontStyle,
+                                                                        ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ].divide(SizedBox(
+                                                                width: 20.0)),
+                                                          ),
+                                                          Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            children: [
+                                                              Icon(
+                                                                Icons
+                                                                    .keyboard_arrow_right,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                                size: 24.0,
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Divider(
+                                                      thickness: 1.0,
+                                                      indent: 20.0,
+                                                      endIndent: 20.0,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .alternate,
+                                                    ),
+                                                  ],
+                                                ),
+                                                Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  5.0,
+                                                                  0.0,
+                                                                  5.0),
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: [
+                                                          Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            children: [
+                                                              FaIcon(
+                                                                FaIconData(const IconData(
+                                                                    /* broom */ 0xf51a,
+                                                                    fontFamily:
+                                                                        'FontAwesomeSolid',
+                                                                    fontPackage:
+                                                                        'font_awesome_flutter')),
+                                                                color: Color(
+                                                                    0xFF935CCC),
+                                                                size: 22.0,
+                                                              ),
+                                                              Column(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .start,
+                                                                children: [
+                                                                  Text(
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      'g1ifmeg4' /* Clear Chat */,
+                                                                    ),
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .override(
+                                                                          font:
+                                                                              GoogleFonts.plusJakartaSans(
+                                                                            fontWeight:
+                                                                                FontWeight.w600,
+                                                                            fontStyle:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                          ),
+                                                                          letterSpacing:
+                                                                              0.0,
+                                                                          fontWeight:
+                                                                              FontWeight.w600,
+                                                                          fontStyle: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .fontStyle,
+                                                                        ),
+                                                                  ),
+                                                                  Text(
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      'o00wlzh1' /* Delete all messages in this ch... */,
+                                                                    ),
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .override(
+                                                                          font:
+                                                                              GoogleFonts.plusJakartaSans(
+                                                                            fontWeight:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                            fontStyle:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                          ),
+                                                                          fontSize:
+                                                                              12.0,
+                                                                          letterSpacing:
+                                                                              0.0,
+                                                                          fontWeight: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .fontWeight,
+                                                                          fontStyle: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .fontStyle,
+                                                                        ),
+                                                                  ),
+                                                                ].divide(SizedBox(
+                                                                    height:
+                                                                        5.0)),
+                                                              ),
+                                                            ].divide(SizedBox(
+                                                                width: 20.0)),
+                                                          ),
+                                                          Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            children: [
+                                                              Icon(
+                                                                Icons
+                                                                    .keyboard_arrow_right,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                                size: 24.0,
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Divider(
+                                                      thickness: 1.0,
+                                                      indent: 20.0,
+                                                      endIndent: 20.0,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .alternate,
+                                                    ),
+                                                  ],
+                                                ),
+                                                Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  5.0,
+                                                                  0.0,
                                                                   5.0),
                                                       child: Row(
                                                         mainAxisSize:
@@ -1540,7 +1950,7 @@ class _GroupProfileDetailsPageWidgetState
                                                                     FFLocalizations.of(
                                                                             context)
                                                                         .getText(
-                                                                      'dxnr3w0z' /* Files and Links */,
+                                                                      'ot1futgw' /* Media, Links and Files  */,
                                                                     ),
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
@@ -1578,7 +1988,7 @@ class _GroupProfileDetailsPageWidgetState
                                                                 FFLocalizations.of(
                                                                         context)
                                                                     .getText(
-                                                                  '92pobuiu' /* 23 */,
+                                                                  'tuv8sn5y' /* 23 */,
                                                                 ),
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
@@ -1655,36 +2065,48 @@ class _GroupProfileDetailsPageWidgetState
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
-                                                  Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Text(
-                                                        FFLocalizations.of(
-                                                                context)
-                                                            .getText(
-                                                          'drswh72c' /* Group Members */,
-                                                        ),
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  font: GoogleFonts
-                                                                      .plusJakartaSans(
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w600,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .fontStyle,
-                                                                  ),
-                                                                  letterSpacing:
-                                                                      0.0,
+                                                  InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      context.pushNamed(
+                                                        GroupMembersPageWidget
+                                                            .routeName,
+                                                        queryParameters: {
+                                                          'groupConversationId':
+                                                              serializeParam(
+                                                            widget
+                                                                .groupConversationId,
+                                                            ParamType.String,
+                                                          ),
+                                                        }.withoutNulls,
+                                                      );
+                                                    },
+                                                    child: Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Text(
+                                                          FFLocalizations.of(
+                                                                  context)
+                                                              .getText(
+                                                            'drswh72c' /* Group Members */,
+                                                          ),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                font: GoogleFonts
+                                                                    .plusJakartaSans(
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .w600,
@@ -1693,17 +2115,27 @@ class _GroupProfileDetailsPageWidgetState
                                                                       .bodyMedium
                                                                       .fontStyle,
                                                                 ),
-                                                      ),
-                                                      Icon(
-                                                        Icons
-                                                            .keyboard_arrow_right,
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondaryText,
-                                                        size: 24.0,
-                                                      ),
-                                                    ],
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                fontStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontStyle,
+                                                              ),
+                                                        ),
+                                                        Icon(
+                                                          Icons
+                                                              .keyboard_arrow_right,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryText,
+                                                          size: 24.0,
+                                                        ),
+                                                      ],
+                                                    ),
                                                   ),
                                                   Padding(
                                                     padding:
@@ -1937,7 +2369,7 @@ class _GroupProfileDetailsPageWidgetState
                                                                         .groupConversationId,
                                                                 groupNameParam:
                                                                     groupProfileDetailsPageConversationsRow
-                                                                        ?.name,
+                                                                        .name,
                                                               ),
                                                             ),
                                                           );
@@ -1991,12 +2423,6 @@ class _GroupProfileDetailsPageWidgetState
                                                       ].divide(SizedBox(
                                                           width: 15.0)),
                                                     ),
-                                                  ),
-                                                  Divider(
-                                                    thickness: 1.0,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .alternate,
                                                   ),
                                                   FutureBuilder<
                                                       List<
@@ -2058,7 +2484,19 @@ class _GroupProfileDetailsPageWidgetState
                                                                         ?.role ==
                                                                     'admin') &&
                                                                 (groupProfileDetailsPageConversationsRow
-                                                                        ?.isPrivateGroup !=
+                                                                        .isPrivateGroup !=
+                                                                    true))
+                                                              Divider(
+                                                                thickness: 1.0,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .alternate,
+                                                              ),
+                                                            if ((containerConversationParticipantsRow
+                                                                        ?.role ==
+                                                                    'admin') &&
+                                                                (groupProfileDetailsPageConversationsRow
+                                                                        .isPrivateGroup !=
                                                                     true))
                                                               InkWell(
                                                                 splashColor: Colors
@@ -2172,8 +2610,147 @@ class _GroupProfileDetailsPageWidgetState
                                                                         ?.role ==
                                                                     'admin') &&
                                                                 (groupProfileDetailsPageConversationsRow
-                                                                        ?.isPrivateGroup ==
+                                                                        .isPrivateGroup !=
                                                                     true))
+                                                              InkWell(
+                                                                splashColor: Colors
+                                                                    .transparent,
+                                                                focusColor: Colors
+                                                                    .transparent,
+                                                                hoverColor: Colors
+                                                                    .transparent,
+                                                                highlightColor:
+                                                                    Colors
+                                                                        .transparent,
+                                                                onTap:
+                                                                    () async {
+                                                                  var confirmDialogResponse =
+                                                                      await showDialog<
+                                                                              bool>(
+                                                                            context:
+                                                                                context,
+                                                                            builder:
+                                                                                (alertDialogContext) {
+                                                                              return AlertDialog(
+                                                                                title: Text('Convert to Private Chat Lock'),
+                                                                                content: Text('This group will move out of Groups into Private Chat. Calls are replaced by Bimp, only pictures and videos can be shared, and location sharing is turned off. Your earlier messages are kept.'),
+                                                                                actions: [
+                                                                                  TextButton(
+                                                                                    onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                    child: Text('Cancel'),
+                                                                                  ),
+                                                                                  TextButton(
+                                                                                    onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                    child: Text('Convert'),
+                                                                                  ),
+                                                                                ],
+                                                                              );
+                                                                            },
+                                                                          ) ??
+                                                                          false;
+                                                                  if (confirmDialogResponse) {
+                                                                    _model.convert =
+                                                                        await actions
+                                                                            .convertGroupToPrivate(
+                                                                      widget
+                                                                          .groupConversationId!,
+                                                                    );
+                                                                    if (_model
+                                                                            .convert ==
+                                                                        true) {
+                                                                      context
+                                                                          .goNamed(
+                                                                        HomePageWidget
+                                                                            .routeName,
+                                                                        extra: <String,
+                                                                            dynamic>{
+                                                                          '__transition_info__':
+                                                                              TransitionInfo(
+                                                                            hasTransition:
+                                                                                true,
+                                                                            transitionType:
+                                                                                PageTransitionType.leftToRight,
+                                                                          ),
+                                                                        },
+                                                                      );
+                                                                    } else {
+                                                                      ScaffoldMessenger.of(
+                                                                              context)
+                                                                          .showSnackBar(
+                                                                        SnackBar(
+                                                                          content:
+                                                                              Text(
+                                                                            'Could not convert the group',
+                                                                            style:
+                                                                                TextStyle(
+                                                                              color: FlutterFlowTheme.of(context).primaryText,
+                                                                            ),
+                                                                          ),
+                                                                          duration:
+                                                                              Duration(milliseconds: 4000),
+                                                                          backgroundColor:
+                                                                              FlutterFlowTheme.of(context).secondary,
+                                                                        ),
+                                                                      );
+                                                                    }
+                                                                  }
+
+                                                                  safeSetState(
+                                                                      () {});
+                                                                },
+                                                                child: Row(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  children: [
+                                                                    Icon(
+                                                                      Icons
+                                                                          .lock_outline,
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primary,
+                                                                      size:
+                                                                          24.0,
+                                                                    ),
+                                                                    Text(
+                                                                      FFLocalizations.of(
+                                                                              context)
+                                                                          .getText(
+                                                                        'gziabyck' /* Convert to Private Chat Lock */,
+                                                                      ),
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .override(
+                                                                            font:
+                                                                                GoogleFonts.plusJakartaSans(
+                                                                              fontWeight: FontWeight.w600,
+                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                            ),
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).onWarning,
+                                                                            letterSpacing:
+                                                                                0.0,
+                                                                            fontWeight:
+                                                                                FontWeight.w600,
+                                                                            fontStyle:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                          ),
+                                                                    ),
+                                                                  ].divide(SizedBox(
+                                                                      width:
+                                                                          15.0)),
+                                                                ),
+                                                              ),
+                                                            if ((containerConversationParticipantsRow
+                                                                        ?.role ==
+                                                                    'admin') &&
+                                                                (groupProfileDetailsPageConversationsRow
+                                                                        .isPrivateGroup ==
+                                                                    true) &&
+                                                                (groupProfileDetailsPageConversationsRow
+                                                                        .privateOrigin !=
+                                                                    'converted'))
                                                               InkWell(
                                                                 splashColor: Colors
                                                                     .transparent,
@@ -2196,6 +2773,144 @@ class _GroupProfileDetailsPageWidgetState
                                                                               return AlertDialog(
                                                                                 title: Text('Remove from Private Chat Lock'),
                                                                                 content: Text('Removing this group from Private Chat Lock will permanently delete the group and its messages. This action cannot be undone.'),
+                                                                                actions: [
+                                                                                  TextButton(
+                                                                                    onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                    child: Text('Cancel'),
+                                                                                  ),
+                                                                                  TextButton(
+                                                                                    onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                    child: Text('Remove'),
+                                                                                  ),
+                                                                                ],
+                                                                              );
+                                                                            },
+                                                                          ) ??
+                                                                          false;
+                                                                  if (confirmDialogResponse) {
+                                                                    _model.removed2 =
+                                                                        await actions
+                                                                            .removePrivateGroup(
+                                                                      widget
+                                                                          .groupConversationId!,
+                                                                    );
+                                                                    if (_model
+                                                                            .removed2 ==
+                                                                        true) {
+                                                                      context
+                                                                          .goNamed(
+                                                                        HomePageWidget
+                                                                            .routeName,
+                                                                        extra: <String,
+                                                                            dynamic>{
+                                                                          '__transition_info__':
+                                                                              TransitionInfo(
+                                                                            hasTransition:
+                                                                                true,
+                                                                            transitionType:
+                                                                                PageTransitionType.leftToRight,
+                                                                          ),
+                                                                        },
+                                                                      );
+                                                                    } else {
+                                                                      ScaffoldMessenger.of(
+                                                                              context)
+                                                                          .showSnackBar(
+                                                                        SnackBar(
+                                                                          content:
+                                                                              Text(
+                                                                            'Could not remove the group',
+                                                                            style:
+                                                                                TextStyle(
+                                                                              color: FlutterFlowTheme.of(context).primaryText,
+                                                                            ),
+                                                                          ),
+                                                                          duration:
+                                                                              Duration(milliseconds: 4000),
+                                                                          backgroundColor:
+                                                                              FlutterFlowTheme.of(context).secondary,
+                                                                        ),
+                                                                      );
+                                                                    }
+                                                                  }
+
+                                                                  safeSetState(
+                                                                      () {});
+                                                                },
+                                                                child: Row(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  children: [
+                                                                    Icon(
+                                                                      Icons
+                                                                          .delete_outline_sharp,
+                                                                      color: Color(
+                                                                          0xFFD90B0B),
+                                                                      size:
+                                                                          24.0,
+                                                                    ),
+                                                                    Text(
+                                                                      FFLocalizations.of(
+                                                                              context)
+                                                                          .getText(
+                                                                        'vopu256q' /* Remove from Private Chat Lock */,
+                                                                      ),
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .override(
+                                                                            font:
+                                                                                GoogleFonts.plusJakartaSans(
+                                                                              fontWeight: FontWeight.w600,
+                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                            ),
+                                                                            color:
+                                                                                Color(0xFFD90B0B),
+                                                                            letterSpacing:
+                                                                                0.0,
+                                                                            fontWeight:
+                                                                                FontWeight.w600,
+                                                                            fontStyle:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                          ),
+                                                                    ),
+                                                                  ].divide(SizedBox(
+                                                                      width:
+                                                                          15.0)),
+                                                                ),
+                                                              ),
+                                                            if ((containerConversationParticipantsRow
+                                                                        ?.role ==
+                                                                    'admin') &&
+                                                                (groupProfileDetailsPageConversationsRow
+                                                                        .isPrivateGroup ==
+                                                                    true) &&
+                                                                (groupProfileDetailsPageConversationsRow
+                                                                        .privateOrigin ==
+                                                                    'converted'))
+                                                              InkWell(
+                                                                splashColor: Colors
+                                                                    .transparent,
+                                                                focusColor: Colors
+                                                                    .transparent,
+                                                                hoverColor: Colors
+                                                                    .transparent,
+                                                                highlightColor:
+                                                                    Colors
+                                                                        .transparent,
+                                                                onTap:
+                                                                    () async {
+                                                                  var confirmDialogResponse =
+                                                                      await showDialog<
+                                                                              bool>(
+                                                                            context:
+                                                                                context,
+                                                                            builder:
+                                                                                (alertDialogContext) {
+                                                                              return AlertDialog(
+                                                                                title: Text('Remove from Private Chat Lock'),
+                                                                                content: Text('Removing this group from Private Chat Lock will permanently delete all messages exchanged while the group was in Private Chat Lock. This action cannot be undone.'),
                                                                                 actions: [
                                                                                   TextButton(
                                                                                     onPressed: () => Navigator.pop(alertDialogContext, false),
@@ -2277,7 +2992,7 @@ class _GroupProfileDetailsPageWidgetState
                                                                       FFLocalizations.of(
                                                                               context)
                                                                           .getText(
-                                                                        'gziabyck' /* Remove from Private Chat Lock */,
+                                                                        '1wvpvn4q' /* Remove from Private Chat Lock */,
                                                                       ),
                                                                       style: FlutterFlowTheme.of(
                                                                               context)

@@ -14,11 +14,145 @@ import 'package:flutter/material.dart' hide RepeatMode;
 import 'dart:async';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:go_router/go_router.dart';
+import '/flutter_flow/nav/nav.dart' show appNavigatorKey;
+import '/custom_code/actions/join_agora_call.dart';
 
 // Remembers when each call was connected, so the timer keeps counting while
 // the call screen is minimized and shows the right time when it comes back.
 class _CallClock {
   static final Map<String, DateTime> start = {};
+}
+
+// Keeps a call honest while it is running, even when the call screen is
+// minimized: pings the server every 20 seconds, reads the server's end time
+// for the call, and shows the countdown warnings.
+class _CallGuard {
+  static String? _callId;
+  static Timer? _tick;
+  static Timer? _beat;
+  static DateTime? _endsAt; // server time (UTC)
+  static Duration _offset = Duration.zero; // server time minus phone time
+  static bool _viaLink = false;
+  static final Set<int> _warned = {};
+  static bool _finalShown = false;
+
+  // Bumped when the connection stayed down for 2 minutes.
+  static final ValueNotifier<int> lostSignal = ValueNotifier<int>(0);
+
+  // Last "muted by host" time already acted on, per call.
+  static final Map<String, DateTime> mutedHandled = {};
+
+  static DateTime serverNow() => DateTime.now().toUtc().add(_offset);
+
+  static void start(String callId) {
+    if (_callId == callId && _tick != null) return;
+    stop();
+    _callId = callId;
+    _endsAt = null;
+    _offset = Duration.zero;
+    _viaLink = false;
+    _warned.clear();
+    _finalShown = false;
+    AgoraCallManager.onReconnectTimeout = _handleLost;
+    _beat = Timer.periodic(const Duration(seconds: 20), (_) => _heartbeat());
+    _tick = Timer.periodic(const Duration(seconds: 1), (_) => _check());
+    _heartbeat();
+  }
+
+  static void stop() {
+    _tick?.cancel();
+    _beat?.cancel();
+    _tick = null;
+    _beat = null;
+    _callId = null;
+    _endsAt = null;
+    if (AgoraCallManager.onReconnectTimeout == _handleLost) {
+      AgoraCallManager.onReconnectTimeout = null;
+    }
+  }
+
+  // Tells the server this phone's real Agora ID and channel, so the host's
+  // Mute and Remove can be enforced on the Agora side later.
+  static Future<void> _reportAgora(String id) async {
+    final uid = AgoraCallManager.myUid;
+    final channel = AgoraCallManager.channelName;
+    if (uid == null || channel == null || channel.isEmpty) return;
+    try {
+      await SupaFlow.client.rpc('call_report_agora', params: {
+        'p_call_id': id,
+        'p_uid': uid,
+        'p_channel': channel,
+      });
+    } catch (_) {}
+  }
+
+  static Future<void> _heartbeat() async {
+    final id = _callId;
+    if (id == null) return;
+    _reportAgora(id);
+    try {
+      final res = await SupaFlow.client
+          .rpc('call_heartbeat', params: {'p_call_id': id});
+      if (_callId != id) return;
+      final m = Map<String, dynamic>.from(res as Map);
+      final now = DateTime.tryParse('${m['now']}');
+      if (now != null) {
+        _offset = now.toUtc().difference(DateTime.now().toUtc());
+      }
+      final e = m['ends_at'];
+      _endsAt = e == null ? null : DateTime.tryParse('$e')?.toUtc();
+      _viaLink = m['via_link'] == true;
+      final st = '${m['status']}';
+      if (st == 'ended' || st == 'missed' || st == 'declined') stop();
+    } catch (_) {}
+  }
+
+  static void _toast(String t, {int seconds = 6}) {
+    final ctx = appNavigatorKey.currentContext;
+    if (ctx == null) return;
+    ScaffoldMessenger.maybeOf(ctx)?.showSnackBar(
+        SnackBar(content: Text(t), duration: Duration(seconds: seconds)));
+  }
+
+  static void _check() {
+    final end = _endsAt;
+    if (end == null) return;
+    final remaining =
+        end.difference(DateTime.now().toUtc().add(_offset)).inSeconds;
+    final marks = _viaLink ? [300, 60] : [600, 60];
+    if (remaining > 0) {
+      final due =
+          marks.where((m) => remaining <= m && !_warned.contains(m)).toList();
+      if (due.isNotEmpty) {
+        final smallest = due.reduce((a, b) => a < b ? a : b);
+        _warned.addAll(due);
+        _toast(smallest == 60
+            ? 'Your call will end in 1 minute.'
+            : 'Your call will end in ${smallest ~/ 60} minutes.');
+      }
+    } else if (!_finalShown) {
+      _finalShown = true;
+      _toast(
+          _viaLink
+              ? "Your call has reached its 45-minute time limit. You can start another call whenever you're ready."
+              : 'Your call has reached its maximum duration.',
+          seconds: 8);
+    }
+  }
+
+  static void _handleLost() {
+    final id = _callId;
+    if (id == null) return;
+    _toast('Connection lost. The call has ended.');
+    lostSignal.value++;
+    // If no call screen is open (minimized), end the call from here.
+    Future.delayed(const Duration(seconds: 1), () async {
+      if (_callId != id) return;
+      stop();
+      _CallBubble.hide();
+      await endCall(id);
+    });
+  }
 }
 
 // The floating bubble shown while a call is minimized.
@@ -114,8 +248,20 @@ class _BubbleBodyState extends State<_BubbleBody> {
           .eq('id', widget.callId)
           .maybeSingle();
       final s = (row?['status'] ?? '').toString();
-      if (s == 'ended' || s == 'missed' || s == 'declined') {
+      var removed = false;
+      final me = SupaFlow.client.auth.currentUser?.id;
+      if (me != null && s != 'ended' && s != 'missed' && s != 'declined') {
+        final part = await SupaFlow.client
+            .from('call_participants')
+            .select('status')
+            .eq('call_id', widget.callId)
+            .eq('user_id', me)
+            .maybeSingle();
+        removed = part?['status']?.toString() == 'removed';
+      }
+      if (removed || s == 'ended' || s == 'missed' || s == 'declined') {
         _closing = true;
+        _CallGuard.stop();
         _CallBubble.hide();
         await leaveCallLocally();
       }
@@ -148,6 +294,7 @@ class _BubbleBodyState extends State<_BubbleBody> {
   Future<void> _end() async {
     if (_closing) return;
     _closing = true;
+    _CallGuard.stop();
     _CallBubble.hide();
     await endCall(widget.callId);
   }
@@ -289,6 +436,14 @@ class _ModernCallViewState extends State<ModernCallView>
   bool _hungUp = false;
   bool _isGroup = false;
   List<Map<String, dynamic>> _members = [];
+  String _hostId = '';
+  bool _viaLink = false;
+  List<Map<String, dynamic>> _joinRequests = [];
+
+  bool get _iAmHost {
+    final me = SupaFlow.client.auth.currentUser?.id ?? '';
+    return me.isNotEmpty && _hostId == me;
+  }
 
   // Video upgrade request state.
   bool _myRequestPending = false;
@@ -308,6 +463,9 @@ class _ModernCallViewState extends State<ModernCallView>
         vsync: this, duration: const Duration(milliseconds: 1600))
       ..repeat(reverse: true);
     if (_CallBubble.isShowing) _CallBubble.hide();
+    _CallGuard.start(widget.callId);
+    AgoraCallManager.connection.addListener(_onConnection);
+    _CallGuard.lostSignal.addListener(_onLost);
     if (widget.connected) {
       _CallClock.start.putIfAbsent(widget.callId, () => DateTime.now());
       _syncSeconds();
@@ -327,6 +485,8 @@ class _ModernCallViewState extends State<ModernCallView>
 
   @override
   void dispose() {
+    AgoraCallManager.connection.removeListener(_onConnection);
+    _CallGuard.lostSignal.removeListener(_onLost);
     _timer?.cancel();
     _pollTimer?.cancel();
     _hideTimer?.cancel();
@@ -351,13 +511,28 @@ class _ModernCallViewState extends State<ModernCallView>
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(t)));
   }
 
+  // ------------------------ connection ------------------------
+  void _onConnection() {
+    if (!mounted) return;
+    if (AgoraCallManager.connection.value == 'rejoined') {
+      _toast('You have rejoined the call.');
+      AgoraCallManager.connection.value = 'connected';
+    }
+    setState(() {});
+  }
+
+  void _onLost() {
+    if (!mounted || _hungUp) return;
+    _end();
+  }
+
   // ------------------------ polling ------------------------
   Future<void> _poll() async {
     try {
       final me = SupaFlow.client.auth.currentUser?.id;
       final call = await SupaFlow.client
           .from('calls')
-          .select('is_group, call_type, video_request_by')
+          .select('is_group, call_type, video_request_by, caller_id, via_link')
           .eq('id', widget.callId)
           .maybeSingle();
       if (call == null || !mounted) return;
@@ -365,6 +540,14 @@ class _ModernCallViewState extends State<ModernCallView>
       final group = call['is_group'] == true;
       final type = (call['call_type'] ?? '').toString();
       final reqBy = call['video_request_by']?.toString();
+      final hostId = (call['caller_id'] ?? '').toString();
+      final via = call['via_link'] == true;
+      if (mounted && (hostId != _hostId || via != _viaLink)) {
+        setState(() {
+          _hostId = hostId;
+          _viaLink = via;
+        });
+      }
 
       // Someone else asked to switch to video.
       if (reqBy != null && reqBy.isNotEmpty && reqBy != me && !_isVideo) {
@@ -403,6 +586,12 @@ class _ModernCallViewState extends State<ModernCallView>
         if (mounted) setState(() => _myRequestPending = true);
       }
 
+      if (group && me != null) {
+        await _checkMyStatus(me);
+        if (_hungUp) return;
+        if (hostId == me) await _loadJoinRequests();
+      }
+
       if (!group) {
         if (mounted && _isGroup) setState(() => _isGroup = false);
         return;
@@ -429,6 +618,104 @@ class _ModernCallViewState extends State<ModernCallView>
         });
       }
     } catch (_) {}
+  }
+
+  // ------------------------ host tools ------------------------
+  Future<void> _checkMyStatus(String me) async {
+    try {
+      final r = await SupaFlow.client
+          .from('call_participants')
+          .select('status, host_muted_at')
+          .eq('call_id', widget.callId)
+          .eq('user_id', me)
+          .maybeSingle();
+      if (r == null) return;
+      if (r['status']?.toString() == 'removed') {
+        await _onRemoved();
+        return;
+      }
+      final hm = DateTime.tryParse('${r['host_muted_at']}')?.toUtc();
+      if (hm == null) return;
+      final prev = _CallGuard.mutedHandled[widget.callId];
+      final fresh = prev == null
+          ? _CallGuard.serverNow().difference(hm).inSeconds < 20
+          : hm.isAfter(prev);
+      _CallGuard.mutedHandled[widget.callId] = hm;
+      if (fresh) {
+        if (!_muted) await _toggleMute();
+        _toast('The host muted you');
+      }
+    } catch (_) {}
+  }
+
+  Future<void> _onRemoved() async {
+    if (_hungUp) return;
+    _hungUp = true;
+    _CallGuard.stop();
+    _CallClock.start.remove(widget.callId);
+    _toast('You were removed from the call');
+    await leaveCallLocally();
+    _goToChatAfterCall();
+  }
+
+  Future<void> _loadJoinRequests() async {
+    try {
+      final rows = await SupaFlow.client
+          .from('call_join_requests')
+          .select('id, user_id')
+          .eq('call_id', widget.callId)
+          .eq('status', 'pending')
+          .order('created_at');
+      final list = rows as List;
+      final ids = [for (final r in list) r['user_id'].toString()];
+      final names = <String, String>{};
+      if (ids.isNotEmpty) {
+        final pr = await SupaFlow.client
+            .from('profiles')
+            .select('id, full_name, username')
+            .inFilter('id', ids);
+        for (final p in pr as List) {
+          var n = (p['full_name'] ?? '').toString().trim();
+          if (n.isEmpty) n = (p['username'] ?? '').toString();
+          names[p['id'] as String] = n.isEmpty ? 'Someone' : n;
+        }
+      }
+      if (!mounted) return;
+      setState(() {
+        _joinRequests = [
+          for (final r in list)
+            {
+              'id': r['id'].toString(),
+              'name': names[r['user_id'].toString()] ?? 'Someone',
+            }
+        ];
+      });
+    } catch (_) {}
+  }
+
+  Future<void> _respond(Map<String, dynamic> req, bool approve) async {
+    try {
+      await SupaFlow.client.rpc('respond_call_join',
+          params: {'p_request_id': req['id'], 'p_approve': approve});
+    } catch (_) {
+      _toast('Could not answer the request');
+    }
+    if (mounted) {
+      setState(() => _joinRequests =
+          _joinRequests.where((r) => r['id'] != req['id']).toList());
+    }
+  }
+
+  void _addPeople() {
+    if (!_isGroup) {
+      _toast('Start a group call from New call to add more people');
+      return;
+    }
+    if (!_iAmHost) {
+      _toast('Only the person who started the call can add people');
+      return;
+    }
+    showAddPeopleSheet(widget.callId, widget.agoraChannelName);
   }
 
   // ------------------------ video request ------------------------
@@ -547,6 +834,10 @@ class _ModernCallViewState extends State<ModernCallView>
   }
 
   void _openChat() {
+    if (widget.conversationId.isEmpty) {
+      _toast('This call has no chat');
+      return;
+    }
     context.pushNamed('chatpage', queryParameters: {
       'conversationId': widget.conversationId,
       'otherUserId': '',
@@ -557,6 +848,10 @@ class _ModernCallViewState extends State<ModernCallView>
 
   void _goToChatAfterCall() {
     if (!mounted) return;
+    if (widget.conversationId.isEmpty) {
+      context.goNamed('HomePage');
+      return;
+    }
     context.goNamed('chatpage', queryParameters: {
       'conversationId': widget.conversationId,
       'otherUserId': '',
@@ -568,6 +863,7 @@ class _ModernCallViewState extends State<ModernCallView>
   Future<void> _end() async {
     if (_hungUp) return;
     _hungUp = true;
+    _CallGuard.stop();
     _CallClock.start.remove(widget.callId);
     await endCall(widget.callId);
     _goToChatAfterCall();
@@ -576,6 +872,7 @@ class _ModernCallViewState extends State<ModernCallView>
   Future<void> _onRemoteEnded() async {
     if (_hungUp) return;
     _hungUp = true;
+    _CallGuard.stop();
     _CallClock.start.remove(widget.callId);
     await leaveCallLocally();
     _goToChatAfterCall();
@@ -610,15 +907,36 @@ class _ModernCallViewState extends State<ModernCallView>
                   await switchCamera();
                 },
               ),
-            ListTile(
-              leading:
-                  const Icon(Icons.chat_bubble_outline_rounded, color: _purple),
-              title: Text('Open chat', style: TextStyle(color: _ink)),
-              onTap: () {
-                Navigator.pop(ctx);
-                _openChat();
-              },
-            ),
+            if (_isGroup)
+              ListTile(
+                leading: const Icon(Icons.people_alt_outlined, color: _purple),
+                title:
+                    Text('People in this call', style: TextStyle(color: _ink)),
+                onTap: () {
+                  Navigator.pop(ctx);
+                  showCallPeopleSheet(widget.callId);
+                },
+              ),
+            if (_isGroup && _iAmHost)
+              ListTile(
+                leading: const Icon(Icons.link_rounded, color: _purple),
+                title: Text('Invitation link', style: TextStyle(color: _ink)),
+                onTap: () {
+                  Navigator.pop(ctx);
+                  showCallLinkControlsSheet(
+                      widget.callId, widget.agoraChannelName);
+                },
+              ),
+            if (widget.conversationId.isNotEmpty)
+              ListTile(
+                leading: const Icon(Icons.chat_bubble_outline_rounded,
+                    color: _purple),
+                title: Text('Open chat', style: TextStyle(color: _ink)),
+                onTap: () {
+                  Navigator.pop(ctx);
+                  _openChat();
+                },
+              ),
           ],
         ),
       ),
@@ -656,10 +974,11 @@ class _ModernCallViewState extends State<ModernCallView>
             else
               const SizedBox(width: 42, height: 42),
             const Spacer(),
-            _roundIcon(Icons.person_add_alt_1_rounded,
-                () => _toast('Group calls are coming soon')),
-            const SizedBox(width: 10),
-            _roundIcon(Icons.chat_bubble_outline_rounded, _openChat),
+            _roundIcon(Icons.person_add_alt_1_rounded, _addPeople),
+            if (widget.conversationId.isNotEmpty) ...[
+              const SizedBox(width: 10),
+              _roundIcon(Icons.chat_bubble_outline_rounded, _openChat),
+            ],
           ],
         ),
       );
@@ -766,9 +1085,12 @@ class _ModernCallViewState extends State<ModernCallView>
       padding: const EdgeInsets.only(top: 16),
       child: Column(
         children: [
-          Text('${_members.length} in this call',
-              style: GoogleFonts.plusJakartaSans(
-                  fontSize: 13, fontWeight: FontWeight.w600, color: _soft)),
+          GestureDetector(
+            onTap: () => showCallPeopleSheet(widget.callId),
+            child: Text('${_members.length} in this call',
+                style: GoogleFonts.plusJakartaSans(
+                    fontSize: 13, fontWeight: FontWeight.w700, color: _purple)),
+          ),
           const SizedBox(height: 10),
           SizedBox(
             height: 64,
@@ -912,6 +1234,20 @@ class _ModernCallViewState extends State<ModernCallView>
   }
 
   Widget _banner() {
+    if (AgoraCallManager.connection.value == 'reconnecting') {
+      return _bannerCard('Connection lost. Reconnecting…', const []);
+    }
+    if (_iAmHost && _joinRequests.isNotEmpty) {
+      final r = _joinRequests.first;
+      return _bannerCard(
+        '${r['name']} wants to join the call',
+        [
+          _bannerBtn('Deny', _red, () => _respond(r, false)),
+          const SizedBox(width: 10),
+          _bannerBtn('Allow', const Color(0xFF2FBF71), () => _respond(r, true)),
+        ],
+      );
+    }
     if (_incomingRequestName != null) {
       return _bannerCard(
         '$_incomingRequestName wants to switch to video',

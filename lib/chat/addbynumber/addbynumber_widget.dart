@@ -1,5 +1,5 @@
 import '/auth/supabase_auth/auth_util.dart';
-import '/chat/finephonenumber/finephonenumber_widget.dart';
+import '/chat/list_of_countries/list_of_countries_widget.dart';
 import '/flutter_flow/ff_builtin_enums.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -11,6 +11,7 @@ import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'addbynumber_model.dart';
 export 'addbynumber_model.dart';
 
@@ -52,6 +53,8 @@ class _AddbynumberWidgetState extends State<AddbynumberWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Title(
         title: 'Addbynumber',
         color: FlutterFlowTheme.of(context).primary.withAlpha(0XFF),
@@ -460,7 +463,7 @@ class _AddbynumberWidgetState extends State<AddbynumberWidget> {
                                   },
                                   child: Padding(
                                     padding: MediaQuery.viewInsetsOf(context),
-                                    child: FinephonenumberWidget(),
+                                    child: ListOfCountriesWidget(),
                                   ),
                                 );
                               },
@@ -490,8 +493,13 @@ class _AddbynumberWidgetState extends State<AddbynumberWidget> {
                                           .secondaryBackground,
                                       image: DecorationImage(
                                         fit: BoxFit.cover,
-                                        image: Image.asset(
-                                          'assets/images/OIP.jpg',
+                                        image: Image.network(
+                                          valueOrDefault<String>(
+                                            FFAppState()
+                                                .selectedCountry
+                                                .flagUrl,
+                                            'https://thumb.wikimedia.org/wikipedia/commons/thumb/7/79/Flag_of_Nigeria.svg/330px-Flag_of_Nigeria.svg.png?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail',
+                                          ),
                                         ).image,
                                       ),
                                       borderRadius: BorderRadius.circular(10.0),
@@ -501,7 +509,10 @@ class _AddbynumberWidgetState extends State<AddbynumberWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         10.0, 0.0, 5.0, 0.0),
                                     child: Text(
-                                      '+234',
+                                      valueOrDefault<String>(
+                                        '+${FFAppState().selectedCountry.dialCode}',
+                                        '234',
+                                      ),
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
@@ -561,6 +572,9 @@ class _AddbynumberWidgetState extends State<AddbynumberWidget> {
                                             currentUserUid,
                                             _model.textController2.text,
                                             'number',
+                                            FFAppState()
+                                                .selectedCountry
+                                                .dialCode,
                                           );
                                           _model.previewAvatar = _model
                                               .previewResult2!.matchedAvatarUrl;
@@ -733,6 +747,7 @@ class _AddbynumberWidgetState extends State<AddbynumberWidget> {
                             currentUserUid,
                             _model.textController1.text,
                             _model.textController2.text,
+                            FFAppState().selectedCountry.dialCode,
                           );
                           if (_model.saveContactByNumber?.success == true) {
                             context.pushNamed(

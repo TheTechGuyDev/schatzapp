@@ -60,4 +60,14 @@ class ConversationsRow extends SupabaseDataRow {
 
   bool? get isPrivateGroup => getField<bool>('is_private_group');
   set isPrivateGroup(bool? value) => setField<bool>('is_private_group', value);
+
+  String? get inviteCode => getField<String>('invite_code');
+  set inviteCode(String? value) => setField<String>('invite_code', value);
+
+  String? get privateOrigin => getField<String>('private_origin');
+  set privateOrigin(String? value) => setField<String>('private_origin', value);
+
+  DateTime? get privateSince => getField<DateTime>('private_since');
+  set privateSince(DateTime? value) =>
+      setField<DateTime>('private_since', value);
 }

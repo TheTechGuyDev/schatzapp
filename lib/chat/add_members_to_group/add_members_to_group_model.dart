@@ -34,7 +34,7 @@ class AddMembersToGroupModel extends FlutterFlowModel<AddMembersToGroupWidget> {
   String? Function(BuildContext, String?)? textControllerValidator;
   // Stores action output result for [Custom Action - toggleGroupMemberSelection] action in Icon widget.
   List<GroupMemberStructStruct>? updatedSelection2;
-  // Stores action output result for [Custom Action - toggleGroupMemberSelection] action in Column widget.
+  // Stores action output result for [Custom Action - toggleContactSelection] action in Column widget.
   List<GroupMemberStructStruct>? updatedSelection;
 
   @override

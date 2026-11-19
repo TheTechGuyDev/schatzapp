@@ -14,6 +14,7 @@ Future<SavedContactResultStructStruct> lookupContactPreview(
   String ownerId,
   String query,
   String mode,
+  String? dialCode,
 ) async {
   SavedContactResultStructStruct none() => SavedContactResultStructStruct(
         success: false,
@@ -26,50 +27,60 @@ Future<SavedContactResultStructStruct> lookupContactPreview(
       );
 
   try {
-    List<dynamic> rows = [];
+    Map<String, dynamic>? found;
+
     if (mode == 'username') {
-      final u = query.trim().replaceFirst(RegExp(r'^@'), '').toLowerCase();
+      final u = query.trim().replaceFirst(RegExp(r'^@+'), '').toLowerCase();
       if (u.length < 2) return none();
-      // Searching by username needs a username and wallet on both sides.
-      final me = await SupaFlow.client
-          .from('profiles')
-          .select('username')
-          .eq('id', ownerId)
-          .limit(1);
-      final myName =
-          me.isEmpty ? '' : ((me.first['username'] as String?) ?? '').trim();
-      final myWallet = await SupaFlow.client
-          .from('wallets')
-          .select('user_id')
-          .eq('user_id', ownerId)
-          .limit(1);
-      if (myName.isEmpty || myWallet.isEmpty) return none();
-      rows = await SupaFlow.client
+      final pattern = u.replaceAllMapped(RegExp(r'[\\%_]'), (m) => '\\${m[0]}');
+      final rows = await SupaFlow.client
           .from('profiles')
           .select('id, full_name, avatar_url')
-          .ilike('username', u)
+          .ilike('username', pattern)
           .limit(1);
-      if (rows.isNotEmpty) {
-        final w = await SupaFlow.client
-            .from('wallets')
-            .select('user_id')
-            .eq('user_id', (rows.first as Map<String, dynamic>)['id'])
-            .limit(1);
-        if (w.isEmpty) return none();
-      }
+      if (rows.isNotEmpty) found = Map<String, dynamic>.from(rows.first);
     } else {
-      var key = query.replaceAll(RegExp(r'[^0-9]'), '');
-      if (key.length > 10) key = key.substring(key.length - 10);
-      if (key.length < 10) return none();
-      rows = await SupaFlow.client
+      final dial = (dialCode ?? '').replaceAll(RegExp(r'[^0-9]'), '');
+      var digits = query.replaceAll(RegExp(r'[^0-9]'), '');
+      String key;
+      String national;
+      if (dial.isEmpty) {
+        key =
+            digits.length > 10 ? digits.substring(digits.length - 10) : digits;
+        national = key;
+      } else {
+        if (query.trim().startsWith('+') && digits.startsWith(dial)) {
+          digits = digits.substring(dial.length);
+        }
+        national = digits.replaceFirst(RegExp(r'^0+'), '');
+        key = dial + national;
+      }
+      if (national.length < 7) return none();
+      final tail = national.length > 9
+          ? national.substring(national.length - 9)
+          : national;
+
+      final rows = await SupaFlow.client
           .from('profiles')
-          .select('id, full_name, avatar_url')
-          .ilike('phone_number', '%$key')
-          .limit(1);
+          .select('id, full_name, avatar_url, phone_number')
+          .ilike('phone_number', '%$tail')
+          .limit(25);
+      for (final r in (rows as List)) {
+        final cd = ((r['phone_number'] ?? '') as String)
+            .replaceAll(RegExp(r'[^0-9]'), '');
+        final ok = cd.endsWith(key) ||
+            (dial == '234' &&
+                national.length >= 10 &&
+                cd.endsWith(national.substring(national.length - 10)));
+        if (ok) {
+          found = Map<String, dynamic>.from(r as Map);
+          break;
+        }
+      }
     }
-    if (rows.isEmpty) return none();
-    final m = rows.first as Map<String, dynamic>;
-    final id = (m['id'] as String?) ?? '';
+
+    if (found == null) return none();
+    final id = (found['id'] as String?) ?? '';
     if (id == ownerId) return none();
     return SavedContactResultStructStruct(
       success: true,
@@ -77,8 +88,8 @@ Future<SavedContactResultStructStruct> lookupContactPreview(
       savedName: '',
       phoneOrUsername: query,
       contactUserId: id,
-      matchedAvatarUrl: (m['avatar_url'] as String?) ?? '',
-      matchedFullName: (m['full_name'] as String?) ?? '',
+      matchedAvatarUrl: (found['avatar_url'] as String?) ?? '',
+      matchedFullName: (found['full_name'] as String?) ?? '',
     );
   } catch (e) {
     return none();

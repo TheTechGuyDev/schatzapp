@@ -58,9 +58,12 @@ Future<void> endCall(String callId) async {
     if (callRow != null) {
       final priorStatus = callRow['status'] as String?;
 
-      // decline_call.dart already finalized the row and logged its own
-      // message for a declined call - don't double-log it here.
-      if (priorStatus != 'declined') {
+      // decline_call.dart (declined) or the server timer (ended / missed)
+      // already finalized the row and logged their own message - don't
+      // overwrite the status or double-log it here.
+      if (priorStatus != 'declined' &&
+          priorStatus != 'ended' &&
+          priorStatus != 'missed') {
         final wasAnswered = priorStatus == 'answered';
         int? durationSeconds;
         if (wasAnswered && callRow['started_at'] != null) {

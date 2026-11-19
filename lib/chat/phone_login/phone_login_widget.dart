@@ -42,7 +42,8 @@ class _PhoneLoginWidgetState extends State<PhoneLoginWidget>
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
 
-    _model.textFieldMask = MaskTextInputFormatter(mask: '### ### ######');
+    _model.textFieldMask = MaskTextInputFormatter(
+        mask: '### ### ######', initialText: _model.textController?.text);
     animationsMap.addAll({
       'buttonOnPageLoadAnimation': AnimationInfo(
         loop: true,

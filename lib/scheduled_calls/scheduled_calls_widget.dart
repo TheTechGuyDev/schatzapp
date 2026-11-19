@@ -69,7 +69,7 @@ class _ScheduledCallsWidgetState extends State<ScheduledCallsWidget> {
               ),
               title: Text(
                 FFLocalizations.of(context).getText(
-                  'lkljzx6u' /* Scheduled calls */,
+                  'uqothbwn' /* Scheduled calls */,
                 ),
                 style: FlutterFlowTheme.of(context).headlineMedium.override(
                       font: GoogleFonts.plusJakartaSans(

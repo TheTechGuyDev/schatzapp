@@ -34,12 +34,15 @@ class _AddCardWidgetState extends State<AddCardWidget> {
     _model.cardNumberTextFieldTextController ??= TextEditingController();
     _model.cardNumberTextFieldFocusNode ??= FocusNode();
 
-    _model.cardNumberTextFieldMask =
-        MaskTextInputFormatter(mask: '#### #### #### ####');
+    _model.cardNumberTextFieldMask = MaskTextInputFormatter(
+        mask: '#### #### #### ####',
+        initialText: _model.cardNumberTextFieldTextController?.text);
     _model.expDateextFieldTextController ??= TextEditingController();
     _model.expDateextFieldFocusNode ??= FocusNode();
 
-    _model.expDateextFieldMask = MaskTextInputFormatter(mask: '##/##/####');
+    _model.expDateextFieldMask = MaskTextInputFormatter(
+        mask: '##/##/####',
+        initialText: _model.expDateextFieldTextController?.text);
     _model.cvvTextFieldTextController ??= TextEditingController();
     _model.cvvTextFieldFocusNode ??= FocusNode();
 

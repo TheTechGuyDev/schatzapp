@@ -6,23 +6,26 @@ class EditNamePageModel extends FlutterFlowModel<EditNamePageWidget> {
   ///  State fields for stateful widgets in this page.
 
   // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode1;
+  FocusNode? textFieldFocusNode;
   TextEditingController? textController1;
   String? Function(BuildContext, String?)? textController1Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode2;
-  TextEditingController? textController2;
-  String? Function(BuildContext, String?)? textController2Validator;
+  // State field(s) for NewNameTextField widget.
+  FocusNode? newNameTextFieldFocusNode;
+  TextEditingController? newNameTextFieldTextController;
+  String? Function(BuildContext, String?)?
+      newNameTextFieldTextControllerValidator;
+  // Stores action output result for [Custom Action - saveMyName] action in Container widget.
+  String? nameResult;
 
   @override
   void initState(BuildContext context) {}
 
   @override
   void dispose() {
-    textFieldFocusNode1?.dispose();
+    textFieldFocusNode?.dispose();
     textController1?.dispose();
 
-    textFieldFocusNode2?.dispose();
-    textController2?.dispose();
+    newNameTextFieldFocusNode?.dispose();
+    newNameTextFieldTextController?.dispose();
   }
 }

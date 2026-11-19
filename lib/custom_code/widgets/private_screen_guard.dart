@@ -14,6 +14,11 @@ import 'package:flutter/material.dart' hide RepeatMode;
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:screen_protector/screen_protector.dart';
 
+// How many guards currently ask for protection. Protection is only switched
+// off when the last one lets go, so closing a chat on top of the Private Chat
+// page does not unprotect the page underneath.
+int _guardCount = 0;
+
 class PrivateScreenGuard extends StatefulWidget {
   const PrivateScreenGuard({
     super.key,
@@ -56,13 +61,20 @@ class _PrivateScreenGuardState extends State<PrivateScreenGuard> {
     _on = enable;
     try {
       if (enable) {
-        // Android: blocks screenshots, screen recording and the recents preview.
-        // iOS: blanks screenshots and recordings and blurs the app switcher.
-        await ScreenProtector.preventScreenshotOn();
-        await ScreenProtector.protectDataLeakageOn();
+        _guardCount++;
+        if (_guardCount == 1) {
+          // Android: blocks screenshots, screen recording and the recents
+          // preview. iOS: blanks screenshots and recordings and blurs the
+          // app switcher.
+          await ScreenProtector.preventScreenshotOn();
+          await ScreenProtector.protectDataLeakageOn();
+        }
       } else {
-        await ScreenProtector.preventScreenshotOff();
-        await ScreenProtector.protectDataLeakageOff();
+        if (_guardCount > 0) _guardCount--;
+        if (_guardCount == 0) {
+          await ScreenProtector.preventScreenshotOff();
+          await ScreenProtector.protectDataLeakageOff();
+        }
       }
     } catch (_) {}
   }

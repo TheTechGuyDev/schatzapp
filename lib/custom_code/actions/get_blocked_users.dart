@@ -24,21 +24,48 @@ Future<List<BlockedUserStructStruct>> getBlockedUsers(
   final blockedIds = blockedRows.map((r) => r['blocked_id'] as String).toList();
 
   final profileRows = await SupaFlow.client
-      .from('profiles')
-      .select('id, full_name, phone_number, avatar_url')
+      .from('profiles_public')
+      .select('id, full_name, username, phone_number, avatar_url')
       .inFilter('id', blockedIds);
 
   final profileById = {
     for (final p in profileRows) p['id'] as String: p,
   };
 
+  // Same name order as the chat list: saved contact name, then username,
+  // then full name, then phone number.
+  final savedNameById = <String, String>{};
+  try {
+    final contactRows = await SupaFlow.client
+        .from('contacts')
+        .select('contact_user_id, saved_name')
+        .eq('owner_id', currentUserId)
+        .inFilter('contact_user_id', blockedIds);
+    for (final c in contactRows) {
+      final id = c['contact_user_id'] as String?;
+      final name = c['saved_name'] as String?;
+      if (id != null && name != null && name.trim().isNotEmpty) {
+        savedNameById[id] = name;
+      }
+    }
+  } catch (_) {}
+
+  String clean(String s) => s.replaceAll(RegExp(r'\s+'), ' ').trim();
+
   return blockedRows.map((r) {
     final id = r['blocked_id'] as String;
     final profile = profileById[id];
+    final username = clean((profile?['username'] as String?) ?? '');
+    final fullName = clean((profile?['full_name'] as String?) ?? '');
+    final phone = (profile?['phone_number'] as String?) ?? '';
+    String name = clean(savedNameById[id] ?? '');
+    if (name.isEmpty) name = username;
+    if (name.isEmpty) name = fullName;
+    if (name.isEmpty) name = phone.isNotEmpty ? phone : 'Unknown';
     return BlockedUserStructStruct(
       blockedUserId: id,
-      fullName: (profile?['full_name'] as String?) ?? 'Unknown',
-      phoneNumber: (profile?['phone_number'] as String?) ?? '',
+      fullName: name,
+      phoneNumber: phone,
       avatarUrl: (profile?['avatar_url'] as String?) ?? '',
     );
   }).toList();

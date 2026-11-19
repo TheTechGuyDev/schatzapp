@@ -76,28 +76,12 @@ class _ContactAvatarState extends State<ContactAvatar> {
     } catch (_) {}
   }
 
-  String _initials() {
-    final parts = (widget.name ?? '')
-        .trim()
-        .split(RegExp(r'\s+'))
-        .where((p) => p.isNotEmpty)
-        .toList();
-    if (parts.isEmpty) return '?';
-    if (parts.length == 1) return parts.first.substring(0, 1).toUpperCase();
-    return (parts.first.substring(0, 1) + parts.last.substring(0, 1))
-        .toUpperCase();
-  }
-
   Widget _fallback(double s) => Container(
         width: s,
         height: s,
         alignment: Alignment.center,
-        color: _purple.withOpacity(0.18),
-        child: Text(
-          _initials(),
-          style: TextStyle(
-              color: _purple, fontWeight: FontWeight.w700, fontSize: s * 0.38),
-        ),
+        color: const Color(0xFFEFEBF2),
+        child: Icon(Icons.person_outline, color: _purple, size: s * 0.55),
       );
 
   @override

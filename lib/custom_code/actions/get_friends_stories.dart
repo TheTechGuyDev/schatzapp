@@ -10,7 +10,10 @@ import 'package:flutter/material.dart' hide RepeatMode;
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-Future<List<StoryGroupStruct>> getFriendsStories(String currentUserId) async {
+Future<List<StoryGroupStruct>> getFriendsStories(
+  String currentUserId,
+  bool? privateMode,
+) async {
   final addedByMeRows = await SupaFlow.client
       .from('contacts')
       .select('contact_user_id')
@@ -29,6 +32,39 @@ Future<List<StoryGroupStruct>> getFriendsStories(String currentUserId) async {
         .whereType<String>(),
     ...addedMeRows.map((row) => row['owner_id'] as String?).whereType<String>(),
   }.toList();
+
+  // Locked chats: the people this viewer has put in Private Chat.
+  final lockedIds = <String>{};
+  try {
+    final lockedRows = await SupaFlow.client
+        .from('chat_list_view')
+        .select('other_user_id')
+        .eq('is_locked', true)
+        .neq('type', 'group');
+    for (final r in lockedRows) {
+      final id = r['other_user_id'] as String?;
+      if (id != null) lockedIds.add(id);
+    }
+  } catch (_) {}
+
+  var showLockedInNormal = false;
+  try {
+    final me = await SupaFlow.client
+        .from('profiles')
+        .select('show_locked_stories_in_normal')
+        .eq('id', currentUserId)
+        .maybeSingle();
+    showLockedInNormal =
+        (me?['show_locked_stories_in_normal'] as bool?) ?? false;
+  } catch (_) {}
+
+  if (privateMode == true) {
+    // Inside Private Chat: only the locked contacts.
+    friendIds.retainWhere(lockedIds.contains);
+  } else if (!showLockedInNormal) {
+    // Normal Stories: locked contacts stay hidden unless the toggle is on.
+    friendIds.removeWhere(lockedIds.contains);
+  }
 
   if (friendIds.isEmpty) return [];
 
@@ -200,6 +236,7 @@ Future<List<StoryGroupStruct>> getFriendsStories(String currentUserId) async {
                 ? DateTime.parse(row['created_at'] as String)
                 : null,
             fontIndex: (row['text_font_index'] as int?) ?? 0,
+            commentsEnabled: (row['comments_enabled'] as bool?) ?? true,
           ),
         );
   }

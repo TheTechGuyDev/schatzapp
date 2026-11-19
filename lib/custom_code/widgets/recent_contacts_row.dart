@@ -176,20 +176,22 @@ class _RecentContactsRowState extends State<RecentContactsRow> {
                   children: [
                     CircleAvatar(
                       radius: 24.5,
-                      backgroundColor: accent.withOpacity(0.15),
-                      backgroundImage: contact.avatarUrl.isNotEmpty
-                          ? NetworkImage(contact.avatarUrl)
-                          : null,
-                      child: contact.avatarUrl.isEmpty
-                          ? (contact.isUnknown
-                              ? Icon(Icons.person_rounded, color: accent)
-                              : Text(
-                                  contact.displayName.isNotEmpty
-                                      ? contact.displayName[0].toUpperCase()
-                                      : '?',
-                                  style: TextStyle(color: accent),
-                                ))
-                          : null,
+                      backgroundColor: const Color(0xFFEFEBF2),
+                      backgroundImage:
+                          (contact.avatarUrl.toLowerCase().startsWith('http') &&
+                                  !contact.avatarUrl
+                                      .toLowerCase()
+                                      .contains('unsplash.com'))
+                              ? NetworkImage(contact.avatarUrl)
+                              : null,
+                      child:
+                          (contact.avatarUrl.toLowerCase().startsWith('http') &&
+                                  !contact.avatarUrl
+                                      .toLowerCase()
+                                      .contains('unsplash.com'))
+                              ? null
+                              : const Icon(Icons.person_outline,
+                                  color: Color(0xFF935CCC), size: 28),
                     ),
                     const SizedBox(height: 6),
                     SizedBox(
@@ -229,5 +231,7 @@ class _RecentContact {
   final String avatarUrl;
   final bool isUnknown;
 }
+// Set your widget name, define your parameter, and then add the
+// boilerplate code using the `</>` button on the right!
 // Set your widget name, define your parameter, and then add the
 // boilerplate code using the `</>` button on the right!

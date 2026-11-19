@@ -455,7 +455,8 @@ class _ScheduledCallsViewState extends State<ScheduledCallsView> {
             child: SizedBox(
               width: 48,
               height: 48,
-              child: avatar.startsWith('http')
+              child: (avatar.toLowerCase().startsWith('http') &&
+                      !avatar.toLowerCase().contains('unsplash.com'))
                   ? Image.network(avatar,
                       fit: BoxFit.cover,
                       errorBuilder: (_, __, ___) => _initialBox(initial))
@@ -524,11 +525,9 @@ class _ScheduledCallsViewState extends State<ScheduledCallsView> {
   }
 
   Widget _initialBox(String initial) => Container(
-        color: _purple.withOpacity(0.2),
+        color: const Color(0xFFEFEBF2),
         alignment: Alignment.center,
-        child: Text(initial,
-            style: GoogleFonts.plusJakartaSans(
-                fontSize: 20, fontWeight: FontWeight.w700, color: _purple)),
+        child: const Icon(Icons.person_outline, color: _purple, size: 26),
       );
 
   @override

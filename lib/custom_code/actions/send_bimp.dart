@@ -10,11 +10,20 @@ import 'package:flutter/material.dart' hide RepeatMode;
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import '/flutter_flow/nav/nav.dart';
+
 Future<bool> sendBimp(
   String conversationId,
   String callerId,
 ) async {
   try {
+    final ctx = appNavigatorKey.currentContext;
+    if (ctx != null) {
+      ScaffoldMessenger.of(ctx)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(const SnackBar(
+            content: Text('Bimping…'), duration: Duration(seconds: 2)));
+    }
     final nowIso = DateTime.now().toUtc().toIso8601String();
     final convo = await SupaFlow.client
         .from('conversations')
@@ -73,6 +82,16 @@ Future<bool> sendBimp(
               'updated_at': nowIso,
             })
         .toList());
+
+    // Chat history line: the sender sees "Bimp sent", the receiver "Bimped".
+    try {
+      await SupaFlow.client.from('messages').insert({
+        'conversation_id': conversationId,
+        'sender_id': callerId,
+        'message_type': 'call',
+        'content': 'bimp:sent',
+      });
+    } catch (_) {}
 
     // If nobody answers within 40 seconds, mark it missed and stop ringing.
     Future.delayed(const Duration(seconds: 40), () async {

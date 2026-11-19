@@ -127,4 +127,16 @@ class ProfilesRow extends SupabaseDataRow {
       getField<bool>('show_locked_stories_in_normal');
   set showLockedStoriesInNormal(bool? value) =>
       setField<bool>('show_locked_stories_in_normal', value);
+
+  bool? get messageRequestsEnabled =>
+      getField<bool>('message_requests_enabled');
+  set messageRequestsEnabled(bool? value) =>
+      setField<bool>('message_requests_enabled', value);
+
+  String? get numberVisibility => getField<String>('number_visibility');
+  set numberVisibility(String? value) =>
+      setField<String>('number_visibility', value);
+
+  String? get messagePolicy => getField<String>('message_policy');
+  set messagePolicy(String? value) => setField<String>('message_policy', value);
 }

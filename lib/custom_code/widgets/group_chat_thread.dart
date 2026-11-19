@@ -32,6 +32,54 @@ import 'package:flutter/services.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/rendering.dart' show ScrollDirection;
 
+// ---- In-chat search (shared with the bubbles) ----
+String _kSearchQuery = ''; // lower-case, trimmed; empty = no highlighting
+String? _kSearchCurrentId; // message holding the "current" match
+
+bool _isSearchableMessage(MessagesRow m) {
+  final t = m.messageType ?? 'text';
+  return t == 'text' || t == 'image' || t == 'image_group' || t == 'video';
+}
+
+// Splits [text] around every occurrence of the search query and paints
+// the matches. The current match is orange, the others yellow.
+List<InlineSpan> _searchSpans(
+  String text,
+  TextStyle style, {
+  required bool isCurrent,
+  GestureRecognizer? recognizer,
+}) {
+  final q = _kSearchQuery;
+  final lower = text.toLowerCase();
+  if (q.isEmpty || lower.length != text.length || !lower.contains(q)) {
+    return [TextSpan(text: text, style: style, recognizer: recognizer)];
+  }
+  final bg = isCurrent ? const Color(0xFFFF9800) : const Color(0xFFFFEB3B);
+  final out = <InlineSpan>[];
+  var cursor = 0;
+  while (true) {
+    final i = lower.indexOf(q, cursor);
+    if (i < 0) break;
+    if (i > cursor) {
+      out.add(TextSpan(
+          text: text.substring(cursor, i),
+          style: style,
+          recognizer: recognizer));
+    }
+    out.add(TextSpan(
+      text: text.substring(i, i + q.length),
+      style: style.copyWith(backgroundColor: bg, color: Colors.black),
+      recognizer: recognizer,
+    ));
+    cursor = i + q.length;
+  }
+  if (cursor < text.length) {
+    out.add(TextSpan(
+        text: text.substring(cursor), style: style, recognizer: recognizer));
+  }
+  return out;
+}
+
 class _PhoneMatch {
   const _PhoneMatch(this.start, this.end, this.normalized);
   final int start;
@@ -479,8 +527,12 @@ class GroupChatThread extends StatefulWidget {
     required this.currentUserPhoneNumber,
     required this.onReply,
     this.initialTargetMessageId,
+    this.searchActive,
+    this.searchQuery,
   });
 
+  final bool? searchActive;
+  final String? searchQuery;
   final double? width;
   final double? height;
   final String conversationId;
@@ -667,6 +719,125 @@ class _GroupChatThreadState extends State<GroupChatThread> {
 
   bool _otherIsTyping = false;
 
+  // ---- search state ----
+  List<String> _matchIds = []; // oldest -> newest
+  int _matchPos = -1; // index into _matchIds
+  String _lastSearchQuery = '';
+  Timer? _searchDebounce;
+  bool _searchNavBusy = false;
+
+  bool get _searchHolding =>
+      widget.searchActive == true && _matchIds.isNotEmpty;
+
+  void _refreshSearch(List<MessagesRow> messages) {
+    final q = (widget.searchQuery ?? '').trim().toLowerCase();
+    if (widget.searchActive != true || q.isEmpty) {
+      _matchIds = [];
+      _matchPos = -1;
+      _lastSearchQuery = '';
+      _kSearchQuery = '';
+      _kSearchCurrentId = null;
+      return;
+    }
+    final ids = <String>[];
+    for (final m in messages) {
+      final id = m.id;
+      if (id == null || !_isSearchableMessage(m)) continue;
+      if ((m.content ?? '').toLowerCase().contains(q)) ids.add(id);
+    }
+    final changed = q != _lastSearchQuery;
+    _lastSearchQuery = q;
+    final prevId = (_matchPos >= 0 && _matchPos < _matchIds.length)
+        ? _matchIds[_matchPos]
+        : null;
+    _matchIds = ids;
+    _kSearchQuery = q;
+    if (ids.isEmpty) {
+      _matchPos = -1;
+      _kSearchCurrentId = null;
+      return;
+    }
+    if (changed) {
+      _matchPos = ids.length - 1; // start at the newest match
+      final target = ids[_matchPos];
+      _searchDebounce?.cancel();
+      _searchDebounce = Timer(const Duration(milliseconds: 250), () {
+        if (!mounted) return;
+        _scrollToMessage(target);
+      });
+    } else {
+      final idx = prevId == null ? -1 : ids.indexOf(prevId);
+      _matchPos = idx >= 0 ? idx : ids.length - 1;
+    }
+    _kSearchCurrentId = ids[_matchPos];
+  }
+
+  Future<void> _stepMatch(int delta) async {
+    if (_searchNavBusy || _matchIds.isEmpty) return;
+    final next = _matchPos + delta;
+    if (next < 0 || next >= _matchIds.length) return;
+    _searchNavBusy = true;
+    setState(() {
+      _matchPos = next;
+      _kSearchCurrentId = _matchIds[next];
+    });
+    try {
+      await _scrollToMessage(_matchIds[next]);
+    } finally {
+      _searchNavBusy = false;
+    }
+  }
+
+  Widget _buildSearchBar() {
+    final hasQuery = (widget.searchQuery ?? '').trim().isNotEmpty;
+    final total = _matchIds.length;
+    String label;
+    if (!hasQuery) {
+      label = 'Search messages';
+    } else if (total == 0) {
+      label = 'No results found';
+    } else {
+      label = '${total - _matchPos} of $total';
+    }
+    final canUp = total > 0 && _matchPos > 0;
+    final canDown = total > 0 && _matchPos < total - 1;
+    return Material(
+      color: Colors.white,
+      elevation: 8,
+      child: SafeArea(
+        top: false,
+        child: SizedBox(
+          height: 52,
+          child: Row(
+            children: [
+              const SizedBox(width: 16),
+              Expanded(
+                child: Text(
+                  label,
+                  style: const TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black87),
+                ),
+              ),
+              IconButton(
+                icon: const Icon(Icons.keyboard_arrow_up, size: 28),
+                color: canUp ? Colors.black87 : Colors.black26,
+                onPressed: canUp ? () => _stepMatch(-1) : null,
+              ),
+              IconButton(
+                icon: const Icon(Icons.keyboard_arrow_down, size: 28),
+                color: canDown ? Colors.black87 : Colors.black26,
+                onPressed: canDown ? () => _stepMatch(1) : null,
+              ),
+              const SizedBox(width: 6),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   static const Map<String, _ThemeBundle> _themeBundles = {
     'theme1': _ThemeBundle(
       senderColor: Color(0xFFED50E4),
@@ -819,6 +990,7 @@ class _GroupChatThreadState extends State<GroupChatThread> {
     _conversationSub?.cancel();
     _scrollController.removeListener(_onScrollChanged);
     _scrollController.dispose();
+    _searchDebounce?.cancel();
     super.dispose();
   }
 
@@ -1047,6 +1219,7 @@ class _GroupChatThreadState extends State<GroupChatThread> {
     final changed = newCount != _lastCount || bottomInset != _lastBottomInset;
     _lastCount = newCount;
     _lastBottomInset = bottomInset;
+    if (changed && _searchHolding) return;
     if (changed) {
       final firstLoad = !_didFirstScroll && newCount > 0;
       if (firstLoad && widget.initialTargetMessageId != null) {
@@ -1190,6 +1363,7 @@ class _GroupChatThreadState extends State<GroupChatThread> {
         return '🎤 Voice message';
       case 'call':
         final parts = (m.content ?? 'voice:missed').split(':');
+        if (parts.isNotEmpty && parts[0] == 'bimp') return '🔔 Bimp';
         final isVideo = parts.isNotEmpty && parts[0] == 'video';
         return isVideo ? '🎥 Video call' : '📞 Voice call';
       case 'gift_card':
@@ -1694,6 +1868,7 @@ class _GroupChatThreadState extends State<GroupChatThread> {
                   !(m.createdAt ?? DateTime.now()).isAfter(myLeftAt))
               .toList();
           _latestMessages = messages;
+          _refreshSearch(messages);
           _noteOwnMessages(messages);
           _timeline = _buildTimeline(messages, myLeftAt);
           _requestIdentities(messages.map((m) => m.senderId));
@@ -2119,6 +2294,13 @@ class _GroupChatThreadState extends State<GroupChatThread> {
                                       ),
                                     ),
                                   ),
+                                  if (widget.searchActive == true)
+                                    Positioned(
+                                      left: 0,
+                                      right: 0,
+                                      bottom: 0,
+                                      child: _buildSearchBar(),
+                                    ),
                                   Positioned(
                                     right: 14,
                                     bottom: _inputBarClearance - 6,
@@ -3029,6 +3211,23 @@ class _MessageBubble extends StatelessWidget {
     final parts = (message.content ?? 'voice:missed').split(':');
     final callType = parts.isNotEmpty ? parts[0] : 'voice';
     final outcome = parts.length > 1 ? parts[1] : 'missed';
+    if (callType == 'bimp') {
+      return Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(Icons.notifications_active,
+              size: 18, color: isOwn ? Colors.white : Colors.black87),
+          const SizedBox(width: 8),
+          Text(
+            isOwn ? 'Bimp sent' : 'Bimped',
+            style: TextStyle(
+              color: isOwn ? Colors.white : Colors.black87,
+              fontSize: 14,
+            ),
+          ),
+        ],
+      );
+    }
     final isVideo = callType == 'video';
     final isMissedOrDeclined = outcome == 'missed' || outcome == 'declined';
 
@@ -3237,38 +3436,48 @@ class _MessageBubble extends StatelessWidget {
       }
     }
 
+    final isCurrentMatch =
+        message.id != null && message.id == _kSearchCurrentId;
+
     Widget textWidget;
     if (matches.isEmpty) {
-      textWidget = Text(text, style: baseStyle);
+      textWidget = _kSearchQuery.isEmpty
+          ? Text(text, style: baseStyle)
+          : Text.rich(TextSpan(
+              style: baseStyle,
+              children:
+                  _searchSpans(text, baseStyle, isCurrent: isCurrentMatch)));
     } else {
       final spans = <InlineSpan>[];
       var cursor = 0;
       for (final match in matches) {
         if (match.start > cursor) {
-          spans.add(TextSpan(text: text.substring(cursor, match.start)));
+          spans.addAll(_searchSpans(
+              text.substring(cursor, match.start), baseStyle,
+              isCurrent: isCurrentMatch));
         }
         final displayText = text.substring(match.start, match.end);
-        spans.add(
-          TextSpan(
-            text: displayText,
-            style: baseStyle.copyWith(
-              decoration: TextDecoration.underline,
-              fontWeight: FontWeight.w700,
-            ),
-            recognizer: TapGestureRecognizer()
-              ..onTap = () {
-                if (match.isLink) {
-                  _openExternalLink(match.value);
-                } else {
-                  _handlePhoneNumberTap(context, match.value, displayText);
-                }
-              },
+        spans.addAll(_searchSpans(
+          displayText,
+          baseStyle.copyWith(
+            decoration: TextDecoration.underline,
+            fontWeight: FontWeight.w700,
           ),
-        );
+          isCurrent: isCurrentMatch,
+          recognizer: TapGestureRecognizer()
+            ..onTap = () {
+              if (match.isLink) {
+                _openExternalLink(match.value);
+              } else {
+                _handlePhoneNumberTap(context, match.value, displayText);
+              }
+            },
+        ));
         cursor = match.end;
       }
       if (cursor < text.length) {
-        spans.add(TextSpan(text: text.substring(cursor)));
+        spans.addAll(_searchSpans(text.substring(cursor), baseStyle,
+            isCurrent: isCurrentMatch));
       }
       textWidget = RichText(text: TextSpan(style: baseStyle, children: spans));
     }
@@ -3533,11 +3742,21 @@ class _MessageBubble extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(
                           top: 6, left: 4, right: 4, bottom: 2),
-                      child: Text(
-                        message.content!,
-                        style: TextStyle(
-                          color: isOwn ? Colors.white : Colors.black87,
-                          fontSize: 14,
+                      child: Text.rich(
+                        TextSpan(
+                          style: TextStyle(
+                            color: isOwn ? Colors.white : Colors.black87,
+                            fontSize: 14,
+                          ),
+                          children: _searchSpans(
+                            message.content!,
+                            TextStyle(
+                              color: isOwn ? Colors.white : Colors.black87,
+                              fontSize: 14,
+                            ),
+                            isCurrent: message.id != null &&
+                                message.id == _kSearchCurrentId,
+                          ),
                         ),
                       ),
                     ),

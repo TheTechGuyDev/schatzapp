@@ -6,6 +6,7 @@ import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'savedcontact_model.dart';
 export 'savedcontact_model.dart';
@@ -42,6 +43,21 @@ class _SavedcontactWidgetState extends State<SavedcontactWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => SavedcontactModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      if (widget.contactUserId != null && widget.contactUserId != '') {
+        _model.lockConvo = await actions.findOrCreateConversation(
+          currentUserUid,
+          widget.contactUserId!,
+        );
+        _model.lockCheck = await actions.isPrivateLocked(
+          _model.lockConvo!,
+        );
+        _model.isPrivateLocked = _model.lockCheck!;
+        safeSetState(() {});
+      }
+    });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -313,6 +329,12 @@ class _SavedcontactWidgetState extends State<SavedcontactWidget> {
                                         onTap: () async {
                                           context.pushNamed(
                                             UserProfileWidget.routeName,
+                                            queryParameters: {
+                                              'otherUserId': serializeParam(
+                                                widget.contactUserId,
+                                                ParamType.String,
+                                              ),
+                                            }.withoutNulls,
                                             extra: <String, dynamic>{
                                               '__transition_info__':
                                                   TransitionInfo(

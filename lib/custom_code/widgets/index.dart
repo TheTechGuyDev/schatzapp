@@ -89,3 +89,19 @@ export '/custom_code/widgets/camouflage_profile_picker.dart'
     show CamouflageProfilePicker;
 export '/custom_code/widgets/incoming_call_banner.dart' show IncomingCallBanner;
 export '/custom_code/widgets/private_screen_guard.dart' show PrivateScreenGuard;
+export '/custom_code/widgets/join_call_view.dart' show JoinCallView;
+export '/custom_code/widgets/block_status_bar.dart' show BlockStatusBar;
+export '/custom_code/widgets/block_menu_row.dart' show BlockMenuRow;
+export '/custom_code/widgets/profile_photo_editor.dart' show ProfilePhotoEditor;
+export '/custom_code/widgets/profile_links_list.dart' show ProfileLinksList;
+export '/custom_code/widgets/notifications_view.dart' show NotificationsView;
+export '/custom_code/widgets/message_requests_switch.dart'
+    show MessageRequestsSwitch;
+export '/custom_code/widgets/privacy_visibility_settings.dart'
+    show PrivacyVisibilitySettings;
+export '/custom_code/widgets/viewer_more_button.dart' show ViewerMoreButton;
+export '/custom_code/widgets/group_members_list.dart' show GroupMembersList;
+export '/custom_code/widgets/join_group_view.dart' show JoinGroupView;
+export '/custom_code/widgets/group_avatar.dart' show GroupAvatar;
+export '/custom_code/widgets/private_chat_hub.dart' show PrivateChatHub;
+export '/custom_code/widgets/chat_search_field.dart' show ChatSearchField;

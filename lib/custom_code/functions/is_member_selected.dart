@@ -16,7 +16,9 @@ import '/auth/supabase_auth/auth_util.dart';
 
 bool isMemberSelected(
   List<GroupMemberStructStruct> selection,
-  String memberId,
+  ContactsDirectoryRow contact,
 ) {
-  return selection.any((m) => m.memberId == memberId);
+  final id = contact.contactUserId;
+  if (id == null) return false;
+  return selection.any((m) => m.memberId == id);
 }

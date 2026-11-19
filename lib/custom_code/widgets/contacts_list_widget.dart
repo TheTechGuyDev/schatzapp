@@ -32,6 +32,39 @@ class ContactsListWidget extends StatefulWidget {
 }
 
 class _ContactsListWidgetState extends State<ContactsListWidget> {
+  late Future<List<ContactsDirectoryRow>> _future;
+
+  @override
+  void initState() {
+    super.initState();
+    _future = _load();
+  }
+
+  // Contacts you have blocked are left out of the list.
+  Future<List<ContactsDirectoryRow>> _load() async {
+    final rows = await ContactsDirectoryTable().queryRows(
+      queryFn: (q) => q
+          .eqOrNull('owner_id', widget.currentUserId)
+          .order('saved_name', ascending: true),
+    );
+    try {
+      final blocked = await SupaFlow.client
+          .from('blocked_users')
+          .select('blocked_id')
+          .eq('blocker_id', widget.currentUserId);
+      final ids = <String>{
+        for (final r in blocked as List) r['blocked_id'] as String
+      };
+      if (ids.isEmpty) return rows;
+      return rows
+          .where(
+              (r) => r.contactUserId == null || !ids.contains(r.contactUserId))
+          .toList();
+    } catch (_) {
+      return rows;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = FlutterFlowTheme.of(context);
@@ -40,11 +73,7 @@ class _ContactsListWidgetState extends State<ContactsListWidget> {
       width: widget.width,
       height: widget.height,
       child: FutureBuilder<List<ContactsDirectoryRow>>(
-        future: ContactsDirectoryTable().queryRows(
-          queryFn: (q) => q
-              .eqOrNull('owner_id', widget.currentUserId)
-              .order('saved_name', ascending: true),
-        ),
+        future: _future,
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return Center(

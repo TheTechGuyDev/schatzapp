@@ -254,10 +254,16 @@ dynamic deserializeParam<T>(
             return AccountNumberSequencesRow(data);
           case ActiveIncomingCallsRow:
             return ActiveIncomingCallsRow(data);
+          case AppConfigRow:
+            return AppConfigRow(data);
           case BankTransferSettingsRow:
             return BankTransferSettingsRow(data);
           case BlockedUsersRow:
             return BlockedUsersRow(data);
+          case CallJoinRequestsRow:
+            return CallJoinRequestsRow(data);
+          case CallLinksRow:
+            return CallLinksRow(data);
           case CallParticipantsRow:
             return CallParticipantsRow(data);
           case CallsRow:
@@ -300,14 +306,20 @@ dynamic deserializeParam<T>(
             return MessagesWithReplyRow(data);
           case NameChangeRequestsRow:
             return NameChangeRequestsRow(data);
+          case NotificationsRow:
+            return NotificationsRow(data);
           case OtpRateLimitRow:
             return OtpRateLimitRow(data);
           case PrivacySettingsRow:
             return PrivacySettingsRow(data);
+          case PrivateGroupAuditRow:
+            return PrivateGroupAuditRow(data);
           case PrivateStoryRingViewRow:
             return PrivateStoryRingViewRow(data);
           case ProfilesRow:
             return ProfilesRow(data);
+          case ProfilesPublicRow:
+            return ProfilesPublicRow(data);
           case ReloadlyTokensRow:
             return ReloadlyTokensRow(data);
           case SavedCardsRow:

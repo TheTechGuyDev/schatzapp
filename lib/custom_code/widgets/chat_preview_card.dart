@@ -88,6 +88,7 @@ class _ChatPreviewCardState extends State<ChatPreviewCard> {
   static const int _previewMessageLimit = 25;
   final GlobalKey _captureKey = GlobalKey();
   bool _busy = false;
+  bool _iBlocked = false;
 
   Stream<List<MessagesRow>>? _messagesStream;
   Stream<Map<String, String?>>? _appearanceStream;
@@ -95,6 +96,7 @@ class _ChatPreviewCardState extends State<ChatPreviewCard> {
   @override
   void initState() {
     super.initState();
+    _loadBlockState();
     _messagesStream = SupaFlow.client
         .from('messages')
         .stream(primaryKey: ['id'])
@@ -167,8 +169,24 @@ class _ChatPreviewCardState extends State<ChatPreviewCard> {
     if (mounted) Navigator.pop(context);
   }
 
+  Future<void> _loadBlockState() async {
+    if (widget.isGroup) return;
+    try {
+      final res = await SupaFlow.client
+          .rpc('block_status', params: {'p_other': widget.otherUserId});
+      if (!mounted) return;
+      setState(() => _iBlocked = (res ?? '').toString() == 'i_blocked');
+    } catch (_) {}
+  }
+
   Future<void> _block() async {
-    await blockUser(context, widget.currentUserId, widget.otherUserId);
+    if (_iBlocked) {
+      final done =
+          await unblockUser(context, widget.currentUserId, widget.otherUserId);
+      if (!done) return;
+    } else {
+      await blockUser(context, widget.currentUserId, widget.otherUserId);
+    }
     await widget.onChanged();
     if (mounted) Navigator.pop(context);
   }
@@ -634,14 +652,24 @@ class _ChatPreviewCardState extends State<ChatPreviewCard> {
                       children: [
                         CircleAvatar(
                           radius: 18,
-                          backgroundImage: widget.displayAvatar.isNotEmpty
+                          backgroundColor: const Color(0xFFEFEBF2),
+                          backgroundImage: (widget.displayAvatar
+                                      .toLowerCase()
+                                      .startsWith('http') &&
+                                  !widget.displayAvatar
+                                      .toLowerCase()
+                                      .contains('unsplash.com'))
                               ? NetworkImage(widget.displayAvatar)
                               : null,
-                          child: widget.displayAvatar.isEmpty
-                              ? Text(widget.displayName.isNotEmpty
-                                  ? widget.displayName[0].toUpperCase()
-                                  : '?')
-                              : null,
+                          child: (widget.displayAvatar
+                                      .toLowerCase()
+                                      .startsWith('http') &&
+                                  !widget.displayAvatar
+                                      .toLowerCase()
+                                      .contains('unsplash.com'))
+                              ? null
+                              : const Icon(Icons.person_outline,
+                                  color: Color(0xFF935CCC), size: 20),
                         ),
                         const SizedBox(width: 10),
                         Expanded(
@@ -670,8 +698,13 @@ class _ChatPreviewCardState extends State<ChatPreviewCard> {
                     _togglePin),
                 if (!widget.isGroup) ...[
                   _divider(),
-                  _actionTile(Icons.block_sharp, 'Block', _block,
-                      color: const Color(0xFFE91414)),
+                  _actionTile(
+                      _iBlocked ? Icons.lock_open_rounded : Icons.block_sharp,
+                      _iBlocked ? 'Unblock' : 'Block',
+                      _block,
+                      color: _iBlocked
+                          ? const Color(0xFF935CCC)
+                          : const Color(0xFFE91414)),
                 ],
                 _divider(),
                 _actionTile(Icons.playlist_add_circle_outlined,
@@ -686,6 +719,10 @@ class _ChatPreviewCardState extends State<ChatPreviewCard> {
     );
   }
 }
+// Set your widget name, define your parameter, and then add the
+// boilerplate code using the `</>` button on the right!
+// Set your widget name, define your parameter, and then add the
+// boilerplate code using the `</>` button on the right!
 // Set your widget name, define your parameter, and then add the
 // boilerplate code using the `</>` button on the right!
 // Set your widget name, define your parameter, and then add the

@@ -251,7 +251,7 @@ class _PrivacyWidgetState extends State<PrivacyWidget> {
                                                           FFLocalizations.of(
                                                                   context)
                                                               .getText(
-                                                            'chi4zqy0' /* When turn on only people who h... */,
+                                                            'chi4zqy0' /* Choose who sees your number an... */,
                                                           ),
                                                           maxLines: 2,
                                                           style: FlutterFlowTheme

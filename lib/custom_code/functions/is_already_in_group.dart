@@ -16,7 +16,9 @@ import '/auth/supabase_auth/auth_util.dart';
 
 bool isAlreadyInGroup(
   List<ConversationParticipantsRow> existingMembers,
-  String contactUserId,
+  ContactsDirectoryRow contact,
 ) {
-  return existingMembers.any((m) => m.userId == contactUserId);
+  final id = contact.contactUserId;
+  if (id == null) return true;
+  return existingMembers.any((m) => m.userId == id);
 }

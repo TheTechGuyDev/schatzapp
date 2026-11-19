@@ -49,6 +49,10 @@ class _ChatListPanelState extends State<ChatListPanel> {
   List<Map<String, dynamic>> _rows = [];
   Map<String, String> _savedNameByUser = {};
   Map<String, String> _usernameByUser = {};
+  // people with a block between us and them (either direction)
+  Set<String> _blockedPeers = {};
+  // strangers whose message request is still waiting for accept or decline
+  Set<String> _requestPeers = {};
   bool _loading = true;
   bool _selectionMode = false;
   final Set<String> _selectedIds = {};
@@ -107,6 +111,8 @@ class _ChatListPanelState extends State<ChatListPanel> {
       _otherReadAt = read;
       _noReceiptUsers =
           (cached['no_receipt'] as List? ?? []).map((e) => '$e').toSet();
+      _blockedPeers =
+          (cached['blocked_peers'] as List? ?? []).map((e) => '$e').toSet();
       _loading = false;
     });
   }
@@ -119,6 +125,7 @@ class _ChatListPanelState extends State<ChatListPanel> {
       'other_read_at':
           _otherReadAt.map((k, v) => MapEntry(k, v.toUtc().toIso8601String())),
       'no_receipt': _noReceiptUsers.toList(),
+      'blocked_peers': _blockedPeers.toList(),
     });
   }
 
@@ -270,9 +277,23 @@ class _ChatListPanelState extends State<ChatListPanel> {
       }
     }
 
+    var blockedPeers = <String>{};
+    try {
+      final b = await SupaFlow.client.rpc('blocked_peers');
+      blockedPeers = {for (final x in (b as List)) x.toString()};
+    } catch (_) {}
+
+    var requestPeers = <String>{};
+    try {
+      final q = await SupaFlow.client.rpc('pending_request_peers');
+      requestPeers = {for (final x in (q as List)) x.toString()};
+    } catch (_) {}
+
     if (!mounted) return;
     _gotRemote = true;
     setState(() {
+      _requestPeers = requestPeers;
+      _blockedPeers = blockedPeers;
       _rows = rows;
       _savedNameByUser = savedNameByUser;
       _usernameByUser = usernameByUser;
@@ -284,7 +305,10 @@ class _ChatListPanelState extends State<ChatListPanel> {
   }
 
   List<Map<String, dynamic>> get _filteredRows {
-    final unlocked = _rows.where((r) => r['is_locked'] != true);
+    final unlocked = _rows.where((r) =>
+        r['is_locked'] != true &&
+        !(r['type'] == 'direct' &&
+            _requestPeers.contains('${r['other_user_id']}')));
     switch (widget.filter) {
       case 'unread':
         return unlocked
@@ -520,19 +544,27 @@ class _ChatListPanelState extends State<ChatListPanel> {
                       final row = rows[i];
                       final conversationId = row['conversation_id'] as String;
                       final displayName = _resolveDisplayName(row);
-                      final displayAvatar =
-                          (row['display_avatar'] as String?) ?? '';
+                      final isBlockedPeer = row['type'] != 'group' &&
+                          _blockedPeers.contains(
+                              (row['other_user_id'] as String?) ?? '');
+                      final displayAvatar = isBlockedPeer
+                          ? ''
+                          : ((row['display_avatar'] as String?) ?? '');
                       final lastMessageType =
                           (row['last_message_type'] as String?) ?? '';
-                      final lastMessage = _formatLastMessage(
-                        lastMessageType,
-                        (row['last_message_content'] as String?) ?? '',
-                      );
-                      final lastMessageIconWidget =
-                          _lastMessageIconWidget(lastMessageType);
+                      final lastMessage = isBlockedPeer
+                          ? 'Blocked'
+                          : _formatLastMessage(
+                              lastMessageType,
+                              (row['last_message_content'] as String?) ?? '',
+                            );
+                      final lastMessageIconWidget = isBlockedPeer
+                          ? null
+                          : _lastMessageIconWidget(lastMessageType);
                       final unread = (row['unread_count'] as int?) ?? 0;
                       final isPinned = row['is_pinned'] == true;
-                      final sentStatus = _sentStatusIcon(row);
+                      final sentStatus =
+                          isBlockedPeer ? null : _sentStatusIcon(row);
                       final isSelected = _selectedIds.contains(conversationId);
                       final timeLabel = _timeLabel(row['last_message_at']);
 
@@ -574,17 +606,44 @@ class _ChatListPanelState extends State<ChatListPanel> {
                                         : Colors.black26,
                                   ),
                                 ),
-                              CircleAvatar(
-                                radius: 26,
-                                backgroundImage: displayAvatar.isNotEmpty
-                                    ? NetworkImage(displayAvatar)
-                                    : null,
-                                child: displayAvatar.isEmpty
-                                    ? Text(displayName.isNotEmpty
-                                        ? displayName[0].toUpperCase()
-                                        : '?')
-                                    : null,
-                              ),
+                              if (row['type'] == 'group')
+                                GroupAvatar(
+                                  imageUrl: displayAvatar
+                                          .toLowerCase()
+                                          .contains('unsplash.com')
+                                      ? ''
+                                      : displayAvatar,
+                                  size: 52,
+                                )
+                              else
+                                CircleAvatar(
+                                  radius: 26,
+                                  backgroundColor: isBlockedPeer
+                                      ? const Color(0xFFE0E0E0)
+                                      : const Color(0xFFEFEBF2),
+                                  backgroundImage: (!isBlockedPeer &&
+                                          displayAvatar
+                                              .toLowerCase()
+                                              .startsWith('http') &&
+                                          !displayAvatar
+                                              .toLowerCase()
+                                              .contains('unsplash.com'))
+                                      ? NetworkImage(displayAvatar)
+                                      : null,
+                                  child: isBlockedPeer
+                                      ? const Icon(Icons.person,
+                                          color: Color(0xFF9E9E9E), size: 30)
+                                      : ((displayAvatar
+                                                  .toLowerCase()
+                                                  .startsWith('http') &&
+                                              !displayAvatar
+                                                  .toLowerCase()
+                                                  .contains('unsplash.com'))
+                                          ? null
+                                          : const Icon(Icons.person_outline,
+                                              color: Color(0xFF935CCC),
+                                              size: 30)),
+                                ),
                               const SizedBox(width: 12),
                               Expanded(
                                 child: Column(
@@ -859,6 +918,10 @@ class _ChatListPanelState extends State<ChatListPanel> {
     );
   }
 }
+// Set your widget name, define your parameter, and then add the
+// boilerplate code using the `</>` button on the right!
+// Set your widget name, define your parameter, and then add the
+// boilerplate code using the `</>` button on the right!
 // Set your widget name, define your parameter, and then add the
 // boilerplate code using the `</>` button on the right!
 // Set your widget name, define your parameter, and then add the

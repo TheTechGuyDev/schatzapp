@@ -28,6 +28,8 @@ class UserProfileModel extends FlutterFlowModel<UserProfileWidget> {
   bool? lockResult;
   // Stores action output result for [Custom Action - getMutualPhone] action in User_profile widget.
   String? phoneResult;
+  // Stores action output result for [Custom Action - isPrivateLocked] action in User_profile widget.
+  bool? lockCheck;
   // Stores action output result for [Custom Action - getResolvedDisplayName] action in Icon widget.
   String? newName;
   // Stores action output result for [Custom Action - findOrCreateConversation] action in Container widget.
@@ -42,6 +44,8 @@ class UserProfileModel extends FlutterFlowModel<UserProfileWidget> {
   CallStartResultStruct? profileVideoCallResult;
   // Stores action output result for [Custom Action - getDirectConversationId] action in Theme_Column widget.
   String? themeConvId;
+  // Stores action output result for [Custom Action - findOrCreateConversation] action in Icon widget.
+  String? profileMessageSeaarchResult;
 
   @override
   void initState(BuildContext context) {}

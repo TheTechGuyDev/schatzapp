@@ -13,6 +13,8 @@ class AddLinkPageModel extends FlutterFlowModel<AddLinkPageWidget> {
   FocusNode? textFieldFocusNode2;
   TextEditingController? textController2;
   String? Function(BuildContext, String?)? textController2Validator;
+  // Stores action output result for [Custom Action - saveProfileLink] action in Container widget.
+  String? saveResult;
 
   @override
   void initState(BuildContext context) {}

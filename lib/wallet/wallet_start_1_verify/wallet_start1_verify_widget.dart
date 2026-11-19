@@ -36,7 +36,8 @@ class _WalletStart1VerifyWidgetState extends State<WalletStart1VerifyWidget> {
     _model.textController1 ??= TextEditingController();
     _model.textFieldFocusNode1 ??= FocusNode();
 
-    _model.textFieldMask1 = MaskTextInputFormatter(mask: '##/##/####');
+    _model.textFieldMask1 = MaskTextInputFormatter(
+        mask: '##/##/####', initialText: _model.textController1?.text);
     _model.textController2 ??= TextEditingController();
     _model.textFieldFocusNode2 ??= FocusNode();
 

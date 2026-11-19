@@ -15,6 +15,7 @@ class StoryItemStruct extends BaseStruct {
     DateTime? createdAt,
     int? viewCount,
     int? fontIndex,
+    bool? commentsEnabled,
   })  : _id = id,
         _mediaUrl = mediaUrl,
         _mediaType = mediaType,
@@ -22,7 +23,8 @@ class StoryItemStruct extends BaseStruct {
         _backgroundColor = backgroundColor,
         _createdAt = createdAt,
         _viewCount = viewCount,
-        _fontIndex = fontIndex;
+        _fontIndex = fontIndex,
+        _commentsEnabled = commentsEnabled;
 
   // "id" field.
   String? _id;
@@ -84,6 +86,13 @@ class StoryItemStruct extends BaseStruct {
 
   bool hasFontIndex() => _fontIndex != null;
 
+  // "commentsEnabled" field.
+  bool? _commentsEnabled;
+  bool get commentsEnabled => _commentsEnabled ?? true;
+  set commentsEnabled(bool? val) => _commentsEnabled = val;
+
+  bool hasCommentsEnabled() => _commentsEnabled != null;
+
   static StoryItemStruct fromMap(Map<String, dynamic> data) => StoryItemStruct(
         id: data['id'] as String?,
         mediaUrl: data['mediaUrl'] as String?,
@@ -93,6 +102,7 @@ class StoryItemStruct extends BaseStruct {
         createdAt: data['createdAt'] as DateTime?,
         viewCount: castToType<int>(data['viewCount']),
         fontIndex: castToType<int>(data['fontIndex']),
+        commentsEnabled: data['commentsEnabled'] as bool?,
       );
 
   static StoryItemStruct? maybeFromMap(dynamic data) => data is Map
@@ -108,6 +118,7 @@ class StoryItemStruct extends BaseStruct {
         'createdAt': _createdAt,
         'viewCount': _viewCount,
         'fontIndex': _fontIndex,
+        'commentsEnabled': _commentsEnabled,
       }.withoutNulls;
 
   @override
@@ -143,6 +154,10 @@ class StoryItemStruct extends BaseStruct {
         'fontIndex': serializeParam(
           _fontIndex,
           ParamType.int,
+        ),
+        'commentsEnabled': serializeParam(
+          _commentsEnabled,
+          ParamType.bool,
         ),
       }.withoutNulls;
 
@@ -188,6 +203,11 @@ class StoryItemStruct extends BaseStruct {
           ParamType.int,
           false,
         ),
+        commentsEnabled: deserializeParam(
+          data['commentsEnabled'],
+          ParamType.bool,
+          false,
+        ),
       );
 
   @override
@@ -203,7 +223,8 @@ class StoryItemStruct extends BaseStruct {
         backgroundColor == other.backgroundColor &&
         createdAt == other.createdAt &&
         viewCount == other.viewCount &&
-        fontIndex == other.fontIndex;
+        fontIndex == other.fontIndex &&
+        commentsEnabled == other.commentsEnabled;
   }
 
   @override
@@ -215,7 +236,8 @@ class StoryItemStruct extends BaseStruct {
         backgroundColor,
         createdAt,
         viewCount,
-        fontIndex
+        fontIndex,
+        commentsEnabled
       ]);
 }
 
@@ -228,6 +250,7 @@ StoryItemStruct createStoryItemStruct({
   DateTime? createdAt,
   int? viewCount,
   int? fontIndex,
+  bool? commentsEnabled,
 }) =>
     StoryItemStruct(
       id: id,
@@ -238,4 +261,5 @@ StoryItemStruct createStoryItemStruct({
       createdAt: createdAt,
       viewCount: viewCount,
       fontIndex: fontIndex,
+      commentsEnabled: commentsEnabled,
     );

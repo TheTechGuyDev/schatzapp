@@ -9,6 +9,10 @@ class Profile3dotsMOREOPTIONSModel
 
   // State field(s) for Switch widget.
   bool? switchValue;
+  // Stores action output result for [Custom Action - setPrivateLock] action in Switch widget.
+  bool? lockOk;
+  // Stores action output result for [Custom Action - setPrivateLock] action in Switch widget.
+  bool? unlockOk;
 
   @override
   void initState(BuildContext context) {}

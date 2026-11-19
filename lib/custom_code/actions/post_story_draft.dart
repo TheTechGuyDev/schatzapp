@@ -109,6 +109,7 @@ Future<void> postStoryDraft(String userId) async {
     final carousel = FFAppState().storyDraftCarousel;
     final taggedUserIds = FFAppState().pendingStoryTaggedUserIds;
     final durationHours = FFAppState().storyDraftDurationHours;
+    final commentsEnabled = FFAppState().storyDraftCommentsEnabled;
 
     final carouselCount = originals
         .asMap()
@@ -168,7 +169,7 @@ Future<void> postStoryDraft(String userId) async {
           } catch (_) {}
         }
 
-        await postStory(
+        final newStatusId = await postStory(
           userId,
           url,
           mediaType,
@@ -179,6 +180,13 @@ Future<void> postStoryDraft(String userId) async {
           durationHours,
           isInCarousel ? batchId : '',
         );
+        if (!commentsEnabled && newStatusId.isNotEmpty) {
+          try {
+            await SupaFlow.client
+                .from('statuses')
+                .update({'comments_enabled': false}).eq('id', newStatusId);
+          } catch (_) {}
+        }
       } catch (_) {
         continue;
       }
@@ -198,10 +206,13 @@ Future<void> postStoryDraft(String userId) async {
     FFAppState().storyDraftCarousel = [];
     FFAppState().storyDraftEditingIndex = -1;
     FFAppState().storyDraftDurationHours = 24;
+    FFAppState().storyDraftCommentsEnabled = true;
     FFAppState().pendingStoryTaggedUserIds = [];
     FFAppState().pendingStoryImagePaths = [];
     FFAppState().pendingWebStoryImages = [];
   }
 }
+// Set your action name, define your arguments and return parameter,
+// and then add the boilerplate code using the `</>` button on the right!
 // Set your action name, define your arguments and return parameter,
 // and then add the boilerplate code using the `</>` button on the right!

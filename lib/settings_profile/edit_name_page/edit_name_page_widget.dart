@@ -4,6 +4,7 @@ import '/flutter_flow/ff_builtin_enums.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -31,9 +32,9 @@ class _EditNamePageWidgetState extends State<EditNamePageWidget> {
     super.initState();
     _model = createModel(context, () => EditNamePageModel());
 
-    _model.textFieldFocusNode1 ??= FocusNode();
+    _model.textFieldFocusNode ??= FocusNode();
 
-    _model.textFieldFocusNode2 ??= FocusNode();
+    _model.newNameTextFieldFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -259,7 +260,7 @@ class _EditNamePageWidgetState extends State<EditNamePageWidget> {
                                             text: editNamePageProfilesRow
                                                 ?.fullName,
                                           ),
-                                          focusNode: _model.textFieldFocusNode1,
+                                          focusNode: _model.textFieldFocusNode,
                                           onChanged: (_) =>
                                               EasyDebounce.debounce(
                                             '_model.textController1',
@@ -502,15 +503,17 @@ class _EditNamePageWidgetState extends State<EditNamePageWidget> {
                                       child: Container(
                                         width: double.infinity,
                                         child: TextFormField(
-                                          controller: _model.textController2 ??=
+                                          controller: _model
+                                                  .newNameTextFieldTextController ??=
                                               TextEditingController(
                                             text: editNamePageProfilesRow
                                                 ?.fullName,
                                           ),
-                                          focusNode: _model.textFieldFocusNode2,
+                                          focusNode:
+                                              _model.newNameTextFieldFocusNode,
                                           onChanged: (_) =>
                                               EasyDebounce.debounce(
-                                            '_model.textController2',
+                                            '_model.newNameTextFieldTextController',
                                             Duration(milliseconds: 2000),
                                             () => safeSetState(() {}),
                                           ),
@@ -623,11 +626,14 @@ class _EditNamePageWidgetState extends State<EditNamePageWidget> {
                                             fillColor:
                                                 FlutterFlowTheme.of(context)
                                                     .secondaryBackground,
-                                            suffixIcon: _model.textController2!
-                                                    .text.isNotEmpty
+                                            suffixIcon: _model
+                                                    .newNameTextFieldTextController!
+                                                    .text
+                                                    .isNotEmpty
                                                 ? InkWell(
                                                     onTap: () async {
-                                                      _model.textController2
+                                                      _model
+                                                          .newNameTextFieldTextController
                                                           ?.clear();
                                                       safeSetState(() {});
                                                     },
@@ -666,7 +672,7 @@ class _EditNamePageWidgetState extends State<EditNamePageWidget> {
                                               ),
                                           maxLines: null,
                                           minLines: 1,
-                                          maxLength: 40,
+                                          maxLength: 50,
                                           maxLengthEnforcement:
                                               MaxLengthEnforcement.enforced,
                                           buildCounter: (context,
@@ -679,7 +685,7 @@ class _EditNamePageWidgetState extends State<EditNamePageWidget> {
                                                   .primaryText,
                                           enableInteractiveSelection: true,
                                           validator: _model
-                                              .textController2Validator
+                                              .newNameTextFieldTextControllerValidator
                                               .asValidator(context),
                                         ),
                                       ),
@@ -729,12 +735,29 @@ class _EditNamePageWidgetState extends State<EditNamePageWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              await NameChangeRequestsTable().insert({
-                                'user_id': currentUserUid,
-                                'current_name': _model.textController1.text,
-                                'requested_name': _model.textController2.text,
-                              });
-                              context.safePop();
+                              _model.nameResult = await actions.saveMyName(
+                                _model.newNameTextFieldTextController.text,
+                              );
+                              if (_model.nameResult == 'OK') {
+                                context.safePop();
+                              } else {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      _model.nameResult!,
+                                      style: TextStyle(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                      ),
+                                    ),
+                                    duration: Duration(milliseconds: 4000),
+                                    backgroundColor:
+                                        FlutterFlowTheme.of(context).secondary,
+                                  ),
+                                );
+                              }
+
+                              safeSetState(() {});
                             },
                             child: Container(
                               width: double.infinity,
@@ -750,7 +773,7 @@ class _EditNamePageWidgetState extends State<EditNamePageWidget> {
                                 alignment: AlignmentDirectional(0.0, 0.0),
                                 child: Text(
                                   FFLocalizations.of(context).getText(
-                                    'eryxiwlg' /* Submit Request */,
+                                    'eryxiwlg' /* Save */,
                                   ),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium

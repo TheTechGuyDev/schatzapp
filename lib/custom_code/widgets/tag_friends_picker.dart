@@ -50,8 +50,23 @@ class _TagFriendsPickerState extends State<TagFriendsPicker> {
         .eq('owner_id', widget.currentUserId)
         .not('contact_user_id', 'is', null);
 
+    // People the viewer locked are hidden from normal lists.
+    final lockedIds = <String>{};
+    try {
+      final lockedRows = await SupaFlow.client
+          .from('chat_list_view')
+          .select('other_user_id')
+          .eq('is_locked', true)
+          .neq('type', 'group');
+      for (final r in lockedRows) {
+        final id = r['other_user_id'] as String?;
+        if (id != null) lockedIds.add(id);
+      }
+    } catch (_) {}
+
     final friends = rows
         .where((row) => row['profiles'] != null)
+        .where((row) => !lockedIds.contains(row['contact_user_id']))
         .map((row) => {
               'id': row['contact_user_id'] as String,
               'fullName': (row['profiles']['full_name'] as String?) ?? '',
@@ -179,5 +194,7 @@ class _TagFriendsPickerState extends State<TagFriendsPicker> {
     );
   }
 }
+// Set your widget name, define your parameter, and then add the
+// boilerplate code using the `</>` button on the right!
 // Set your widget name, define your parameter, and then add the
 // boilerplate code using the `</>` button on the right!

@@ -47,4 +47,7 @@ class StatusesRow extends SupabaseDataRow {
 
   String? get batchId => getField<String>('batch_id');
   set batchId(String? value) => setField<String>('batch_id', value);
+
+  bool? get commentsEnabled => getField<bool>('comments_enabled');
+  set commentsEnabled(bool? value) => setField<bool>('comments_enabled', value);
 }

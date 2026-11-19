@@ -12,6 +12,7 @@ import 'package:flutter/material.dart' hide RepeatMode;
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
 import '/custom_code/actions/index.dart';
+import '/app_state.dart';
 import 'package:go_router/go_router.dart';
 import 'dart:async';
 
@@ -42,6 +43,10 @@ class _NewCallPickerState extends State<NewCallPicker> {
   final TextEditingController _search = TextEditingController();
   Timer? _debounce;
   String _query = '';
+  Set<String> _locked = {};
+  final Map<String, Map<String, dynamic>> _picked = {};
+
+  bool get _group => FFAppState().newCallGroupMode;
 
   bool get _dark => Theme.of(context).brightness == Brightness.dark;
   Color get _ink => _dark ? Colors.white : const Color(0xFF1B1230);
@@ -50,11 +55,21 @@ class _NewCallPickerState extends State<NewCallPicker> {
   @override
   void initState() {
     super.initState();
+    FFAppState().newCallGroupMode = false;
+    FFAppState().addListener(_onApp);
     _loadContacts();
+  }
+
+  void _onApp() {
+    if (!mounted) return;
+    if (!_group) _picked.clear();
+    setState(() {});
   }
 
   @override
   void dispose() {
+    FFAppState().removeListener(_onApp);
+    FFAppState().newCallGroupMode = false;
     _debounce?.cancel();
     _search.dispose();
     super.dispose();
@@ -102,13 +117,17 @@ class _NewCallPickerState extends State<NewCallPicker> {
       final profiles = <String, Map<String, dynamic>>{};
       if (saved.isNotEmpty) {
         final pr = await SupaFlow.client
-            .from('profiles')
+            .from('profiles_public')
             .select('id, full_name, username, avatar_url, phone_number')
             .inFilter('id', saved.keys.toList());
         for (final p in pr as List) {
           profiles[p['id'] as String] = Map<String, dynamic>.from(p);
         }
       }
+      try {
+        final lockedRaw = await SupaFlow.client.rpc('pcl_locked_peers');
+        _locked = {for (final x in (lockedRaw as List)) x.toString()};
+      } catch (_) {}
       final list = [
         for (final e in saved.entries) _person(e.key, e.value, profiles[e.key])
       ];
@@ -152,7 +171,7 @@ class _NewCallPickerState extends State<NewCallPicker> {
         for (final x in (lockedRaw as List)) x.toString()
       };
       final rows = await SupaFlow.client
-          .from('profiles')
+          .from('profiles_public')
           .select('id, full_name, username, avatar_url, phone_number')
           .or('username.ilike.%$safe%,full_name.ilike.%$safe%')
           .neq('id', widget.currentUserId)
@@ -206,24 +225,215 @@ class _NewCallPickerState extends State<NewCallPicker> {
     }
   }
 
+  // ------------------------------ group call ------------------------------
+  void _togglePick(Map<String, dynamic> c) {
+    final id = c['id'] as String;
+    setState(() {
+      if (_picked.containsKey(id)) {
+        _picked.remove(id);
+      } else {
+        _picked[id] = c;
+      }
+    });
+  }
+
+  void _endGroupMode() {
+    final app = FFAppState();
+    app.update(() => app.newCallGroupMode = false);
+    if (mounted) setState(() => _picked.clear());
+  }
+
+  Future<void> _startGroup(String type) async {
+    if (_starting) return;
+    final people =
+        _picked.values.where((p) => !_locked.contains(p['id'])).toList();
+    if (people.length < 2) {
+      _toast('Select at least 2 people');
+      return;
+    }
+    // Limits include the person starting the call.
+    final maxOthers = type == 'video' ? 15 : 31;
+    if (people.length > maxOthers) {
+      _toast(type == 'video'
+          ? 'Group video calls allow up to 16 people including you'
+          : 'Group voice calls allow up to 32 people including you');
+      return;
+    }
+    _starting = true;
+    setState(() {});
+    String? callId;
+    try {
+      final me = widget.currentUserId;
+      final nowIso = DateTime.now().toUtc().toIso8601String();
+      final channelName = 'call_${DateTime.now().millisecondsSinceEpoch}';
+      final agoraUid = DateTime.now().millisecondsSinceEpoch.remainder(100000);
+
+      final mine = await SupaFlow.client
+          .from('profiles')
+          .select('full_name, avatar_url')
+          .eq('id', me)
+          .single();
+
+      final callRow = await SupaFlow.client
+          .from('calls')
+          .insert({
+            'conversation_id': null,
+            'caller_id': me,
+            'callee_id': null,
+            'is_group': true,
+            'invited_user_ids': [for (final p in people) p['id'] as String],
+            'caller_name': mine['full_name'],
+            'caller_avatar': mine['avatar_url'],
+            'call_type': type,
+            'status': 'ringing',
+            'started_at': nowIso,
+          })
+          .select()
+          .single();
+      callId = callRow['id'] as String;
+
+      await SupaFlow.client.from('call_participants').insert({
+        'call_id': callId,
+        'user_id': me,
+        'joined_at': nowIso,
+        'agora_uid': agoraUid,
+        'status': 'joined',
+      });
+
+      await SupaFlow.client.from('active_incoming_calls').upsert([
+        for (final p in people)
+          {
+            'user_id': p['id'],
+            'call_id': callId,
+            'conversation_id': null,
+            'caller_id': me,
+            'caller_name': mine['full_name'],
+            'caller_avatar': mine['avatar_url'],
+            'call_type': type,
+            'status': 'ringing',
+            'agora_channel_name': channelName,
+            'updated_at': nowIso,
+          }
+      ]);
+
+      final tokenResponse = await SupaFlow.client.functions.invoke(
+        'agora-token',
+        body: {'channelName': channelName, 'uid': agoraUid},
+      );
+      final agoraToken =
+          (tokenResponse.data as Map<String, dynamic>)['token'] as String;
+
+      final names = people.map((p) => p['name'] as String).toList();
+      final label = names.length <= 2
+          ? names.join(', ')
+          : '${names.take(2).join(', ')} +${names.length - 2}';
+
+      if (!mounted) return;
+      _endGroupMode();
+      context.pushNamed('ActiveCallScreen', queryParameters: {
+        'callId': callId,
+        'conversationId': '',
+        'calleeName': label,
+        'calleeAvatar': '',
+        'callType': type,
+        'agoraChannelName': channelName,
+        'agoraToken': agoraToken,
+        'agoraUid': agoraUid.toString(),
+      });
+    } catch (_) {
+      if (callId != null) {
+        try {
+          await SupaFlow.client
+              .from('active_incoming_calls')
+              .delete()
+              .eq('call_id', callId);
+          await SupaFlow.client
+              .from('calls')
+              .update({'status': 'missed'}).eq('id', callId);
+        } catch (_) {}
+      }
+      _toast('Could not start the group call, please try again');
+    } finally {
+      _starting = false;
+      if (mounted) setState(() {});
+    }
+  }
+
+  Widget _groupBar() {
+    final n = _picked.length;
+    final ready = n >= 2 && !_starting;
+    Widget btn(IconData icon, String label, String type) => Expanded(
+          child: ElevatedButton.icon(
+            onPressed: ready ? () => _startGroup(type) : null,
+            icon: Icon(icon, size: 20),
+            label: Text(label),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: _purple,
+              foregroundColor: Colors.white,
+              disabledBackgroundColor: _purple.withOpacity(0.35),
+              disabledForegroundColor: Colors.white70,
+              padding: const EdgeInsets.symmetric(vertical: 12),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(14)),
+            ),
+          ),
+        );
+    return Container(
+      padding: const EdgeInsets.fromLTRB(0, 8, 0, 12),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Row(
+            children: [
+              Text(n == 0 ? 'Select people for the call' : '$n selected',
+                  style: TextStyle(
+                      color: _ink, fontWeight: FontWeight.w600, fontSize: 14)),
+              const Spacer(),
+              TextButton(
+                onPressed: _endGroupMode,
+                child: Text('Cancel', style: TextStyle(color: _soft)),
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              btn(Icons.call_outlined, 'Voice', 'voice'),
+              const SizedBox(width: 10),
+              btn(Icons.videocam_outlined, 'Video', 'video'),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget _row(Map<String, dynamic> c) {
     final name = c['name'] as String;
     final avatar = c['avatar'] as String;
     final username = c['username'] as String;
     final sub = username.isNotEmpty ? '@$username' : (c['phone'] as String);
-    return Padding(
+    final picked = _picked.containsKey(c['id']);
+    final row = Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Row(
         children: [
+          if (_group)
+            Padding(
+              padding: const EdgeInsets.only(right: 10),
+              child: Icon(picked ? Icons.check_circle : Icons.circle_outlined,
+                  color: picked ? _purple : _soft),
+            ),
           CircleAvatar(
             radius: 24,
-            backgroundColor: _purple.withOpacity(0.18),
-            backgroundImage: avatar.isNotEmpty ? NetworkImage(avatar) : null,
-            child: avatar.isEmpty
-                ? Text(name.isNotEmpty ? name[0].toUpperCase() : '?',
-                    style: const TextStyle(
-                        color: _purple, fontWeight: FontWeight.w700))
+            backgroundColor: const Color(0xFFEFEBF2),
+            backgroundImage: (avatar.toLowerCase().startsWith('http') &&
+                    !avatar.toLowerCase().contains('unsplash.com'))
+                ? NetworkImage(avatar)
                 : null,
+            child: (avatar.toLowerCase().startsWith('http') &&
+                    !avatar.toLowerCase().contains('unsplash.com'))
+                ? null
+                : const Icon(Icons.person_outline, color: _purple, size: 28),
           ),
           const SizedBox(width: 12),
           Expanded(
@@ -245,17 +455,21 @@ class _NewCallPickerState extends State<NewCallPicker> {
               ],
             ),
           ),
-          IconButton(
-            icon: const Icon(Icons.call_outlined, color: _purple),
-            onPressed: () => _call(c, 'voice'),
-          ),
-          IconButton(
-            icon: const Icon(Icons.videocam_outlined, color: _purple),
-            onPressed: () => _call(c, 'video'),
-          ),
+          if (!_group) ...[
+            IconButton(
+              icon: const Icon(Icons.call_outlined, color: _purple),
+              onPressed: () => _call(c, 'voice'),
+            ),
+            IconButton(
+              icon: const Icon(Icons.videocam_outlined, color: _purple),
+              onPressed: () => _call(c, 'video'),
+            ),
+          ],
         ],
       ),
     );
+    if (!_group) return row;
+    return InkWell(onTap: () => _togglePick(c), child: row);
   }
 
   @override
@@ -269,7 +483,12 @@ class _NewCallPickerState extends State<NewCallPicker> {
                 (c['phone'] as String).toLowerCase().contains(raw);
           }).toList();
     final seen = local.map((e) => e['id']).toSet();
-    final extra = _remote.where((e) => !seen.contains(e['id'])).toList();
+    var extra = _remote.where((e) => !seen.contains(e['id'])).toList();
+    var shownLocal = local;
+    if (_group) {
+      shownLocal = local.where((e) => !_locked.contains(e['id'])).toList();
+      extra = extra.where((e) => !_locked.contains(e['id'])).toList();
+    }
 
     return SizedBox(
       width: widget.width,
@@ -300,7 +519,7 @@ class _NewCallPickerState extends State<NewCallPicker> {
                 : ListView(
                     padding: const EdgeInsets.only(bottom: 24),
                     children: [
-                      if (local.isEmpty && extra.isEmpty && !_searching)
+                      if (shownLocal.isEmpty && extra.isEmpty && !_searching)
                         Padding(
                           padding: const EdgeInsets.all(24),
                           child: Center(
@@ -311,7 +530,7 @@ class _NewCallPickerState extends State<NewCallPicker> {
                                 style: TextStyle(color: _soft)),
                           ),
                         ),
-                      for (final c in local) _row(c),
+                      for (final c in shownLocal) _row(c),
                       if (extra.isNotEmpty) ...[
                         Padding(
                           padding: const EdgeInsets.only(top: 10, bottom: 4),
@@ -336,6 +555,7 @@ class _NewCallPickerState extends State<NewCallPicker> {
                     ],
                   ),
           ),
+          if (_group) _groupBar(),
         ],
       ),
     );

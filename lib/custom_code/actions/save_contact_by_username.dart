@@ -27,33 +27,18 @@ Future<SavedContactResultStructStruct> saveContactByUsername(
       );
 
   final cleanUsername =
-      username.trim().replaceFirst(RegExp(r'^@'), '').toLowerCase();
+      username.trim().replaceFirst(RegExp(r'^@+'), '').toLowerCase();
   if (cleanUsername.isEmpty) return fail('Enter a username', username);
 
   try {
-    // Both people need a username and an active wallet.
-    final me = await SupaFlow.client
-        .from('profiles')
-        .select('username')
-        .eq('id', ownerId)
-        .limit(1);
-    final myUsername =
-        me.isEmpty ? '' : ((me.first['username'] as String?) ?? '').trim();
-    final myWallet = await SupaFlow.client
-        .from('wallets')
-        .select('user_id')
-        .eq('user_id', ownerId)
-        .limit(1);
-    if (myUsername.isEmpty || myWallet.isEmpty) {
-      return fail(
-          'Create your SchatzWallet and set a username to add contacts by username',
-          cleanUsername);
-    }
+    // Escape % and _ so a username is matched exactly, not as a pattern.
+    final pattern =
+        cleanUsername.replaceAllMapped(RegExp(r'[\\%_]'), (m) => '\\${m[0]}');
 
     final matchRows = await SupaFlow.client
         .from('profiles')
         .select('id, full_name, avatar_url')
-        .ilike('username', cleanUsername)
+        .ilike('username', pattern)
         .limit(1);
 
     if (matchRows.isEmpty) {
@@ -64,15 +49,6 @@ Future<SavedContactResultStructStruct> saveContactByUsername(
     final matchedUserId = match['id'] as String;
     if (matchedUserId == ownerId) {
       return fail("You can't add yourself as a contact", cleanUsername);
-    }
-
-    final theirWallet = await SupaFlow.client
-        .from('wallets')
-        .select('user_id')
-        .eq('user_id', matchedUserId)
-        .limit(1);
-    if (theirWallet.isEmpty) {
-      return fail('No user found with that username', cleanUsername);
     }
 
     final matchedFullName = (match['full_name'] as String?) ?? '';
@@ -98,6 +74,11 @@ Future<SavedContactResultStructStruct> saveContactByUsername(
         'saved_name': savedName,
         'phone_number': null,
       });
+      // Tell them about it so they can accept and add you back.
+      try {
+        await SupaFlow.client
+            .rpc('send_friend_request', params: {'p_target': matchedUserId});
+      } catch (_) {}
     }
 
     return SavedContactResultStructStruct(

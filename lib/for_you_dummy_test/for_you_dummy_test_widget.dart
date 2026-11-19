@@ -57,7 +57,7 @@ class _ForYouDummyTestWidgetState extends State<ForYouDummyTestWidget> {
               automaticallyImplyLeading: false,
               title: Text(
                 FFLocalizations.of(context).getText(
-                  '2pudupps' /* Page Title */,
+                  'p6sk2d5r' /* Page Title */,
                 ),
                 style: FlutterFlowTheme.of(context).headlineMedium.override(
                       font: GoogleFonts.plusJakartaSans(

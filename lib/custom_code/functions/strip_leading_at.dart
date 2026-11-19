@@ -15,6 +15,6 @@ import '/backend/supabase/supabase.dart';
 import '/auth/supabase_auth/auth_util.dart';
 
 String stripLeadingAt(String input) {
-  final trimmed = input.trim();
+  final trimmed = input.trim().toLowerCase();
   return trimmed.startsWith('@') ? trimmed.substring(1) : trimmed;
 }

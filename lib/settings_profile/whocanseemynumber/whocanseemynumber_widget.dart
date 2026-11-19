@@ -1,6 +1,7 @@
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'whocanseemynumber_model.dart';
@@ -69,7 +70,7 @@ class _WhocanseemynumberWidgetState extends State<WhocanseemynumberWidget> {
               ),
               title: Text(
                 FFLocalizations.of(context).getText(
-                  'zqs84x8a' /* Page Title */,
+                  'zqs84x8a' /* Privacy settings */,
                 ),
                 style: FlutterFlowTheme.of(context).headlineMedium.override(
                       font: GoogleFonts.plusJakartaSans(
@@ -98,7 +99,21 @@ class _WhocanseemynumberWidgetState extends State<WhocanseemynumberWidget> {
               top: true,
               child: Column(
                 mainAxisSize: MainAxisSize.max,
-                children: [],
+                children: [
+                  Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(),
+                      child: Container(
+                        width: double.infinity,
+                        height: 600.0,
+                        child: custom_widgets.PrivacyVisibilitySettings(
+                          width: double.infinity,
+                          height: 600.0,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),

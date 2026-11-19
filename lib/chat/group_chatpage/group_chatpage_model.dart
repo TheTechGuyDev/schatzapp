@@ -60,6 +60,10 @@ class GroupChatpageModel extends FlutterFlowModel<GroupChatpageWidget> {
 
   bool isPrivateLocked = false;
 
+  bool isSearching = false;
+
+  bool searchQuery = false;
+
   ///  State fields for stateful widgets in this page.
 
   // Stores action output result for [Custom Action - getGroupMemberSummary] action in Group_chatpage widget.

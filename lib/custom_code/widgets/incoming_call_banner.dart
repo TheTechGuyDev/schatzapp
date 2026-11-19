@@ -38,6 +38,25 @@ class _IncomingCallBannerState extends State<IncomingCallBanner> {
   Map<String, dynamic>? _call;
   String? _ringingFor;
   bool _busy = false;
+  String? _camName;
+  String? _camAvatar;
+
+  // A Bimp never shows the caller's real identity: it shows one of the
+  // receiver's camouflage profiles instead.
+  Future<void> _pickCamouflage() async {
+    _camName = null;
+    _camAvatar = null;
+    try {
+      final r = await SupaFlow.client.rpc('pcl_pick_camouflage');
+      final list = r is List ? r : [r];
+      if (list.isNotEmpty && list.first is Map) {
+        final m = Map<String, dynamic>.from(list.first as Map);
+        _camName = (m['out_name'] as String?)?.trim();
+        _camAvatar = (m['out_avatar'] as String?)?.trim();
+      }
+    } catch (_) {}
+    if (mounted) setState(() {});
+  }
 
   @override
   void initState() {
@@ -63,6 +82,11 @@ class _IncomingCallBannerState extends State<IncomingCallBanner> {
         c['status'] == 'ringing';
     final id = ringing ? c['call_id'].toString() : null;
     if (id != null && id != _ringingFor) {
+      if (c?['call_type'] == 'bimp') {
+        _camName = null;
+        _camAvatar = null;
+        _pickCamouflage();
+      }
       startRingtoneAndVibration();
     } else if (id == null && _ringingFor != null) {
       stopRingtoneAndVibration();
@@ -174,10 +198,13 @@ class _IncomingCallBannerState extends State<IncomingCallBanner> {
     final c = _call;
     if (c == null) return const SizedBox.shrink();
     final theme = FlutterFlowTheme.of(context);
-    final name = (c['caller_name'] ?? 'Unknown').toString();
-    final avatar = (c['caller_avatar'] ?? '').toString();
-    final video = c['call_type'] == 'video';
     final bimp = c['call_type'] == 'bimp';
+    final name = bimp
+        ? ((_camName ?? '').isNotEmpty ? _camName! : 'Unknown')
+        : (c['caller_name'] ?? 'Unknown').toString();
+    final avatar =
+        bimp ? (_camAvatar ?? '') : (c['caller_avatar'] ?? '').toString();
+    final video = c['call_type'] == 'video';
     return Container(
       width: widget.width ?? double.infinity,
       margin: const EdgeInsets.fromLTRB(10, 20, 10, 0),
@@ -195,13 +222,15 @@ class _IncomingCallBannerState extends State<IncomingCallBanner> {
         children: [
           CircleAvatar(
             radius: 24,
-            backgroundColor: _purple.withOpacity(0.18),
-            backgroundImage: avatar.isNotEmpty ? NetworkImage(avatar) : null,
-            child: avatar.isEmpty
-                ? Text(name.isNotEmpty ? name[0].toUpperCase() : '?',
-                    style: const TextStyle(
-                        color: _purple, fontWeight: FontWeight.w700))
+            backgroundColor: const Color(0xFFEFEBF2),
+            backgroundImage: (avatar.toLowerCase().startsWith('http') &&
+                    !avatar.toLowerCase().contains('unsplash.com'))
+                ? NetworkImage(avatar)
                 : null,
+            child: (avatar.toLowerCase().startsWith('http') &&
+                    !avatar.toLowerCase().contains('unsplash.com'))
+                ? null
+                : const Icon(Icons.person_outline, color: _purple, size: 28),
           ),
           const SizedBox(width: 14),
           Expanded(
@@ -219,7 +248,7 @@ class _IncomingCallBannerState extends State<IncomingCallBanner> {
                 const SizedBox(height: 3),
                 Text(
                     bimp
-                        ? 'Bimp: wants your attention'
+                        ? 'calling'
                         : (video ? 'Incoming video call' : 'Incoming Call'),
                     style: TextStyle(color: theme.secondaryText, fontSize: 13)),
               ],
@@ -239,5 +268,7 @@ class _IncomingCallBannerState extends State<IncomingCallBanner> {
     );
   }
 }
+// Set your widget name, define your parameter, and then add the
+// boilerplate code using the `</>` button on the right!
 // Set your widget name, define your parameter, and then add the
 // boilerplate code using the `</>` button on the right!

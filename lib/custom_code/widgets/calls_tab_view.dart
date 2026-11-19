@@ -37,10 +37,11 @@ class _CallsTabViewState extends State<CallsTabView> {
   static const Color _red = Color(0xFFDF1609);
 
   bool _loading = true;
-  bool _showContacts = false; // hidden by default
+  bool _showContacts = true; // shown by default when there is no call history
   List<Map<String, dynamic>> _history = [];
   List<Map<String, dynamic>> _contacts = [];
   final TextEditingController _search = TextEditingController();
+  final FocusNode _searchFocus = FocusNode();
   String _query = '';
   bool _starting = false;
 
@@ -52,12 +53,28 @@ class _CallsTabViewState extends State<CallsTabView> {
   void initState() {
     super.initState();
     FFAppState().addListener(_onApp);
+    _searchFocus.addListener(_onSearchFocus);
     _load();
+  }
+
+  // Tells the Calls page header to hide while the search field is in use.
+  void _onSearchFocus() {
+    final active = _searchFocus.hasFocus;
+    if (mounted) setState(() {});
+    if (FFAppState().callsSearchActive == active) return;
+    FFAppState().update(() => FFAppState().callsSearchActive = active);
   }
 
   @override
   void dispose() {
     FFAppState().removeListener(_onApp);
+    _searchFocus.removeListener(_onSearchFocus);
+    _searchFocus.dispose();
+    Future.microtask(() {
+      if (FFAppState().callsSearchActive) {
+        FFAppState().update(() => FFAppState().callsSearchActive = false);
+      }
+    });
     _search.dispose();
     super.dispose();
   }
@@ -90,10 +107,31 @@ class _CallsTabViewState extends State<CallsTabView> {
   Future<void> _load() async {
     final me = widget.currentUserId;
     try {
+      // Calls I joined (this also finds link calls and group calls).
+      final joinedIds = <String>{};
+      try {
+        final partRows = await SupaFlow.client
+            .from('call_participants')
+            .select('call_id')
+            .eq('user_id', me)
+            .not('joined_at', 'is', null)
+            .order('joined_at', ascending: false)
+            .limit(100);
+        for (final p in partRows as List) {
+          joinedIds.add(p['call_id'].toString());
+        }
+      } catch (_) {}
+
+      final orParts = <String>[
+        'caller_id.eq.$me',
+        'callee_id.eq.$me',
+        'invited_user_ids.cs.{$me}',
+        if (joinedIds.isNotEmpty) 'id.in.(${joinedIds.join(',')})',
+      ];
       final callRows = await SupaFlow.client
           .from('calls')
           .select()
-          .or('caller_id.eq.$me,callee_id.eq.$me')
+          .or(orParts.join(','))
           .order('started_at', ascending: false)
           .limit(50);
 
@@ -122,7 +160,7 @@ class _CallsTabViewState extends State<CallsTabView> {
       final profiles = <String, Map<String, dynamic>>{};
       if (otherIds.isNotEmpty) {
         final pr = await SupaFlow.client
-            .from('profiles')
+            .from('profiles_public')
             .select('id, full_name, username, avatar_url, phone_number')
             .inFilter('id', otherIds.toList());
         for (final p in pr as List) {
@@ -130,37 +168,90 @@ class _CallsTabViewState extends State<CallsTabView> {
         }
       }
 
+      // Group calls: how many joined, and the group chat name when there is one.
+      final groupIds = <String>[];
+      final convIds = <String>{};
+      for (final r in callRows as List) {
+        if (r['is_group'] != true) continue;
+        groupIds.add(r['id'].toString());
+        final cv = r['conversation_id'];
+        if (cv is String && cv.isNotEmpty) convIds.add(cv);
+      }
+      final joinedCount = <String, int>{};
+      final convInfo = <String, Map<String, dynamic>>{};
+      try {
+        if (groupIds.isNotEmpty) {
+          final gp = await SupaFlow.client
+              .from('call_participants')
+              .select('call_id')
+              .inFilter('call_id', groupIds)
+              .not('joined_at', 'is', null);
+          for (final p in gp as List) {
+            final k = p['call_id'].toString();
+            joinedCount[k] = (joinedCount[k] ?? 0) + 1;
+          }
+        }
+        if (convIds.isNotEmpty) {
+          final cr = await SupaFlow.client
+              .from('conversations')
+              .select('id, name, avatar_url')
+              .inFilter('id', convIds.toList());
+          for (final c in cr as List) {
+            convInfo[c['id'] as String] = Map<String, dynamic>.from(c);
+          }
+        }
+      } catch (_) {}
+
       final history = <Map<String, dynamic>>[];
       for (final r in callRows as List) {
+        final id = r['id'].toString();
+        final isGroup = r['is_group'] == true;
         final outgoing = r['caller_id'] == me;
-        final otherId =
-            ((outgoing ? r['callee_id'] : r['caller_id']) ?? '').toString();
+        final otherId = isGroup
+            ? ''
+            : ((outgoing ? r['callee_id'] : r['caller_id']) ?? '').toString();
         final dur = r['duration_seconds'] as int?;
-        final status = r['status'] as String?;
+        final status = (r['status'] ?? '').toString();
+        final answered = dur != null && dur > 0;
+        final inProgress = status == 'ringing' || status == 'answered';
         String dir;
-        if (outgoing) {
-          dir = 'Outgoing';
-        } else if (status == 'declined') {
+        if (status == 'declined') {
           dir = 'Declined';
-        } else if (dur != null && dur > 0) {
+        } else if (answered || inProgress) {
+          dir = outgoing ? 'Outgoing' : 'Incoming';
+        } else if (isGroup && !outgoing && joinedIds.contains(id)) {
           dir = 'Incoming';
         } else {
-          dir = 'Missed';
+          dir = outgoing ? 'Cancelled' : 'Missed';
+        }
+
+        String name;
+        String avatar;
+        if (isGroup) {
+          final ci = convInfo[(r['conversation_id'] ?? '').toString()];
+          final gn = _clean((ci?['name'] ?? '').toString());
+          name = gn.isNotEmpty ? gn : 'Group call';
+          avatar = (ci?['avatar_url'] ?? '').toString();
+        } else {
+          name = otherId.isEmpty
+              ? _clean((r['caller_name'] ?? 'Unknown').toString())
+              : _nameFor(otherId, saved, profiles);
+          avatar = (profiles[otherId]?['avatar_url'] ??
+                  (outgoing ? '' : (r['caller_avatar'] ?? '')))
+              .toString();
         }
         history.add({
-          'id': r['id'].toString(),
+          'id': id,
           'conversation_id': (r['conversation_id'] ?? '').toString(),
           'other_id': otherId,
-          'name': otherId.isEmpty
-              ? _clean((r['caller_name'] ?? 'Unknown').toString())
-              : _nameFor(otherId, saved, profiles),
-          'avatar': (profiles[otherId]?['avatar_url'] ??
-                  (outgoing ? '' : (r['caller_avatar'] ?? '')))
-              .toString(),
+          'name': name,
+          'avatar': avatar,
           'direction': dir,
           'type': (r['call_type'] ?? 'voice').toString(),
           'started_at': r['started_at'],
           'duration': dur,
+          'group': isGroup,
+          'count': joinedCount[id] ?? 0,
         });
       }
 
@@ -274,15 +365,15 @@ class _CallsTabViewState extends State<CallsTabView> {
 
   // ------------------------------ ui bits ------------------------------
   Widget _avatar(String url, String name, double size) {
+    final ok = url.toLowerCase().startsWith('http') &&
+        !url.toLowerCase().contains('unsplash.com');
     return CircleAvatar(
       radius: size / 2,
-      backgroundColor: _purple.withOpacity(0.18),
-      backgroundImage: url.isNotEmpty ? NetworkImage(url) : null,
-      child: url.isEmpty
-          ? Text(name.isNotEmpty ? name[0].toUpperCase() : '?',
-              style:
-                  const TextStyle(color: _purple, fontWeight: FontWeight.w700))
-          : null,
+      backgroundColor: const Color(0xFFEFEBF2),
+      backgroundImage: ok ? NetworkImage(url) : null,
+      child: ok
+          ? null
+          : Icon(Icons.person_outline, color: _purple, size: size * 0.55),
     );
   }
 
@@ -298,6 +389,16 @@ class _CallsTabViewState extends State<CallsTabView> {
         : DateFormat('d MMM, h:mm a').format(d);
   }
 
+  String _dur(int? sec) {
+    if (sec == null || sec <= 0) return '';
+    final h = sec ~/ 3600;
+    final m = (sec % 3600) ~/ 60;
+    final s = sec % 60;
+    if (h > 0) return '${h}h ${m}m';
+    if (m > 0) return '${m}m ${s}s';
+    return '${s}s';
+  }
+
   Widget _historyRow(Map<String, dynamic> c, bool selecting) {
     final id = c['id'] as String;
     final missed = c['direction'] == 'Missed';
@@ -309,6 +410,9 @@ class _CallsTabViewState extends State<CallsTabView> {
       case 'Outgoing':
         dirIcon = Icons.call_made_rounded;
         break;
+      case 'Cancelled':
+        dirIcon = Icons.call_made_rounded;
+        break;
       case 'Incoming':
         dirIcon = Icons.call_received_rounded;
         break;
@@ -316,11 +420,24 @@ class _CallsTabViewState extends State<CallsTabView> {
         dirIcon = Icons.call_missed_rounded;
     }
     final color = missed ? _red : _soft;
+    final durText = _dur(c['duration'] as int?);
+    final countText = (c['group'] == true && (c['count'] as int) > 0)
+        ? '  ·  ${c['count']} joined'
+        : '';
+    final subText = '${c['direction']}  ${_when(c['started_at'])}'
+        '${durText.isEmpty ? '' : '  ·  $durText'}$countText';
     return InkWell(
       onTap: selecting
           ? () => _toggle(id)
-          : () => _call(c['other_id'] as String, c['conversation_id'] as String,
-              name, c['avatar'] as String, type),
+          : () {
+              if (c['group'] == true &&
+                  (c['conversation_id'] as String).isEmpty) {
+                _toast('Start a new group call from New call');
+                return;
+              }
+              _call(c['other_id'] as String, c['conversation_id'] as String,
+                  name, c['avatar'] as String, type);
+            },
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 9),
         child: Row(
@@ -332,7 +449,14 @@ class _CallsTabViewState extends State<CallsTabView> {
                     selected ? Icons.check_circle : Icons.circle_outlined,
                     color: selected ? _purple : _soft),
               ),
-            _avatar(c['avatar'] as String, name, 48),
+            if (c['group'] == true && (c['avatar'] as String).isEmpty)
+              CircleAvatar(
+                radius: 24,
+                backgroundColor: _purple.withOpacity(0.18),
+                child: const Icon(Icons.groups_rounded, color: _purple),
+              )
+            else
+              _avatar(c['avatar'] as String, name, 48),
             const SizedBox(width: 12),
             Expanded(
               child: Column(
@@ -350,12 +474,17 @@ class _CallsTabViewState extends State<CallsTabView> {
                     children: [
                       Icon(dirIcon, size: 15, color: color),
                       const SizedBox(width: 4),
-                      Text('${c['direction']}  ${_when(c['started_at'])}',
-                          style: TextStyle(
-                              color: color,
-                              fontSize: 12.5,
-                              fontWeight:
-                                  missed ? FontWeight.w600 : FontWeight.w400)),
+                      Flexible(
+                        child: Text(subText,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                                color: color,
+                                fontSize: 12.5,
+                                fontWeight: missed
+                                    ? FontWeight.w600
+                                    : FontWeight.w400)),
+                      ),
                     ],
                   ),
                 ],
@@ -448,15 +577,76 @@ class _CallsTabViewState extends State<CallsTabView> {
     );
   }
 
+  Widget _searchBar(bool hasHistory) {
+    return Container(
+      height: 45,
+      margin: const EdgeInsets.only(top: 6, bottom: 14),
+      decoration: BoxDecoration(
+        color: const Color(0x2CE0E3E7),
+        borderRadius: BorderRadius.circular(22),
+        border: Border.all(color: const Color(0xFFB0C2D0)),
+      ),
+      child: Row(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: Icon(Icons.search, color: _soft, size: 24),
+          ),
+          Expanded(
+            child: TextField(
+              controller: _search,
+              focusNode: _searchFocus,
+              onChanged: (v) => setState(() => _query = v),
+              style: TextStyle(color: _ink, fontSize: 15),
+              decoration: InputDecoration(
+                hintText: hasHistory
+                    ? 'Search recent calls'
+                    : 'Search contacts on SchatzApp',
+                hintStyle: TextStyle(color: _soft, fontSize: 15),
+                border: InputBorder.none,
+                isDense: true,
+                contentPadding: EdgeInsets.zero,
+              ),
+            ),
+          ),
+          if (_query.isNotEmpty)
+            IconButton(
+              icon: Icon(Icons.close, color: _soft, size: 20),
+              onPressed: () => setState(() {
+                _search.clear();
+                _query = '';
+              }),
+            ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     if (_loading) {
-      return const Center(child: CircularProgressIndicator(color: _purple));
+      return SizedBox(
+        width: widget.width,
+        height: widget.height,
+        child: const Center(child: CircularProgressIndicator(color: _purple)),
+      );
     }
-    final selecting = FFAppState().callSelectionMode && _history.isNotEmpty;
+    final hasHistory = _history.isNotEmpty;
+    final selecting = FFAppState().callSelectionMode && hasHistory;
     final q = _query.trim().toLowerCase();
     final searching = q.isNotEmpty;
-    final filtered = !searching
+
+    // With call history: the search only looks through the history.
+    final historyShown = !searching
+        ? _history
+        : _history.where((c) {
+            return (c['name'] as String).toLowerCase().contains(q) ||
+                (c['direction'] as String).toLowerCase().contains(q) ||
+                (c['type'] as String).toLowerCase().contains(q);
+          }).toList();
+
+    // Without call history: the search looks through contacts on SchatzApp.
+    final contactsShown = !searching
         ? _contacts
         : _contacts.where((c) {
             return (c['name'] as String).toLowerCase().contains(q) ||
@@ -468,90 +658,90 @@ class _CallsTabViewState extends State<CallsTabView> {
     return SizedBox(
       width: widget.width,
       height: widget.height,
-      child: RefreshIndicator(
-        color: _purple,
-        onRefresh: _load,
-        child: ListView(
-          padding: const EdgeInsets.fromLTRB(0, 4, 0, 24),
-          children: [
-            if (selecting) _selectBar(),
-            if (_history.isNotEmpty) ...[
-              Padding(
-                padding: const EdgeInsets.only(bottom: 6, top: 4),
-                child: Text('Recent',
-                    style: TextStyle(
-                        color: _soft,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600)),
+      child: Column(
+        children: [
+          _searchBar(hasHistory),
+          if (selecting) _selectBar(),
+          Expanded(
+            child: RefreshIndicator(
+              color: _purple,
+              onRefresh: _load,
+              child: ListView(
+                physics: const AlwaysScrollableScrollPhysics(),
+                keyboardDismissBehavior:
+                    ScrollViewKeyboardDismissBehavior.onDrag,
+                padding: const EdgeInsets.fromLTRB(0, 0, 0, 24),
+                children: [
+                  if (hasHistory) ...[
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 6),
+                      child: Text('Recent',
+                          style: TextStyle(
+                              color: _soft,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600)),
+                    ),
+                    if (historyShown.isEmpty)
+                      Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: Center(
+                          child: Text('No calls found',
+                              style: TextStyle(color: _soft)),
+                        ),
+                      )
+                    else
+                      for (final c in historyShown) _historyRow(c, selecting),
+                  ] else ...[
+                    if (!_searchFocus.hasFocus && !searching)
+                      Row(
+                        children: [
+                          Text('Contacts on ',
+                              style: TextStyle(
+                                  color: _ink,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15)),
+                          const Text('SchatzApp',
+                              style: TextStyle(
+                                  color: _purple,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 15)),
+                          const Spacer(),
+                          TextButton(
+                            onPressed: () => setState(() {
+                              _showContacts = !_showContacts;
+                              if (!_showContacts) {
+                                _search.clear();
+                                _query = '';
+                              }
+                            }),
+                            child: Text(_showContacts ? 'Hide' : 'Unhide',
+                                style: const TextStyle(
+                                    color: _purple,
+                                    fontWeight: FontWeight.w700)),
+                          ),
+                        ],
+                      ),
+                    if (contactsVisible) ...[
+                      if (contactsShown.isEmpty)
+                        Padding(
+                          padding: const EdgeInsets.all(20),
+                          child: Center(
+                            child: Text(
+                                searching
+                                    ? 'No contacts found'
+                                    : 'No contacts on SchatzApp yet',
+                                style: TextStyle(color: _soft)),
+                          ),
+                        )
+                      else
+                        for (final c in contactsShown) _contactRow(c),
+                    ],
+                  ],
+                ],
               ),
-              for (final c in _history) _historyRow(c, selecting),
-              const SizedBox(height: 14),
-            ],
-            Row(
-              children: [
-                Text('Contacts on ',
-                    style: TextStyle(
-                        color: _ink,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15)),
-                const Text('SchatzApp',
-                    style: TextStyle(
-                        color: _purple,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 15)),
-                const Spacer(),
-                TextButton(
-                  onPressed: () => setState(() {
-                    _showContacts = !_showContacts;
-                    if (!_showContacts) {
-                      _search.clear();
-                      _query = '';
-                    }
-                  }),
-                  child: Text(_showContacts ? 'Hide' : 'Unhide',
-                      style: const TextStyle(
-                          color: _purple, fontWeight: FontWeight.w700)),
-                ),
-              ],
             ),
-            if (contactsVisible) ...[
-              Padding(
-                padding: const EdgeInsets.only(bottom: 8),
-                child: TextField(
-                  controller: _search,
-                  onChanged: (v) => setState(() => _query = v),
-                  style: TextStyle(color: _ink),
-                  decoration: InputDecoration(
-                    hintText: 'Search contacts on SchatzApp',
-                    hintStyle: TextStyle(color: _soft),
-                    prefixIcon: Icon(Icons.search, color: _soft),
-                    filled: true,
-                    fillColor: _dark
-                        ? const Color(0xFF2A1F3F)
-                        : const Color(0xFFF2EEF8),
-                    contentPadding: const EdgeInsets.symmetric(vertical: 10),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(14),
-                        borderSide: BorderSide.none),
-                  ),
-                ),
-              ),
-              if (filtered.isEmpty)
-                Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Center(
-                    child: Text(
-                        searching
-                            ? 'No contacts found'
-                            : 'No contacts on SchatzApp yet',
-                        style: TextStyle(color: _soft)),
-                  ),
-                )
-              else
-                for (final c in filtered) _contactRow(c),
-            ],
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

@@ -48,6 +48,10 @@ class FavoritesRowWidget extends StatefulWidget {
 class _FavoritesRowWidgetState extends State<FavoritesRowWidget> {
   static const int _maxContacts = 8;
 
+  bool _hasPhoto(String u) =>
+      u.toLowerCase().startsWith('http') &&
+      !u.toLowerCase().contains('unsplash.com');
+
   Future<List<_FavContact>> _load() async {
     final chatRows = await SupaFlow.client
         .from('chat_list_view')
@@ -55,8 +59,15 @@ class _FavoritesRowWidgetState extends State<FavoritesRowWidget> {
         .eq('type', 'direct')
         .order('last_message_at', ascending: false);
 
+    var blocked = <String>{};
+    try {
+      final b = await SupaFlow.client.rpc('blocked_peers');
+      blocked = {for (final x in (b as List)) x.toString()};
+    } catch (_) {}
+
     final filtered = chatRows
         .where((r) =>
+            !blocked.contains('${r['other_user_id']}') &&
             r['is_archived'] != true &&
             r['other_user_id'] != null &&
             r['last_message_at'] != null)
@@ -187,9 +198,9 @@ class _FavoritesRowWidgetState extends State<FavoritesRowWidget> {
                                     width: 55,
                                     height: 55,
                                     decoration: BoxDecoration(
-                                      color: theme.primary,
+                                      color: const Color(0xFFEFEBF2),
                                       shape: BoxShape.circle,
-                                      image: c.avatarUrl.isNotEmpty
+                                      image: _hasPhoto(c.avatarUrl)
                                           ? DecorationImage(
                                               fit: BoxFit.cover,
                                               image: NetworkImage(c.avatarUrl),
@@ -197,15 +208,10 @@ class _FavoritesRowWidgetState extends State<FavoritesRowWidget> {
                                           : null,
                                     ),
                                     alignment: Alignment.center,
-                                    child: c.avatarUrl.isEmpty
-                                        ? Text(
-                                            c.displayName.isNotEmpty
-                                                ? c.displayName[0].toUpperCase()
-                                                : '?',
-                                            style: const TextStyle(
-                                                color: Colors.white),
-                                          )
-                                        : null,
+                                    child: _hasPhoto(c.avatarUrl)
+                                        ? null
+                                        : const Icon(Icons.person_outline,
+                                            color: Color(0xFF935CCC), size: 30),
                                   ),
                                 ),
                               ),
@@ -241,5 +247,7 @@ class _FavoritesRowWidgetState extends State<FavoritesRowWidget> {
     );
   }
 }
+// Set your widget name, define your parameter, and then add the
+// boilerplate code using the `</>` button on the right!
 // Set your widget name, define your parameter, and then add the
 // boilerplate code using the `</>` button on the right!

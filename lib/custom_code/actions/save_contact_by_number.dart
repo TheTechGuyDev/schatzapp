@@ -14,6 +14,7 @@ Future<SavedContactResultStructStruct> saveContactByNumber(
   String ownerId,
   String savedName,
   String phoneNumber,
+  String? dialCode,
 ) async {
   SavedContactResultStructStruct fail(String msg) =>
       SavedContactResultStructStruct(
@@ -26,30 +27,54 @@ Future<SavedContactResultStructStruct> saveContactByNumber(
         matchedFullName: '',
       );
 
-  // Compare numbers by their last 10 digits so 080..., +23480... and
-  // 23480... all count as the same number.
-  var key = phoneNumber.replaceAll(RegExp(r'[^0-9]'), '');
-  if (key.length > 10) key = key.substring(key.length - 10);
-  if (key.length < 7) return fail('Enter a valid phone number');
+  // Build the full number: country code + national number (no leading 0).
+  // With no country code we fall back to the last 10 digits, as before.
+  final dial = (dialCode ?? '').replaceAll(RegExp(r'[^0-9]'), '');
+  var digits = phoneNumber.replaceAll(RegExp(r'[^0-9]'), '');
+  String key;
+  String national;
+  if (dial.isEmpty) {
+    key = digits.length > 10 ? digits.substring(digits.length - 10) : digits;
+    national = key;
+  } else {
+    if (phoneNumber.trim().startsWith('+') && digits.startsWith(dial)) {
+      digits = digits.substring(dial.length);
+    }
+    national = digits.replaceFirst(RegExp(r'^0+'), '');
+    key = dial + national;
+  }
+  if (national.length < 7) return fail('Enter a valid phone number');
+  final tail =
+      national.length > 9 ? national.substring(national.length - 9) : national;
+
+  bool matches(String stored) {
+    final cd = stored.replaceAll(RegExp(r'[^0-9]'), '');
+    if (cd.endsWith(key)) return true;
+    return dial == '234' &&
+        national.length >= 10 &&
+        cd.endsWith(national.substring(national.length - 10));
+  }
 
   try {
-    final matchRows = await SupaFlow.client
-        .from('profiles')
-        .select('id, full_name, avatar_url, phone_number')
-        .ilike('phone_number', '%$key')
-        .limit(1);
-
     String? matchedUserId;
     String matchedFullName = '';
     String matchedAvatarUrl = '';
-    if (matchRows.isNotEmpty) {
-      final match = matchRows.first;
-      matchedUserId = match['id'] as String?;
-      matchedFullName = (match['full_name'] as String?) ?? '';
-      matchedAvatarUrl = (match['avatar_url'] as String?) ?? '';
-      if (matchedUserId == ownerId) {
-        return fail("You can't add yourself as a contact");
+
+    final cand = await SupaFlow.client
+        .from('profiles')
+        .select('id, full_name, avatar_url, phone_number')
+        .ilike('phone_number', '%$tail')
+        .limit(25);
+    for (final r in (cand as List)) {
+      if (matches(((r['phone_number'] ?? '') as String))) {
+        matchedUserId = r['id'] as String?;
+        matchedFullName = (r['full_name'] as String?) ?? '';
+        matchedAvatarUrl = (r['avatar_url'] as String?) ?? '';
+        break;
       }
+    }
+    if (matchedUserId != null && matchedUserId == ownerId) {
+      return fail("You can't add yourself as a contact");
     }
 
     // Already saved? Look by user id first, then by number.
@@ -61,16 +86,21 @@ Future<SavedContactResultStructStruct> saveContactByNumber(
           .eq('owner_id', ownerId)
           .eq('contact_user_id', matchedUserId)
           .limit(1);
-      if (byUser.isNotEmpty) existing = byUser.first;
+      if (byUser.isNotEmpty) existing = Map<String, dynamic>.from(byUser.first);
     }
     if (existing == null) {
       final byPhone = await SupaFlow.client
           .from('contacts')
-          .select('id, saved_name, contact_user_id')
+          .select('id, saved_name, contact_user_id, phone_number')
           .eq('owner_id', ownerId)
-          .ilike('phone_number', '%$key')
-          .limit(1);
-      if (byPhone.isNotEmpty) existing = byPhone.first;
+          .ilike('phone_number', '%$tail')
+          .limit(25);
+      for (final r in (byPhone as List)) {
+        if (matches(((r['phone_number'] ?? '') as String))) {
+          existing = Map<String, dynamic>.from(r as Map);
+          break;
+        }
+      }
     }
 
     String finalName = savedName;
@@ -87,8 +117,15 @@ Future<SavedContactResultStructStruct> saveContactByNumber(
         'owner_id': ownerId,
         'contact_user_id': matchedUserId,
         'saved_name': savedName,
-        'phone_number': phoneNumber,
+        'phone_number': dial.isEmpty ? phoneNumber : '+$key',
       });
+      // Tell them about it so they can accept and add you back.
+      if (matchedUserId != null) {
+        try {
+          await SupaFlow.client
+              .rpc('send_friend_request', params: {'p_target': matchedUserId});
+        } catch (_) {}
+      }
     }
 
     return SavedContactResultStructStruct(

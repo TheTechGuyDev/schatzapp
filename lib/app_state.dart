@@ -594,6 +594,36 @@ class FFAppState extends ChangeNotifier {
   set groupReplyIsOwn(bool value) {
     _groupReplyIsOwn = value;
   }
+
+  bool _newCallGroupMode = false;
+  bool get newCallGroupMode => _newCallGroupMode;
+  set newCallGroupMode(bool value) {
+    _newCallGroupMode = value;
+  }
+
+  bool _callsSearchActive = false;
+  bool get callsSearchActive => _callsSearchActive;
+  set callsSearchActive(bool value) {
+    _callsSearchActive = value;
+  }
+
+  bool _chatBlocked = false;
+  bool get chatBlocked => _chatBlocked;
+  set chatBlocked(bool value) {
+    _chatBlocked = value;
+  }
+
+  bool _storyDraftCommentsEnabled = false;
+  bool get storyDraftCommentsEnabled => _storyDraftCommentsEnabled;
+  set storyDraftCommentsEnabled(bool value) {
+    _storyDraftCommentsEnabled = value;
+  }
+
+  DateTime? _privateUnlockedAt;
+  DateTime? get privateUnlockedAt => _privateUnlockedAt;
+  set privateUnlockedAt(DateTime? value) {
+    _privateUnlockedAt = value;
+  }
 }
 
 void _safeInit(Function() initializeField) {

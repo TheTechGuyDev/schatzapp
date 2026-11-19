@@ -44,7 +44,7 @@ class CreateagroupModel extends FlutterFlowModel<CreateagroupWidget> {
   String? Function(BuildContext, String?)? textController2Validator;
   // Stores action output result for [Custom Action - toggleGroupMemberSelection] action in Icon widget.
   List<GroupMemberStructStruct>? updatedSelection2;
-  // Stores action output result for [Custom Action - toggleGroupMemberSelection] action in Column widget.
+  // Stores action output result for [Custom Action - toggleContactSelection] action in Column widget.
   List<GroupMemberStructStruct>? updatedSelection;
 
   @override

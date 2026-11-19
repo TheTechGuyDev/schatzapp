@@ -20,10 +20,8 @@ Future<List<GroupMemberStructStruct>> toggleGroupMemberSelection(
   final existingIndex = updated.indexWhere((m) => m.memberId == memberId);
 
   if (existingIndex >= 0) {
-    // already selected -> remove
     updated.removeAt(existingIndex);
   } else {
-    // not selected -> add
     updated.add(GroupMemberStructStruct(
       memberId: memberId,
       memberName: memberName,

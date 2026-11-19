@@ -60,6 +60,10 @@ class ChatpageModel extends FlutterFlowModel<ChatpageWidget> {
 
   bool isPrivateLocked = false;
 
+  bool isSearching = false;
+
+  String searchQuery = ' ';
+
   ///  State fields for stateful widgets in this page.
 
   // Stores action output result for [Custom Action - isPrivateLocked] action in chatpage widget.
@@ -89,10 +93,6 @@ class ChatpageModel extends FlutterFlowModel<ChatpageWidget> {
   CallStartResultStruct? callResult2;
   // Stores action output result for [Custom Action - sendBimp] action in Icon widget.
   bool? bimpSent;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode;
-  TextEditingController? textController2;
-  String? Function(BuildContext, String?)? textController2Validator;
 
   @override
   void initState(BuildContext context) {}
@@ -101,8 +101,5 @@ class ChatpageModel extends FlutterFlowModel<ChatpageWidget> {
   void dispose() {
     textFieldMessageMoodFocusNode?.dispose();
     textFieldMessageMoodTextController?.dispose();
-
-    textFieldFocusNode?.dispose();
-    textController2?.dispose();
   }
 }

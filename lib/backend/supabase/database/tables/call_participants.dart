@@ -35,4 +35,14 @@ class CallParticipantsRow extends SupabaseDataRow {
 
   String? get status => getField<String>('status');
   set status(String? value) => setField<String>('status', value);
+
+  DateTime? get lastSeenAt => getField<DateTime>('last_seen_at');
+  set lastSeenAt(DateTime? value) => setField<DateTime>('last_seen_at', value);
+
+  DateTime? get hostMutedAt => getField<DateTime>('host_muted_at');
+  set hostMutedAt(DateTime? value) =>
+      setField<DateTime>('host_muted_at', value);
+
+  String? get agoraRuleId => getField<String>('agora_rule_id');
+  set agoraRuleId(String? value) => setField<String>('agora_rule_id', value);
 }

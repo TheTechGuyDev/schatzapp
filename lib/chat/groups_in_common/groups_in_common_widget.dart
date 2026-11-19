@@ -104,7 +104,7 @@ class _GroupsInCommonWidgetState extends State<GroupsInCommonWidget> {
                             .fontStyle,
                       ),
                       color: FlutterFlowTheme.of(context).primaryText,
-                      fontSize: 22.0,
+                      fontSize: 18.0,
                       letterSpacing: 0.0,
                       fontWeight: FlutterFlowTheme.of(context)
                           .headlineMedium
@@ -144,7 +144,7 @@ class _GroupsInCommonWidgetState extends State<GroupsInCommonWidget> {
                                     .bodyMedium
                                     .fontStyle,
                               ),
-                              fontSize: 18.0,
+                              fontSize: 16.0,
                               letterSpacing: 0.0,
                               fontWeight: FontWeight.w600,
                               fontStyle: FlutterFlowTheme.of(context)

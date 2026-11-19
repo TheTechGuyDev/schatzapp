@@ -68,7 +68,7 @@ class _MediaQualityWidgetState extends State<MediaQualityWidget> {
               ),
               title: Text(
                 FFLocalizations.of(context).getText(
-                  'wezjlezj' /* Media Quality */,
+                  '913y0frn' /* Media Quality */,
                 ),
                 style: FlutterFlowTheme.of(context).headlineMedium.override(
                       font: GoogleFonts.plusJakartaSans(

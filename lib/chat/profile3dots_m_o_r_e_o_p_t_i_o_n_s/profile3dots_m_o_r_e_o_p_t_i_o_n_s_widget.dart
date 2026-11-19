@@ -4,8 +4,10 @@ import '/flutter_flow/ff_builtin_enums.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/settings_profile/app_password_gate/app_password_gate_widget.dart';
+import '/custom_code/actions/index.dart' as actions;
+import '/custom_code/widgets/index.dart' as custom_widgets;
+import '/index.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'profile3dots_m_o_r_e_o_p_t_i_o_n_s_model.dart';
 export 'profile3dots_m_o_r_e_o_p_t_i_o_n_s_model.dart';
@@ -14,9 +16,11 @@ class Profile3dotsMOREOPTIONSWidget extends StatefulWidget {
   const Profile3dotsMOREOPTIONSWidget({
     super.key,
     this.conversationId,
+    this.otherUserId,
   });
 
   final String? conversationId;
+  final String? otherUserId;
 
   @override
   State<Profile3dotsMOREOPTIONSWidget> createState() =>
@@ -352,16 +356,40 @@ class _Profile3dotsMOREOPTIONSWidgetState
                                       child: AppPasswordGateWidget(
                                         onVerified: (success) async {
                                           if (success == true) {
-                                            await ConversationsTable().update(
-                                              data: {
-                                                'is_locked': true,
-                                              },
-                                              matchingRows: (rows) =>
-                                                  rows.eqOrNull(
-                                                'id',
-                                                widget.conversationId,
-                                              ),
+                                            _model.lockOk =
+                                                await actions.setPrivateLock(
+                                              widget.conversationId!,
+                                              true,
                                             );
+                                            if (_model.lockOk == true) {
+                                              FFAppState().privateUnlockedAt =
+                                                  getCurrentTimestamp;
+                                              safeSetState(() {});
+
+                                              context.goNamed(
+                                                  PrivateChatWidget.routeName);
+                                            } else {
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(
+                                                SnackBar(
+                                                  content: Text(
+                                                    'Could not lock this chat',
+                                                    style: TextStyle(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryText,
+                                                    ),
+                                                  ),
+                                                  duration: Duration(
+                                                      milliseconds: 4000),
+                                                  backgroundColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .secondary,
+                                                ),
+                                              );
+                                            }
                                           } else {
                                             safeSetState(() {});
                                           }
@@ -370,6 +398,8 @@ class _Profile3dotsMOREOPTIONSWidgetState
                                     );
                                   },
                                 ).then((value) => safeSetState(() {}));
+
+                                safeSetState(() {});
                               } else {
                                 await showModalBottomSheet(
                                   isScrollControlled: true,
@@ -382,16 +412,40 @@ class _Profile3dotsMOREOPTIONSWidgetState
                                       child: AppPasswordGateWidget(
                                         onVerified: (success) async {
                                           if (success == true) {
-                                            await ConversationsTable().update(
-                                              data: {
-                                                'is_locked': false,
-                                              },
-                                              matchingRows: (rows) =>
-                                                  rows.eqOrNull(
-                                                'id',
-                                                widget.conversationId,
-                                              ),
+                                            _model.unlockOk =
+                                                await actions.setPrivateLock(
+                                              widget.conversationId!,
+                                              false,
                                             );
+                                            if (_model.unlockOk == true) {
+                                              FFAppState().privateUnlockedAt =
+                                                  getCurrentTimestamp;
+                                              safeSetState(() {});
+
+                                              context.goNamed(
+                                                  HomePageWidget.routeName);
+                                            } else {
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(
+                                                SnackBar(
+                                                  content: Text(
+                                                    'Could not unlock this chat',
+                                                    style: TextStyle(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryText,
+                                                    ),
+                                                  ),
+                                                  duration: Duration(
+                                                      milliseconds: 4000),
+                                                  backgroundColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .secondary,
+                                                ),
+                                              );
+                                            }
                                           } else {
                                             safeSetState(() {});
                                           }
@@ -400,6 +454,8 @@ class _Profile3dotsMOREOPTIONSWidgetState
                                     );
                                   },
                                 ).then((value) => safeSetState(() {}));
+
+                                safeSetState(() {});
                               }
                             },
                             activeColor: Color(0xFF935CCC),
@@ -418,371 +474,10 @@ class _Profile3dotsMOREOPTIONSWidgetState
                     ),
                   ],
                 ),
-                Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment:
-                          (FFMainAxisAlignment.spaceBetween).flutterValue,
-                      children: [
-                        Expanded(
-                          child: Padding(
-                            padding: EdgeInsets.all(5.0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              crossAxisAlignment:
-                                  (FFCrossAxisAlignment.center).flutterValue,
-                              textBaseline: TextBaseline.alphabetic,
-                              children: [
-                                Container(
-                                  width: 40.0,
-                                  height: 40.0,
-                                  decoration: BoxDecoration(
-                                    color: Color(0xFFEFEBF2),
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: Align(
-                                    alignment: AlignmentDirectional(0.0, 0.0),
-                                    child: FaIcon(
-                                      FaIconData(const IconData(
-                                          /* raspberryPi */ 0xf7bb,
-                                          fontFamily: 'FontAwesomeBrands',
-                                          fontPackage: 'font_awesome_flutter')),
-                                      color: Color(0xFF935CCC),
-                                      size: 24.0,
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    crossAxisAlignment:
-                                        (FFCrossAxisAlignment.start)
-                                            .flutterValue,
-                                    textBaseline: TextBaseline.alphabetic,
-                                    children: [
-                                      Text(
-                                        FFLocalizations.of(context).getText(
-                                          'ia5vbd44' /* Seidu.social */,
-                                        ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              font: GoogleFonts.plusJakartaSans(
-                                                fontWeight:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .fontWeight,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .fontStyle,
-                                              ),
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryText,
-                                              fontSize: 10.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .fontWeight,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .fontStyle,
-                                            ),
-                                      ),
-                                      Text(
-                                        FFLocalizations.of(context).getText(
-                                          'wozf9kx2' /* @kesta_wealth */,
-                                        ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              font: GoogleFonts.plusJakartaSans(
-                                                fontWeight: FontWeight.w600,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .fontStyle,
-                                              ),
-                                              color: Color(0xFF935CCC),
-                                              fontSize: 13.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.w600,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .fontStyle,
-                                            ),
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ].divide(SizedBox(width: 10.0)),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 10.0, 0.0),
-                          child: Icon(
-                            Icons.open_in_new,
-                            color: FlutterFlowTheme.of(context).secondaryText,
-                            size: 20.0,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Divider(
-                      thickness: 1.0,
-                      color: FlutterFlowTheme.of(context).alternate,
-                    ),
-                  ],
-                ),
-                Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment:
-                          (FFMainAxisAlignment.spaceBetween).flutterValue,
-                      children: [
-                        Expanded(
-                          child: Padding(
-                            padding: EdgeInsets.all(5.0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              crossAxisAlignment:
-                                  (FFCrossAxisAlignment.center).flutterValue,
-                              textBaseline: TextBaseline.alphabetic,
-                              children: [
-                                Container(
-                                  width: 40.0,
-                                  height: 40.0,
-                                  decoration: BoxDecoration(
-                                    color: Color(0xFFEFEBF2),
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: Align(
-                                    alignment: AlignmentDirectional(0.0, 0.0),
-                                    child: FaIcon(
-                                      FaIconData(const IconData(
-                                          /* globe */ 0xf0ac,
-                                          fontFamily: 'FontAwesomeSolid',
-                                          fontPackage: 'font_awesome_flutter')),
-                                      color: Color(0xFF935CCC),
-                                      size: 24.0,
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    crossAxisAlignment:
-                                        (FFCrossAxisAlignment.start)
-                                            .flutterValue,
-                                    textBaseline: TextBaseline.alphabetic,
-                                    children: [
-                                      Text(
-                                        FFLocalizations.of(context).getText(
-                                          'rh49hbkv' /* Website */,
-                                        ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              font: GoogleFonts.plusJakartaSans(
-                                                fontWeight:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .fontWeight,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .fontStyle,
-                                              ),
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryText,
-                                              fontSize: 10.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .fontWeight,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .fontStyle,
-                                            ),
-                                      ),
-                                      Text(
-                                        FFLocalizations.of(context).getText(
-                                          'w6lx6aft' /* https://schatzgroupsofcompany.... */,
-                                        ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              font: GoogleFonts.plusJakartaSans(
-                                                fontWeight: FontWeight.w600,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .fontStyle,
-                                              ),
-                                              color: Color(0xFF935CCC),
-                                              fontSize: 13.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.w600,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .fontStyle,
-                                            ),
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ].divide(SizedBox(width: 10.0)),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 10.0, 0.0),
-                          child: Icon(
-                            Icons.open_in_new,
-                            color: FlutterFlowTheme.of(context).secondaryText,
-                            size: 20.0,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Divider(
-                      thickness: 1.0,
-                      color: FlutterFlowTheme.of(context).alternate,
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment:
-                      (FFMainAxisAlignment.spaceBetween).flutterValue,
-                  children: [
-                    Expanded(
-                      child: Padding(
-                        padding: EdgeInsets.all(5.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          crossAxisAlignment:
-                              (FFCrossAxisAlignment.center).flutterValue,
-                          textBaseline: TextBaseline.alphabetic,
-                          children: [
-                            Container(
-                              width: 40.0,
-                              height: 40.0,
-                              decoration: BoxDecoration(
-                                color: Color(0xFFEFEBF2),
-                                shape: BoxShape.circle,
-                              ),
-                              child: Align(
-                                alignment: AlignmentDirectional(0.0, 0.0),
-                                child: FaIcon(
-                                  FaIconData(const IconData(
-                                      /* instagram */ 0xf16d,
-                                      fontFamily: 'FontAwesomeBrands',
-                                      fontPackage: 'font_awesome_flutter')),
-                                  color: Color(0xFF935CCC),
-                                  size: 24.0,
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                crossAxisAlignment:
-                                    (FFCrossAxisAlignment.start).flutterValue,
-                                textBaseline: TextBaseline.alphabetic,
-                                children: [
-                                  Text(
-                                    FFLocalizations.of(context).getText(
-                                      'wjpg8bbf' /* Instagram */,
-                                    ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          font: GoogleFonts.plusJakartaSans(
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
-                                                    .fontWeight,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
-                                                    .fontStyle,
-                                          ),
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                          fontSize: 10.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .fontWeight,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .fontStyle,
-                                        ),
-                                  ),
-                                  Expanded(
-                                    child: Text(
-                                      FFLocalizations.of(context).getText(
-                                        '7zq4625v' /* @kesta_wealth */,
-                                      ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            font: GoogleFonts.plusJakartaSans(
-                                              fontWeight: FontWeight.w600,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .fontStyle,
-                                            ),
-                                            color: Color(0xFF935CCC),
-                                            fontSize: 13.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w600,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
-                                                    .fontStyle,
-                                          ),
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ].divide(SizedBox(width: 10.0)),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
-                      child: Icon(
-                        Icons.open_in_new,
-                        color: FlutterFlowTheme.of(context).secondaryText,
-                        size: 20.0,
-                      ),
-                    ),
-                  ],
+                custom_widgets.ProfileLinksList(
+                  width: double.infinity,
+                  height: 150.0,
+                  userId: widget.otherUserId!,
                 ),
               ],
             ),

@@ -10,6 +10,7 @@ import 'package:flutter/material.dart' hide RepeatMode;
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import 'dart:async';
 import 'package:agora_rtc_engine/agora_rtc_engine.dart';
 import 'package:flutter/foundation.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -33,6 +34,48 @@ class AgoraCallManager {
   static final Set<int> forcingAudioReplayFor = {};
 
   static String lastLocalVideoState = 'none yet';
+
+  // Connection health, for the call screen banners.
+  // 'connected' | 'reconnecting' | 'rejoined'
+  static final ValueNotifier<String> connection =
+      ValueNotifier<String>('connected');
+  static Timer? reconnectTimer;
+  // Set by the call screen: runs when the connection stayed down for 2 minutes.
+  static VoidCallback? onReconnectTimeout;
+
+  static const Duration reconnectWindow = Duration(minutes: 2);
+
+  static void resetConnection() {
+    reconnectTimer?.cancel();
+    reconnectTimer = null;
+    connection.value = 'connected';
+  }
+
+  static void handleConnectionState(String state) {
+    // `state` is the name of Agora's ConnectionStateType value.
+    final s = state.toLowerCase();
+    if (s.contains('reconnecting')) {
+      if (connection.value != 'reconnecting') {
+        connection.value = 'reconnecting';
+      }
+      reconnectTimer ??= Timer(reconnectWindow, () {
+        reconnectTimer = null;
+        if (engine != null && connection.value == 'reconnecting') {
+          onReconnectTimeout?.call();
+        }
+      });
+    } else if (s.contains('failed')) {
+      reconnectTimer?.cancel();
+      reconnectTimer = null;
+      if (engine != null) onReconnectTimeout?.call();
+    } else if (s.contains('connected') && !s.contains('disconnected')) {
+      reconnectTimer?.cancel();
+      reconnectTimer = null;
+      if (connection.value == 'reconnecting') {
+        connection.value = 'rejoined';
+      }
+    }
+  }
 }
 
 Future<void> _forceRemoteAudioReplay(int remoteUid) async {
@@ -120,6 +163,7 @@ Future<String> joinAgoraCall(
       AgoraCallManager.lastRemoteAudioState.clear();
       AgoraCallManager.forcingAudioReplayFor.clear();
       AgoraCallManager.lastLocalVideoState = 'engine initialized';
+      AgoraCallManager.resetConnection();
 
       step = 'registering event handler';
       engine.registerEventHandler(
@@ -129,6 +173,11 @@ Future<String> joinAgoraCall(
                 'joined channel, localUid=${connection.localUid}';
             debugPrint(
                 'AgoraCallManager: joined channel $channelName with uid=$uid');
+          },
+          onConnectionStateChanged: (connection, state, reason) {
+            debugPrint('AgoraCallManager: connection state=${state.name} '
+                'reason=${reason.name}');
+            AgoraCallManager.handleConnectionState(state.name);
           },
           onLocalVideoStateChanged: (source, state, error) {
             AgoraCallManager.lastLocalVideoState =

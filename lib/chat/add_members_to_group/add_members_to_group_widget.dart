@@ -607,8 +607,7 @@ class _AddMembersToGroupWidgetState extends State<AddMembersToGroupWidget> {
                                       visible: functions.isAlreadyInGroup(
                                               containerConversationParticipantsRowList
                                                   .toList(),
-                                              columnContactsDirectoryRow
-                                                  .contactUserId!) ==
+                                              columnContactsDirectoryRow) ==
                                           false,
                                       child: InkWell(
                                         splashColor: Colors.transparent,
@@ -618,14 +617,9 @@ class _AddMembersToGroupWidgetState extends State<AddMembersToGroupWidget> {
                                         onTap: () async {
                                           _model.updatedSelection =
                                               await actions
-                                                  .toggleGroupMemberSelection(
+                                                  .toggleContactSelection(
                                             _model.selectedMembers.toList(),
-                                            columnContactsDirectoryRow
-                                                .contactUserId!,
-                                            columnContactsDirectoryRow
-                                                .savedName!,
-                                            columnContactsDirectoryRow
-                                                .avatarUrl!,
+                                            columnContactsDirectoryRow,
                                           );
                                           _model.selectedMembers = _model
                                               .updatedSelection!
@@ -698,8 +692,7 @@ class _AddMembersToGroupWidgetState extends State<AddMembersToGroupWidget> {
                                                                 _model
                                                                     .selectedMembers
                                                                     .toList(),
-                                                                columnContactsDirectoryRow
-                                                                    .contactUserId!) ==
+                                                                columnContactsDirectoryRow) ==
                                                             true)
                                                           Padding(
                                                             padding:

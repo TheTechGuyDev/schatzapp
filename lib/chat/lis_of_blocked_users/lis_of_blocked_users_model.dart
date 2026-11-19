@@ -20,7 +20,7 @@ class LisOfBlockedUsersModel extends FlutterFlowModel<LisOfBlockedUsersWidget> {
           int index, Function(BlockedUserStructStruct) updateFn) =>
       blockedUsersLists[index] = updateFn(blockedUsersLists[index]);
 
-  String searchQuerys = 'c';
+  String searchQuerys = '';
 
   ///  State fields for stateful widgets in this page.
 

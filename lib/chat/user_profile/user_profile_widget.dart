@@ -68,6 +68,14 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
       );
       _model.mutualPhone = _model.phoneResult!;
       safeSetState(() {});
+      if (_model.profileStats?.conversationId != null &&
+          _model.profileStats?.conversationId != '') {
+        _model.lockCheck = await actions.isPrivateLocked(
+          _model.profileStats!.conversationId,
+        );
+        _model.isPrivateLocked = _model.lockCheck!;
+        safeSetState(() {});
+      }
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -114,65 +122,137 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                   },
                 ),
               ),
-              title: Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Container(
-                    width: 40.0,
-                    height: 40.0,
-                    decoration: BoxDecoration(
-                      color: Color(0xFFE4DAEF),
-                      shape: BoxShape.circle,
-                    ),
-                    child: Icon(
-                      Icons.search,
-                      color: Color(0xFF935CCC),
-                      size: 24.0,
-                    ),
+              title: FutureBuilder<List<ProfilesRow>>(
+                future: ProfilesTable().querySingleRow(
+                  queryFn: (q) => q.eqOrNull(
+                    'id',
+                    widget.otherUserId,
                   ),
-                  Container(
-                    width: 40.0,
-                    height: 40.0,
-                    decoration: BoxDecoration(
-                      color: Color(0xFFE4DAEF),
-                      shape: BoxShape.circle,
-                    ),
-                    child: InkWell(
-                      splashColor: Colors.transparent,
-                      focusColor: Colors.transparent,
-                      hoverColor: Colors.transparent,
-                      highlightColor: Colors.transparent,
-                      onTap: () async {
-                        await showModalBottomSheet(
-                          isScrollControlled: true,
-                          backgroundColor: Colors.transparent,
-                          enableDrag: false,
-                          context: context,
-                          builder: (context) {
-                            return GestureDetector(
-                              onTap: () {
-                                FocusScope.of(context).unfocus();
-                                FocusManager.instance.primaryFocus?.unfocus();
-                              },
-                              child: Padding(
-                                padding: MediaQuery.viewInsetsOf(context),
-                                child: Profile3dotsWidget(
-                                  contactName: _model.resolvedName,
-                                ),
-                              ),
-                            );
-                          },
-                        ).then((value) => safeSetState(() {}));
-                      },
-                      child: Icon(
-                        Icons.keyboard_control,
-                        color: Color(0xFF935CCC),
-                        size: 24.0,
+                ),
+                builder: (context, snapshot) {
+                  // Customize what your widget looks like when it's loading.
+                  if (!snapshot.hasData) {
+                    return Center(
+                      child: SizedBox(
+                        width: 50.0,
+                        height: 50.0,
+                        child: CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                            FlutterFlowTheme.of(context).primary,
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                ].divide(SizedBox(width: 20.0)),
+                    );
+                  }
+                  List<ProfilesRow> rowProfilesRowList = snapshot.data!;
+
+                  final rowProfilesRow = rowProfilesRowList.isNotEmpty
+                      ? rowProfilesRowList.first
+                      : null;
+
+                  return Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Container(
+                        width: 40.0,
+                        height: 40.0,
+                        decoration: BoxDecoration(
+                          color: Color(0xFFE4DAEF),
+                          shape: BoxShape.circle,
+                        ),
+                        child: InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            _model.profileMessageSeaarchResult =
+                                await actions.findOrCreateConversation(
+                              currentUserUid,
+                              widget.otherUserId!,
+                            );
+
+                            context.pushNamed(
+                              ChatpageWidget.routeName,
+                              queryParameters: {
+                                'conversationId': serializeParam(
+                                  _model.profileMessageSeaarchResult,
+                                  ParamType.String,
+                                ),
+                                'otherUserId': serializeParam(
+                                  widget.otherUserId,
+                                  ParamType.String,
+                                ),
+                                'displayName': serializeParam(
+                                  _model.resolvedName,
+                                  ParamType.String,
+                                ),
+                                'displayAvatar': serializeParam(
+                                  rowProfilesRow?.avatarUrl,
+                                  ParamType.String,
+                                ),
+                                'startSearch': serializeParam(
+                                  true,
+                                  ParamType.bool,
+                                ),
+                              }.withoutNulls,
+                            );
+
+                            safeSetState(() {});
+                          },
+                          child: Icon(
+                            Icons.search,
+                            color: Color(0xFF935CCC),
+                            size: 24.0,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: 40.0,
+                        height: 40.0,
+                        decoration: BoxDecoration(
+                          color: Color(0xFFE4DAEF),
+                          shape: BoxShape.circle,
+                        ),
+                        child: InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            await showModalBottomSheet(
+                              isScrollControlled: true,
+                              backgroundColor: Colors.transparent,
+                              enableDrag: false,
+                              context: context,
+                              builder: (context) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    FocusScope.of(context).unfocus();
+                                    FocusManager.instance.primaryFocus
+                                        ?.unfocus();
+                                  },
+                                  child: Padding(
+                                    padding: MediaQuery.viewInsetsOf(context),
+                                    child: Profile3dotsWidget(
+                                      contactName: _model.resolvedName,
+                                    ),
+                                  ),
+                                );
+                              },
+                            ).then((value) => safeSetState(() {}));
+                          },
+                          child: Icon(
+                            Icons.keyboard_control,
+                            color: Color(0xFF935CCC),
+                            size: 24.0,
+                          ),
+                        ),
+                      ),
+                    ].divide(SizedBox(width: 20.0)),
+                  );
+                },
               ),
               actions: [],
               centerTitle: true,
@@ -1079,6 +1159,8 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                                 conversationId: _model
                                                                     .profileStats
                                                                     ?.conversationId,
+                                                                otherUserId: widget
+                                                                    .otherUserId,
                                                               ),
                                                             ),
                                                           );
@@ -1399,6 +1481,11 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                       ),
                                                     ],
                                                   ),
+                                                ),
+                                                custom_widgets.ProfileLinksList(
+                                                  width: double.infinity,
+                                                  height: 150.0,
+                                                  userId: widget.otherUserId!,
                                                 ),
                                                 InkWell(
                                                   splashColor:
@@ -2346,8 +2433,8 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                       child: custom_widgets.UserAvatarWidget(
                                         width: 150.0,
                                         height: 150.0,
-                                        avatarUrl: stackProfilesRow!.avatarUrl!,
-                                        displayName: stackProfilesRow.fullName,
+                                        avatarUrl: stackProfilesRow?.avatarUrl,
+                                        displayName: stackProfilesRow!.fullName,
                                         radius: 75.0,
                                       ),
                                     );

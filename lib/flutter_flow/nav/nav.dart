@@ -128,6 +128,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               'replyingToIsOwn',
               ParamType.bool,
             ),
+            startSearch: params.getParam(
+              'startSearch',
+              ParamType.bool,
+            ),
           ),
         ),
         FFRoute(
@@ -276,6 +280,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             initialTargetMessageId: params.getParam(
               'initialTargetMessageId',
               ParamType.String,
+            ),
+            startSearch: params.getParam(
+              'startSearch',
+              ParamType.bool,
             ),
           ),
         ),
@@ -784,6 +792,41 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: ScheduledCallsWidget.routeName,
           path: ScheduledCallsWidget.routePath,
           builder: (context, params) => ScheduledCallsWidget(),
+        ),
+        FFRoute(
+          name: JoincallWidget.routeName,
+          path: JoincallWidget.routePath,
+          builder: (context, params) => JoincallWidget(
+            code: params.getParam(
+              'code',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: GroupMembersPageWidget.routeName,
+          path: GroupMembersPageWidget.routePath,
+          builder: (context, params) => GroupMembersPageWidget(
+            groupConversationId: params.getParam(
+              'groupConversationId',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: JoinGroupPageWidget.routeName,
+          path: JoinGroupPageWidget.routePath,
+          builder: (context, params) => JoinGroupPageWidget(
+            code: params.getParam(
+              'code',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: PrivateChatWidget.routeName,
+          path: PrivateChatWidget.routePath,
+          builder: (context, params) => PrivateChatWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

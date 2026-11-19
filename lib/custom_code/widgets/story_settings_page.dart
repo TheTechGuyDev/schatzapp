@@ -79,6 +79,7 @@ class _StorySettingsPageState extends State<StorySettingsPage> {
 
     if (!mounted) return;
     final theme = FlutterFlowTheme.of(context);
+    String query = '';
 
     await showModalBottomSheet(
       context: context,
@@ -87,10 +88,15 @@ class _StorySettingsPageState extends State<StorySettingsPage> {
       builder: (sheetContext) {
         return StatefulBuilder(
           builder: (sheetContext, setSheetState) {
+            final q = query.trim().toLowerCase();
+            final shown = contactsRows.where((r) {
+              if (q.isEmpty) return true;
+              final n = ((r['saved_name'] as String?) ?? '').toLowerCase();
+              final ph = ((r['phone_number'] as String?) ?? '').toLowerCase();
+              return n.contains(q) || ph.contains(q);
+            }).toList();
             return Container(
-              constraints: BoxConstraints(
-                maxHeight: MediaQuery.of(sheetContext).size.height * 0.75,
-              ),
+              height: MediaQuery.of(sheetContext).size.height * 0.75,
               decoration: BoxDecoration(
                 color: theme.secondaryBackground,
                 borderRadius: const BorderRadius.only(
@@ -118,12 +124,31 @@ class _StorySettingsPageState extends State<StorySettingsPage> {
                       ),
                     ),
                   ),
-                  Flexible(
-                    child: contactsRows.isEmpty
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(16.0, 0, 16.0, 8.0),
+                    child: TextField(
+                      onChanged: (v) => setSheetState(() => query = v),
+                      decoration: InputDecoration(
+                        hintText: 'Search contacts',
+                        prefixIcon: const Icon(Icons.search, size: 20),
+                        isDense: true,
+                        filled: true,
+                        fillColor: theme.primaryBackground,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12.0),
+                          borderSide: BorderSide.none,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: shown.isEmpty
                         ? Padding(
                             padding: const EdgeInsets.all(24.0),
                             child: Text(
-                              "You don't have any contacts on the app yet.",
+                              contactsRows.isEmpty
+                                  ? "You don't have any contacts on the app yet."
+                                  : 'No contacts match your search.',
                               style: theme.bodyMedium.override(
                                 font: GoogleFonts.plusJakartaSans(),
                                 color: theme.secondaryText,
@@ -132,17 +157,23 @@ class _StorySettingsPageState extends State<StorySettingsPage> {
                             ),
                           )
                         : ListView.builder(
-                            shrinkWrap: true,
                             padding: const EdgeInsets.only(bottom: 8.0),
-                            itemCount: contactsRows.length,
+                            itemCount: shown.length,
                             itemBuilder: (context, index) {
-                              final row = contactsRows[index];
+                              final row = shown[index];
                               final id = row['contact_user_id'] as String;
                               final name = (row['saved_name'] as String?) ?? '';
                               final phone =
                                   (row['phone_number'] as String?) ?? '';
                               final isSelected = selectedIds.contains(id);
                               return CheckboxListTile(
+                                secondary: ContactAvatar(
+                                  width: 40,
+                                  height: 40,
+                                  size: 40,
+                                  userId: id,
+                                  name: name,
+                                ),
                                 value: isSelected,
                                 activeColor: theme.primaryText,
                                 checkColor: theme.secondaryBackground,

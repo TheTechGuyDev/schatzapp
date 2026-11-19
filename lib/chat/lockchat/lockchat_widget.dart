@@ -9,6 +9,7 @@ import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'lockchat_model.dart';
 export 'lockchat_model.dart';
 
@@ -50,6 +51,8 @@ class _LockchatWidgetState extends State<LockchatWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Title(
         title: 'Lockchat',
         color: FlutterFlowTheme.of(context).primary.withAlpha(0XFF),
@@ -676,6 +679,7 @@ class _LockchatWidgetState extends State<LockchatWidget> {
                             currentUserUid,
                             _model.textController1.text,
                             _model.textController2.text,
+                            FFAppState().selectedCountry.dialCode,
                           );
                           if (_model.saveContactByNumber?.success == true) {
                             context.pushNamed(

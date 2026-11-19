@@ -1111,13 +1111,12 @@ class _ViewYourStoriesWidgetState extends State<ViewYourStoriesWidget> {
                                                           ),
                                                         ],
                                                       ),
-                                                      Icon(
-                                                        Icons.keyboard_control,
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryText,
-                                                        size: 24.0,
+                                                      custom_widgets
+                                                          .ViewerMoreButton(
+                                                        viewerId: viewedByItem
+                                                            .viewerId,
+                                                        width: 40.0,
+                                                        height: 40.0,
                                                       ),
                                                     ],
                                                   );

@@ -8,10 +8,12 @@ class ProfileModel extends FlutterFlowModel<ProfileWidget> {
 
   bool refreshTrigger = false;
 
+  bool showUsernameCard = false;
+
   ///  State fields for stateful widgets in this page.
 
-  // Stores action output result for [Custom Action - pickAndUploadGroupAvatar] action in Container widget.
-  String? avatarUrl;
+  // Stores action output result for [Custom Action - shouldShowUsernameCard] action in profile widget.
+  bool? cardResult;
 
   @override
   void initState(BuildContext context) {}
