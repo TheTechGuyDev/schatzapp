@@ -26,22 +26,17 @@ class SwappableCallVideos extends StatefulWidget {
 }
 
 class _SwappableCallVideosState extends State<SwappableCallVideos> {
+  static const double _smallW = 150.0;
+  static const double _smallH = 200.0;
+  static const double _margin = 8.0;
+
   bool _isLocalFullScreen = false;
+  Offset? _pos;
 
   void _swap() {
     setState(() {
       _isLocalFullScreen = !_isLocalFullScreen;
     });
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(
-          'SWAP TAPPED',
-          style: TextStyle(color: FlutterFlowTheme.of(context).primaryText),
-        ),
-        duration: const Duration(milliseconds: 4000),
-        backgroundColor: FlutterFlowTheme.of(context).secondary,
-      ),
-    );
   }
 
   @override
@@ -61,61 +56,78 @@ class _SwappableCallVideosState extends State<SwappableCallVideos> {
     final Widget smallWidget = _isLocalFullScreen
         ? const RemoteVideoRenderer(
             key: ValueKey('remote-renderer'),
-            width: 150.0,
-            height: 200.0,
+            width: _smallW,
+            height: _smallH,
           )
         : const LocalVideoRenderer(
             key: ValueKey('local-renderer'),
-            width: 150.0,
-            height: 200.0,
+            width: _smallW,
+            height: _smallH,
           );
 
-    return SizedBox(
-      width: widget.width,
-      height: widget.height,
-      child: Stack(
-        children: [
-          Positioned.fill(child: bigWidget),
-          Align(
-            alignment: const AlignmentDirectional(0.88, -0.65),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(16.0),
-              child: Container(
-                width: 150.0,
-                height: 200.0,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16.0),
-                  border: Border.all(
-                    color: FlutterFlowTheme.of(context).primary,
-                    width: 2.0,
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final w = constraints.hasBoundedWidth
+            ? constraints.maxWidth
+            : MediaQuery.of(context).size.width;
+        final h = constraints.hasBoundedHeight
+            ? constraints.maxHeight
+            : MediaQuery.of(context).size.height;
+        final maxX = (w - _smallW - _margin).clamp(_margin, double.infinity);
+        final maxY = (h - _smallH - _margin).clamp(_margin, double.infinity);
+
+        _pos ??= Offset(maxX, ((h - _smallH) * 0.175).clamp(_margin, maxY));
+        final pos = Offset(
+          _pos!.dx.clamp(_margin, maxX),
+          _pos!.dy.clamp(_margin, maxY),
+        );
+
+        return SizedBox(
+          width: widget.width,
+          height: widget.height,
+          child: Stack(
+            children: [
+              Positioned.fill(child: bigWidget),
+              Positioned(
+                left: pos.dx,
+                top: pos.dy,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(18.0),
+                  clipBehavior: Clip.antiAlias,
+                  child: SizedBox(
+                    width: _smallW,
+                    height: _smallH,
+                    child: Stack(
+                      children: [
+                        Positioned.fill(child: smallWidget),
+                        // The video is a native platform view that steals
+                        // touches, so an invisible layer on top catches the
+                        // tap (swap) and the drag (move).
+                        Positioned.fill(
+                          child: GestureDetector(
+                            behavior: HitTestBehavior.opaque,
+                            onTap: _swap,
+                            onPanUpdate: (d) {
+                              setState(() {
+                                final n = (_pos ?? pos) + d.delta;
+                                _pos = Offset(
+                                  n.dx.clamp(_margin, maxX),
+                                  n.dy.clamp(_margin, maxY),
+                                );
+                              });
+                            },
+                            child: const SizedBox.expand(),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-                child: Stack(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(2.0),
-                      child: smallWidget,
-                    ),
-                    // The video above is a native platform view (a real
-                    // HTML element on web), which intercepts taps before
-                    // Flutter's own GestureDetector can see them. Placing
-                    // an invisible, opaque-to-hit-testing layer ON TOP
-                    // (instead of wrapping the video) is what actually
-                    // catches the tap reliably.
-                    Positioned.fill(
-                      child: GestureDetector(
-                        behavior: HitTestBehavior.opaque,
-                        onTap: _swap,
-                        child: const SizedBox.expand(),
-                      ),
-                    ),
-                  ],
-                ),
               ),
-            ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

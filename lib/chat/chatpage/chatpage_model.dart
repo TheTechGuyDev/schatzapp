@@ -87,11 +87,11 @@ class ChatpageModel extends FlutterFlowModel<ChatpageWidget> {
   List<String>? uploadedImageUrls2;
   // Stores action output result for [Custom Action - captureAndSaveCameraPhoto] action in DeviceGalleryGrid widget.
   String? newCameraAssetId;
-  // Stores action output result for [Custom Action - startCall] action in Icon widget.
+  // Stores action output result for [Custom Action - startCall] action in IconButton widget.
   CallStartResultStruct? callResult;
-  // Stores action output result for [Custom Action - startCall] action in Icon widget.
+  // Stores action output result for [Custom Action - startCall] action in IconButton widget.
   CallStartResultStruct? callResult2;
-  // Stores action output result for [Custom Action - sendBimp] action in Icon widget.
+  // Stores action output result for [Custom Action - sendBimp] action in IconButton widget.
   bool? bimpSent;
 
   @override

@@ -54,7 +54,7 @@ class _AddMembersToGroupWidgetState extends State<AddMembersToGroupWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(0.0, 100.0, 0.0, 0.0),
+      padding: EdgeInsetsDirectional.fromSTEB(0.0, 75.0, 0.0, 0.0),
       child: FutureBuilder<List<ConversationParticipantsRow>>(
         future: ConversationParticipantsTable().queryRows(
           queryFn: (q) => q.eqOrNull(
@@ -103,15 +103,11 @@ class _AddMembersToGroupWidgetState extends State<AddMembersToGroupWidget> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                          width: 50.0,
-                          height: 50.0,
+                          width: 40.0,
+                          height: 40.0,
                           decoration: BoxDecoration(
-                            color: Color(0x2CE0E3E7),
+                            color: FlutterFlowTheme.of(context).tertiary,
                             shape: BoxShape.circle,
-                            border: Border.all(
-                              color: FlutterFlowTheme.of(context)
-                                  .primaryBackground,
-                            ),
                           ),
                           child: InkWell(
                             splashColor: Colors.transparent,
@@ -123,8 +119,8 @@ class _AddMembersToGroupWidgetState extends State<AddMembersToGroupWidget> {
                             },
                             child: Icon(
                               Icons.chevron_left,
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              size: 24.0,
+                              color: FlutterFlowTheme.of(context).primary,
+                              size: 26.0,
                             ),
                           ),
                         ),
@@ -140,7 +136,7 @@ class _AddMembersToGroupWidgetState extends State<AddMembersToGroupWidget> {
                                           .bodyMedium
                                           .fontStyle,
                                     ),
-                                    fontSize: 18.0,
+                                    fontSize: 16.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.bold,
                                     fontStyle: FlutterFlowTheme.of(context)
@@ -207,7 +203,7 @@ class _AddMembersToGroupWidgetState extends State<AddMembersToGroupWidget> {
                                       .fontStyle,
                                 ),
                             elevation: 0.0,
-                            borderRadius: BorderRadius.circular(8.0),
+                            borderRadius: BorderRadius.circular(20.0),
                           ),
                         ),
                       ],
@@ -218,7 +214,7 @@ class _AddMembersToGroupWidgetState extends State<AddMembersToGroupWidget> {
                         EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                     child: Container(
                       width: double.infinity,
-                      height: 40.0,
+                      height: 45.0,
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).secondaryBackground,
                         borderRadius: BorderRadius.circular(10.0),
@@ -382,16 +378,12 @@ class _AddMembersToGroupWidgetState extends State<AddMembersToGroupWidget> {
                             child: Container(
                               width: double.infinity,
                               decoration: BoxDecoration(
-                                color: Color(0x2CE0E3E7),
+                                color: FlutterFlowTheme.of(context).tertiary,
                                 borderRadius: BorderRadius.circular(20.0),
-                                border: Border.all(
-                                  color: FlutterFlowTheme.of(context)
-                                      .primaryBackground,
-                                ),
                               ),
                               child: Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 5.0, 0.0, 5.0),
+                                    0.0, 0.0, 10.0, 0.0),
                                 child: Builder(
                                   builder: (context) {
                                     final selectedMembersList =
@@ -400,7 +392,7 @@ class _AddMembersToGroupWidgetState extends State<AddMembersToGroupWidget> {
                                     return SingleChildScrollView(
                                       scrollDirection: Axis.horizontal,
                                       child: Row(
-                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisSize: MainAxisSize.min,
                                         children: List.generate(
                                             selectedMembersList.length,
                                             (selectedMembersListIndex) {
@@ -410,148 +402,160 @@ class _AddMembersToGroupWidgetState extends State<AddMembersToGroupWidget> {
                                           return Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    10.0, 0.0, 10.0, 0.0),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              children: [
-                                                Expanded(
-                                                  child: Align(
-                                                    alignment:
-                                                        AlignmentDirectional(
-                                                            1.0, -1.0),
-                                                    child: Stack(
-                                                      children: [
-                                                        Align(
-                                                          alignment:
-                                                              AlignmentDirectional(
-                                                                  1.0, -1.0),
-                                                          child: Container(
-                                                            width: 40.0,
-                                                            height: 40.0,
-                                                            clipBehavior:
-                                                                Clip.antiAlias,
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              shape: BoxShape
-                                                                  .circle,
-                                                            ),
-                                                            child:
-                                                                Image.network(
-                                                              valueOrDefault<
-                                                                  String>(
-                                                                '${selectedMembersListItem.memberAvatar}',
-                                                                'https://plus.unsplash.com/premium_photo-1689568126014-06fea9d5d341?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmVzc2lvbmFsJTIwcHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D',
+                                                    5.0, 5.0, 5.0, 5.0),
+                                            child: Container(
+                                              constraints: BoxConstraints(
+                                                maxWidth: 90.0,
+                                              ),
+                                              decoration: BoxDecoration(),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                children: [
+                                                  Expanded(
+                                                    child: Align(
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                              1.0, -1.0),
+                                                      child: Stack(
+                                                        children: [
+                                                          Align(
+                                                            alignment:
+                                                                AlignmentDirectional(
+                                                                    0.0, -1.0),
+                                                            child: Container(
+                                                              width: 40.0,
+                                                              height: 40.0,
+                                                              clipBehavior: Clip
+                                                                  .antiAlias,
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                shape: BoxShape
+                                                                    .circle,
                                                               ),
-                                                              fit: BoxFit.cover,
+                                                              child:
+                                                                  Image.network(
+                                                                valueOrDefault<
+                                                                    String>(
+                                                                  '${selectedMembersListItem.memberAvatar}',
+                                                                  'https://plus.unsplash.com/premium_photo-1689568126014-06fea9d5d341?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmVzc2lvbmFsJTIwcHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D',
+                                                                ),
+                                                                fit: BoxFit
+                                                                    .cover,
+                                                              ),
                                                             ),
                                                           ),
-                                                        ),
-                                                        Align(
-                                                          alignment:
-                                                              AlignmentDirectional(
-                                                                  1.0, -1.0),
-                                                          child: Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        20.0,
-                                                                        3.0,
-                                                                        0.0,
-                                                                        0.0),
-                                                            child: InkWell(
-                                                              splashColor: Colors
-                                                                  .transparent,
-                                                              focusColor: Colors
-                                                                  .transparent,
-                                                              hoverColor: Colors
-                                                                  .transparent,
-                                                              highlightColor:
-                                                                  Colors
-                                                                      .transparent,
-                                                              onTap: () async {
-                                                                _model.updatedSelection2 =
-                                                                    await actions
-                                                                        .toggleGroupMemberSelection(
-                                                                  _model
-                                                                      .selectedMembers
-                                                                      .toList(),
-                                                                  selectedMembersListItem
-                                                                      .memberId,
-                                                                  selectedMembersListItem
-                                                                      .memberName,
-                                                                  selectedMembersListItem
-                                                                      .memberAvatar,
-                                                                );
-                                                                _model.selectedMembers = _model
-                                                                    .updatedSelection2!
-                                                                    .toList()
-                                                                    .cast<
-                                                                        GroupMemberStructStruct>();
-                                                                safeSetState(
-                                                                    () {});
+                                                          Align(
+                                                            alignment:
+                                                                AlignmentDirectional(
+                                                                    1.0, -1.0),
+                                                            child: Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          20.0,
+                                                                          3.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                              child: InkWell(
+                                                                splashColor: Colors
+                                                                    .transparent,
+                                                                focusColor: Colors
+                                                                    .transparent,
+                                                                hoverColor: Colors
+                                                                    .transparent,
+                                                                highlightColor:
+                                                                    Colors
+                                                                        .transparent,
+                                                                onTap:
+                                                                    () async {
+                                                                  _model.updatedSelection2 =
+                                                                      await actions
+                                                                          .toggleGroupMemberSelection(
+                                                                    _model
+                                                                        .selectedMembers
+                                                                        .toList(),
+                                                                    selectedMembersListItem
+                                                                        .memberId,
+                                                                    selectedMembersListItem
+                                                                        .memberName,
+                                                                    selectedMembersListItem
+                                                                        .memberAvatar,
+                                                                  );
+                                                                  _model.selectedMembers = _model
+                                                                      .updatedSelection2!
+                                                                      .toList()
+                                                                      .cast<
+                                                                          GroupMemberStructStruct>();
+                                                                  safeSetState(
+                                                                      () {});
 
-                                                                safeSetState(
-                                                                    () {});
-                                                              },
-                                                              child: Icon(
-                                                                Icons.close,
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryBackground,
-                                                                size: 20.0,
+                                                                  safeSetState(
+                                                                      () {});
+                                                                },
+                                                                child: Icon(
+                                                                  Icons.close,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryBackground,
+                                                                  size: 20.0,
+                                                                ),
                                                               ),
                                                             ),
                                                           ),
-                                                        ),
-                                                      ],
+                                                        ],
+                                                      ),
                                                     ),
                                                   ),
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 5.0, 0.0, 0.0),
-                                                  child: Text(
-                                                    valueOrDefault<String>(
-                                                      selectedMembersListItem
-                                                          .memberName,
-                                                      'John smith',
-                                                    ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          font: GoogleFonts
-                                                              .plusJakartaSans(
-                                                            fontWeight:
-                                                                FlutterFlowTheme.of(
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 5.0,
+                                                                0.0, 0.0),
+                                                    child: Text(
+                                                      valueOrDefault<String>(
+                                                        selectedMembersListItem
+                                                            .memberName,
+                                                        'John smith ',
+                                                      ),
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      maxLines: 1,
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                font: GoogleFonts
+                                                                    .plusJakartaSans(
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontStyle,
+                                                                ),
+                                                                fontSize: 10.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyMedium
                                                                     .fontWeight,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
+                                                                fontStyle: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyMedium
                                                                     .fontStyle,
-                                                          ),
-                                                          fontSize: 10.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
-                                                                  .fontStyle,
-                                                        ),
+                                                              ),
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                    ),
                                                   ),
-                                                ),
-                                              ],
+                                                ],
+                                              ),
                                             ),
                                           );
                                         }),
@@ -638,145 +642,151 @@ class _AddMembersToGroupWidgetState extends State<AddMembersToGroupWidget> {
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
-                                                Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Stack(
-                                                      alignment:
-                                                          AlignmentDirectional(
-                                                              1.0, 1.0),
-                                                      children: [
-                                                        Container(
-                                                          width: 55.0,
-                                                          height: 55.0,
-                                                          clipBehavior:
-                                                              Clip.antiAlias,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            shape:
-                                                                BoxShape.circle,
-                                                          ),
-                                                          child: Image.network(
-                                                            valueOrDefault<
-                                                                String>(
-                                                              columnContactsDirectoryRow
-                                                                  .avatarUrl,
-                                                              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSM4zo-ocVs3k2L11uohXsOBMT-cb4Z-yUqxuYj-f5XELjPplTTCDvS7M4&s=10',
-                                                            ),
-                                                            fit: BoxFit.cover,
-                                                          ),
-                                                        ),
-                                                        if (columnContactsDirectoryRow
-                                                                .isOnline ==
-                                                            true)
+                                                Expanded(
+                                                  child: Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Stack(
+                                                        alignment:
+                                                            AlignmentDirectional(
+                                                                1.0, 1.0),
+                                                        children: [
                                                           Container(
-                                                            width: 13.0,
-                                                            height: 13.0,
+                                                            width: 53.0,
+                                                            height: 53.0,
+                                                            clipBehavior:
+                                                                Clip.antiAlias,
                                                             decoration:
                                                                 BoxDecoration(
-                                                              color: Color(
-                                                                  0xFF2FFB4B),
                                                               shape: BoxShape
                                                                   .circle,
-                                                              border:
-                                                                  Border.all(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryBackground,
-                                                                width: 2.0,
+                                                            ),
+                                                            child:
+                                                                Image.network(
+                                                              valueOrDefault<
+                                                                  String>(
+                                                                columnContactsDirectoryRow
+                                                                    .avatarUrl,
+                                                                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSM4zo-ocVs3k2L11uohXsOBMT-cb4Z-yUqxuYj-f5XELjPplTTCDvS7M4&s=10',
                                                               ),
+                                                              fit: BoxFit.cover,
                                                             ),
                                                           ),
-                                                        if (functions.isMemberSelected(
-                                                                _model
-                                                                    .selectedMembers
-                                                                    .toList(),
-                                                                columnContactsDirectoryRow) ==
-                                                            true)
-                                                          Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        0.0,
-                                                                        30.0,
-                                                                        0.0),
-                                                            child: Container(
-                                                              width: 20.0,
-                                                              height: 20.0,
+                                                          if (columnContactsDirectoryRow
+                                                                  .isOnline ==
+                                                              true)
+                                                            Container(
+                                                              width: 13.0,
+                                                              height: 13.0,
                                                               decoration:
                                                                   BoxDecoration(
                                                                 color: Color(
-                                                                    0xFFDC45F6),
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            5.0),
+                                                                    0xFF2FFB4B),
+                                                                shape: BoxShape
+                                                                    .circle,
+                                                                border:
+                                                                    Border.all(
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryBackground,
+                                                                  width: 2.0,
+                                                                ),
                                                               ),
-                                                              alignment:
-                                                                  AlignmentDirectional(
-                                                                      0.0, 0.0),
-                                                              child: Align(
+                                                            ),
+                                                          if (functions.isMemberSelected(
+                                                                  _model
+                                                                      .selectedMembers
+                                                                      .toList(),
+                                                                  columnContactsDirectoryRow) ==
+                                                              true)
+                                                            Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          30.0,
+                                                                          0.0),
+                                                              child: Container(
+                                                                width: 20.0,
+                                                                height: 20.0,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  color: Color(
+                                                                      0xFFDC45F6),
+                                                                  shape: BoxShape
+                                                                      .circle,
+                                                                ),
                                                                 alignment:
                                                                     AlignmentDirectional(
                                                                         0.0,
                                                                         0.0),
-                                                                child: Icon(
-                                                                  Icons.check,
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryBackground,
-                                                                  size: 15.0,
+                                                                child: Align(
+                                                                  alignment:
+                                                                      AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child: Icon(
+                                                                    Icons.check,
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primaryBackground,
+                                                                    size: 15.0,
+                                                                  ),
                                                                 ),
                                                               ),
                                                             ),
-                                                          ),
-                                                      ],
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  30.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  5.0),
-                                                      child: Text(
-                                                        valueOrDefault<String>(
-                                                          columnContactsDirectoryRow
-                                                              .savedName,
-                                                          'Emma Johnson name',
-                                                        ),
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .bodyMedium
-                                                            .override(
-                                                              font: GoogleFonts
-                                                                  .plusJakartaSans(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                fontStyle: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .fontStyle,
-                                                              ),
-                                                              fontSize: 15.0,
-                                                              letterSpacing:
-                                                                  0.0,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                              fontStyle:
-                                                                  FlutterFlowTheme.of(
+                                                        ],
+                                                      ),
+                                                      Expanded(
+                                                        child: Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      15.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          child: Text(
+                                                            valueOrDefault<
+                                                                String>(
+                                                              columnContactsDirectoryRow
+                                                                  .savedName,
+                                                              'Emma Johnson',
+                                                            ),
+                                                            maxLines: 1,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  font: GoogleFonts
+                                                                      .plusJakartaSans(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .fontStyle,
+                                                                  ),
+                                                                  fontSize:
+                                                                      15.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  fontStyle: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMedium
                                                                       .fontStyle,
-                                                            ),
+                                                                ),
+                                                          ),
+                                                        ),
                                                       ),
-                                                    ),
-                                                  ],
+                                                    ],
+                                                  ),
                                                 ),
                                               ],
                                             ),

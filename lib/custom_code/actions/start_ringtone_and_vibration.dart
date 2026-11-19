@@ -13,26 +13,17 @@ import 'package:flutter/material.dart' hide RepeatMode;
 import 'package:just_audio/just_audio.dart';
 import 'package:vibration/vibration.dart';
 
+// Kept only so older references still compile.
 class RingtoneManager {
   static AudioPlayer? player;
   static bool isRinging = false;
 }
 
 Future<void> startRingtoneAndVibration() async {
-  if (RingtoneManager.isRinging) return;
-  RingtoneManager.isRinging = true;
-
+  // Built-in ringtone: no internet file, safe to call repeatedly.
   try {
-    RingtoneManager.player = AudioPlayer();
-    await RingtoneManager.player!.setUrl(
-      'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/nexu-xidy5i/assets/s37o3pkeyqma/shyama-preet-mai-tose-laga-baitha-hu-hanshraaj-raghuvansi-bhakti-68029.mp3',
-    );
-    await RingtoneManager.player!.setLoopMode(LoopMode.one);
-    unawaited(RingtoneManager.player!.play());
-  } catch (_) {
-    // Ringtone is a nice-to-have; a failure here shouldn't block the
-    // incoming-call screen itself from showing.
-  }
+    await callTone('ringtone');
+  } catch (_) {}
 
   try {
     final hasVibrator = await Vibration.hasVibrator();
@@ -43,11 +34,6 @@ Future<void> startRingtoneAndVibration() async {
       );
     }
   } catch (_) {}
-}
-
-void unawaited(Future<void> future) {
-  // Deliberately not awaited — playback runs in the background while the
-  // incoming-call screen stays interactive.
 }
 // Set your action name, define your arguments and return parameter,
 // and then add the boilerplate code using the `</>` button on the right!

@@ -36,10 +36,22 @@ Future<void> showGlobalCallBanner() async {
             builder: (context, _) {
               final uid = SupaFlow.client.auth.currentUser?.id;
               if (uid == null) return const SizedBox.shrink();
-              return cw.IncomingCallBanner(
-                key: ValueKey(uid),
-                width: double.infinity,
-                currentUserId: uid,
+              return Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  // Quietly saves received photos and videos to the gallery.
+                  cw.AutoGallerySaver(
+                    key: ValueKey('gallery-$uid'),
+                    width: 0,
+                    height: 0,
+                    currentUserId: uid,
+                  ),
+                  cw.IncomingCallBanner(
+                    key: ValueKey(uid),
+                    width: double.infinity,
+                    currentUserId: uid,
+                  ),
+                ],
               );
             },
           ),

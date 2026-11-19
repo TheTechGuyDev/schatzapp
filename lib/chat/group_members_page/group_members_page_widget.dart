@@ -56,24 +56,25 @@ class _GroupMembersPageWidgetState extends State<GroupMembersPageWidget> {
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
             appBar: AppBar(
-              backgroundColor: Color(0xFF935CCC),
+              backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
               automaticallyImplyLeading: false,
               leading: FlutterFlowIconButton(
-                borderRadius: 8.0,
-                buttonSize: 40.0,
-                fillColor: FlutterFlowTheme.of(context).primary,
+                borderColor: Colors.transparent,
+                borderRadius: 30.0,
+                borderWidth: 1.0,
+                buttonSize: 60.0,
                 icon: Icon(
-                  Icons.arrow_back,
-                  color: FlutterFlowTheme.of(context).info,
-                  size: 24.0,
+                  Icons.arrow_back_rounded,
+                  color: FlutterFlowTheme.of(context).primaryText,
+                  size: 30.0,
                 ),
                 onPressed: () async {
-                  context.safePop();
+                  context.pop();
                 },
               ),
               title: Text(
                 FFLocalizations.of(context).getText(
-                  'yn8fbokl' /* Group Members */,
+                  'wpplqvg7' /* Group Members */,
                 ),
                 style: FlutterFlowTheme.of(context).headlineMedium.override(
                       font: GoogleFonts.plusJakartaSans(
@@ -84,8 +85,8 @@ class _GroupMembersPageWidgetState extends State<GroupMembersPageWidget> {
                             .headlineMedium
                             .fontStyle,
                       ),
-                      color: Colors.white,
-                      fontSize: 22.0,
+                      color: FlutterFlowTheme.of(context).primaryText,
+                      fontSize: 20.0,
                       letterSpacing: 0.0,
                       fontWeight: FlutterFlowTheme.of(context)
                           .headlineMedium
@@ -95,8 +96,8 @@ class _GroupMembersPageWidgetState extends State<GroupMembersPageWidget> {
                     ),
               ),
               actions: [],
-              centerTitle: false,
-              elevation: 2.0,
+              centerTitle: true,
+              elevation: 0.0,
             ),
             body: SafeArea(
               top: true,

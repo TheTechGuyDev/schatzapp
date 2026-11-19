@@ -116,6 +116,14 @@ Future<String> joinAgoraCall(
   int uid,
   bool isVideoCall,
 ) async {
+  // Already in this exact call (e.g. the calling screen was minimized and
+  // reopened): do not tear the connection down and rejoin.
+  if (AgoraCallManager.engine != null &&
+      AgoraCallManager.channelName == channelName &&
+      AgoraCallManager.myUid == uid) {
+    return 'SUCCESS';
+  }
+
   const maxAttempts = 2;
   String lastError = 'unknown error';
 
@@ -301,6 +309,10 @@ Future<String> joinAgoraCall(
 
   return lastError;
 }
+// Set your action name, define your arguments and return parameter,
+// and then add the boilerplate code using the `</>` button on the right!
+// Set your action name, define your arguments and return parameter,
+// and then add the boilerplate code using the `</>` button on the right!
 // Set your action name, define your arguments and return parameter,
 // and then add the boilerplate code using the `</>` button on the right!
 // Set your action name, define your arguments and return parameter,

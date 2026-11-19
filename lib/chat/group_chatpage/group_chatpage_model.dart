@@ -62,7 +62,7 @@ class GroupChatpageModel extends FlutterFlowModel<GroupChatpageWidget> {
 
   bool isSearching = false;
 
-  bool searchQuery = false;
+  String searchQuery = ' ';
 
   ///  State fields for stateful widgets in this page.
 

@@ -330,7 +330,7 @@ class _LisOfBlockedUsersWidgetState extends State<LisOfBlockedUsersWidget> {
                             shrinkWrap: true,
                             scrollDirection: Axis.vertical,
                             itemCount: blockedUsers.length,
-                            separatorBuilder: (_, __) => SizedBox(height: 10.0),
+                            separatorBuilder: (_, __) => SizedBox(height: 5.0),
                             itemBuilder: (context, blockedUsersIndex) {
                               final blockedUsersItem =
                                   blockedUsers[blockedUsersIndex];

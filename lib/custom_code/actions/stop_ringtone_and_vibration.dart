@@ -11,16 +11,11 @@ import 'package:flutter/material.dart' hide RepeatMode;
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
 import 'package:vibration/vibration.dart';
-import '/custom_code/actions/start_ringtone_and_vibration.dart';
 
 Future<void> stopRingtoneAndVibration() async {
-  RingtoneManager.isRinging = false;
-
   try {
-    await RingtoneManager.player?.stop();
-    await RingtoneManager.player?.dispose();
+    await callTone('stop');
   } catch (_) {}
-  RingtoneManager.player = null;
 
   try {
     Vibration.cancel();

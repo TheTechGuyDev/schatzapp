@@ -40,6 +40,7 @@ class _IncomingCallBannerState extends State<IncomingCallBanner> {
   bool _busy = false;
   String? _camName;
   String? _camAvatar;
+  String? _savedName;
 
   // A Bimp never shows the caller's real identity: it shows one of the
   // receiver's camouflage profiles instead.
@@ -75,6 +76,35 @@ class _IncomingCallBannerState extends State<IncomingCallBanner> {
     } catch (_) {}
   }
 
+  // The caller is shown by the name this user saved them as, when there is one.
+  Future<void> _loadSavedName(String callId, String? callerId) async {
+    _savedName = null;
+    if (callerId == null || callerId.isEmpty) return;
+    try {
+      final r = await SupaFlow.client
+          .from('contacts')
+          .select('saved_name')
+          .eq('owner_id', widget.currentUserId)
+          .eq('contact_user_id', callerId)
+          .limit(1);
+      final list = r as List;
+      if (list.isNotEmpty) {
+        final n = (list.first['saved_name'] ?? '').toString().trim();
+        if (n.isNotEmpty && _ringingFor == callId && mounted) {
+          setState(() => _savedName = n);
+        }
+      }
+    } catch (_) {}
+  }
+
+  // Tells the caller this phone is online and ringing ("Calling" -> "Ringing").
+  Future<void> _ackRinging(String callId) async {
+    try {
+      await SupaFlow.client
+          .rpc('ack_call_ringing', params: {'p_call_id': callId});
+    } catch (_) {}
+  }
+
   void _onRows(List<Map<String, dynamic>> rows) {
     Map<String, dynamic>? c = rows.isNotEmpty ? rows.first : null;
     final ringing = c != null &&
@@ -87,11 +117,17 @@ class _IncomingCallBannerState extends State<IncomingCallBanner> {
         _camAvatar = null;
         _pickCamouflage();
       }
+      _savedName = null;
+      if (c?['call_type'] != 'bimp') {
+        _loadSavedName(id, c?['caller_id']?.toString());
+      }
       startRingtoneAndVibration();
+      _ackRinging(id);
     } else if (id == null && _ringingFor != null) {
       stopRingtoneAndVibration();
     }
     _ringingFor = id;
+    if (id == null) _savedName = null;
     if (mounted) setState(() => _call = ringing ? c : null);
   }
 
@@ -155,7 +191,9 @@ class _IncomingCallBannerState extends State<IncomingCallBanner> {
         await goToConnectedCallScreen(
           callId,
           c['conversation_id']?.toString(),
-          (c['caller_name'] ?? '').toString(),
+          ((_savedName ?? '').isNotEmpty
+              ? _savedName!
+              : (c['caller_name'] ?? '').toString()),
           c['caller_avatar']?.toString(),
           c['call_type']?.toString(),
           channel,
@@ -201,7 +239,9 @@ class _IncomingCallBannerState extends State<IncomingCallBanner> {
     final bimp = c['call_type'] == 'bimp';
     final name = bimp
         ? ((_camName ?? '').isNotEmpty ? _camName! : 'Unknown')
-        : (c['caller_name'] ?? 'Unknown').toString();
+        : ((_savedName ?? '').isNotEmpty
+            ? _savedName!
+            : (c['caller_name'] ?? 'Unknown').toString());
     final avatar =
         bimp ? (_camAvatar ?? '') : (c['caller_avatar'] ?? '').toString();
     final video = c['call_type'] == 'video';

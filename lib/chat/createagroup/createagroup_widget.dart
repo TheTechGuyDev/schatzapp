@@ -54,7 +54,7 @@ class _CreateagroupWidgetState extends State<CreateagroupWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(0.0, 80.0, 0.0, 0.0),
+      padding: EdgeInsetsDirectional.fromSTEB(0.0, 70.0, 0.0, 0.0),
       child: Container(
         width: double.infinity,
         height: double.infinity,
@@ -223,7 +223,7 @@ class _CreateagroupWidgetState extends State<CreateagroupWidget> {
                                         .fontStyle,
                                   ),
                           elevation: 0.0,
-                          borderRadius: BorderRadius.circular(8.0),
+                          borderRadius: BorderRadius.circular(20.0),
                         ),
                       ),
                     ],
@@ -1098,10 +1098,8 @@ class _CreateagroupWidgetState extends State<CreateagroupWidget> {
                                                                 BoxDecoration(
                                                               color: Color(
                                                                   0xFFDC45F6),
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          5.0),
+                                                              shape: BoxShape
+                                                                  .circle,
                                                             ),
                                                             alignment:
                                                                 AlignmentDirectional(

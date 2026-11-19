@@ -75,7 +75,10 @@ class _RemoteVideoRendererState extends State<RemoteVideoRenderer> {
       _controller?.dispose();
       _controller = VideoViewController.remote(
         rtcEngine: engine,
-        canvas: VideoCanvas(uid: remoteUid),
+        canvas: VideoCanvas(
+          uid: remoteUid,
+          renderMode: RenderModeType.renderModeHidden,
+        ),
         connection: RtcConnection(channelId: AgoraCallManager.channelName),
       );
       _controllerUid = remoteUid;

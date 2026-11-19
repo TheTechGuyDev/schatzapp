@@ -79,7 +79,10 @@ class _LocalVideoRendererState extends State<LocalVideoRenderer> {
     // should never be torn down just because video is off.
     _controller ??= VideoViewController(
       rtcEngine: AgoraCallManager.engine!,
-      canvas: const VideoCanvas(uid: 0),
+      canvas: const VideoCanvas(
+        uid: 0,
+        renderMode: RenderModeType.renderModeHidden,
+      ),
     );
 
     final avatarSize = (widget.width ?? 60.0) * 0.5;

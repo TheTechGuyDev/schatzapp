@@ -7,6 +7,7 @@ import '/components/theme_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/settings_profile/app_password_gate/app_password_gate_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/index.dart';
@@ -57,6 +58,19 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
       );
       _model.profileStats = _model.profileStatsResult;
       safeSetState(() {});
+      _model.myLockResult = await actions.isMyPrivateLock(
+        _model.profileStats!.conversationId,
+      );
+      _model.myLock = _model.myLockResult!;
+      safeSetState(() {});
+      _model.saveResult = await actions.saveToGallerySetting(
+        _model.profileStats!.conversationId,
+        'get',
+      );
+      _model.saveGallery = _model.saveResult!;
+      safeSetState(() {});
+      _model.settingsLoaded = true;
+      safeSetState(() {});
       _model.lockResult = await actions.isPrivateLocked(
         _model.profileStats!.conversationId,
       );
@@ -78,6 +92,8 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
       }
     });
 
+    _model.switchValue1 = _model.myLock;
+    _model.switchValue2 = _model.saveGallery;
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -538,7 +554,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                         ),
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            30.0, 15.0, 30.0, 20.0),
+                                            30.0, 15.0, 30.0, 15.0),
                                         child: Text(
                                           valueOrDefault<String>(
                                             stackProfilesRow?.aboutText,
@@ -576,157 +592,33 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                               ),
                                         ),
                                       ),
-                                      Expanded(
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 5.0),
-                                          child: Container(
-                                            decoration: BoxDecoration(),
-                                            child: Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(5.0, 0.0, 5.0, 0.0),
-                                              child: GridView(
-                                                padding: EdgeInsets.zero,
-                                                gridDelegate:
-                                                    SliverGridDelegateWithFixedCrossAxisCount(
-                                                  crossAxisCount: 4,
-                                                  crossAxisSpacing: 6.0,
-                                                  childAspectRatio: 1.0,
-                                                ),
-                                                primary: false,
-                                                shrinkWrap: true,
-                                                scrollDirection: Axis.vertical,
-                                                physics:
-                                                    const NeverScrollableScrollPhysics(),
-                                                children: [
-                                                  InkWell(
-                                                    splashColor:
-                                                        Colors.transparent,
-                                                    focusColor:
-                                                        Colors.transparent,
-                                                    hoverColor:
-                                                        Colors.transparent,
-                                                    highlightColor:
-                                                        Colors.transparent,
-                                                    onTap: () async {
-                                                      _model.profileMessageResult =
-                                                          await actions
-                                                              .findOrCreateConversation(
-                                                        currentUserUid,
-                                                        widget.otherUserId!,
-                                                      );
-
-                                                      context.pushNamed(
-                                                        ChatpageWidget
-                                                            .routeName,
-                                                        queryParameters: {
-                                                          'conversationId':
-                                                              serializeParam(
-                                                            _model
-                                                                .profileMessageResult,
-                                                            ParamType.String,
-                                                          ),
-                                                          'otherUserId':
-                                                              serializeParam(
-                                                            widget.otherUserId,
-                                                            ParamType.String,
-                                                          ),
-                                                          'displayName':
-                                                              serializeParam(
-                                                            _model.resolvedName,
-                                                            ParamType.String,
-                                                          ),
-                                                          'displayAvatar':
-                                                              serializeParam(
-                                                            stackProfilesRow
-                                                                ?.avatarUrl,
-                                                            ParamType.String,
-                                                          ),
-                                                        }.withoutNulls,
-                                                      );
-
-                                                      safeSetState(() {});
-                                                    },
-                                                    child: Container(
-                                                      width: 40.0,
-                                                      height: double.infinity,
-                                                      decoration: BoxDecoration(
-                                                        color: FlutterFlowTheme
-                                                                .of(context)
-                                                            .secondaryBackground,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(20.0),
-                                                        border: Border.all(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .alternate,
-                                                          width: 1.0,
-                                                        ),
-                                                      ),
-                                                      child: Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    10.0,
-                                                                    0.0,
-                                                                    10.0),
-                                                        child: Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .center,
-                                                          children: [
-                                                            Icon(
-                                                              Icons.sms,
-                                                              color: Color(
-                                                                  0xFF935CCC),
-                                                              size: 26.0,
-                                                            ),
-                                                            Text(
-                                                              FFLocalizations.of(
-                                                                      context)
-                                                                  .getText(
-                                                                'khfeaywd' /* Message */,
-                                                              ),
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    font: GoogleFonts
-                                                                        .plusJakartaSans(
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold,
-                                                                      fontStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .fontStyle,
-                                                                    ),
-                                                                    fontSize:
-                                                                        10.0,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .fontStyle,
-                                                                  ),
-                                                            ),
-                                                          ].divide(SizedBox(
-                                                              height: 10.0)),
-                                                        ),
-                                                      ),
-                                                    ),
+                                      if (_model.isPrivateLocked == false)
+                                        Expanded(
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 5.0),
+                                            child: Container(
+                                              decoration: BoxDecoration(),
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        5.0, 0.0, 5.0, 0.0),
+                                                child: GridView(
+                                                  padding: EdgeInsets.zero,
+                                                  gridDelegate:
+                                                      SliverGridDelegateWithFixedCrossAxisCount(
+                                                    crossAxisCount: 4,
+                                                    crossAxisSpacing: 6.0,
+                                                    childAspectRatio: 1.0,
                                                   ),
-                                                  if (_model.isPrivateLocked ==
-                                                      false)
+                                                  primary: false,
+                                                  shrinkWrap: true,
+                                                  scrollDirection:
+                                                      Axis.vertical,
+                                                  physics:
+                                                      const NeverScrollableScrollPhysics(),
+                                                  children: [
                                                     InkWell(
                                                       splashColor:
                                                           Colors.transparent,
@@ -737,113 +629,574 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                       highlightColor:
                                                           Colors.transparent,
                                                       onTap: () async {
-                                                        _model.profileVoiceResult =
+                                                        _model.profileMessageResult =
                                                             await actions
                                                                 .findOrCreateConversation(
                                                           currentUserUid,
                                                           widget.otherUserId!,
                                                         );
-                                                        _model.profileVoiceCallResult =
-                                                            await actions
-                                                                .startCall(
-                                                          _model
-                                                              .profileVoiceResult!,
-                                                          currentUserUid,
-                                                          'voice',
-                                                        );
-                                                        if (_model
-                                                                .profileVoiceCallResult !=
-                                                            null) {
-                                                          context.pushNamed(
-                                                            ActiveCallScreenWidget
-                                                                .routeName,
-                                                            queryParameters: {
-                                                              'callId':
-                                                                  serializeParam(
-                                                                _model
-                                                                    .profileVoiceCallResult
-                                                                    ?.callId,
-                                                                ParamType
-                                                                    .String,
-                                                              ),
-                                                              'conversationId':
-                                                                  serializeParam(
-                                                                _model
-                                                                    .profileVoiceResult,
-                                                                ParamType
-                                                                    .String,
-                                                              ),
-                                                              'calleeName':
-                                                                  serializeParam(
-                                                                stackProfilesRow
-                                                                    ?.fullName,
-                                                                ParamType
-                                                                    .String,
-                                                              ),
-                                                              'calleeAvatar':
-                                                                  serializeParam(
-                                                                stackProfilesRow
-                                                                    ?.avatarUrl,
-                                                                ParamType
-                                                                    .String,
-                                                              ),
-                                                              'callType':
-                                                                  serializeParam(
-                                                                'voice',
-                                                                ParamType
-                                                                    .String,
-                                                              ),
-                                                              'agoraChannelName':
-                                                                  serializeParam(
-                                                                _model
-                                                                    .profileVoiceCallResult
-                                                                    ?.agoraChannelName,
-                                                                ParamType
-                                                                    .String,
-                                                              ),
-                                                              'agoraToken':
-                                                                  serializeParam(
-                                                                _model
-                                                                    .profileVoiceCallResult
-                                                                    ?.agoraToken,
-                                                                ParamType
-                                                                    .String,
-                                                              ),
-                                                              'agoraUid':
-                                                                  serializeParam(
-                                                                _model
-                                                                    .profileVoiceCallResult
-                                                                    ?.agoraUid,
-                                                                ParamType.int,
-                                                              ),
-                                                            }.withoutNulls,
-                                                          );
-                                                        } else {
-                                                          ScaffoldMessenger.of(
-                                                                  context)
-                                                              .showSnackBar(
-                                                            SnackBar(
-                                                              content: Text(
-                                                                'Couldn\'t start the call, please try again',
-                                                                style:
-                                                                    TextStyle(
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryText,
-                                                                ),
-                                                              ),
-                                                              duration: Duration(
-                                                                  milliseconds:
-                                                                      4000),
-                                                              backgroundColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondary,
+
+                                                        context.pushNamed(
+                                                          ChatpageWidget
+                                                              .routeName,
+                                                          queryParameters: {
+                                                            'conversationId':
+                                                                serializeParam(
+                                                              _model
+                                                                  .profileMessageResult,
+                                                              ParamType.String,
                                                             ),
-                                                          );
-                                                        }
+                                                            'otherUserId':
+                                                                serializeParam(
+                                                              widget
+                                                                  .otherUserId,
+                                                              ParamType.String,
+                                                            ),
+                                                            'displayName':
+                                                                serializeParam(
+                                                              _model
+                                                                  .resolvedName,
+                                                              ParamType.String,
+                                                            ),
+                                                            'displayAvatar':
+                                                                serializeParam(
+                                                              stackProfilesRow
+                                                                  ?.avatarUrl,
+                                                              ParamType.String,
+                                                            ),
+                                                          }.withoutNulls,
+                                                        );
 
                                                         safeSetState(() {});
+                                                      },
+                                                      child: Container(
+                                                        width: 40.0,
+                                                        height: double.infinity,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryBackground,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      20.0),
+                                                          border: Border.all(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .alternate,
+                                                            width: 1.0,
+                                                          ),
+                                                        ),
+                                                        child: Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      10.0,
+                                                                      0.0,
+                                                                      10.0),
+                                                          child: Column(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .center,
+                                                            children: [
+                                                              Icon(
+                                                                Icons.sms,
+                                                                color: Color(
+                                                                    0xFF935CCC),
+                                                                size: 26.0,
+                                                              ),
+                                                              Text(
+                                                                FFLocalizations.of(
+                                                                        context)
+                                                                    .getText(
+                                                                  'khfeaywd' /* Message */,
+                                                                ),
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      font: GoogleFonts
+                                                                          .plusJakartaSans(
+                                                                        fontWeight:
+                                                                            FontWeight.bold,
+                                                                        fontStyle: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .fontStyle,
+                                                                      ),
+                                                                      fontSize:
+                                                                          10.0,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontStyle,
+                                                                    ),
+                                                              ),
+                                                            ].divide(SizedBox(
+                                                                height: 10.0)),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    if (_model
+                                                            .isPrivateLocked ==
+                                                        false)
+                                                      InkWell(
+                                                        splashColor:
+                                                            Colors.transparent,
+                                                        focusColor:
+                                                            Colors.transparent,
+                                                        hoverColor:
+                                                            Colors.transparent,
+                                                        highlightColor:
+                                                            Colors.transparent,
+                                                        onTap: () async {
+                                                          _model.profileVoiceResult =
+                                                              await actions
+                                                                  .findOrCreateConversation(
+                                                            currentUserUid,
+                                                            widget
+                                                                .otherUserId!,
+                                                          );
+                                                          _model.profileVoiceCallResult =
+                                                              await actions
+                                                                  .startCall(
+                                                            _model
+                                                                .profileVoiceResult!,
+                                                            currentUserUid,
+                                                            'voice',
+                                                          );
+                                                          if (_model
+                                                                  .profileVoiceCallResult !=
+                                                              null) {
+                                                            context.pushNamed(
+                                                              ActiveCallScreenWidget
+                                                                  .routeName,
+                                                              queryParameters: {
+                                                                'callId':
+                                                                    serializeParam(
+                                                                  _model
+                                                                      .profileVoiceCallResult
+                                                                      ?.callId,
+                                                                  ParamType
+                                                                      .String,
+                                                                ),
+                                                                'conversationId':
+                                                                    serializeParam(
+                                                                  _model
+                                                                      .profileVoiceResult,
+                                                                  ParamType
+                                                                      .String,
+                                                                ),
+                                                                'calleeName':
+                                                                    serializeParam(
+                                                                  stackProfilesRow
+                                                                      ?.fullName,
+                                                                  ParamType
+                                                                      .String,
+                                                                ),
+                                                                'calleeAvatar':
+                                                                    serializeParam(
+                                                                  stackProfilesRow
+                                                                      ?.avatarUrl,
+                                                                  ParamType
+                                                                      .String,
+                                                                ),
+                                                                'callType':
+                                                                    serializeParam(
+                                                                  'voice',
+                                                                  ParamType
+                                                                      .String,
+                                                                ),
+                                                                'agoraChannelName':
+                                                                    serializeParam(
+                                                                  _model
+                                                                      .profileVoiceCallResult
+                                                                      ?.agoraChannelName,
+                                                                  ParamType
+                                                                      .String,
+                                                                ),
+                                                                'agoraToken':
+                                                                    serializeParam(
+                                                                  _model
+                                                                      .profileVoiceCallResult
+                                                                      ?.agoraToken,
+                                                                  ParamType
+                                                                      .String,
+                                                                ),
+                                                                'agoraUid':
+                                                                    serializeParam(
+                                                                  _model
+                                                                      .profileVoiceCallResult
+                                                                      ?.agoraUid,
+                                                                  ParamType.int,
+                                                                ),
+                                                              }.withoutNulls,
+                                                            );
+                                                          } else {
+                                                            ScaffoldMessenger
+                                                                    .of(context)
+                                                                .showSnackBar(
+                                                              SnackBar(
+                                                                content: Text(
+                                                                  'Couldn\'t start the call, please try again',
+                                                                  style:
+                                                                      TextStyle(
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primaryText,
+                                                                  ),
+                                                                ),
+                                                                duration: Duration(
+                                                                    milliseconds:
+                                                                        4000),
+                                                                backgroundColor:
+                                                                    FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondary,
+                                                              ),
+                                                            );
+                                                          }
+
+                                                          safeSetState(() {});
+                                                        },
+                                                        child: Container(
+                                                          width: 40.0,
+                                                          height:
+                                                              double.infinity,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryBackground,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        20.0),
+                                                            border: Border.all(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .alternate,
+                                                              width: 1.0,
+                                                            ),
+                                                          ),
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        10.0,
+                                                                        0.0,
+                                                                        10.0),
+                                                            child: Column(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .center,
+                                                              children: [
+                                                                Icon(
+                                                                  Icons
+                                                                      .call_rounded,
+                                                                  color: Color(
+                                                                      0xFF935CCC),
+                                                                  size: 26.0,
+                                                                ),
+                                                                Text(
+                                                                  FFLocalizations.of(
+                                                                          context)
+                                                                      .getText(
+                                                                    'o92ubx5l' /* Voice Call */,
+                                                                  ),
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .override(
+                                                                        font: GoogleFonts
+                                                                            .plusJakartaSans(
+                                                                          fontWeight:
+                                                                              FontWeight.bold,
+                                                                          fontStyle: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .fontStyle,
+                                                                        ),
+                                                                        fontSize:
+                                                                            10.0,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        fontWeight:
+                                                                            FontWeight.bold,
+                                                                        fontStyle: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .fontStyle,
+                                                                      ),
+                                                                ),
+                                                              ].divide(SizedBox(
+                                                                  height:
+                                                                      10.0)),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    if (_model
+                                                            .isPrivateLocked ==
+                                                        false)
+                                                      InkWell(
+                                                        splashColor:
+                                                            Colors.transparent,
+                                                        focusColor:
+                                                            Colors.transparent,
+                                                        hoverColor:
+                                                            Colors.transparent,
+                                                        highlightColor:
+                                                            Colors.transparent,
+                                                        onTap: () async {
+                                                          _model.profileVideoResult =
+                                                              await actions
+                                                                  .findOrCreateConversation(
+                                                            currentUserUid,
+                                                            widget
+                                                                .otherUserId!,
+                                                          );
+                                                          _model.profileVideoCallResult =
+                                                              await actions
+                                                                  .startCall(
+                                                            _model
+                                                                .profileVoiceResult!,
+                                                            currentUserUid,
+                                                            'video',
+                                                          );
+                                                          if (_model
+                                                                  .profileVideoCallResult !=
+                                                              null) {
+                                                            context.pushNamed(
+                                                              ActiveCallScreenWidget
+                                                                  .routeName,
+                                                              queryParameters: {
+                                                                'callId':
+                                                                    serializeParam(
+                                                                  _model
+                                                                      .profileVideoCallResult
+                                                                      ?.callId,
+                                                                  ParamType
+                                                                      .String,
+                                                                ),
+                                                                'conversationId':
+                                                                    serializeParam(
+                                                                  _model
+                                                                      .profileVideoResult,
+                                                                  ParamType
+                                                                      .String,
+                                                                ),
+                                                                'calleeName':
+                                                                    serializeParam(
+                                                                  stackProfilesRow
+                                                                      ?.fullName,
+                                                                  ParamType
+                                                                      .String,
+                                                                ),
+                                                                'calleeAvatar':
+                                                                    serializeParam(
+                                                                  stackProfilesRow
+                                                                      ?.avatarUrl,
+                                                                  ParamType
+                                                                      .String,
+                                                                ),
+                                                                'callType':
+                                                                    serializeParam(
+                                                                  'video',
+                                                                  ParamType
+                                                                      .String,
+                                                                ),
+                                                                'agoraChannelName':
+                                                                    serializeParam(
+                                                                  _model
+                                                                      .profileVideoCallResult
+                                                                      ?.agoraChannelName,
+                                                                  ParamType
+                                                                      .String,
+                                                                ),
+                                                                'agoraToken':
+                                                                    serializeParam(
+                                                                  _model
+                                                                      .profileVideoCallResult
+                                                                      ?.agoraToken,
+                                                                  ParamType
+                                                                      .String,
+                                                                ),
+                                                                'agoraUid':
+                                                                    serializeParam(
+                                                                  _model
+                                                                      .profileVideoCallResult
+                                                                      ?.agoraUid,
+                                                                  ParamType.int,
+                                                                ),
+                                                              }.withoutNulls,
+                                                            );
+                                                          } else {
+                                                            ScaffoldMessenger
+                                                                    .of(context)
+                                                                .showSnackBar(
+                                                              SnackBar(
+                                                                content: Text(
+                                                                  'Couldn\'t start the call, please try again',
+                                                                  style:
+                                                                      TextStyle(
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primaryText,
+                                                                  ),
+                                                                ),
+                                                                duration: Duration(
+                                                                    milliseconds:
+                                                                        4000),
+                                                                backgroundColor:
+                                                                    FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondary,
+                                                              ),
+                                                            );
+                                                          }
+
+                                                          safeSetState(() {});
+                                                        },
+                                                        child: Container(
+                                                          width: 40.0,
+                                                          height:
+                                                              double.infinity,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryBackground,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        20.0),
+                                                            border: Border.all(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .alternate,
+                                                              width: 1.0,
+                                                            ),
+                                                          ),
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        10.0,
+                                                                        0.0,
+                                                                        10.0),
+                                                            child: Column(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .center,
+                                                              children: [
+                                                                Icon(
+                                                                  Icons
+                                                                      .videocam,
+                                                                  color: Color(
+                                                                      0xFF935CCC),
+                                                                  size: 26.0,
+                                                                ),
+                                                                Text(
+                                                                  FFLocalizations.of(
+                                                                          context)
+                                                                      .getText(
+                                                                    'u6q5l9y2' /* Video Call */,
+                                                                  ),
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .override(
+                                                                        font: GoogleFonts
+                                                                            .plusJakartaSans(
+                                                                          fontWeight:
+                                                                              FontWeight.bold,
+                                                                          fontStyle: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .fontStyle,
+                                                                        ),
+                                                                        fontSize:
+                                                                            10.0,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        fontWeight:
+                                                                            FontWeight.bold,
+                                                                        fontStyle: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .fontStyle,
+                                                                      ),
+                                                                ),
+                                                              ].divide(SizedBox(
+                                                                  height:
+                                                                      10.0)),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    InkWell(
+                                                      splashColor:
+                                                          Colors.transparent,
+                                                      focusColor:
+                                                          Colors.transparent,
+                                                      hoverColor:
+                                                          Colors.transparent,
+                                                      highlightColor:
+                                                          Colors.transparent,
+                                                      onTap: () async {
+                                                        await showModalBottomSheet(
+                                                          isScrollControlled:
+                                                              true,
+                                                          backgroundColor:
+                                                              Colors
+                                                                  .transparent,
+                                                          enableDrag: false,
+                                                          context: context,
+                                                          builder: (context) {
+                                                            return GestureDetector(
+                                                              onTap: () {
+                                                                FocusScope.of(
+                                                                        context)
+                                                                    .unfocus();
+                                                                FocusManager
+                                                                    .instance
+                                                                    .primaryFocus
+                                                                    ?.unfocus();
+                                                              },
+                                                              child: Padding(
+                                                                padding: MediaQuery
+                                                                    .viewInsetsOf(
+                                                                        context),
+                                                                child:
+                                                                    Profile3dotsMOREOPTIONSWidget(
+                                                                  conversationId: _model
+                                                                      .profileStats
+                                                                      ?.conversationId,
+                                                                  otherUserId:
+                                                                      widget
+                                                                          .otherUserId,
+                                                                ),
+                                                              ),
+                                                            );
+                                                          },
+                                                        ).then((value) =>
+                                                            safeSetState(
+                                                                () {}));
                                                       },
                                                       child: Container(
                                                         width: 40.0,
@@ -882,7 +1235,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                             children: [
                                                               Icon(
                                                                 Icons
-                                                                    .call_rounded,
+                                                                    .keyboard_control,
                                                                 color: Color(
                                                                     0xFF935CCC),
                                                                 size: 26.0,
@@ -891,7 +1244,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                                 FFLocalizations.of(
                                                                         context)
                                                                     .getText(
-                                                                  'o92ubx5l' /* Voice Call */,
+                                                                  '8r1pu17j' /* More */,
                                                                 ),
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
@@ -924,337 +1277,15 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                         ),
                                                       ),
                                                     ),
-                                                  if (_model.isPrivateLocked ==
-                                                      false)
-                                                    InkWell(
-                                                      splashColor:
-                                                          Colors.transparent,
-                                                      focusColor:
-                                                          Colors.transparent,
-                                                      hoverColor:
-                                                          Colors.transparent,
-                                                      highlightColor:
-                                                          Colors.transparent,
-                                                      onTap: () async {
-                                                        _model.profileVideoResult =
-                                                            await actions
-                                                                .findOrCreateConversation(
-                                                          currentUserUid,
-                                                          widget.otherUserId!,
-                                                        );
-                                                        _model.profileVideoCallResult =
-                                                            await actions
-                                                                .startCall(
-                                                          _model
-                                                              .profileVoiceResult!,
-                                                          currentUserUid,
-                                                          'video',
-                                                        );
-                                                        if (_model
-                                                                .profileVideoCallResult !=
-                                                            null) {
-                                                          context.pushNamed(
-                                                            ActiveCallScreenWidget
-                                                                .routeName,
-                                                            queryParameters: {
-                                                              'callId':
-                                                                  serializeParam(
-                                                                _model
-                                                                    .profileVideoCallResult
-                                                                    ?.callId,
-                                                                ParamType
-                                                                    .String,
-                                                              ),
-                                                              'conversationId':
-                                                                  serializeParam(
-                                                                _model
-                                                                    .profileVideoResult,
-                                                                ParamType
-                                                                    .String,
-                                                              ),
-                                                              'calleeName':
-                                                                  serializeParam(
-                                                                stackProfilesRow
-                                                                    ?.fullName,
-                                                                ParamType
-                                                                    .String,
-                                                              ),
-                                                              'calleeAvatar':
-                                                                  serializeParam(
-                                                                stackProfilesRow
-                                                                    ?.avatarUrl,
-                                                                ParamType
-                                                                    .String,
-                                                              ),
-                                                              'callType':
-                                                                  serializeParam(
-                                                                'video',
-                                                                ParamType
-                                                                    .String,
-                                                              ),
-                                                              'agoraChannelName':
-                                                                  serializeParam(
-                                                                _model
-                                                                    .profileVideoCallResult
-                                                                    ?.agoraChannelName,
-                                                                ParamType
-                                                                    .String,
-                                                              ),
-                                                              'agoraToken':
-                                                                  serializeParam(
-                                                                _model
-                                                                    .profileVideoCallResult
-                                                                    ?.agoraToken,
-                                                                ParamType
-                                                                    .String,
-                                                              ),
-                                                              'agoraUid':
-                                                                  serializeParam(
-                                                                _model
-                                                                    .profileVideoCallResult
-                                                                    ?.agoraUid,
-                                                                ParamType.int,
-                                                              ),
-                                                            }.withoutNulls,
-                                                          );
-                                                        } else {
-                                                          ScaffoldMessenger.of(
-                                                                  context)
-                                                              .showSnackBar(
-                                                            SnackBar(
-                                                              content: Text(
-                                                                'Couldn\'t start the call, please try again',
-                                                                style:
-                                                                    TextStyle(
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryText,
-                                                                ),
-                                                              ),
-                                                              duration: Duration(
-                                                                  milliseconds:
-                                                                      4000),
-                                                              backgroundColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondary,
-                                                            ),
-                                                          );
-                                                        }
-
-                                                        safeSetState(() {});
-                                                      },
-                                                      child: Container(
-                                                        width: 40.0,
-                                                        height: double.infinity,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryBackground,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      20.0),
-                                                          border: Border.all(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .alternate,
-                                                            width: 1.0,
-                                                          ),
-                                                        ),
-                                                        child: Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      0.0,
-                                                                      10.0,
-                                                                      0.0,
-                                                                      10.0),
-                                                          child: Column(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
-                                                            children: [
-                                                              Icon(
-                                                                Icons.videocam,
-                                                                color: Color(
-                                                                    0xFF935CCC),
-                                                                size: 26.0,
-                                                              ),
-                                                              Text(
-                                                                FFLocalizations.of(
-                                                                        context)
-                                                                    .getText(
-                                                                  'u6q5l9y2' /* Video Call */,
-                                                                ),
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      font: GoogleFonts
-                                                                          .plusJakartaSans(
-                                                                        fontWeight:
-                                                                            FontWeight.bold,
-                                                                        fontStyle: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .fontStyle,
-                                                                      ),
-                                                                      fontSize:
-                                                                          10.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold,
-                                                                      fontStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .fontStyle,
-                                                                    ),
-                                                              ),
-                                                            ].divide(SizedBox(
-                                                                height: 10.0)),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  InkWell(
-                                                    splashColor:
-                                                        Colors.transparent,
-                                                    focusColor:
-                                                        Colors.transparent,
-                                                    hoverColor:
-                                                        Colors.transparent,
-                                                    highlightColor:
-                                                        Colors.transparent,
-                                                    onTap: () async {
-                                                      await showModalBottomSheet(
-                                                        isScrollControlled:
-                                                            true,
-                                                        backgroundColor:
-                                                            Colors.transparent,
-                                                        enableDrag: false,
-                                                        context: context,
-                                                        builder: (context) {
-                                                          return GestureDetector(
-                                                            onTap: () {
-                                                              FocusScope.of(
-                                                                      context)
-                                                                  .unfocus();
-                                                              FocusManager
-                                                                  .instance
-                                                                  .primaryFocus
-                                                                  ?.unfocus();
-                                                            },
-                                                            child: Padding(
-                                                              padding: MediaQuery
-                                                                  .viewInsetsOf(
-                                                                      context),
-                                                              child:
-                                                                  Profile3dotsMOREOPTIONSWidget(
-                                                                conversationId: _model
-                                                                    .profileStats
-                                                                    ?.conversationId,
-                                                                otherUserId: widget
-                                                                    .otherUserId,
-                                                              ),
-                                                            ),
-                                                          );
-                                                        },
-                                                      ).then((value) =>
-                                                          safeSetState(() {}));
-                                                    },
-                                                    child: Container(
-                                                      width: 40.0,
-                                                      height: double.infinity,
-                                                      decoration: BoxDecoration(
-                                                        color: FlutterFlowTheme
-                                                                .of(context)
-                                                            .secondaryBackground,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(20.0),
-                                                        border: Border.all(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .alternate,
-                                                          width: 1.0,
-                                                        ),
-                                                      ),
-                                                      child: Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    10.0,
-                                                                    0.0,
-                                                                    10.0),
-                                                        child: Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .center,
-                                                          children: [
-                                                            Icon(
-                                                              Icons
-                                                                  .keyboard_control,
-                                                              color: Color(
-                                                                  0xFF935CCC),
-                                                              size: 26.0,
-                                                            ),
-                                                            Text(
-                                                              FFLocalizations.of(
-                                                                      context)
-                                                                  .getText(
-                                                                '8r1pu17j' /* More */,
-                                                              ),
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    font: GoogleFonts
-                                                                        .plusJakartaSans(
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold,
-                                                                      fontStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .fontStyle,
-                                                                    ),
-                                                                    fontSize:
-                                                                        10.0,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .fontStyle,
-                                                                  ),
-                                                            ),
-                                                          ].divide(SizedBox(
-                                                              height: 10.0)),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
+                                                  ],
+                                                ),
                                               ),
                                             ),
                                           ),
                                         ),
-                                      ),
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 20.0, 0.0, 0.0),
+                                            0.0, 15.0, 0.0, 0.0),
                                         child: Material(
                                           color: Colors.transparent,
                                           elevation: 0.0,
@@ -1292,6 +1323,498 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
+                                                if (_model.isPrivateLocked ==
+                                                    true)
+                                                  Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    0.0,
+                                                                    15.0,
+                                                                    0.0),
+                                                        child: Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          children: [
+                                                            Row(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              children: [
+                                                                Container(
+                                                                  width: 40.0,
+                                                                  height: 40.0,
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .tertiary,
+                                                                    shape: BoxShape
+                                                                        .circle,
+                                                                  ),
+                                                                  child: Icon(
+                                                                    Icons
+                                                                        .private_connectivity_outlined,
+                                                                    color: Color(
+                                                                        0xFF935CCC),
+                                                                    size: 32.0,
+                                                                  ),
+                                                                ),
+                                                                Column(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    Padding(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          5.0),
+                                                                      child:
+                                                                          Text(
+                                                                        FFLocalizations.of(context)
+                                                                            .getText(
+                                                                          'qpy9suo1' /* Lock Chat */,
+                                                                        ),
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              font: GoogleFonts.plusJakartaSans(
+                                                                                fontWeight: FontWeight.w600,
+                                                                                fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                              ),
+                                                                              fontSize: 15.0,
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FontWeight.w600,
+                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                            ),
+                                                                      ),
+                                                                    ),
+                                                                    AutoSizeText(
+                                                                      FFLocalizations.of(
+                                                                              context)
+                                                                          .getText(
+                                                                        'xxmunmem' /* Lock and hide his chat on this... */,
+                                                                      ),
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .override(
+                                                                            font:
+                                                                                GoogleFonts.plusJakartaSans(
+                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                            ),
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).secondaryText,
+                                                                            fontSize:
+                                                                                13.0,
+                                                                            letterSpacing:
+                                                                                0.0,
+                                                                            fontWeight:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                            fontStyle:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                          ),
+                                                                    ),
+                                                                    AutoSizeText(
+                                                                      FFLocalizations.of(
+                                                                              context)
+                                                                          .getText(
+                                                                        'i4hj3awi' /* Unlock and unhide his chat on ... */,
+                                                                      ),
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .override(
+                                                                            font:
+                                                                                GoogleFonts.plusJakartaSans(
+                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                            ),
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).secondaryText,
+                                                                            fontSize:
+                                                                                13.0,
+                                                                            letterSpacing:
+                                                                                0.0,
+                                                                            fontWeight:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                            fontStyle:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                          ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ].divide(SizedBox(
+                                                                  width: 20.0)),
+                                                            ),
+                                                            Switch.adaptive(
+                                                              value: _model
+                                                                  .switchValue1!,
+                                                              onChanged:
+                                                                  (newValue) async {
+                                                                safeSetState(() =>
+                                                                    _model.switchValue1 =
+                                                                        newValue);
+                                                                if (newValue) {
+                                                                  await showModalBottomSheet(
+                                                                    isScrollControlled:
+                                                                        true,
+                                                                    backgroundColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    enableDrag:
+                                                                        false,
+                                                                    context:
+                                                                        context,
+                                                                    builder:
+                                                                        (context) {
+                                                                      return GestureDetector(
+                                                                        onTap:
+                                                                            () {
+                                                                          FocusScope.of(context)
+                                                                              .unfocus();
+                                                                          FocusManager
+                                                                              .instance
+                                                                              .primaryFocus
+                                                                              ?.unfocus();
+                                                                        },
+                                                                        child:
+                                                                            Padding(
+                                                                          padding:
+                                                                              MediaQuery.viewInsetsOf(context),
+                                                                          child:
+                                                                              AppPasswordGateWidget(
+                                                                            onVerified:
+                                                                                (success) async {
+                                                                              if (success == true) {
+                                                                                _model.lockOk = await actions.setPrivateLock(
+                                                                                  _model.profileStats!.conversationId,
+                                                                                  true,
+                                                                                );
+                                                                                if (_model.lockOk == true) {
+                                                                                  FFAppState().privateUnlockedAt = getCurrentTimestamp;
+                                                                                  safeSetState(() {});
+
+                                                                                  context.pushNamed(PrivateChatWidget.routeName);
+                                                                                } else {
+                                                                                  ScaffoldMessenger.of(context).showSnackBar(
+                                                                                    SnackBar(
+                                                                                      content: Text(
+                                                                                        'Could not lock this chat',
+                                                                                        style: TextStyle(
+                                                                                          color: FlutterFlowTheme.of(context).primaryText,
+                                                                                        ),
+                                                                                      ),
+                                                                                      duration: Duration(milliseconds: 4000),
+                                                                                      backgroundColor: FlutterFlowTheme.of(context).secondary,
+                                                                                    ),
+                                                                                  );
+                                                                                }
+                                                                              } else {
+                                                                                if (Navigator.of(context).canPop()) {
+                                                                                  context.pop();
+                                                                                }
+                                                                                context.pushNamed(
+                                                                                  UserProfileWidget.routeName,
+                                                                                  queryParameters: {
+                                                                                    'otherUserId': serializeParam(
+                                                                                      widget.otherUserId,
+                                                                                      ParamType.String,
+                                                                                    ),
+                                                                                  }.withoutNulls,
+                                                                                );
+                                                                              }
+                                                                            },
+                                                                          ),
+                                                                        ),
+                                                                      );
+                                                                    },
+                                                                  ).then((value) =>
+                                                                      safeSetState(
+                                                                          () {}));
+
+                                                                  safeSetState(
+                                                                      () {});
+                                                                } else {
+                                                                  await showModalBottomSheet(
+                                                                    isScrollControlled:
+                                                                        true,
+                                                                    backgroundColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    enableDrag:
+                                                                        false,
+                                                                    context:
+                                                                        context,
+                                                                    builder:
+                                                                        (context) {
+                                                                      return GestureDetector(
+                                                                        onTap:
+                                                                            () {
+                                                                          FocusScope.of(context)
+                                                                              .unfocus();
+                                                                          FocusManager
+                                                                              .instance
+                                                                              .primaryFocus
+                                                                              ?.unfocus();
+                                                                        },
+                                                                        child:
+                                                                            Padding(
+                                                                          padding:
+                                                                              MediaQuery.viewInsetsOf(context),
+                                                                          child:
+                                                                              AppPasswordGateWidget(
+                                                                            onVerified:
+                                                                                (success) async {
+                                                                              if (success == true) {
+                                                                                _model.unlockOk = await actions.setPrivateLock(
+                                                                                  _model.profileStats!.conversationId,
+                                                                                  false,
+                                                                                );
+                                                                                if (_model.unlockOk == true) {
+                                                                                  FFAppState().privateUnlockedAt = getCurrentTimestamp;
+                                                                                  safeSetState(() {});
+
+                                                                                  context.pushNamed(HomePageWidget.routeName);
+                                                                                } else {
+                                                                                  ScaffoldMessenger.of(context).showSnackBar(
+                                                                                    SnackBar(
+                                                                                      content: Text(
+                                                                                        'Could not unlock this chat',
+                                                                                        style: TextStyle(
+                                                                                          color: FlutterFlowTheme.of(context).primaryText,
+                                                                                        ),
+                                                                                      ),
+                                                                                      duration: Duration(milliseconds: 4000),
+                                                                                      backgroundColor: FlutterFlowTheme.of(context).secondary,
+                                                                                    ),
+                                                                                  );
+                                                                                }
+                                                                              } else {
+                                                                                if (Navigator.of(context).canPop()) {
+                                                                                  context.pop();
+                                                                                }
+                                                                                context.pushNamed(
+                                                                                  UserProfileWidget.routeName,
+                                                                                  queryParameters: {
+                                                                                    'otherUserId': serializeParam(
+                                                                                      widget.otherUserId,
+                                                                                      ParamType.String,
+                                                                                    ),
+                                                                                  }.withoutNulls,
+                                                                                );
+                                                                              }
+                                                                            },
+                                                                          ),
+                                                                        ),
+                                                                      );
+                                                                    },
+                                                                  ).then((value) =>
+                                                                      safeSetState(
+                                                                          () {}));
+
+                                                                  safeSetState(
+                                                                      () {});
+                                                                }
+                                                              },
+                                                              activeColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary,
+                                                              activeTrackColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary,
+                                                              inactiveTrackColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .alternate,
+                                                              inactiveThumbColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryBackground,
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      Divider(
+                                                        thickness: 1.0,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .alternate,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                if ((_model.myLock == false) &&
+                                                    (_model.settingsLoaded ==
+                                                        true))
+                                                  Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    10.0,
+                                                                    0.0,
+                                                                    15.0,
+                                                                    0.0),
+                                                        child: Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          children: [
+                                                            Row(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              children: [
+                                                                Icon(
+                                                                  Icons
+                                                                      .image_outlined,
+                                                                  color: Color(
+                                                                      0xFF935CCC),
+                                                                  size: 26.0,
+                                                                ),
+                                                                Column(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    Padding(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          5.0),
+                                                                      child:
+                                                                          Text(
+                                                                        FFLocalizations.of(context)
+                                                                            .getText(
+                                                                          'c48tfj6z' /* Save to Gallary */,
+                                                                        ),
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              font: GoogleFonts.plusJakartaSans(
+                                                                                fontWeight: FontWeight.w600,
+                                                                                fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                              ),
+                                                                              fontSize: 15.0,
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FontWeight.w600,
+                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                            ),
+                                                                      ),
+                                                                    ),
+                                                                    Text(
+                                                                      FFLocalizations.of(
+                                                                              context)
+                                                                          .getText(
+                                                                        'ia5ilxd4' /* Automatically sae media */,
+                                                                      ),
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .override(
+                                                                            font:
+                                                                                GoogleFonts.plusJakartaSans(
+                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                            ),
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).secondaryText,
+                                                                            fontSize:
+                                                                                13.0,
+                                                                            letterSpacing:
+                                                                                0.0,
+                                                                            fontWeight:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                            fontStyle:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                          ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ].divide(SizedBox(
+                                                                  width: 20.0)),
+                                                            ),
+                                                            Switch.adaptive(
+                                                              value: _model
+                                                                  .switchValue2!,
+                                                              onChanged:
+                                                                  (newValue) async {
+                                                                safeSetState(() =>
+                                                                    _model.switchValue2 =
+                                                                        newValue);
+                                                                if (newValue) {
+                                                                  await actions
+                                                                      .saveToGallerySetting(
+                                                                    _model
+                                                                        .profileStats!
+                                                                        .conversationId,
+                                                                    'on',
+                                                                  );
+                                                                } else {
+                                                                  await actions
+                                                                      .saveToGallerySetting(
+                                                                    _model
+                                                                        .profileStats!
+                                                                        .conversationId,
+                                                                    'off',
+                                                                  );
+                                                                }
+                                                              },
+                                                              activeColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary,
+                                                              activeTrackColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary,
+                                                              inactiveTrackColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .alternate,
+                                                              inactiveThumbColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryBackground,
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      Divider(
+                                                        thickness: 1.0,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .alternate,
+                                                      ),
+                                                    ],
+                                                  ),
                                                 InkWell(
                                                   splashColor:
                                                       Colors.transparent,
@@ -1399,7 +1922,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                                           Text(
                                                                         FFLocalizations.of(context)
                                                                             .getText(
-                                                                          'qpy9suo1' /* Media, Links and Files */,
+                                                                          '8lxsu8tk' /* Media, Links and Files */,
                                                                         ),
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .bodyMedium
@@ -2217,10 +2740,9 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                   ],
                                                 ),
                                               ]
-                                                  .divide(
-                                                      SizedBox(height: 10.0))
+                                                  .divide(SizedBox(height: 9.0))
                                                   .around(
-                                                      SizedBox(height: 10.0)),
+                                                      SizedBox(height: 9.0)),
                                             ),
                                           ),
                                         ),

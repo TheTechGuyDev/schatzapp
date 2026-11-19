@@ -46,6 +46,30 @@ Future<List<CallHistoryEntryStruct>> getCallHistory(
     }
   }
 
+  // Names the user saved their contacts as win over profile names.
+  final Map<String, String> savedNames = {};
+  final otherIds = callRows
+      .map((row) => row['caller_id'] == currentUserId
+          ? row['callee_id']
+          : row['caller_id'])
+      .whereType<String>()
+      .toSet()
+      .toList();
+  if (otherIds.isNotEmpty) {
+    try {
+      final contactRows = await SupaFlow.client
+          .from('contacts')
+          .select('contact_user_id, saved_name')
+          .eq('owner_id', currentUserId)
+          .inFilter('contact_user_id', otherIds);
+      for (final c in contactRows) {
+        final id = c['contact_user_id']?.toString();
+        final n = (c['saved_name'] ?? '').toString().trim();
+        if (id != null && n.isNotEmpty) savedNames[id] = n;
+      }
+    } catch (_) {}
+  }
+
   return callRows.map((row) {
     final callerId = row['caller_id'] as String;
     final calleeId = row['callee_id'] as String?;
@@ -62,6 +86,9 @@ Future<List<CallHistoryEntryStruct>> getCallHistory(
       otherPartyName = (row['caller_name'] as String?) ?? '';
       otherPartyAvatar = (row['caller_avatar'] as String?) ?? '';
     }
+
+    final saved = savedNames[otherPartyId];
+    if (saved != null && saved.isNotEmpty) otherPartyName = saved;
 
     final durationSeconds = row['duration_seconds'] as int?;
     final status = row['status'] as String?;

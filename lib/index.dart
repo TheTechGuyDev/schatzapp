@@ -150,7 +150,7 @@ export '/chat/gift_cardchatview/gift_cardchatview_widget.dart'
 export '/media_quality/media_quality_widget.dart' show MediaQualityWidget;
 export '/scheduled_calls/scheduled_calls_widget.dart' show ScheduledCallsWidget;
 export '/joincall/joincall_widget.dart' show JoincallWidget;
-export '/group_members_page/group_members_page_widget.dart'
+export '/chat/group_members_page/group_members_page_widget.dart'
     show GroupMembersPageWidget;
 export '/join_group_page/join_group_page_widget.dart' show JoinGroupPageWidget;
 export '/privatechat/private_chat/private_chat_widget.dart'

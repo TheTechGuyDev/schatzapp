@@ -221,3 +221,8 @@ export '/custom_code/actions/should_show_username_card.dart'
 export '/custom_code/actions/set_private_lock.dart' show setPrivateLock;
 export '/custom_code/actions/convert_group_to_private.dart'
     show convertGroupToPrivate;
+export '/custom_code/actions/call_tone.dart' show callTone;
+export '/custom_code/actions/is_my_private_lock.dart' show isMyPrivateLock;
+export '/custom_code/actions/is_group_private.dart' show isGroupPrivate;
+export '/custom_code/actions/save_to_gallery_setting.dart'
+    show saveToGallerySetting;

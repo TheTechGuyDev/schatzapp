@@ -105,3 +105,4 @@ export '/custom_code/widgets/join_group_view.dart' show JoinGroupView;
 export '/custom_code/widgets/group_avatar.dart' show GroupAvatar;
 export '/custom_code/widgets/private_chat_hub.dart' show PrivateChatHub;
 export '/custom_code/widgets/chat_search_field.dart' show ChatSearchField;
+export '/custom_code/widgets/auto_gallery_saver.dart' show AutoGallerySaver;

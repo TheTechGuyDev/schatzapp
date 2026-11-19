@@ -21,6 +21,8 @@ import '/custom_code/actions/join_agora_call.dart';
 // the call screen is minimized and shows the right time when it comes back.
 class _CallClock {
   static final Map<String, DateTime> start = {};
+  // When the outgoing call started dialing (for the 40 second cut-off).
+  static final Map<String, DateTime> dialStart = {};
 }
 
 // Keeps a call honest while it is running, even when the call screen is
@@ -222,6 +224,8 @@ class _BubbleBodyState extends State<_BubbleBody> {
   Timer? _tick;
   Timer? _poll;
   bool _closing = false;
+  bool _ringing = false;
+  int _n = 0;
 
   @override
   void initState() {
@@ -229,7 +233,7 @@ class _BubbleBodyState extends State<_BubbleBody> {
     _tick = Timer.periodic(const Duration(seconds: 1), (_) {
       if (mounted) setState(() {});
     });
-    _poll = Timer.periodic(const Duration(seconds: 2), (_) => _checkEnded());
+    _poll = Timer.periodic(const Duration(seconds: 1), (_) => _checkEnded());
   }
 
   @override
@@ -241,13 +245,32 @@ class _BubbleBodyState extends State<_BubbleBody> {
 
   Future<void> _checkEnded() async {
     if (_closing) return;
+    final answeredAlready = _CallClock.start.containsKey(widget.callId);
+    // Connected calls are checked every 2 seconds, dialing calls every second.
+    if (answeredAlready && (_n++ % 2 != 0)) return;
     try {
       final row = await SupaFlow.client
           .from('calls')
-          .select('status')
+          .select('status, ringing_at')
           .eq('id', widget.callId)
           .maybeSingle();
       final s = (row?['status'] ?? '').toString();
+      if (!answeredAlready) {
+        if (row?['ringing_at'] != null && !_ringing && mounted) {
+          setState(() => _ringing = true);
+        }
+        if (s == 'answered') {
+          _CallClock.start.putIfAbsent(widget.callId, () => DateTime.now());
+          _CallClock.dialStart.remove(widget.callId);
+          callTone('stop');
+        } else if (s == 'ringing') {
+          final st = _CallClock.dialStart[widget.callId];
+          if (st != null && DateTime.now().difference(st).inSeconds >= 40) {
+            await _end();
+            return;
+          }
+        }
+      }
       var removed = false;
       final me = SupaFlow.client.auth.currentUser?.id;
       if (me != null && s != 'ended' && s != 'missed' && s != 'declined') {
@@ -261,6 +284,8 @@ class _BubbleBodyState extends State<_BubbleBody> {
       }
       if (removed || s == 'ended' || s == 'missed' || s == 'declined') {
         _closing = true;
+        callTone('stop');
+        _CallClock.dialStart.remove(widget.callId);
         _CallGuard.stop();
         _CallBubble.hide();
         await leaveCallLocally();
@@ -277,10 +302,29 @@ class _BubbleBodyState extends State<_BubbleBody> {
     return h > 0 ? '$h:$m:$s' : '$m:$s';
   }
 
+  String _label() {
+    if (_CallClock.start.containsKey(widget.callId)) return _clock();
+    return _ringing ? 'Ringing...' : 'Calling...';
+  }
+
   void _open() {
     if (_closing) return;
     _closing = true;
     _CallBubble.hide();
+    if (!_CallClock.start.containsKey(widget.callId)) {
+      // Still dialing: go back to the calling screen.
+      widget.router.pushNamed('ActiveCallScreen', queryParameters: {
+        'callId': widget.callId,
+        'conversationId': widget.conversationId,
+        'calleeName': widget.name,
+        'calleeAvatar': widget.avatar,
+        'callType': widget.callType,
+        'agoraChannelName': widget.channel,
+        'agoraToken': 'rejoin',
+        'agoraUid': '${AgoraCallManager.myUid ?? 0}',
+      });
+      return;
+    }
     widget.router.pushNamed('ConnectedCallScreen', queryParameters: {
       'callId': widget.callId,
       'conversationId': widget.conversationId,
@@ -294,6 +338,8 @@ class _BubbleBodyState extends State<_BubbleBody> {
   Future<void> _end() async {
     if (_closing) return;
     _closing = true;
+    callTone('stop');
+    _CallClock.dialStart.remove(widget.callId);
     _CallGuard.stop();
     _CallBubble.hide();
     await endCall(widget.callId);
@@ -361,7 +407,7 @@ class _BubbleBodyState extends State<_BubbleBody> {
                   ),
                 ),
                 const SizedBox(width: 10),
-                Text(_clock(),
+                Text(_label(),
                     style: const TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w700,
@@ -434,6 +480,9 @@ class _ModernCallViewState extends State<ModernCallView>
   bool _videoOff = false;
   late bool _isVideo;
   bool _hungUp = false;
+  bool _ringingSeen = false;
+  bool _keepTone = false;
+  Timer? _dialTimer;
   bool _isGroup = false;
   List<Map<String, dynamic>> _members = [];
   String _hostId = '';
@@ -473,9 +522,41 @@ class _ModernCallViewState extends State<ModernCallView>
         if (mounted) setState(_syncSeconds);
       });
     }
+    if (widget.connected) {
+      callTone('stop');
+    } else {
+      _CallClock.dialStart.putIfAbsent(widget.callId, () => DateTime.now());
+      callTone('ringback');
+      _dialTimer =
+          Timer.periodic(const Duration(seconds: 1), (_) => _dialCheck());
+      _dialCheck();
+    }
     _poll();
     _pollTimer = Timer.periodic(const Duration(seconds: 2), (_) => _poll());
     _scheduleHide();
+  }
+
+  // While dialing: switches "Calling" to "Ringing" and cuts the call after
+  // 40 seconds without an answer.
+  Future<void> _dialCheck() async {
+    if (_hungUp || widget.connected || !mounted) return;
+    try {
+      final row = await SupaFlow.client
+          .from('calls')
+          .select('status, ringing_at')
+          .eq('id', widget.callId)
+          .maybeSingle();
+      if (row == null || !mounted || _hungUp) return;
+      if (row['ringing_at'] != null && !_ringingSeen) {
+        setState(() => _ringingSeen = true);
+      }
+      if ((row['status'] ?? '').toString() == 'ringing') {
+        final st = _CallClock.dialStart[widget.callId];
+        if (st != null && DateTime.now().difference(st).inSeconds >= 40) {
+          await _end();
+        }
+      }
+    } catch (_) {}
   }
 
   void _syncSeconds() {
@@ -490,6 +571,8 @@ class _ModernCallViewState extends State<ModernCallView>
     _timer?.cancel();
     _pollTimer?.cancel();
     _hideTimer?.cancel();
+    _dialTimer?.cancel();
+    if (!widget.connected && !_keepTone) callTone('stop');
     _pulse.dispose();
     super.dispose();
   }
@@ -811,13 +894,13 @@ class _ModernCallViewState extends State<ModernCallView>
   }
 
   void _minimize() {
-    if (!widget.connected) return;
     final overlay = Navigator.of(context, rootNavigator: true).overlay;
     final router = GoRouter.of(context);
     if (overlay == null) {
       _toast('Could not minimize the call');
       return;
     }
+    if (!widget.connected) _keepTone = true;
     _CallBubble.show(
       overlay: overlay,
       router: router,
@@ -863,8 +946,10 @@ class _ModernCallViewState extends State<ModernCallView>
   Future<void> _end() async {
     if (_hungUp) return;
     _hungUp = true;
+    callTone('stop');
     _CallGuard.stop();
     _CallClock.start.remove(widget.callId);
+    _CallClock.dialStart.remove(widget.callId);
     await endCall(widget.callId);
     _goToChatAfterCall();
   }
@@ -872,8 +957,10 @@ class _ModernCallViewState extends State<ModernCallView>
   Future<void> _onRemoteEnded() async {
     if (_hungUp) return;
     _hungUp = true;
+    callTone('stop');
     _CallGuard.stop();
     _CallClock.start.remove(widget.callId);
+    _CallClock.dialStart.remove(widget.callId);
     await leaveCallLocally();
     _goToChatAfterCall();
   }
@@ -969,10 +1056,7 @@ class _ModernCallViewState extends State<ModernCallView>
         padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
         child: Row(
           children: [
-            if (widget.connected)
-              _roundIcon(Icons.keyboard_arrow_down_rounded, _minimize)
-            else
-              const SizedBox(width: 42, height: 42),
+            _roundIcon(Icons.keyboard_arrow_down_rounded, _minimize),
             const Spacer(),
             _roundIcon(Icons.person_add_alt_1_rounded, _addPeople),
             if (widget.conversationId.isNotEmpty) ...[
@@ -1050,7 +1134,9 @@ class _ModernCallViewState extends State<ModernCallView>
   Widget _header() {
     final status = widget.connected
         ? _clock()
-        : (_isVideo ? 'Video calling...' : 'Calling...');
+        : (_ringingSeen
+            ? (_isVideo ? 'Video ringing...' : 'Ringing...')
+            : (_isVideo ? 'Video calling...' : 'Calling...'));
     return Column(
       children: [
         Text(widget.otherUserName,
@@ -1446,5 +1532,7 @@ class _ModernCallViewState extends State<ModernCallView>
     );
   }
 }
+// Set your widget name, define your parameter, and then add the
+// boilerplate code using the `</>` button on the right!
 // Set your widget name, define your parameter, and then add the
 // boilerplate code using the `</>` button on the right!

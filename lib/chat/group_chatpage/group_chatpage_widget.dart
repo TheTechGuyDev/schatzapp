@@ -670,7 +670,7 @@ class _GroupChatpageWidgetState extends State<GroupChatpageWidget> {
                             width: double.infinity,
                             height: 45.0,
                             onQueryChanged: (query) async {
-                              _model.searchQuery = query != '';
+                              _model.searchQuery = query;
                               safeSetState(() {});
                             },
                             onClose: () async {
@@ -760,8 +760,7 @@ class _GroupChatpageWidgetState extends State<GroupChatpageWidget> {
                                       initialTargetMessageId:
                                           widget.initialTargetMessageId,
                                       searchActive: _model.isSearching,
-                                      searchQuery:
-                                          _model.searchQuery.toString(),
+                                      searchQuery: _model.searchQuery,
                                       onReply:
                                           (messageId, content, isOwn) async {
                                         _model.replyingToMessageId = messageId;

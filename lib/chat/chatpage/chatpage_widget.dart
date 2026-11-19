@@ -3,6 +3,7 @@ import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
 import '/components/media_library_sheet_component_widget.dart';
 import '/components/web_chat_image_send_sheet_widget_widget.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'dart:async';
@@ -205,23 +206,32 @@ class _ChatpageWidgetState extends State<ChatpageWidget> {
                                 },
                               );
                             },
-                            child: Icon(
-                              Icons.home,
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              size: 30.0,
+                            child: FaIcon(
+                              FaIconData(const IconData(/* comment */ 0xf075,
+                                  fontFamily: 'FontAwesomeRegular',
+                                  fontPackage: 'font_awesome_flutter')),
+                              color: FlutterFlowTheme.of(context).primary,
+                              size: 28.0,
                             ),
                           ),
                           Icon(
                             Icons.call_outlined,
                             color: FlutterFlowTheme.of(context).primaryText,
-                            size: 30.0,
+                            size: 28.0,
+                          ),
+                          FaIcon(
+                            FaIconData(const IconData(/* wallet */ 0xf555,
+                                fontFamily: 'FontAwesomeSolid',
+                                fontPackage: 'font_awesome_flutter')),
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            size: 28.0,
                           ),
                           FaIcon(
                             FaIconData(const IconData(/* hornbill */ 0xf592,
                                 fontFamily: 'FontAwesomeBrands',
                                 fontPackage: 'font_awesome_flutter')),
                             color: FlutterFlowTheme.of(context).primaryText,
-                            size: 30.0,
+                            size: 28.0,
                           ),
                         ],
                       ),
@@ -252,22 +262,39 @@ class _ChatpageWidgetState extends State<ChatpageWidget> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      InkWell(
-                                        splashColor: Colors.transparent,
-                                        focusColor: Colors.transparent,
-                                        hoverColor: Colors.transparent,
-                                        highlightColor: Colors.transparent,
-                                        onTap: () async {
-                                          scaffoldKey.currentState!
-                                              .openDrawer();
-                                        },
-                                        child: Icon(
-                                          Icons.sort,
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                          size: 30.0,
+                                      if (_model.isPrivateLocked == false)
+                                        InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onTap: () async {
+                                            scaffoldKey.currentState!
+                                                .openDrawer();
+                                          },
+                                          child: Icon(
+                                            Icons.sort,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            size: 30.0,
+                                          ),
                                         ),
-                                      ),
+                                      if (_model.isPrivateLocked == true)
+                                        InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onTap: () async {
+                                            context.safePop();
+                                          },
+                                          child: Icon(
+                                            Icons.arrow_back,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            size: 30.0,
+                                          ),
+                                        ),
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             15.0, 0.0, 15.0, 0.0),
@@ -483,12 +510,16 @@ class _ChatpageWidgetState extends State<ChatpageWidget> {
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       if (_model.isPrivateLocked == false)
-                                        InkWell(
-                                          splashColor: Colors.transparent,
-                                          focusColor: Colors.transparent,
-                                          hoverColor: Colors.transparent,
-                                          highlightColor: Colors.transparent,
-                                          onTap: () async {
+                                        FlutterFlowIconButton(
+                                          borderRadius: 8.0,
+                                          buttonSize: 40.0,
+                                          icon: Icon(
+                                            Icons.videocam_outlined,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            size: 24.0,
+                                          ),
+                                          onPressed: () async {
                                             _model.callResult =
                                                 await actions.startCall(
                                               widget.conversationId!,
@@ -564,20 +595,18 @@ class _ChatpageWidgetState extends State<ChatpageWidget> {
 
                                             safeSetState(() {});
                                           },
-                                          child: Icon(
-                                            Icons.videocam_outlined,
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                            size: 30.0,
-                                          ),
                                         ),
                                       if (_model.isPrivateLocked == false)
-                                        InkWell(
-                                          splashColor: Colors.transparent,
-                                          focusColor: Colors.transparent,
-                                          hoverColor: Colors.transparent,
-                                          highlightColor: Colors.transparent,
-                                          onTap: () async {
+                                        FlutterFlowIconButton(
+                                          borderRadius: 8.0,
+                                          buttonSize: 40.0,
+                                          icon: Icon(
+                                            Icons.phone_outlined,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            size: 24.0,
+                                          ),
+                                          onPressed: () async {
                                             _model.callResult2 =
                                                 await actions.startCall(
                                               widget.conversationId!,
@@ -654,20 +683,18 @@ class _ChatpageWidgetState extends State<ChatpageWidget> {
 
                                             safeSetState(() {});
                                           },
-                                          child: Icon(
-                                            Icons.call_outlined,
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                            size: 25.0,
-                                          ),
                                         ),
                                       if (_model.isPrivateLocked == true)
-                                        InkWell(
-                                          splashColor: Colors.transparent,
-                                          focusColor: Colors.transparent,
-                                          hoverColor: Colors.transparent,
-                                          highlightColor: Colors.transparent,
-                                          onTap: () async {
+                                        FlutterFlowIconButton(
+                                          borderRadius: 8.0,
+                                          buttonSize: 40.0,
+                                          icon: Icon(
+                                            Icons.notifications_none_rounded,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            size: 24.0,
+                                          ),
+                                          onPressed: () async {
                                             _model.bimpSent =
                                                 await actions.sendBimp(
                                               widget.conversationId!,
@@ -719,12 +746,6 @@ class _ChatpageWidgetState extends State<ChatpageWidget> {
 
                                             safeSetState(() {});
                                           },
-                                          child: Icon(
-                                            Icons.notifications_none,
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                            size: 24.0,
-                                          ),
                                         ),
                                     ].divide(SizedBox(width: 20.0)),
                                   ),

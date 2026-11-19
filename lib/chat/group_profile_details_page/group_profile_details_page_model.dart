@@ -18,26 +18,30 @@ class GroupProfileDetailsPageModel
 
   bool isAdmin = false;
 
+  bool groupIsPrivate = false;
+
   ///  State fields for stateful widgets in this page.
 
+  // Stores action output result for [Custom Action - isGroupPrivate] action in Group_profile_Details_page widget.
+  bool? privateResult;
   // Stores action output result for [Custom Action - isGroupAdmin] action in Group_profile_Details_page widget.
   bool? adminResult;
   // Stores action output result for [Custom Action - changeGroupAvatar] action in IconButton widget.
   bool? avatarChanged;
   // State field(s) for Switch widget.
   bool? switchValue1;
+  // Stores action output result for [Custom Action - convertGroupToPrivate] action in Switch widget.
+  bool? convert2;
+  // Stores action output result for [Custom Action - removePrivateGroup] action in Switch widget.
+  bool? removed3;
+  // Stores action output result for [Custom Action - removePrivateGroup] action in Switch widget.
+  bool? removed4;
   // State field(s) for Switch widget.
   bool? switchValue2;
   // State field(s) for Switch widget.
   bool? switchValue3;
   // State field(s) for Switch widget.
   bool? switchValue4;
-  // Stores action output result for [Custom Action - convertGroupToPrivate] action in Row widget.
-  bool? convert;
-  // Stores action output result for [Custom Action - removePrivateGroup] action in Row widget.
-  bool? removed2;
-  // Stores action output result for [Custom Action - removePrivateGroup] action in Row widget.
-  bool? removed;
 
   @override
   void initState(BuildContext context) {}

@@ -499,6 +499,10 @@ class _ChatAppearance {
   final String? wallpaperUrl;
 }
 
+// Remembers each chat's theme/wallpaper so it never flashes back to the
+// default while the chat is rebuilt (for example when search opens).
+final Map<String, _ChatAppearance> _kAppearanceCache = {};
+
 class _ThemeBundle {
   const _ThemeBundle({
     required this.senderColor,
@@ -894,10 +898,16 @@ class _ChatThreadState extends State<ChatThread> {
             (r) => r['user_id'] == widget.currentUserId,
             orElse: () => const {},
           );
-          return _ChatAppearance(
+          final key = widget.conversationId;
+          if (row.isEmpty) {
+            return _kAppearanceCache[key] ?? const _ChatAppearance();
+          }
+          final fresh = _ChatAppearance(
             themeKey: row['chat_theme'] as String?,
             wallpaperUrl: row['chat_wallpaper_url'] as String?,
           );
+          _kAppearanceCache[key] = fresh;
+          return fresh;
         });
 
     _scrollController.addListener(_onScrollChanged);
@@ -1649,6 +1659,7 @@ class _ChatThreadState extends State<ChatThread> {
 
               return StreamBuilder<_ChatAppearance>(
                 stream: _themeStream,
+                initialData: _kAppearanceCache[widget.conversationId],
                 builder: (context, themeSnapshot) {
                   final appearance = themeSnapshot.data;
                   final bundle = _bundleFor(appearance?.themeKey);

@@ -6,6 +6,7 @@ import '/flutter_flow/ff_builtin_enums.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/settings_profile/app_password_gate/app_password_gate_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/index.dart';
@@ -46,6 +47,11 @@ class _GroupProfileDetailsPageWidgetState
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.privateResult = await actions.isGroupPrivate(
+        widget.groupConversationId!,
+      );
+      _model.groupIsPrivate = _model.privateResult!;
+      safeSetState(() {});
       _model.adminResult = await actions.isGroupAdmin(
         widget.groupConversationId!,
       );
@@ -53,7 +59,7 @@ class _GroupProfileDetailsPageWidgetState
       safeSetState(() {});
     });
 
-    _model.switchValue1 = false;
+    _model.switchValue1 = _model.groupIsPrivate;
     _model.switchValue2 = false;
     _model.switchValue3 = true;
     _model.switchValue4 = true;
@@ -131,17 +137,16 @@ class _GroupProfileDetailsPageWidgetState
                             children: [
                               Row(
                                 mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                    (FFMainAxisAlignment.spaceBetween)
+                                        .flutterValue,
                                 children: [
                                   Container(
                                     width: 40.0,
                                     height: 40.0,
                                     decoration: BoxDecoration(
-                                      color: Color(0x20E9EDEF),
+                                      color: Color(0xFFE4DAEF),
                                       shape: BoxShape.circle,
-                                      border: Border.all(
-                                        color: FlutterFlowTheme.of(context)
-                                            .alternate,
-                                      ),
                                     ),
                                     child: Padding(
                                       padding: EdgeInsets.all(5.0),
@@ -156,9 +161,26 @@ class _GroupProfileDetailsPageWidgetState
                                         child: Icon(
                                           Icons.arrow_back,
                                           color: FlutterFlowTheme.of(context)
-                                              .primaryText,
+                                              .primary,
                                           size: 30.0,
                                         ),
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    width: 40.0,
+                                    height: 40.0,
+                                    decoration: BoxDecoration(
+                                      color: Color(0xFFE4DAEF),
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsets.all(5.0),
+                                      child: Icon(
+                                        Icons.keyboard_control,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        size: 30.0,
                                       ),
                                     ),
                                   ),
@@ -169,50 +191,93 @@ class _GroupProfileDetailsPageWidgetState
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
-                                      Stack(
-                                        alignment:
-                                            AlignmentDirectional(1.0, 1.0),
-                                        children: [
-                                          Container(
-                                            width: 110.0,
-                                            height: 110.0,
-                                            child: custom_widgets.GroupAvatar(
+                                      Container(
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(30.0),
+                                          border: Border.all(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
+                                          ),
+                                        ),
+                                        child: Stack(
+                                          alignment:
+                                              AlignmentDirectional(1.0, 1.0),
+                                          children: [
+                                            Container(
                                               width: 110.0,
                                               height: 110.0,
-                                              imageUrl:
-                                                  groupProfileDetailsPageConversationsRow!
-                                                      .avatarUrl!,
-                                              size: 110.0,
-                                            ),
-                                          ),
-                                          if (_model.isAdmin == true)
-                                            FlutterFlowIconButton(
-                                              borderRadius: 8.0,
-                                              buttonSize: 40.0,
-                                              icon: Icon(
-                                                Icons.camera_alt_outlined,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryText,
-                                                size: 24.0,
+                                              child: custom_widgets.GroupAvatar(
+                                                width: 110.0,
+                                                height: 110.0,
+                                                imageUrl:
+                                                    valueOrDefault<String>(
+                                                  groupProfileDetailsPageConversationsRow
+                                                      ?.avatarUrl,
+                                                  'none',
+                                                ),
+                                                size: 110.0,
                                               ),
-                                              onPressed: () async {
-                                                _model.avatarChanged =
-                                                    await actions
-                                                        .changeGroupAvatar(
-                                                  widget.groupConversationId!,
-                                                );
-                                                if (_model.avatarChanged ==
-                                                    true) {
-                                                  _model.isAdmin =
-                                                      _model.isAdmin;
-                                                  safeSetState(() {});
-                                                }
-
-                                                safeSetState(() {});
-                                              },
                                             ),
-                                        ],
+                                            if (_model.isAdmin == true)
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 0.0, 3.0, 3.0),
+                                                child: Container(
+                                                  width: 40.0,
+                                                  height: 40.0,
+                                                  decoration: BoxDecoration(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .tertiary,
+                                                    shape: BoxShape.circle,
+                                                    border: Border.all(
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .primaryBackground,
+                                                      width: 2.0,
+                                                    ),
+                                                  ),
+                                                  child: Visibility(
+                                                    visible:
+                                                        _model.isAdmin == true,
+                                                    child:
+                                                        FlutterFlowIconButton(
+                                                      borderRadius: 8.0,
+                                                      buttonSize: 40.0,
+                                                      icon: Icon(
+                                                        Icons
+                                                            .camera_alt_outlined,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        size: 23.0,
+                                                      ),
+                                                      onPressed: () async {
+                                                        _model.avatarChanged =
+                                                            await actions
+                                                                .changeGroupAvatar(
+                                                          widget
+                                                              .groupConversationId!,
+                                                        );
+                                                        if (_model
+                                                                .avatarChanged ==
+                                                            true) {
+                                                          _model.isAdmin =
+                                                              _model.isAdmin;
+                                                          safeSetState(() {});
+                                                        }
+
+                                                        safeSetState(() {});
+                                                      },
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                          ],
+                                        ),
                                       ),
                                       Flexible(
                                         child: Padding(
@@ -232,7 +297,7 @@ class _GroupProfileDetailsPageWidgetState
                                                   child: Text(
                                                     valueOrDefault<String>(
                                                       groupProfileDetailsPageConversationsRow
-                                                          .name,
+                                                          ?.name,
                                                       'KESTA WEALTH LANDLORD\'S',
                                                     ),
                                                     textAlign: TextAlign.center,
@@ -267,18 +332,19 @@ class _GroupProfileDetailsPageWidgetState
                                                   ),
                                                 ),
                                               ),
-                                              FaIcon(
-                                                FaIconData(const IconData(
-                                                    /* pen */ 0xf304,
-                                                    fontFamily:
-                                                        'FontAwesomeSolid',
-                                                    fontPackage:
-                                                        'font_awesome_flutter')),
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryText,
-                                                size: 15.0,
-                                              ),
+                                              if (_model.isAdmin == true)
+                                                FaIcon(
+                                                  FaIconData(const IconData(
+                                                      /* pen */ 0xf304,
+                                                      fontFamily:
+                                                          'FontAwesomeSolid',
+                                                      fontPackage:
+                                                          'font_awesome_flutter')),
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText,
+                                                  size: 15.0,
+                                                ),
                                             ],
                                           ),
                                         ),
@@ -293,12 +359,12 @@ class _GroupProfileDetailsPageWidgetState
                                               child: Padding(
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(
-                                                        25.0, 0.0, 10.0, 0.0),
+                                                        25.0, 5.0, 10.0, 0.0),
                                                 child: Text(
                                                   valueOrDefault<String>(
                                                     groupProfileDetailsPageConversationsRow
-                                                        .description,
-                                                    'This Group is for fun only 😄😅😂🤣',
+                                                        ?.description,
+                                                    'This Group is for fun only 😄',
                                                   ),
                                                   textAlign: TextAlign.center,
                                                   maxLines: 2,
@@ -309,7 +375,7 @@ class _GroupProfileDetailsPageWidgetState
                                                         font: GoogleFonts
                                                             .plusJakartaSans(
                                                           fontWeight:
-                                                              FontWeight.w500,
+                                                              FontWeight.normal,
                                                           fontStyle:
                                                               FlutterFlowTheme.of(
                                                                       context)
@@ -323,7 +389,7 @@ class _GroupProfileDetailsPageWidgetState
                                                         fontSize: 14.0,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
-                                                            FontWeight.w500,
+                                                            FontWeight.normal,
                                                         fontStyle:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -333,166 +399,186 @@ class _GroupProfileDetailsPageWidgetState
                                                 ),
                                               ),
                                             ),
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      0.0, 0.0, 10.0, 0.0),
-                                              child: FaIcon(
-                                                FaIconData(const IconData(
-                                                    /* pen */ 0xf304,
-                                                    fontFamily:
-                                                        'FontAwesomeSolid',
-                                                    fontPackage:
-                                                        'font_awesome_flutter')),
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryText,
-                                                size: 15.0,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      FutureBuilder<List<ProfilesRow>>(
-                                        future: ProfilesTable().querySingleRow(
-                                          queryFn: (q) => q.eqOrNull(
-                                            'id',
-                                            groupProfileDetailsPageConversationsRow
-                                                .createdBy,
-                                          ),
-                                        ),
-                                        builder: (context, snapshot) {
-                                          // Customize what your widget looks like when it's loading.
-                                          if (!snapshot.hasData) {
-                                            return Center(
-                                              child: SizedBox(
-                                                width: 50.0,
-                                                height: 50.0,
-                                                child:
-                                                    CircularProgressIndicator(
-                                                  valueColor:
-                                                      AlwaysStoppedAnimation<
-                                                          Color>(
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                                  ),
-                                                ),
-                                              ),
-                                            );
-                                          }
-                                          List<ProfilesRow> rowProfilesRowList =
-                                              snapshot.data!;
-
-                                          final rowProfilesRow =
-                                              rowProfilesRowList.isNotEmpty
-                                                  ? rowProfilesRowList.first
-                                                  : null;
-
-                                          return Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
+                                            if (_model.isAdmin == true)
                                               Padding(
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(
-                                                        0.0, 10.0, 0.0, 0.0),
-                                                child: Text(
-                                                  'Created by ${valueOrDefault<String>(
-                                                    rowProfilesRow?.fullName,
-                                                    'John Smith',
-                                                  )}',
-                                                  style: FlutterFlowTheme.of(
+                                                        0.0, 0.0, 10.0, 0.0),
+                                                child: FaIcon(
+                                                  FaIconData(const IconData(
+                                                      /* pen */ 0xf304,
+                                                      fontFamily:
+                                                          'FontAwesomeSolid',
+                                                      fontPackage:
+                                                          'font_awesome_flutter')),
+                                                  color: FlutterFlowTheme.of(
                                                           context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        font: GoogleFonts
-                                                            .plusJakartaSans(
-                                                          fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
-                                                                  .fontStyle,
-                                                        ),
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondaryText,
-                                                        fontSize: 13.0,
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .fontWeight,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .fontStyle,
-                                                      ),
+                                                      .primaryText,
+                                                  size: 15.0,
                                                 ),
                                               ),
-                                              if (groupProfileDetailsPageConversationsRow
-                                                      .privateOrigin ==
-                                                  'converted')
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 10.0, 0.0, 0.0),
-                                                  child: Text(
-                                                    'Converted to Private Chat Lock on ${dateTimeFormat(
-                                                      "d/M/y",
-                                                      groupProfileDetailsPageConversationsRow
-                                                          .privateSince,
-                                                      locale:
-                                                          FFLocalizations.of(
+                                          ],
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 10.0, 0.0, 0.0),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .tertiary,
+                                            borderRadius:
+                                                BorderRadius.circular(15.0),
+                                          ),
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    10.0, 5.0, 10.0, 5.0),
+                                            child: FutureBuilder<
+                                                List<ProfilesRow>>(
+                                              future: ProfilesTable()
+                                                  .querySingleRow(
+                                                queryFn: (q) => q.eqOrNull(
+                                                  'id',
+                                                  groupProfileDetailsPageConversationsRow
+                                                      ?.createdBy,
+                                                ),
+                                              ),
+                                              builder: (context, snapshot) {
+                                                // Customize what your widget looks like when it's loading.
+                                                if (!snapshot.hasData) {
+                                                  return Center(
+                                                    child: SizedBox(
+                                                      width: 50.0,
+                                                      height: 50.0,
+                                                      child:
+                                                          CircularProgressIndicator(
+                                                        valueColor:
+                                                            AlwaysStoppedAnimation<
+                                                                Color>(
+                                                          FlutterFlowTheme.of(
                                                                   context)
-                                                              .languageCode,
-                                                    )}',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          font: GoogleFonts
-                                                              .plusJakartaSans(
-                                                            fontWeight:
-                                                                FlutterFlowTheme.of(
+                                                              .primary,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  );
+                                                }
+                                                List<ProfilesRow>
+                                                    rowProfilesRowList =
+                                                    snapshot.data!;
+
+                                                final rowProfilesRow =
+                                                    rowProfilesRowList
+                                                            .isNotEmpty
+                                                        ? rowProfilesRowList
+                                                            .first
+                                                        : null;
+
+                                                return Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Text(
+                                                      'Created by ${valueOrDefault<String>(
+                                                        rowProfilesRow
+                                                            ?.fullName,
+                                                        'John Smith',
+                                                      )}',
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                font: GoogleFonts
+                                                                    .plusJakartaSans(
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontStyle,
+                                                                ),
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                                fontSize: 12.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyMedium
                                                                     .fontWeight,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
+                                                                fontStyle: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyMedium
                                                                     .fontStyle,
-                                                          ),
-                                                          color: FlutterFlowTheme
+                                                              ),
+                                                    ),
+                                                    if (groupProfileDetailsPageConversationsRow
+                                                            ?.privateOrigin ==
+                                                        'converted')
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    2.0,
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0),
+                                                        child: Text(
+                                                          'Converted to Private Chat${dateTimeFormat(
+                                                            "d/M/y",
+                                                            groupProfileDetailsPageConversationsRow
+                                                                ?.privateSince,
+                                                            locale: FFLocalizations
+                                                                    .of(context)
+                                                                .languageCode,
+                                                          )}',
+                                                          style: FlutterFlowTheme
                                                                   .of(context)
-                                                              .secondaryText,
-                                                          fontSize: 13.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
-                                                                  .fontStyle,
+                                                              .bodyMedium
+                                                              .override(
+                                                                font: GoogleFonts
+                                                                    .plusJakartaSans(
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontStyle,
+                                                                ),
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                                fontSize: 12.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontWeight,
+                                                                fontStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontStyle,
+                                                              ),
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
                                                         ),
-                                                  ),
-                                                ),
-                                            ],
-                                          );
-                                        },
+                                                      ),
+                                                  ],
+                                                );
+                                              },
+                                            ),
+                                          ),
+                                        ),
                                       ),
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
@@ -500,20 +586,14 @@ class _GroupProfileDetailsPageWidgetState
                                         child: Container(
                                           height: 95.0,
                                           decoration: BoxDecoration(),
-                                          child: GridView(
-                                            padding: EdgeInsets.zero,
-                                            gridDelegate:
-                                                SliverGridDelegateWithFixedCrossAxisCount(
-                                              crossAxisCount: 4,
-                                              crossAxisSpacing: 10.0,
-                                              mainAxisSpacing: 10.0,
-                                              childAspectRatio: 1.0,
-                                            ),
-                                            shrinkWrap: true,
-                                            scrollDirection: Axis.vertical,
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                (FFMainAxisAlignment.center)
+                                                    .flutterValue,
                                             children: [
                                               if ((groupProfileDetailsPageConversationsRow
-                                                          .isPrivateGroup !=
+                                                          ?.isPrivateGroup !=
                                                       true) ||
                                                   (_model.isAdmin == true))
                                                 Padding(
@@ -641,7 +721,7 @@ class _GroupProfileDetailsPageWidgetState
                                                   ),
                                                 ),
                                               if (groupProfileDetailsPageConversationsRow
-                                                      .isPrivateGroup !=
+                                                      ?.isPrivateGroup !=
                                                   true)
                                                 InkWell(
                                                   splashColor:
@@ -659,7 +739,7 @@ class _GroupProfileDetailsPageWidgetState
                                                           .groupConversationId!,
                                                       valueOrDefault<String>(
                                                         groupProfileDetailsPageConversationsRow
-                                                            .name,
+                                                            ?.name,
                                                         'Group',
                                                       ),
                                                       false,
@@ -745,7 +825,7 @@ class _GroupProfileDetailsPageWidgetState
                                                   ),
                                                 ),
                                               if (groupProfileDetailsPageConversationsRow
-                                                      .isPrivateGroup !=
+                                                      ?.isPrivateGroup !=
                                                   true)
                                                 InkWell(
                                                   splashColor:
@@ -763,7 +843,7 @@ class _GroupProfileDetailsPageWidgetState
                                                           .groupConversationId!,
                                                       valueOrDefault<String>(
                                                         groupProfileDetailsPageConversationsRow
-                                                            .name,
+                                                            ?.name,
                                                         'Group',
                                                       ),
                                                       true,
@@ -864,19 +944,19 @@ class _GroupProfileDetailsPageWidgetState
                                                       'groupNameParam':
                                                           serializeParam(
                                                         groupProfileDetailsPageConversationsRow
-                                                            .name,
+                                                            ?.name,
                                                         ParamType.String,
                                                       ),
                                                       'groupAvatarParam':
                                                           serializeParam(
                                                         groupProfileDetailsPageConversationsRow
-                                                            .avatarUrl,
+                                                            ?.avatarUrl,
                                                         ParamType.String,
                                                       ),
                                                       'displayName':
                                                           serializeParam(
                                                         groupProfileDetailsPageConversationsRow
-                                                            .name,
+                                                            ?.name,
                                                         ParamType.String,
                                                       ),
                                                       'conversationId':
@@ -888,7 +968,7 @@ class _GroupProfileDetailsPageWidgetState
                                                       'displayAvatar':
                                                           serializeParam(
                                                         groupProfileDetailsPageConversationsRow
-                                                            .avatarUrl,
+                                                            ?.avatarUrl,
                                                         ParamType.String,
                                                       ),
                                                       'startSearch':
@@ -973,7 +1053,7 @@ class _GroupProfileDetailsPageWidgetState
                                                   ),
                                                 ),
                                               ),
-                                            ],
+                                            ].divide(SizedBox(width: 10.0)),
                                           ),
                                         ),
                                       ),
@@ -1064,7 +1144,7 @@ class _GroupProfileDetailsPageWidgetState
                                                                       FFLocalizations.of(
                                                                               context)
                                                                           .getText(
-                                                                        'w8htxd75' /* Private */,
+                                                                        'w8htxd75' /* Convert to Private Chat Lock */,
                                                                       ),
                                                                       style: FlutterFlowTheme.of(
                                                                               context)
@@ -1100,6 +1180,235 @@ class _GroupProfileDetailsPageWidgetState
                                                                 safeSetState(() =>
                                                                     _model.switchValue1 =
                                                                         newValue);
+                                                                if (newValue) {
+                                                                  await showModalBottomSheet(
+                                                                    isScrollControlled:
+                                                                        true,
+                                                                    backgroundColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    enableDrag:
+                                                                        false,
+                                                                    context:
+                                                                        context,
+                                                                    builder:
+                                                                        (context) {
+                                                                      return GestureDetector(
+                                                                        onTap:
+                                                                            () {
+                                                                          FocusScope.of(context)
+                                                                              .unfocus();
+                                                                          FocusManager
+                                                                              .instance
+                                                                              .primaryFocus
+                                                                              ?.unfocus();
+                                                                        },
+                                                                        child:
+                                                                            Padding(
+                                                                          padding:
+                                                                              MediaQuery.viewInsetsOf(context),
+                                                                          child:
+                                                                              AppPasswordGateWidget(
+                                                                            onVerified:
+                                                                                (success) async {
+                                                                              if (success == true) {
+                                                                                _model.convert2 = await actions.convertGroupToPrivate(
+                                                                                  widget.groupConversationId!,
+                                                                                );
+                                                                                if (_model.convert2 == true) {
+                                                                                  context.pushNamed(HomePageWidget.routeName);
+                                                                                } else {
+                                                                                  ScaffoldMessenger.of(context).showSnackBar(
+                                                                                    SnackBar(
+                                                                                      content: Text(
+                                                                                        'Could not convert the group',
+                                                                                        style: TextStyle(
+                                                                                          color: FlutterFlowTheme.of(context).primaryText,
+                                                                                        ),
+                                                                                      ),
+                                                                                      duration: Duration(milliseconds: 4000),
+                                                                                      backgroundColor: FlutterFlowTheme.of(context).secondary,
+                                                                                    ),
+                                                                                  );
+                                                                                }
+                                                                              } else {
+                                                                                if (Navigator.of(context).canPop()) {
+                                                                                  context.pop();
+                                                                                }
+                                                                                context.pushNamed(
+                                                                                  GroupProfileDetailsPageWidget.routeName,
+                                                                                  queryParameters: {
+                                                                                    'groupConversationId': serializeParam(
+                                                                                      widget.groupConversationId,
+                                                                                      ParamType.String,
+                                                                                    ),
+                                                                                  }.withoutNulls,
+                                                                                );
+                                                                              }
+                                                                            },
+                                                                          ),
+                                                                        ),
+                                                                      );
+                                                                    },
+                                                                  ).then((value) =>
+                                                                      safeSetState(
+                                                                          () {}));
+
+                                                                  safeSetState(
+                                                                      () {});
+                                                                } else {
+                                                                  await showModalBottomSheet(
+                                                                    isScrollControlled:
+                                                                        true,
+                                                                    backgroundColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    enableDrag:
+                                                                        false,
+                                                                    context:
+                                                                        context,
+                                                                    builder:
+                                                                        (context) {
+                                                                      return GestureDetector(
+                                                                        onTap:
+                                                                            () {
+                                                                          FocusScope.of(context)
+                                                                              .unfocus();
+                                                                          FocusManager
+                                                                              .instance
+                                                                              .primaryFocus
+                                                                              ?.unfocus();
+                                                                        },
+                                                                        child:
+                                                                            Padding(
+                                                                          padding:
+                                                                              MediaQuery.viewInsetsOf(context),
+                                                                          child:
+                                                                              AppPasswordGateWidget(
+                                                                            onVerified:
+                                                                                (success) async {
+                                                                              if (success == true) {
+                                                                                if (groupProfileDetailsPageConversationsRow?.privateOrigin == 'converted') {
+                                                                                  var confirmDialogResponse = await showDialog<bool>(
+                                                                                        context: context,
+                                                                                        builder: (alertDialogContext) {
+                                                                                          return AlertDialog(
+                                                                                            title: Text('Remove from Private Chat Lock'),
+                                                                                            content: Text('Removing this group from Private Chat Lock will permanently delete all messages exchanged while the group was in Private Chat Lock. This action cannot be undone.'),
+                                                                                            actions: [
+                                                                                              TextButton(
+                                                                                                onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                                child: Text('Cancel'),
+                                                                                              ),
+                                                                                              TextButton(
+                                                                                                onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                                child: Text('Remove'),
+                                                                                              ),
+                                                                                            ],
+                                                                                          );
+                                                                                        },
+                                                                                      ) ??
+                                                                                      false;
+                                                                                  if (confirmDialogResponse) {
+                                                                                    _model.removed4 = await actions.removePrivateGroup(
+                                                                                      widget.groupConversationId!,
+                                                                                    );
+                                                                                    if (_model.removed4 == true) {
+                                                                                      context.pushNamed(HomePageWidget.routeName);
+                                                                                    } else {
+                                                                                      ScaffoldMessenger.of(context).showSnackBar(
+                                                                                        SnackBar(
+                                                                                          content: Text(
+                                                                                            'Could not remove the group',
+                                                                                            style: TextStyle(
+                                                                                              color: FlutterFlowTheme.of(context).primaryText,
+                                                                                            ),
+                                                                                          ),
+                                                                                          duration: Duration(milliseconds: 4000),
+                                                                                          backgroundColor: FlutterFlowTheme.of(context).secondary,
+                                                                                        ),
+                                                                                      );
+                                                                                    }
+                                                                                  } else {
+                                                                                    if (Navigator.of(context).canPop()) {
+                                                                                      context.pop();
+                                                                                    }
+                                                                                    context.pushNamed(GroupProfileDetailsPageWidget.routeName);
+                                                                                  }
+                                                                                } else {
+                                                                                  var confirmDialogResponse = await showDialog<bool>(
+                                                                                        context: context,
+                                                                                        builder: (alertDialogContext) {
+                                                                                          return AlertDialog(
+                                                                                            title: Text('Remove from Private Chat Lock'),
+                                                                                            content: Text('Removing this group from Private Chat Lock will permanently delete the group and its messages. This action cannot be undone.'),
+                                                                                            actions: [
+                                                                                              TextButton(
+                                                                                                onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                                child: Text('Cancel'),
+                                                                                              ),
+                                                                                              TextButton(
+                                                                                                onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                                child: Text('Remove'),
+                                                                                              ),
+                                                                                            ],
+                                                                                          );
+                                                                                        },
+                                                                                      ) ??
+                                                                                      false;
+                                                                                  if (confirmDialogResponse) {
+                                                                                    _model.removed3 = await actions.removePrivateGroup(
+                                                                                      widget.groupConversationId!,
+                                                                                    );
+                                                                                    if (_model.removed3 == true) {
+                                                                                      context.pushNamed(HomePageWidget.routeName);
+                                                                                    } else {
+                                                                                      ScaffoldMessenger.of(context).showSnackBar(
+                                                                                        SnackBar(
+                                                                                          content: Text(
+                                                                                            'Could not remove the group',
+                                                                                            style: TextStyle(
+                                                                                              color: FlutterFlowTheme.of(context).primaryText,
+                                                                                            ),
+                                                                                          ),
+                                                                                          duration: Duration(milliseconds: 4000),
+                                                                                          backgroundColor: FlutterFlowTheme.of(context).secondary,
+                                                                                        ),
+                                                                                      );
+                                                                                    }
+                                                                                  } else {
+                                                                                    if (Navigator.of(context).canPop()) {
+                                                                                      context.pop();
+                                                                                    }
+                                                                                    context.pushNamed(GroupProfileDetailsPageWidget.routeName);
+                                                                                  }
+                                                                                }
+                                                                              } else {
+                                                                                if (Navigator.of(context).canPop()) {
+                                                                                  context.pop();
+                                                                                }
+                                                                                context.pushNamed(
+                                                                                  GroupProfileDetailsPageWidget.routeName,
+                                                                                  queryParameters: {
+                                                                                    'groupConversationId': serializeParam(
+                                                                                      widget.groupConversationId,
+                                                                                      ParamType.String,
+                                                                                    ),
+                                                                                  }.withoutNulls,
+                                                                                );
+                                                                              }
+                                                                            },
+                                                                          ),
+                                                                        ),
+                                                                      );
+                                                                    },
+                                                                  ).then((value) =>
+                                                                      safeSetState(
+                                                                          () {}));
+
+                                                                  safeSetState(
+                                                                      () {});
+                                                                }
                                                               },
                                                               activeColor: Color(
                                                                   0xFF935CCC),
@@ -1337,6 +1646,31 @@ class _GroupProfileDetailsPageWidgetState
                                                                                 FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                           ),
                                                                     ),
+                                                                    Text(
+                                                                      FFLocalizations.of(
+                                                                              context)
+                                                                          .getText(
+                                                                        'xmbik5qg' /* Turn on or off notifications */,
+                                                                      ),
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .override(
+                                                                            font:
+                                                                                GoogleFonts.plusJakartaSans(
+                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                            ),
+                                                                            fontSize:
+                                                                                12.0,
+                                                                            letterSpacing:
+                                                                                0.0,
+                                                                            fontWeight:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                            fontStyle:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                          ),
+                                                                    ),
                                                                   ].divide(SizedBox(
                                                                       height:
                                                                           5.0)),
@@ -1448,6 +1782,31 @@ class _GroupProfileDetailsPageWidgetState
                                                                                 0.0,
                                                                             fontWeight:
                                                                                 FontWeight.w600,
+                                                                            fontStyle:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                          ),
+                                                                    ),
+                                                                    Text(
+                                                                      FFLocalizations.of(
+                                                                              context)
+                                                                          .getText(
+                                                                        'wbzc56f8' /* Automatically save media */,
+                                                                      ),
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .override(
+                                                                            font:
+                                                                                GoogleFonts.plusJakartaSans(
+                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                            ),
+                                                                            fontSize:
+                                                                                12.0,
+                                                                            letterSpacing:
+                                                                                0.0,
+                                                                            fontWeight:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontWeight,
                                                                             fontStyle:
                                                                                 FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                           ),
@@ -1985,11 +2344,7 @@ class _GroupProfileDetailsPageWidgetState
                                                                     .max,
                                                             children: [
                                                               Text(
-                                                                FFLocalizations.of(
-                                                                        context)
-                                                                    .getText(
-                                                                  'tuv8sn5y' /* 23 */,
-                                                                ),
+                                                                '23 items',
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyMedium
@@ -2007,7 +2362,7 @@ class _GroupProfileDetailsPageWidgetState
                                                                               context)
                                                                           .secondaryText,
                                                                       fontSize:
-                                                                          12.0,
+                                                                          11.0,
                                                                       letterSpacing:
                                                                           0.0,
                                                                       fontWeight: FlutterFlowTheme.of(
@@ -2369,7 +2724,7 @@ class _GroupProfileDetailsPageWidgetState
                                                                         .groupConversationId,
                                                                 groupNameParam:
                                                                     groupProfileDetailsPageConversationsRow
-                                                                        .name,
+                                                                        ?.name,
                                                               ),
                                                             ),
                                                           );
@@ -2484,7 +2839,7 @@ class _GroupProfileDetailsPageWidgetState
                                                                         ?.role ==
                                                                     'admin') &&
                                                                 (groupProfileDetailsPageConversationsRow
-                                                                        .isPrivateGroup !=
+                                                                        ?.isPrivateGroup !=
                                                                     true))
                                                               Divider(
                                                                 thickness: 1.0,
@@ -2496,7 +2851,7 @@ class _GroupProfileDetailsPageWidgetState
                                                                         ?.role ==
                                                                     'admin') &&
                                                                 (groupProfileDetailsPageConversationsRow
-                                                                        .isPrivateGroup !=
+                                                                        ?.isPrivateGroup !=
                                                                     true))
                                                               InkWell(
                                                                 splashColor: Colors
@@ -2606,426 +2961,13 @@ class _GroupProfileDetailsPageWidgetState
                                                                           15.0)),
                                                                 ),
                                                               ),
-                                                            if ((containerConversationParticipantsRow
-                                                                        ?.role ==
-                                                                    'admin') &&
-                                                                (groupProfileDetailsPageConversationsRow
-                                                                        .isPrivateGroup !=
-                                                                    true))
-                                                              InkWell(
-                                                                splashColor: Colors
-                                                                    .transparent,
-                                                                focusColor: Colors
-                                                                    .transparent,
-                                                                hoverColor: Colors
-                                                                    .transparent,
-                                                                highlightColor:
-                                                                    Colors
-                                                                        .transparent,
-                                                                onTap:
-                                                                    () async {
-                                                                  var confirmDialogResponse =
-                                                                      await showDialog<
-                                                                              bool>(
-                                                                            context:
-                                                                                context,
-                                                                            builder:
-                                                                                (alertDialogContext) {
-                                                                              return AlertDialog(
-                                                                                title: Text('Convert to Private Chat Lock'),
-                                                                                content: Text('This group will move out of Groups into Private Chat. Calls are replaced by Bimp, only pictures and videos can be shared, and location sharing is turned off. Your earlier messages are kept.'),
-                                                                                actions: [
-                                                                                  TextButton(
-                                                                                    onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                    child: Text('Cancel'),
-                                                                                  ),
-                                                                                  TextButton(
-                                                                                    onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                    child: Text('Convert'),
-                                                                                  ),
-                                                                                ],
-                                                                              );
-                                                                            },
-                                                                          ) ??
-                                                                          false;
-                                                                  if (confirmDialogResponse) {
-                                                                    _model.convert =
-                                                                        await actions
-                                                                            .convertGroupToPrivate(
-                                                                      widget
-                                                                          .groupConversationId!,
-                                                                    );
-                                                                    if (_model
-                                                                            .convert ==
-                                                                        true) {
-                                                                      context
-                                                                          .goNamed(
-                                                                        HomePageWidget
-                                                                            .routeName,
-                                                                        extra: <String,
-                                                                            dynamic>{
-                                                                          '__transition_info__':
-                                                                              TransitionInfo(
-                                                                            hasTransition:
-                                                                                true,
-                                                                            transitionType:
-                                                                                PageTransitionType.leftToRight,
-                                                                          ),
-                                                                        },
-                                                                      );
-                                                                    } else {
-                                                                      ScaffoldMessenger.of(
-                                                                              context)
-                                                                          .showSnackBar(
-                                                                        SnackBar(
-                                                                          content:
-                                                                              Text(
-                                                                            'Could not convert the group',
-                                                                            style:
-                                                                                TextStyle(
-                                                                              color: FlutterFlowTheme.of(context).primaryText,
-                                                                            ),
-                                                                          ),
-                                                                          duration:
-                                                                              Duration(milliseconds: 4000),
-                                                                          backgroundColor:
-                                                                              FlutterFlowTheme.of(context).secondary,
-                                                                        ),
-                                                                      );
-                                                                    }
-                                                                  }
-
-                                                                  safeSetState(
-                                                                      () {});
-                                                                },
-                                                                child: Row(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  children: [
-                                                                    Icon(
-                                                                      Icons
-                                                                          .lock_outline,
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primary,
-                                                                      size:
-                                                                          24.0,
-                                                                    ),
-                                                                    Text(
-                                                                      FFLocalizations.of(
-                                                                              context)
-                                                                          .getText(
-                                                                        'gziabyck' /* Convert to Private Chat Lock */,
-                                                                      ),
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .override(
-                                                                            font:
-                                                                                GoogleFonts.plusJakartaSans(
-                                                                              fontWeight: FontWeight.w600,
-                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                            ),
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).onWarning,
-                                                                            letterSpacing:
-                                                                                0.0,
-                                                                            fontWeight:
-                                                                                FontWeight.w600,
-                                                                            fontStyle:
-                                                                                FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                          ),
-                                                                    ),
-                                                                  ].divide(SizedBox(
-                                                                      width:
-                                                                          15.0)),
-                                                                ),
-                                                              ),
-                                                            if ((containerConversationParticipantsRow
-                                                                        ?.role ==
-                                                                    'admin') &&
-                                                                (groupProfileDetailsPageConversationsRow
-                                                                        .isPrivateGroup ==
-                                                                    true) &&
-                                                                (groupProfileDetailsPageConversationsRow
-                                                                        .privateOrigin !=
-                                                                    'converted'))
-                                                              InkWell(
-                                                                splashColor: Colors
-                                                                    .transparent,
-                                                                focusColor: Colors
-                                                                    .transparent,
-                                                                hoverColor: Colors
-                                                                    .transparent,
-                                                                highlightColor:
-                                                                    Colors
-                                                                        .transparent,
-                                                                onTap:
-                                                                    () async {
-                                                                  var confirmDialogResponse =
-                                                                      await showDialog<
-                                                                              bool>(
-                                                                            context:
-                                                                                context,
-                                                                            builder:
-                                                                                (alertDialogContext) {
-                                                                              return AlertDialog(
-                                                                                title: Text('Remove from Private Chat Lock'),
-                                                                                content: Text('Removing this group from Private Chat Lock will permanently delete the group and its messages. This action cannot be undone.'),
-                                                                                actions: [
-                                                                                  TextButton(
-                                                                                    onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                    child: Text('Cancel'),
-                                                                                  ),
-                                                                                  TextButton(
-                                                                                    onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                    child: Text('Remove'),
-                                                                                  ),
-                                                                                ],
-                                                                              );
-                                                                            },
-                                                                          ) ??
-                                                                          false;
-                                                                  if (confirmDialogResponse) {
-                                                                    _model.removed2 =
-                                                                        await actions
-                                                                            .removePrivateGroup(
-                                                                      widget
-                                                                          .groupConversationId!,
-                                                                    );
-                                                                    if (_model
-                                                                            .removed2 ==
-                                                                        true) {
-                                                                      context
-                                                                          .goNamed(
-                                                                        HomePageWidget
-                                                                            .routeName,
-                                                                        extra: <String,
-                                                                            dynamic>{
-                                                                          '__transition_info__':
-                                                                              TransitionInfo(
-                                                                            hasTransition:
-                                                                                true,
-                                                                            transitionType:
-                                                                                PageTransitionType.leftToRight,
-                                                                          ),
-                                                                        },
-                                                                      );
-                                                                    } else {
-                                                                      ScaffoldMessenger.of(
-                                                                              context)
-                                                                          .showSnackBar(
-                                                                        SnackBar(
-                                                                          content:
-                                                                              Text(
-                                                                            'Could not remove the group',
-                                                                            style:
-                                                                                TextStyle(
-                                                                              color: FlutterFlowTheme.of(context).primaryText,
-                                                                            ),
-                                                                          ),
-                                                                          duration:
-                                                                              Duration(milliseconds: 4000),
-                                                                          backgroundColor:
-                                                                              FlutterFlowTheme.of(context).secondary,
-                                                                        ),
-                                                                      );
-                                                                    }
-                                                                  }
-
-                                                                  safeSetState(
-                                                                      () {});
-                                                                },
-                                                                child: Row(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  children: [
-                                                                    Icon(
-                                                                      Icons
-                                                                          .delete_outline_sharp,
-                                                                      color: Color(
-                                                                          0xFFD90B0B),
-                                                                      size:
-                                                                          24.0,
-                                                                    ),
-                                                                    Text(
-                                                                      FFLocalizations.of(
-                                                                              context)
-                                                                          .getText(
-                                                                        'vopu256q' /* Remove from Private Chat Lock */,
-                                                                      ),
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .override(
-                                                                            font:
-                                                                                GoogleFonts.plusJakartaSans(
-                                                                              fontWeight: FontWeight.w600,
-                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                            ),
-                                                                            color:
-                                                                                Color(0xFFD90B0B),
-                                                                            letterSpacing:
-                                                                                0.0,
-                                                                            fontWeight:
-                                                                                FontWeight.w600,
-                                                                            fontStyle:
-                                                                                FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                          ),
-                                                                    ),
-                                                                  ].divide(SizedBox(
-                                                                      width:
-                                                                          15.0)),
-                                                                ),
-                                                              ),
-                                                            if ((containerConversationParticipantsRow
-                                                                        ?.role ==
-                                                                    'admin') &&
-                                                                (groupProfileDetailsPageConversationsRow
-                                                                        .isPrivateGroup ==
-                                                                    true) &&
-                                                                (groupProfileDetailsPageConversationsRow
-                                                                        .privateOrigin ==
-                                                                    'converted'))
-                                                              InkWell(
-                                                                splashColor: Colors
-                                                                    .transparent,
-                                                                focusColor: Colors
-                                                                    .transparent,
-                                                                hoverColor: Colors
-                                                                    .transparent,
-                                                                highlightColor:
-                                                                    Colors
-                                                                        .transparent,
-                                                                onTap:
-                                                                    () async {
-                                                                  var confirmDialogResponse =
-                                                                      await showDialog<
-                                                                              bool>(
-                                                                            context:
-                                                                                context,
-                                                                            builder:
-                                                                                (alertDialogContext) {
-                                                                              return AlertDialog(
-                                                                                title: Text('Remove from Private Chat Lock'),
-                                                                                content: Text('Removing this group from Private Chat Lock will permanently delete all messages exchanged while the group was in Private Chat Lock. This action cannot be undone.'),
-                                                                                actions: [
-                                                                                  TextButton(
-                                                                                    onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                    child: Text('Cancel'),
-                                                                                  ),
-                                                                                  TextButton(
-                                                                                    onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                    child: Text('Remove'),
-                                                                                  ),
-                                                                                ],
-                                                                              );
-                                                                            },
-                                                                          ) ??
-                                                                          false;
-                                                                  if (confirmDialogResponse) {
-                                                                    _model.removed =
-                                                                        await actions
-                                                                            .removePrivateGroup(
-                                                                      widget
-                                                                          .groupConversationId!,
-                                                                    );
-                                                                    if (_model
-                                                                            .removed ==
-                                                                        true) {
-                                                                      context
-                                                                          .goNamed(
-                                                                        HomePageWidget
-                                                                            .routeName,
-                                                                        extra: <String,
-                                                                            dynamic>{
-                                                                          '__transition_info__':
-                                                                              TransitionInfo(
-                                                                            hasTransition:
-                                                                                true,
-                                                                            transitionType:
-                                                                                PageTransitionType.leftToRight,
-                                                                          ),
-                                                                        },
-                                                                      );
-                                                                    } else {
-                                                                      ScaffoldMessenger.of(
-                                                                              context)
-                                                                          .showSnackBar(
-                                                                        SnackBar(
-                                                                          content:
-                                                                              Text(
-                                                                            'Could not remove the group',
-                                                                            style:
-                                                                                TextStyle(
-                                                                              color: FlutterFlowTheme.of(context).primaryText,
-                                                                            ),
-                                                                          ),
-                                                                          duration:
-                                                                              Duration(milliseconds: 4000),
-                                                                          backgroundColor:
-                                                                              FlutterFlowTheme.of(context).secondary,
-                                                                        ),
-                                                                      );
-                                                                    }
-                                                                  }
-
-                                                                  safeSetState(
-                                                                      () {});
-                                                                },
-                                                                child: Row(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  children: [
-                                                                    Icon(
-                                                                      Icons
-                                                                          .delete_outline_sharp,
-                                                                      color: Color(
-                                                                          0xFFD90B0B),
-                                                                      size:
-                                                                          24.0,
-                                                                    ),
-                                                                    Text(
-                                                                      FFLocalizations.of(
-                                                                              context)
-                                                                          .getText(
-                                                                        '1wvpvn4q' /* Remove from Private Chat Lock */,
-                                                                      ),
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .override(
-                                                                            font:
-                                                                                GoogleFonts.plusJakartaSans(
-                                                                              fontWeight: FontWeight.w600,
-                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                            ),
-                                                                            color:
-                                                                                Color(0xFFD90B0B),
-                                                                            letterSpacing:
-                                                                                0.0,
-                                                                            fontWeight:
-                                                                                FontWeight.w600,
-                                                                            fontStyle:
-                                                                                FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                          ),
-                                                                    ),
-                                                                  ].divide(SizedBox(
-                                                                      width:
-                                                                          15.0)),
-                                                                ),
-                                                              ),
                                                           ].divide(SizedBox(
                                                               height: 12.0)),
                                                         ),
                                                       );
                                                     },
                                                   ),
-                                                ].divide(
-                                                    SizedBox(height: 10.0)),
+                                                ],
                                               ),
                                             ),
                                           ),

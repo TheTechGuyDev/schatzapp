@@ -89,13 +89,25 @@ class _GroupsInCommonWidgetState extends State<GroupsInCommonWidget> {
                   context.pop();
                 },
               ),
-              title: Text(
-                valueOrDefault<String>(
-                  widget.otherUserName,
-                  'John Smith',
-                ),
-                style: FlutterFlowTheme.of(context).headlineMedium.override(
-                      font: GoogleFonts.plusJakartaSans(
+              title: Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                child: Text(
+                  valueOrDefault<String>(
+                    widget.otherUserName,
+                    'John Smith',
+                  ),
+                  style: FlutterFlowTheme.of(context).headlineMedium.override(
+                        font: GoogleFonts.plusJakartaSans(
+                          fontWeight: FlutterFlowTheme.of(context)
+                              .headlineMedium
+                              .fontWeight,
+                          fontStyle: FlutterFlowTheme.of(context)
+                              .headlineMedium
+                              .fontStyle,
+                        ),
+                        color: FlutterFlowTheme.of(context).primaryText,
+                        fontSize: 18.0,
+                        letterSpacing: 0.0,
                         fontWeight: FlutterFlowTheme.of(context)
                             .headlineMedium
                             .fontWeight,
@@ -103,15 +115,7 @@ class _GroupsInCommonWidgetState extends State<GroupsInCommonWidget> {
                             .headlineMedium
                             .fontStyle,
                       ),
-                      color: FlutterFlowTheme.of(context).primaryText,
-                      fontSize: 18.0,
-                      letterSpacing: 0.0,
-                      fontWeight: FlutterFlowTheme.of(context)
-                          .headlineMedium
-                          .fontWeight,
-                      fontStyle:
-                          FlutterFlowTheme.of(context).headlineMedium.fontStyle,
-                    ),
+                ),
               ),
               actions: [],
               centerTitle: true,
@@ -120,14 +124,14 @@ class _GroupsInCommonWidgetState extends State<GroupsInCommonWidget> {
             body: SafeArea(
               top: true,
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
                       child: Text(
                         '${valueOrDefault<String>(
                           formatNumber(
@@ -139,14 +143,15 @@ class _GroupsInCommonWidgetState extends State<GroupsInCommonWidget> {
                         )} Groups in Common',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               font: GoogleFonts.plusJakartaSans(
-                                fontWeight: FontWeight.w600,
+                                fontWeight: FontWeight.bold,
                                 fontStyle: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .fontStyle,
                               ),
-                              fontSize: 16.0,
+                              color: FlutterFlowTheme.of(context).secondaryText,
+                              fontSize: 13.0,
                               letterSpacing: 0.0,
-                              fontWeight: FontWeight.w600,
+                              fontWeight: FontWeight.bold,
                               fontStyle: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .fontStyle,
@@ -167,7 +172,7 @@ class _GroupsInCommonWidgetState extends State<GroupsInCommonWidget> {
                               scrollDirection: Axis.vertical,
                               itemCount: groupsListView.length,
                               separatorBuilder: (_, __) =>
-                                  SizedBox(height: 20.0),
+                                  SizedBox(height: 5.0),
                               itemBuilder: (context, groupsListViewIndex) {
                                 final groupsListViewItem =
                                     groupsListView[groupsListViewIndex];
@@ -185,18 +190,15 @@ class _GroupsInCommonWidgetState extends State<GroupsInCommonWidget> {
                                           queryParameters: {
                                             'groupConversationId':
                                                 serializeParam(
-                                              _model.groupsList.firstOrNull
-                                                  ?.groupId,
+                                              groupsListViewItem.groupId,
                                               ParamType.String,
                                             ),
                                             'groupNameParam': serializeParam(
-                                              _model.groupsList.firstOrNull
-                                                  ?.groupName,
+                                              groupsListViewItem.groupName,
                                               ParamType.String,
                                             ),
                                             'groupAvatarParam': serializeParam(
-                                              _model.groupsList.firstOrNull
-                                                  ?.groupAvatarUrl,
+                                              groupsListViewItem.groupAvatarUrl,
                                               ParamType.String,
                                             ),
                                           }.withoutNulls,
@@ -207,123 +209,141 @@ class _GroupsInCommonWidgetState extends State<GroupsInCommonWidget> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 0.0, 10.0, 0.0),
-                                                child: Container(
-                                                  width: 45.0,
-                                                  height: 45.0,
-                                                  decoration: BoxDecoration(
-                                                    image: DecorationImage(
-                                                      fit: BoxFit.cover,
-                                                      image: Image.network(
-                                                        valueOrDefault<String>(
-                                                          '${_model.groupsList.firstOrNull?.groupAvatarUrl}',
-                                                          'https://plus.unsplash.com/premium_photo-1705009607118-5216fbbf8820?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                                                        ),
-                                                      ).image,
-                                                    ),
-                                                    shape: BoxShape.circle,
-                                                    border: Border.all(
-                                                      color: FlutterFlowTheme
-                                                              .of(context)
-                                                          .primaryBackground,
+                                          Expanded(
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 0.0, 10.0, 0.0),
+                                                  child: Container(
+                                                    width: 45.0,
+                                                    height: 45.0,
+                                                    decoration: BoxDecoration(
+                                                      image: DecorationImage(
+                                                        fit: BoxFit.cover,
+                                                        image: Image.network(
+                                                          valueOrDefault<
+                                                              String>(
+                                                            '${_model.groupsList.firstOrNull?.groupAvatarUrl}',
+                                                            'https://plus.unsplash.com/premium_photo-1705009607118-5216fbbf8820?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                                                          ),
+                                                        ).image,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12.0),
+                                                      shape: BoxShape.rectangle,
+                                                      border: Border.all(
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .primaryBackground,
+                                                      ),
                                                     ),
                                                   ),
                                                 ),
-                                              ),
-                                              Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    valueOrDefault<String>(
-                                                      _model
-                                                          .groupsList
-                                                          .firstOrNull
-                                                          ?.groupName,
-                                                      'Weekend Getaway',
-                                                    ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          font: GoogleFonts
-                                                              .plusJakartaSans(
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
+                                                Expanded(
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(
+                                                        valueOrDefault<String>(
+                                                          _model
+                                                              .groupsList
+                                                              .firstOrNull
+                                                              ?.groupName,
+                                                          'Weekend Getaway',
+                                                        ),
+                                                        maxLines: 1,
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .bodyMedium
+                                                            .override(
+                                                              font: GoogleFonts
+                                                                  .plusJakartaSans(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                fontStyle: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyMedium
                                                                     .fontStyle,
-                                                          ),
-                                                          fontSize: 15.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
-                                                                  .fontStyle,
-                                                        ),
-                                                  ),
-                                                  Text(
-                                                    '${valueOrDefault<String>(
-                                                      formatNumber(
-                                                        _model
-                                                            .groupsList
-                                                            .firstOrNull
-                                                            ?.memberCount,
-                                                        formatType:
-                                                            FormatType.decimal,
-                                                        decimalType: DecimalType
-                                                            .automatic,
+                                                              ),
+                                                              fontSize: 15.0,
+                                                              letterSpacing:
+                                                                  0.0,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                              fontStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontStyle,
+                                                            ),
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
                                                       ),
-                                                      '0',
-                                                    )}  members',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          font: GoogleFonts
-                                                              .plusJakartaSans(
-                                                            fontWeight:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .fontWeight,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .fontStyle,
+                                                      Text(
+                                                        '${valueOrDefault<String>(
+                                                          formatNumber(
+                                                            _model
+                                                                .groupsList
+                                                                .firstOrNull
+                                                                ?.memberCount,
+                                                            formatType:
+                                                                FormatType
+                                                                    .decimal,
+                                                            decimalType:
+                                                                DecimalType
+                                                                    .automatic,
                                                           ),
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryText,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
-                                                                  .fontStyle,
-                                                        ),
+                                                          '0',
+                                                        )}  members',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  font: GoogleFonts
+                                                                      .plusJakartaSans(
+                                                                    fontWeight: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .fontWeight,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .fontStyle,
+                                                                  ),
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryText,
+                                                                  fontSize:
+                                                                      13.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontStyle,
+                                                                ),
+                                                      ),
+                                                    ].divide(
+                                                        SizedBox(height: 5.0)),
                                                   ),
-                                                ].divide(SizedBox(height: 5.0)),
-                                              ),
-                                            ],
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         ],
                                       ),
@@ -331,7 +351,7 @@ class _GroupsInCommonWidgetState extends State<GroupsInCommonWidget> {
                                     Divider(
                                       height: 15.0,
                                       thickness: 1.0,
-                                      indent: 60.0,
+                                      indent: 40.0,
                                       color: FlutterFlowTheme.of(context)
                                           .alternate,
                                     ),
