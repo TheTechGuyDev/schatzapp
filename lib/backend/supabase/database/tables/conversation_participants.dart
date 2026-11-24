@@ -66,4 +66,7 @@ class ConversationParticipantsRow extends SupabaseDataRow {
 
   bool? get privateLock => getField<bool>('private_lock');
   set privateLock(bool? value) => setField<bool>('private_lock', value);
+
+  bool? get saveToGallery => getField<bool>('save_to_gallery');
+  set saveToGallery(bool? value) => setField<bool>('save_to_gallery', value);
 }

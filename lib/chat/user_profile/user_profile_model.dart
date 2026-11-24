@@ -53,13 +53,7 @@ class UserProfileModel extends FlutterFlowModel<UserProfileWidget> {
   // Stores action output result for [Custom Action - startCall] action in Container widget.
   CallStartResultStruct? profileVideoCallResult;
   // State field(s) for Switch widget.
-  bool? switchValue1;
-  // Stores action output result for [Custom Action - setPrivateLock] action in Switch widget.
-  bool? lockOk;
-  // Stores action output result for [Custom Action - setPrivateLock] action in Switch widget.
-  bool? unlockOk;
-  // State field(s) for Switch widget.
-  bool? switchValue2;
+  bool? switchValue;
   // Stores action output result for [Custom Action - getDirectConversationId] action in Theme_Column widget.
   String? themeConvId;
   // Stores action output result for [Custom Action - findOrCreateConversation] action in Icon widget.

@@ -117,7 +117,6 @@ class _MyAppState extends State<MyApp> {
         Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hant'),
         Locale('fr'),
         Locale('it'),
-        Locale('es'),
         Locale('pl'),
         Locale('ro'),
         Locale('ko'),

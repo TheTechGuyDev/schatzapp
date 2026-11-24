@@ -27,6 +27,8 @@ import '/custom_code/actions/send_pending_web_chat_images.dart';
 import '/custom_code/actions/init_offline_store.dart';
 import 'dart:async';
 import 'dart:convert';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import '/app_state.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
@@ -504,6 +506,49 @@ class _ChatAppearance {
 // default while the chat is rebuilt (for example when search opens).
 final Map<String, _ChatAppearance> _kAppearanceCache = {};
 
+// Also kept on the phone, so a chat opened after the app restarts still
+// knows its wallpaper before the network answers.
+const String _kAppearancePrefsKey = 'chat_appearance_cache_v1';
+bool _kAppearanceLoaded = false;
+
+Future<void> _loadAppearanceCache() async {
+  if (_kAppearanceLoaded) return;
+  _kAppearanceLoaded = true;
+  try {
+    final prefs = await SharedPreferences.getInstance();
+    final raw = prefs.getString(_kAppearancePrefsKey);
+    if (raw == null || raw.isEmpty) return;
+    final decoded = jsonDecode(raw);
+    if (decoded is! Map) return;
+    decoded.forEach((k, v) {
+      if (v is! Map) return;
+      _kAppearanceCache.putIfAbsent(
+        k.toString(),
+        () => _ChatAppearance(
+          themeKey: v['t'] as String?,
+          wallpaperUrl: v['w'] as String?,
+        ),
+      );
+    });
+  } catch (_) {}
+}
+
+Future<void> _saveAppearance(String key, _ChatAppearance value) async {
+  try {
+    final prefs = await SharedPreferences.getInstance();
+    final raw = prefs.getString(_kAppearancePrefsKey);
+    final Map<String, dynamic> all = {};
+    if (raw != null && raw.isNotEmpty) {
+      final decoded = jsonDecode(raw);
+      if (decoded is Map) {
+        decoded.forEach((k, v) => all[k.toString()] = v);
+      }
+    }
+    all[key] = {'t': value.themeKey, 'w': value.wallpaperUrl};
+    await prefs.setString(_kAppearancePrefsKey, jsonEncode(all));
+  } catch (_) {}
+}
+
 class _ThemeBundle {
   const _ThemeBundle({
     required this.senderColor,
@@ -881,6 +926,9 @@ class _GroupChatThreadState extends State<GroupChatThread> {
   @override
   void initState() {
     super.initState();
+    _loadAppearanceCache().then((_) {
+      if (mounted) setState(() {});
+    });
     FocusManager.instance.addListener(_onGlobalFocusChange);
     _msgController = StreamController<List<MessagesRow>>();
     _stream = _msgController!.stream;
@@ -905,7 +953,13 @@ class _GroupChatThreadState extends State<GroupChatThread> {
             themeKey: row['chat_theme'] as String?,
             wallpaperUrl: row['chat_wallpaper_url'] as String?,
           );
+          final before = _kAppearanceCache[key];
           _kAppearanceCache[key] = fresh;
+          if (before == null ||
+              before.themeKey != fresh.themeKey ||
+              before.wallpaperUrl != fresh.wallpaperUrl) {
+            _saveAppearance(key, fresh);
+          }
           return fresh;
         });
 
@@ -1222,7 +1276,7 @@ class _GroupChatThreadState extends State<GroupChatThread> {
   DecorationImage? _wallpaperImage(String? wallpaperUrl) {
     if (wallpaperUrl == null || wallpaperUrl.isEmpty) return null;
     return DecorationImage(
-        image: NetworkImage(wallpaperUrl), fit: BoxFit.cover);
+        image: CachedNetworkImageProvider(wallpaperUrl), fit: BoxFit.cover);
   }
 
   void _maybeScrollToBottom(int newCount, double bottomInset) {
@@ -1906,10 +1960,15 @@ class _GroupChatThreadState extends State<GroupChatThread> {
                 stream: _themeStream,
                 initialData: _kAppearanceCache[widget.conversationId],
                 builder: (context, themeSnapshot) {
-                  final appearance = themeSnapshot.data;
+                  final appearance = themeSnapshot.data ??
+                      _kAppearanceCache[widget.conversationId];
                   final bundle = _bundleFor(appearance?.themeKey);
-                  final wallpaperImage = _wallpaperImage(
-                      appearance?.wallpaperUrl ?? bundle.wallpaperUrl);
+                  // No wallpaper until we know which one this chat uses, so
+                  // the default never flashes before the real one.
+                  final wallpaperImage = appearance == null
+                      ? null
+                      : _wallpaperImage(
+                          appearance.wallpaperUrl ?? bundle.wallpaperUrl);
                   final ownBubbleColor = bundle.senderColor;
                   final otherBubbleColor = bundle.receiverColor;
 

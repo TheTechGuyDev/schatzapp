@@ -30,6 +30,8 @@ class _SwappableCallVideosState extends State<SwappableCallVideos> {
   static const double _smallH = 200.0;
   static const double _margin = 8.0;
 
+  final GlobalKey _localKey = GlobalKey();
+  final GlobalKey _remoteKey = GlobalKey();
   bool _isLocalFullScreen = false;
   Offset? _pos;
 
@@ -42,25 +44,25 @@ class _SwappableCallVideosState extends State<SwappableCallVideos> {
   @override
   Widget build(BuildContext context) {
     final Widget bigWidget = _isLocalFullScreen
-        ? const LocalVideoRenderer(
-            key: ValueKey('local-renderer'),
+        ? LocalVideoRenderer(
+            key: _localKey,
             width: double.infinity,
             height: double.infinity,
           )
-        : const RemoteVideoRenderer(
-            key: ValueKey('remote-renderer'),
+        : RemoteVideoRenderer(
+            key: _remoteKey,
             width: double.infinity,
             height: double.infinity,
           );
 
     final Widget smallWidget = _isLocalFullScreen
-        ? const RemoteVideoRenderer(
-            key: ValueKey('remote-renderer'),
+        ? RemoteVideoRenderer(
+            key: _remoteKey,
             width: _smallW,
             height: _smallH,
           )
-        : const LocalVideoRenderer(
-            key: ValueKey('local-renderer'),
+        : LocalVideoRenderer(
+            key: _localKey,
             width: _smallW,
             height: _smallH,
           );

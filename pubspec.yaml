@@ -49,6 +49,10 @@ dependencies:
   emoji_flag_converter: 1.1.0
   file_picker: 10.3.10
   flutter_animate: 4.5.2
+  flutter_barcode_scanner: 
+    git:
+      url: https://github.com/FlutterFlow/flutter_barcode_scanner
+      ref: a9572de97b457fb143b491f0cd1f22c2ae16df7c
   flutter_cache_manager: 3.4.1
   flutter_contacts: ^2.1.0
   flutter_image_compress: 2.3.0

@@ -36,6 +36,23 @@ class _RemoteVideoRendererState extends State<RemoteVideoRenderer> {
   double? _controllerWidth;
   double? _controllerHeight;
 
+  // Wide video (screen share, laptop camera) is shown whole, not cropped.
+  bool _landscape = false;
+  bool? _controllerLandscape;
+  RtcEngine? _handlerEngine;
+  late final RtcEngineEventHandler _sizeHandler = RtcEngineEventHandler(
+    onVideoSizeChanged: (connection, sourceType, uid, width, height, rotation) {
+      if (uid == 0 || uid != AgoraCallManager.remoteUid) return;
+      final turned = rotation == 90 || rotation == 270;
+      final w = turned ? height : width;
+      final h = turned ? width : height;
+      final wide = w > h;
+      if (wide != _landscape && mounted) {
+        setState(() => _landscape = wide);
+      }
+    },
+  );
+
   @override
   void initState() {
     super.initState();
@@ -47,8 +64,22 @@ class _RemoteVideoRendererState extends State<RemoteVideoRenderer> {
   @override
   void dispose() {
     _refreshTimer?.cancel();
+    try {
+      _handlerEngine?.unregisterEventHandler(_sizeHandler);
+    } catch (_) {}
     _controller?.dispose();
     super.dispose();
+  }
+
+  void _watchSizes(RtcEngine engine) {
+    if (identical(_handlerEngine, engine)) return;
+    try {
+      _handlerEngine?.unregisterEventHandler(_sizeHandler);
+    } catch (_) {}
+    try {
+      engine.registerEventHandler(_sizeHandler);
+      _handlerEngine = engine;
+    } catch (_) {}
   }
 
   Future<void> _forceRemoteReplay(int remoteUid) async {
@@ -65,32 +96,40 @@ class _RemoteVideoRendererState extends State<RemoteVideoRenderer> {
   Widget build(BuildContext context) {
     final engine = AgoraCallManager.engine;
     final remoteUid = AgoraCallManager.remoteUid;
+    if (engine != null) _watchSizes(engine);
 
     final sizeChanged =
         _controllerWidth != widget.width || _controllerHeight != widget.height;
+    final modeChanged = _controllerLandscape != _landscape;
 
     if (engine != null &&
         remoteUid != null &&
-        (_controllerUid != remoteUid || sizeChanged)) {
+        (_controllerUid != remoteUid || sizeChanged || modeChanged)) {
       _controller?.dispose();
       _controller = VideoViewController.remote(
         rtcEngine: engine,
         canvas: VideoCanvas(
           uid: remoteUid,
-          renderMode: RenderModeType.renderModeHidden,
+          renderMode: _landscape
+              ? RenderModeType.renderModeFit
+              : RenderModeType.renderModeHidden,
         ),
         connection: RtcConnection(channelId: AgoraCallManager.channelName),
       );
+      final uidChanged = _controllerUid != remoteUid;
       _controllerUid = remoteUid;
       _controllerWidth = widget.width;
       _controllerHeight = widget.height;
+      _controllerLandscape = _landscape;
 
-      final remoteUidForReplay = remoteUid;
-      Future.delayed(const Duration(milliseconds: 300), () {
-        if (_controllerUid == remoteUidForReplay) {
-          _forceRemoteReplay(remoteUidForReplay);
-        }
-      });
+      if (uidChanged) {
+        final remoteUidForReplay = remoteUid;
+        Future.delayed(const Duration(milliseconds: 300), () {
+          if (_controllerUid == remoteUidForReplay) {
+            _forceRemoteReplay(remoteUidForReplay);
+          }
+        });
+      }
     }
 
     return Container(
@@ -109,8 +148,8 @@ class _RemoteVideoRendererState extends State<RemoteVideoRenderer> {
                   width: widget.width,
                   height: widget.height,
                   child: AgoraVideoView(
-                    key: ValueKey(
-                        'remote-$remoteUid-${widget.width}x${widget.height}'),
+                    key: ValueKey('remote-$remoteUid-$_landscape-'
+                        '${widget.width}x${widget.height}'),
                     controller: _controller!,
                   ),
                 ),

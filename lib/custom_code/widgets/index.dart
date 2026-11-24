@@ -106,3 +106,8 @@ export '/custom_code/widgets/group_avatar.dart' show GroupAvatar;
 export '/custom_code/widgets/private_chat_hub.dart' show PrivateChatHub;
 export '/custom_code/widgets/chat_search_field.dart' show ChatSearchField;
 export '/custom_code/widgets/auto_gallery_saver.dart' show AutoGallerySaver;
+export '/custom_code/widgets/private_lock_switch.dart' show PrivateLockSwitch;
+export '/custom_code/widgets/private_lock_subtitle.dart'
+    show PrivateLockSubtitle;
+export '/custom_code/widgets/linked_web_devices.dart' show LinkedWebDevices;
+export '/custom_code/widgets/link_with_code_view.dart' show LinkWithCodeView;

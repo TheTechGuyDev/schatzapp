@@ -226,7 +226,7 @@ class _GroupsInCommonWidgetState extends State<GroupsInCommonWidget> {
                                                         image: Image.network(
                                                           valueOrDefault<
                                                               String>(
-                                                            '${_model.groupsList.firstOrNull?.groupAvatarUrl}',
+                                                            '${groupsListViewItem.groupAvatarUrl}',
                                                             'https://plus.unsplash.com/premium_photo-1705009607118-5216fbbf8820?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                                                           ),
                                                         ).image,
@@ -253,11 +253,9 @@ class _GroupsInCommonWidgetState extends State<GroupsInCommonWidget> {
                                                     children: [
                                                       Text(
                                                         valueOrDefault<String>(
-                                                          _model
-                                                              .groupsList
-                                                              .firstOrNull
-                                                              ?.groupName,
-                                                          'Weekend Getaway',
+                                                          groupsListViewItem
+                                                              .groupName,
+                                                          'Group Name',
                                                         ),
                                                         maxLines: 1,
                                                         style: FlutterFlowTheme
@@ -290,20 +288,14 @@ class _GroupsInCommonWidgetState extends State<GroupsInCommonWidget> {
                                                             .ellipsis,
                                                       ),
                                                       Text(
-                                                        '${valueOrDefault<String>(
-                                                          formatNumber(
-                                                            _model
-                                                                .groupsList
-                                                                .firstOrNull
-                                                                ?.memberCount,
-                                                            formatType:
-                                                                FormatType
-                                                                    .decimal,
-                                                            decimalType:
-                                                                DecimalType
-                                                                    .automatic,
-                                                          ),
-                                                          '0',
+                                                        '${formatNumber(
+                                                          groupsListViewItem
+                                                              .memberCount,
+                                                          formatType: FormatType
+                                                              .decimal,
+                                                          decimalType:
+                                                              DecimalType
+                                                                  .automatic,
                                                         )}  members',
                                                         style:
                                                             FlutterFlowTheme.of(

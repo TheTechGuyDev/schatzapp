@@ -74,4 +74,7 @@ class CallsRow extends SupabaseDataRow {
   String? get agoraChannelName => getField<String>('agora_channel_name');
   set agoraChannelName(String? value) =>
       setField<String>('agora_channel_name', value);
+
+  DateTime? get ringingAt => getField<DateTime>('ringing_at');
+  set ringingAt(DateTime? value) => setField<DateTime>('ringing_at', value);
 }

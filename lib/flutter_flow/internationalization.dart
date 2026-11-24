@@ -14,7 +14,7 @@ class FFLocalizations {
       Localizations.of<FFLocalizations>(context, FFLocalizations)!;
 
   static List<String> languages() =>
-      ['en', 'de', 'zh_Hant', 'fr', 'it', 'es', 'pl', 'ro', 'ko', 'ja'];
+      ['en', 'de', 'zh_Hant', 'fr', 'it', 'pl', 'ro', 'ko', 'ja'];
 
   static late SharedPreferences _prefs;
   static Future initialize() async =>
@@ -44,7 +44,6 @@ class FFLocalizations {
     String? zh_HantText = '',
     String? frText = '',
     String? itText = '',
-    String? esText = '',
     String? plText = '',
     String? roText = '',
     String? koText = '',
@@ -56,7 +55,6 @@ class FFLocalizations {
         zh_HantText,
         frText,
         itText,
-        esText,
         plText,
         roText,
         koText,
@@ -170,7 +168,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'b5vbixz0': {
       'en': 'Chats',
       'de': 'Chats',
-      'es': 'Chats',
       'fr': 'Discussions',
       'it': 'Chat',
       'ja': 'チャット',
@@ -182,7 +179,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'pfs3wftu': {
       'en': 'SchatzApp',
       'de': 'SchatzApp',
-      'es': 'Aplicación Schatz',
       'fr': 'SchatzApp',
       'it': 'SchatzApp',
       'ja': 'SchatzApp',
@@ -194,7 +190,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'hvwnq7qc': {
       'en': 'Search messages or people',
       'de': 'Nachrichten oder Personen suchen',
-      'es': 'Buscar mensajes o personas',
       'fr': 'Rechercher des messages ou des personnes',
       'it': 'Cerca messaggi o persone',
       'ja': 'メッセージまたは人物を検索',
@@ -206,7 +201,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '4m7udor0': {
       'en': 'Search messages or people',
       'de': 'Nachrichten oder Personen suchen',
-      'es': 'Buscar mensajes o personas',
       'fr': 'Rechercher des messages ou des personnes',
       'it': 'Cerca messaggi o persone',
       'ja': 'メッセージまたは人物を検索',
@@ -218,7 +212,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'q0csbyes': {
       'en': 'All',
       'de': 'Alle',
-      'es': 'Todo',
       'fr': 'Tous',
       'it': 'Tutto',
       'ja': '全て',
@@ -230,7 +223,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'o9o6nf8t': {
       'en': 'Unread',
       'de': 'Ungelesen',
-      'es': 'No leído',
       'fr': 'Non lu',
       'it': 'Non letto',
       'ja': '未読',
@@ -242,7 +234,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '44as9dzi': {
       'en': 'Groups',
       'de': 'Gruppen',
-      'es': 'Grupos',
       'fr': 'Groupes',
       'it': 'Gruppi',
       'ja': 'グループ',
@@ -254,7 +245,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'p8w8b7np': {
       'en': 'Archived',
       'de': 'Archiviert',
-      'es': 'Archivado',
       'fr': 'Archivé',
       'it': 'Archiviato',
       'ja': 'アーカイブ済み',
@@ -266,7 +256,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'kankqcjl': {
       'en': 'Calls',
       'de': 'Anrufe',
-      'es': 'Llamadas',
       'fr': 'Appels',
       'it': 'Chiamate',
       'ja': '電話',
@@ -278,7 +267,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'nbnqpnri': {
       'en': 'Calls',
       'de': 'Anrufe',
-      'es': 'Llamadas',
       'fr': 'Appels',
       'it': 'Chiamate',
       'ja': '電話',
@@ -290,7 +278,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'vcge69ha': {
       'en': 'Wallets',
       'de': 'Geldbörsen',
-      'es': 'Carteras',
       'fr': 'Portefeuilles',
       'it': 'Portafogli',
       'ja': '財布',
@@ -302,7 +289,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'gtzodtqk': {
       'en': 'Wallet',
       'de': 'Geldbörse',
-      'es': 'Billetera',
       'fr': 'Portefeuille',
       'it': 'Portafoglio',
       'ja': '財布',
@@ -314,7 +300,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'zndhsnvh': {
       'en': 'Total Balance ',
       'de': 'Gesamtsaldo',
-      'es': 'Saldo total',
       'fr': 'Solde total',
       'it': 'Saldo totale',
       'ja': '合計残高',
@@ -326,7 +311,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'jnjimyi7': {
       'en': 'Send',
       'de': 'Schicken',
-      'es': 'Enviar',
       'fr': 'Envoyer',
       'it': 'Inviare',
       'ja': '送信',
@@ -338,7 +322,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'jidgabro': {
       'en': 'Top Up',
       'de': 'Nachfüllen',
-      'es': 'Completar',
       'fr': 'Recharger',
       'it': 'Ricarica',
       'ja': 'チャージ',
@@ -350,7 +333,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'qfhfporp': {
       'en': 'Schatz Gift',
       'de': 'Schatz Geschenk',
-      'es': 'Regalo de Schatz',
       'fr': 'Cadeau Schatz',
       'it': 'Regalo Schatz',
       'ja': 'シャッツギフト',
@@ -362,7 +344,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ttlek0m7': {
       'en': 'Quick Service',
       'de': 'Schnellservice',
-      'es': 'Servicio rápido',
       'fr': 'Service rapide',
       'it': 'Servizio rapido',
       'ja': 'クイックサービス',
@@ -374,7 +355,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'uy2at3bp': {
       'en': 'Gift Card',
       'de': 'Geschenkgutschein',
-      'es': 'Tarjeta de regalo',
       'fr': 'Carte-cadeau',
       'it': 'Carta regalo',
       'ja': 'ギフトカード',
@@ -386,7 +366,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'vtk6z48j': {
       'en': 'Data',
       'de': 'Daten',
-      'es': 'Datos',
       'fr': 'Données',
       'it': 'Dati',
       'ja': 'データ',
@@ -398,7 +377,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '69pgtbre': {
       'en': 'Airtime',
       'de': 'Sendezeit',
-      'es': 'Tiempo en antena',
       'fr': 'Temps d\'antenne',
       'it': 'Tempo di trasmissione',
       'ja': '通話時間',
@@ -410,7 +388,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'pqk2t0cz': {
       'en': 'Donation',
       'de': 'Spende',
-      'es': 'Donación',
       'fr': 'Donation',
       'it': 'Donazione',
       'ja': '寄付',
@@ -422,7 +399,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ynmxw6mz': {
       'en': 'Recent Transactions',
       'de': 'Aktuelle Transaktionen',
-      'es': 'Transacciones recientes',
       'fr': 'Transactions récentes',
       'it': 'Transazioni recenti',
       'ja': '最近の取引',
@@ -434,7 +410,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '0tcr6f3z': {
       'en': 'See all',
       'de': 'Alle anzeigen',
-      'es': 'Ver todo',
       'fr': 'Voir tout',
       'it': 'Vedi tutto',
       'ja': 'すべて表示',
@@ -446,7 +421,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'cp6eteu3': {
       'en': 'Start Verification',
       'de': 'Überprüfung starten',
-      'es': 'Iniciar verificación',
       'fr': 'Démarrer la vérification',
       'it': 'Avvia la verifica',
       'ja': '検証を開始する',
@@ -460,8 +434,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
           '1. Enter your personal information.\n2. Upload a clear photo of your valid ID.\n3. Submit your information for verification.',
       'de':
           '1. Geben Sie Ihre persönlichen Daten ein.\n\n2. Laden Sie ein gut lesbares Foto Ihres gültigen Ausweises hoch.\n\n3. Senden Sie Ihre Daten zur Überprüfung ab.',
-      'es':
-          '1. Introduce tu información personal.\n\n2. Sube una foto clara de tu documento de identidad válido.\n\n3. Envía tu información para su verificación.',
       'fr':
           '1. Saisissez vos informations personnelles.\n\n2. Téléchargez une photo nette de votre pièce d\'identité valide.\n\n3. Soumettez vos informations pour vérification.',
       'it':
@@ -479,7 +451,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '2h36wjox': {
       'en': 'Next',
       'de': 'Nächste',
-      'es': 'Próximo',
       'fr': 'Suivant',
       'it': 'Prossimo',
       'ja': '次',
@@ -491,7 +462,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'zl4biivd': {
       'en': 'Verification Pending',
       'de': 'Überprüfung ausstehend',
-      'es': 'Verificación pendiente',
       'fr': 'Vérification en cours',
       'it': 'Verifica in corso',
       'ja': '確認待ち',
@@ -504,7 +474,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en':
           'We’re reviewing your information. This usually takes a few minutes.',
       'de': 'Wir prüfen Ihre Angaben. Dies dauert in der Regel einige Minuten.',
-      'es': 'Estamos revisando su información. Esto suele tardar unos minutos.',
       'fr':
           'Nous examinons vos informations. Cela prend généralement quelques minutes.',
       'it':
@@ -519,7 +488,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ax11zqx2': {
       'en': 'Verification Failed',
       'de': 'Überprüfung fehlgeschlagen',
-      'es': 'La verificación falló.',
       'fr': 'Échec de la vérification',
       'it': 'Verifica non riuscita',
       'ja': '検証に失敗しました',
@@ -533,8 +501,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
           'We couldn’t verify your information. Tap below to see what’s needed.',
       'de':
           'Ihre Angaben konnten nicht verifiziert werden. Tippen Sie unten, um zu sehen, was benötigt wird.',
-      'es':
-          'No pudimos verificar tu información. Toca abajo para ver qué información se necesita.',
       'fr':
           'Nous n\'avons pas pu vérifier vos informations. Appuyez ci-dessous pour voir ce qui est nécessaire.',
       'it':
@@ -550,7 +516,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'khrk7e89': {
       'en': 'Next',
       'de': 'Nächste',
-      'es': 'Próximo',
       'fr': 'Suivant',
       'it': 'Prossimo',
       'ja': '次',
@@ -562,7 +527,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'e1v971p4': {
       'en': 'SchatzWallet',
       'de': 'SchatzWallet',
-      'es': 'Cartera de tesoros',
       'fr': 'SchatzWallet',
       'it': 'Portafoglio Schatz',
       'ja': 'シャッツウォレット',
@@ -574,7 +538,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '5s822lhl': {
       'en': 'Your money. Your control.',
       'de': 'Ihr Geld. Ihre Kontrolle.',
-      'es': 'Tu dinero. Tu control.',
       'fr': 'Votre argent. Votre contrôle.',
       'it': 'I tuoi soldi. Il tuo controllo.',
       'ja': 'あなたのお金。あなたの管理。',
@@ -586,7 +549,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ao0capxv': {
       'en': 'Send',
       'de': 'Schicken',
-      'es': 'Enviar',
       'fr': 'Envoyer',
       'it': 'Inviare',
       'ja': '送信',
@@ -598,7 +560,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '5624k0w0': {
       'en': 'Receive',
       'de': 'Erhalten',
-      'es': 'Recibir',
       'fr': 'Recevoir',
       'it': 'Ricevere',
       'ja': '受け取る',
@@ -610,7 +571,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'yid2qnn5': {
       'en': 'Top Up',
       'de': 'Nachfüllen',
-      'es': 'Completar',
       'fr': 'Recharger',
       'it': 'Ricarica',
       'ja': 'チャージ',
@@ -622,7 +582,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'b80j5dra': {
       'en': 'More',
       'de': 'Mehr',
-      'es': 'Más',
       'fr': 'Plus',
       'it': 'Di più',
       'ja': 'もっと',
@@ -634,19 +593,17 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'z9yqwbnk': {
       'en': 'Get Started',
       'de': 'Los geht\'s',
-      'es': 'Comience',
       'fr': 'Commencer',
       'it': 'Inizia subito',
       'ja': 'さあ始めましょう',
       'ko': '시작하기',
-      'pl': 'Zacznij',
+      'pl': 'Rozpocznij',
       'ro': 'Începeți',
       'zh_Hant': '開始使用',
     },
     'au3xzqmq': {
       'en': 'Safe',
       'de': 'Sicher',
-      'es': 'Seguro',
       'fr': 'Sûr',
       'it': 'Sicuro',
       'ja': '安全',
@@ -658,7 +615,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'eylea5r7': {
       'en': 'Fast',
       'de': 'Schnell',
-      'es': 'Rápido',
       'fr': 'Rapide',
       'it': 'Veloce',
       'ja': '速い',
@@ -670,7 +626,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ummee2am': {
       'en': 'Global',
       'de': 'Global',
-      'es': 'Global',
       'fr': 'Mondial',
       'it': 'Globale',
       'ja': 'グローバル',
@@ -682,7 +637,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '2lfvssy2': {
       'en': 'SchatzWallet',
       'de': 'SchatzWallet',
-      'es': 'Cartera de tesoros',
       'fr': 'SchatzWallet',
       'it': 'Portafoglio Schatz',
       'ja': 'シャッツウォレット',
@@ -694,7 +648,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'in01tvn5': {
       'en': 'Sign Up',
       'de': 'Melden Sie sich an',
-      'es': 'Inscribirse',
       'fr': 'S\'inscrire',
       'it': 'Iscrizione',
       'ja': 'サインアップ',
@@ -706,7 +659,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'hn39aefb': {
       'en': 'Sign In',
       'de': 'Anmelden',
-      'es': 'Iniciar sesión',
       'fr': 'Se connecter',
       'it': 'Registrazione',
       'ja': 'サインイン',
@@ -718,7 +670,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'isaa2e5h': {
       'en': 'Welcome Back',
       'de': 'Willkommen zurück',
-      'es': 'Bienvenido de nuevo',
       'fr': 'Content de te revoir',
       'it': 'Bentornato',
       'ja': 'おかえり',
@@ -730,7 +681,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ie5k3izx': {
       'en': 'Log in to your account.',
       'de': 'Melden Sie sich in Ihrem Konto an.',
-      'es': 'Inicia sesión en tu cuenta.',
       'fr': 'Connectez-vous à votre compte.',
       'it': 'Accedi al tuo account.',
       'ja': 'アカウントにログインしてください。',
@@ -742,7 +692,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'qyym18s3': {
       'en': 'Email or Phone Number',
       'de': 'E-Mail-Adresse oder Telefonnummer',
-      'es': 'Correo electrónico o número de teléfono',
       'fr': 'Adresse électronique ou numéro de téléphone',
       'it': 'Indirizzo email o numero di telefono',
       'ja': 'メールアドレスまたは電話番号',
@@ -754,7 +703,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'xkdow2de': {
       'en': 'Enter your email address or phone number',
       'de': 'Geben Sie Ihre E-Mail-Adresse oder Telefonnummer ein',
-      'es': 'Ingrese su dirección de correo electrónico o número de teléfono.',
       'fr': 'Saisissez votre adresse e-mail ou votre numéro de téléphone',
       'it': 'Inserisci il tuo indirizzo email o numero di telefono',
       'ja': 'メールアドレスまたは電話番号を入力してください',
@@ -765,32 +713,29 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '9lydg6rm': {
       'en': 'PIN',
-      'de': 'Passwort',
-      'es': 'Contraseña',
-      'fr': 'Mot de passe',
-      'it': 'Password',
-      'ja': 'パスワード',
-      'ko': '비밀번호',
-      'pl': 'Hasło',
-      'ro': 'Parolă',
-      'zh_Hant': '密碼',
+      'de': 'STIFT',
+      'fr': 'ÉPINGLE',
+      'it': 'SPILLO',
+      'ja': 'ピン',
+      'ko': '핀',
+      'pl': 'SZPILKA',
+      'ro': 'PIN-ul',
+      'zh_Hant': '別針',
     },
     'w1z6ylbe': {
       'en': 'Forget PIN?',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'PIN vergessen?',
+      'fr': 'Code PIN oublié ?',
+      'it': 'Hai dimenticato il PIN?',
+      'ja': 'PINを忘れてしまいましたか？',
+      'ko': 'PIN 번호를 잊으셨나요?',
+      'pl': 'Zapomniałeś PIN-u?',
+      'ro': 'Ai uitat codul PIN?',
+      'zh_Hant': '忘記密碼？',
     },
     'b7bokasm': {
       'en': 'Log In',
       'de': 'Einloggen',
-      'es': 'Acceso',
       'fr': 'Se connecter',
       'it': 'Login',
       'ja': 'ログイン',
@@ -802,7 +747,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'q9shs2mt': {
       'en': 'Verify Your Email',
       'de': 'Bestätigen Sie Ihre E-Mail-Adresse',
-      'es': 'Verifica tu correo electrónico',
       'fr': 'Vérifiez votre courriel',
       'it': 'Verifica il tuo indirizzo email',
       'ja': 'メールアドレスを確認してください',
@@ -814,7 +758,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '9fkjfd8y': {
       'en': 'We\'ve sent a 6-digit code to',
       'de': 'Wir haben einen 6-stelligen Code gesendet an',
-      'es': 'Hemos enviado un código de 6 dígitos a',
       'fr': 'Nous avons envoyé un code à 6 chiffres à',
       'it': 'Abbiamo inviato un codice di 6 cifre a',
       'ja': '6桁のコードを送信しました',
@@ -826,7 +769,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '613153uf': {
       'en': 'Verify Your Phone Number',
       'de': 'Bestätigen Sie Ihre Telefonnummer',
-      'es': 'Verifica tu número de teléfono',
       'fr': 'Vérifiez votre numéro de téléphone',
       'it': 'Verifica il tuo numero di telefono',
       'ja': '電話番号を確認してください',
@@ -838,7 +780,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'wvt3j7nz': {
       'en': 'We\'ve sent a 6-digit code to',
       'de': 'Wir haben einen 6-stelligen Code gesendet an',
-      'es': 'Hemos enviado un código de 6 dígitos a',
       'fr': 'Nous avons envoyé un code à 6 chiffres à',
       'it': 'Abbiamo inviato un codice di 6 cifre a',
       'ja': '6桁のコードを送信しました',
@@ -851,7 +792,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your 6-digit PIN to access your wallet.',
       'de':
           'Geben Sie Ihre 6-stellige PIN ein, um auf Ihre Wallet zuzugreifen.',
-      'es': 'Introduce tu PIN de 6 dígitos para acceder a tu monedero.',
       'fr':
           'Saisissez votre code PIN à 6 chiffres pour accéder à votre portefeuille.',
       'it': 'Inserisci il tuo PIN di 6 cifre per accedere al tuo portafoglio.',
@@ -864,32 +804,30 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'e2wy8kg3': {
       'en': 'Incorrect PIN. Please try again.',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Falsche PIN. Bitte versuchen Sie es erneut.',
+      'fr': 'Code PIN incorrect. Veuillez réessayer.',
+      'it': 'PIN errato. Riprova.',
+      'ja': 'PINコードが間違っています。もう一度お試しください。',
+      'ko': 'PIN 번호가 잘못되었습니다. 다시 시도해 주세요.',
+      'pl': 'Nieprawidłowy PIN. Spróbuj ponownie.',
+      'ro': 'PIN incorect. Vă rugăm să încercați din nou.',
+      'zh_Hant': '密碼錯誤，請重試。',
     },
     'kf2mw2n4': {
       'en': 'Too many failed attempts. Try again in 1 hour',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Zu viele Fehlversuche. Versuchen Sie es in einer Stunde erneut.',
+      'fr':
+          'Trop de tentatives infructueuses. Veuillez réessayer dans une heure.',
+      'it': 'Troppi tentativi falliti. Riprova tra 1 ora.',
+      'ja': '試行回数が多すぎます。1時間後に再度お試しください。',
+      'ko': '너무 많은 시도 실패가 있었습니다. 1시간 후에 다시 시도하세요.',
+      'pl': 'Zbyt wiele nieudanych prób. Spróbuj ponownie za godzinę.',
+      'ro': 'Prea multe încercări eșuate. Încercați din nou peste o oră.',
+      'zh_Hant': '嘗試次數過多，請1小時後再試。',
     },
     '1hbz0grr': {
       'en': 'Forgot PIN?',
       'de': 'PIN vergessen?',
-      'es': '¿Olvidaste tu PIN?',
       'fr': 'Code PIN oublié ?',
       'it': 'Hai dimenticato il PIN?',
       'ja': 'PINコードを忘れましたか？',
@@ -901,7 +839,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'snaoubt0': {
       'en': 'Stories',
       'de': 'Geschichten',
-      'es': 'Historias',
       'fr': 'Histoires',
       'it': 'Abiti',
       'ja': '物語',
@@ -913,7 +850,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'mbp9a25a': {
       'en': 'Simplified',
       'de': 'Vereinfacht',
-      'es': 'Simplificado',
       'fr': 'Simplifié',
       'it': 'Semplificato',
       'ja': '簡略化',
@@ -925,7 +861,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'zqu2r6gd': {
       'en': 'Stories',
       'de': 'Geschichten',
-      'es': 'Historias',
       'fr': 'Histoires',
       'it': 'Abiti',
       'ja': '物語',
@@ -937,7 +872,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'wc7c5joj': {
       'en': 'Search friends',
       'de': 'Freunde suchen',
-      'es': 'Buscar amigos',
       'fr': 'Rechercher des amis',
       'it': 'Cerca amici',
       'ja': '友達を探す',
@@ -949,7 +883,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '9anj2c52': {
       'en': 'My Stories',
       'de': 'Meine Geschichten',
-      'es': 'Mis historias',
       'fr': 'Mes histoires',
       'it': 'Le mie storie',
       'ja': '私の物語',
@@ -961,7 +894,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '4v7ehg7o': {
       'en': 'Tap to add a story',
       'de': 'Tippen Sie hier, um eine Geschichte hinzuzufügen',
-      'es': 'Toca para añadir una historia.',
       'fr': 'Appuyez pour ajouter une histoire',
       'it': 'Tocca per aggiungere una storia',
       'ja': 'タップしてストーリーを追加',
@@ -973,7 +905,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '6yj72j4u': {
       'en': 'Recent stories',
       'de': 'Aktuelle Geschichten',
-      'es': 'Noticias recientes',
       'fr': 'Articles récents',
       'it': 'Notizie recenti',
       'ja': '最近の記事',
@@ -985,7 +916,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'hrito9ah': {
       'en': 'Viewed stories',
       'de': 'Angesehene Artikel',
-      'es': 'Historias vistas',
       'fr': 'Articles consultés',
       'it': 'Storie visualizzate',
       'ja': '閲覧したストーリー',
@@ -997,7 +927,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ps6788uw': {
       'en': 'Hidden stories',
       'de': 'Verborgene Geschichten',
-      'es': 'Historias ocultas',
       'fr': 'Histoires cachées',
       'it': 'Storie nascoste',
       'ja': '隠された物語',
@@ -1008,20 +937,18 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'tx7hrw4u': {
       'en': 'Hidden',
-      'de': 'Soeben',
-      'es': 'En este momento',
-      'fr': 'Tout à l\' heure',
-      'it': 'Proprio adesso',
-      'ja': 'ちょうど今',
-      'ko': '방금',
-      'pl': 'Właśnie',
-      'ro': 'Chiar acum',
-      'zh_Hant': '現在',
+      'de': 'Versteckt',
+      'fr': 'Caché',
+      'it': 'Nascosto',
+      'ja': '隠れた',
+      'ko': '숨겨진',
+      'pl': 'Ukryty',
+      'ro': 'Ascuns',
+      'zh_Hant': '隱',
     },
     'vcgc6xjt': {
       'en': 'For You',
       'de': 'Für dich',
-      'es': 'Para ti',
       'fr': 'Pour toi',
       'it': 'Per te',
       'ja': 'あなたのために',
@@ -1033,7 +960,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'gbmkx8os': {
       'en': 'Profile',
       'de': 'Profil',
-      'es': 'Perfil',
       'fr': 'Profil',
       'it': 'Profilo',
       'ja': 'プロフィール',
@@ -1045,7 +971,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'o5du5fmh': {
       'en': 'Settings',
       'de': 'Einstellungen',
-      'es': 'Ajustes',
       'fr': 'Paramètres',
       'it': 'Impostazioni',
       'ja': '設定',
@@ -1057,7 +982,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'wnk9rx57': {
       'en': 'Account',
       'de': 'Konto',
-      'es': 'Cuenta',
       'fr': 'Compte',
       'it': 'Account',
       'ja': 'アカウント',
@@ -1069,7 +993,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '7vqav0a4': {
       'en': 'Personal Information ',
       'de': 'Persönliche Daten',
-      'es': 'Información personal',
       'fr': 'Informations personnelles',
       'it': 'Informazioni personali',
       'ja': '個人情報',
@@ -1081,7 +1004,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ompmfv13': {
       'en': 'Security',
       'de': 'Sicherheit',
-      'es': 'Seguridad',
       'fr': 'Sécurité',
       'it': 'Sicurezza',
       'ja': '安全',
@@ -1093,8 +1015,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ol575r0n': {
       'en': 'Password, biometrics, 2FA',
       'de': 'Passwort, Biometrie, Zwei-Faktor-Authentifizierung',
-      'es':
-          'Contraseña, datos biométricos, autenticación de dos factores (2FA)',
       'fr': 'Mot de passe, biométrie, authentification à deux facteurs',
       'it': 'Password, dati biometrici, autenticazione a due fattori',
       'ja': 'パスワード、生体認証、2段階認証',
@@ -1106,7 +1026,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'a3c595xb': {
       'en': 'Notifications',
       'de': 'Benachrichtigungen',
-      'es': 'Notificaciones',
       'fr': 'Notifications',
       'it': 'Notifiche',
       'ja': '通知',
@@ -1118,7 +1037,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '82d3h63k': {
       'en': 'Manage your alerts',
       'de': 'Verwalten Sie Ihre Benachrichtigungen',
-      'es': 'Gestiona tus alertas',
       'fr': 'Gérez vos alertes',
       'it': 'Gestisci i tuoi avvisi',
       'ja': 'アラートを管理する',
@@ -1129,32 +1047,29 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'a2l1wbcq': {
       'en': 'Media Quality',
-      'de': 'Benachrichtigungen',
-      'es': 'Notificaciones',
-      'fr': 'Notifications',
-      'it': 'Notifiche',
-      'ja': '通知',
-      'ko': '알림',
-      'pl': 'Powiadomienia',
-      'ro': 'Notificări',
-      'zh_Hant': '通知',
+      'de': 'Medienqualität',
+      'fr': 'Qualité des médias',
+      'it': 'Qualità dei media',
+      'ja': 'メディア品質',
+      'ko': '미디어 품질',
+      'pl': 'Jakość mediów',
+      'ro': 'Calitatea media',
+      'zh_Hant': '媒體品質',
     },
     'm88ij7lh': {
       'en': 'Standard, HD or Original',
-      'de': 'Verwalten Sie Ihre Benachrichtigungen',
-      'es': 'Gestiona tus alertas',
-      'fr': 'Gérez vos alertes',
-      'it': 'Gestisci i tuoi avvisi',
-      'ja': 'アラートを管理する',
-      'ko': '알림을 관리하세요',
-      'pl': 'Zarządzaj swoimi alertami',
-      'ro': 'Gestionați-vă alertele',
-      'zh_Hant': '管理您的提醒',
+      'de': 'Standard, HD oder Original',
+      'fr': 'Standard, HD ou Original',
+      'it': 'Standard, HD o Originale',
+      'ja': '標準、HD、またはオリジナル',
+      'ko': '일반, HD 또는 오리지널',
+      'pl': 'Standardowy, HD lub Oryginalny',
+      'ro': 'Standard, HD sau Original',
+      'zh_Hant': '標準、高清或原始',
     },
     'bv2tmrdf': {
       'en': 'Privacy',
       'de': 'Datenschutz',
-      'es': 'Privacidad',
       'fr': 'Confidentialité',
       'it': 'Privacy',
       'ja': 'プライバシー',
@@ -1166,7 +1081,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     't43pys4b': {
       'en': 'Personal Information',
       'de': 'Persönliche Daten',
-      'es': 'Información personal',
       'fr': 'Informations personnelles',
       'it': 'Informazioni personali',
       'ja': '個人情報',
@@ -1178,7 +1092,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'eik1gulg': {
       'en': 'Help & Support',
       'de': 'Hilfe & Unterstützung',
-      'es': 'Ayuda y soporte',
       'fr': 'Aide et assistance',
       'it': 'Aiuto e supporto',
       'ja': 'ヘルプ＆サポート',
@@ -1190,7 +1103,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'vmg8xzvq': {
       'en': 'Get help',
       'de': 'Hilfe erhalten',
-      'es': 'Obtén ayuda',
       'fr': 'Obtenez de l\'aide',
       'it': 'Richiedi assistenza',
       'ja': '助けを求める',
@@ -1202,7 +1114,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'cva1wle7': {
       'en': 'Link Device',
       'de': 'Gerät verbinden',
-      'es': 'Dispositivo de enlace',
       'fr': 'Dispositif de liaison',
       'it': 'Dispositivo di collegamento',
       'ja': 'リンクデバイス',
@@ -1214,7 +1125,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'tcxxdycm': {
       'en': 'Connect to web ',
       'de': 'Verbindung zum Web herstellen',
-      'es': 'Conéctate a la web',
       'fr': 'Se connecter au web',
       'it': 'Connettiti al web',
       'ja': 'ウェブに接続',
@@ -1226,8 +1136,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '6u36s098': {
       'en': 'Language',
       'de': 'Sprache',
-      'es': 'Lengua',
-      'fr': 'Languege',
+      'fr': 'Langue',
       'it': 'Lingua',
       'ja': '言語',
       'ko': '언어',
@@ -1238,7 +1147,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'k9293ghf': {
       'en': 'English',
       'de': 'Englisch',
-      'es': 'Inglés',
       'fr': 'Anglais',
       'it': 'Inglese',
       'ja': '英語',
@@ -1250,7 +1158,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'qnrhkfcj': {
       'en': 'Invite Friends',
       'de': 'Freunde einladen',
-      'es': 'Invita a tus amigos',
       'fr': 'Inviter des amis',
       'it': 'Invita gli amici',
       'ja': '友達を招待する',
@@ -1262,7 +1169,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'd7xvoznt': {
       'en': 'Connect to friends',
       'de': 'Verbinde dich mit Freunden',
-      'es': 'Conéctate con tus amigos',
       'fr': 'Connectez-vous avec vos amis',
       'it': 'Connettiti con gli amici',
       'ja': '友達とつながる',
@@ -1274,7 +1180,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'rt90zxm6': {
       'en': 'About SchatzApp',
       'de': 'Über SchatzApp',
-      'es': 'Acerca de SchatzApp',
       'fr': 'À propos de SchatzApp',
       'it': 'Informazioni su SchatzApp',
       'ja': 'SchatzAppについて',
@@ -1286,7 +1191,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'xwqt421f': {
       'en': 'Version 1.0.0',
       'de': 'Version 1.0.0',
-      'es': 'Versión 1.0.0',
       'fr': 'Version 1.0.0',
       'it': 'Versione 1.0.0',
       'ja': 'バージョン 1.0.0',
@@ -1298,7 +1202,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'j9p17wge': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -1313,7 +1216,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'lf3b2nd5': {
       'en': 'Enter chatting mood',
       'de': 'Chat-Stimmung einschalten',
-      'es': 'Entra en modo charla.',
       'fr': 'Entrez dans l\'ambiance de la conversation',
       'it': 'Entra in modalità chat',
       'ja': 'チャットモードに入る',
@@ -1325,7 +1227,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'bwl6wk0d': {
       'en': 'Photos',
       'de': 'Fotos',
-      'es': 'Fotos',
       'fr': 'Photos',
       'it': 'Foto',
       'ja': '写真',
@@ -1337,7 +1238,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'fo2a61et': {
       'en': 'Show All',
       'de': 'Alle anzeigen',
-      'es': 'Mostrar todo',
       'fr': 'Afficher tout',
       'it': 'Mostra tutto',
       'ja': 'すべて表示',
@@ -1349,7 +1249,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'di5s3mwr': {
       'en': 'Document',
       'de': 'Dokumentieren',
-      'es': 'Documento',
       'fr': 'Document',
       'it': 'Documento',
       'ja': '書類',
@@ -1361,7 +1260,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'n8rfbrsy': {
       'en': 'Location',
       'de': 'Standort',
-      'es': 'Ubicación',
       'fr': 'Emplacement',
       'it': 'Posizione',
       'ja': '位置',
@@ -1373,7 +1271,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ipnzvtc2': {
       'en': 'Schedule message',
       'de': 'Nachricht planen',
-      'es': 'Mensaje programado',
       'fr': 'Message programmé',
       'it': 'Messaggio programmato',
       'ja': 'スケジュールメッセージ',
@@ -1385,7 +1282,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '3eh38mav': {
       'en': 'Share Contact',
       'de': 'Kontakt teilen',
-      'es': 'Compartir contacto',
       'fr': 'Partager le contact',
       'it': 'Condividi Contatto',
       'ja': '連絡先を共有する',
@@ -1397,7 +1293,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ct1gmsne': {
       'en': 'SchatzApp',
       'de': 'SchatzApp',
-      'es': 'Aplicación Schatz',
       'fr': 'SchatzApp',
       'it': 'SchatzApp',
       'ja': 'SchatzApp',
@@ -1409,7 +1304,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '5hpucbuz': {
       'en': 'Online',
       'de': 'Online',
-      'es': 'En línea',
       'fr': 'En ligne',
       'it': 'Online',
       'ja': 'オンライン',
@@ -1421,7 +1315,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '1aw1c16j': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -1436,7 +1329,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'l5zkovn9': {
       'en': 'Account number / Username',
       'de': 'Kontonummer / Benutzername',
-      'es': 'Número de cuenta / Nombre de usuario',
       'fr': 'Numéro de compte / Nom d\'utilisateur',
       'it': 'Numero di conto / Nome utente',
       'ja': 'アカウント番号／ユーザー名',
@@ -1448,7 +1340,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ex56tyvn': {
       'en': 'SFZ',
       'de': 'SFZ',
-      'es': 'Zona de seguridad',
       'fr': 'SFZ',
       'it': 'SFZ',
       'ja': 'SFZ',
@@ -1460,19 +1351,17 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'f4iycxad': {
       'en': 'Enter schatz account numer / Username',
       'de': 'Schatz-Kontonummer / Benutzername eingeben',
-      'es': 'Introduzca el número de cuenta de Schatz / Nombre de usuario',
       'fr': 'Saisissez le numéro de compte Schatz / Nom d\'utilisateur',
       'it': 'Inserisci il numero di conto Schatz / Nome utente',
       'ja': 'Schatzアカウント番号/ユーザー名を入力してください',
       'ko': '샤츠 계좌번호/사용자 이름을 입력하세요',
       'pl': 'Wprowadź numer konta schatz / nazwę użytkownika',
       'ro': 'Introduceți numărul contului Schatz / numele de utilizator',
-      'zh_Hant': '請輸入Schatz帳號/用戶名',
+      'zh_Hant': '輸入Schatz帳號/用戶名',
     },
     '3ewk1qaf': {
       'en': 'Valid account number',
       'de': 'Gültige Kontonummer',
-      'es': 'Número de cuenta válido',
       'fr': 'Numéro de compte valide',
       'it': 'Numero di conto valido',
       'ja': '有効な口座番号',
@@ -1484,7 +1373,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'toaz5wib': {
       'en': 'Valid Username',
       'de': 'Gültiger Benutzername',
-      'es': 'Nombre de usuario válido',
       'fr': 'Nom d\'utilisateur valide',
       'it': 'Nome utente valido',
       'ja': '有効なユーザー名',
@@ -1497,8 +1385,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Invalid account number / Username. Please check and try again.',
       'de':
           'Ungültige Kontonummer/ungültiger Benutzername. Bitte überprüfen Sie Ihre Angaben und versuchen Sie es erneut.',
-      'es':
-          'Número de cuenta/nombre de usuario no válido. Por favor, verifique y vuelva a intentarlo.',
       'fr':
           'Numéro de compte ou nom d\'utilisateur invalide. Veuillez vérifier et réessayer.',
       'it': 'Numero di conto/nome utente non valido. Verifica e riprova.',
@@ -1513,7 +1399,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'fkzd1tzq': {
       'en': 'Recipient',
       'de': 'Empfänger',
-      'es': 'Beneficiario',
       'fr': 'Destinataire',
       'it': 'Destinatario',
       'ja': '受賞者',
@@ -1525,7 +1410,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'mn2lk7mg': {
       'en': 'Verified',
       'de': 'Bestätigt',
-      'es': 'Verificado',
       'fr': 'Vérifié',
       'it': 'Verificato',
       'ja': '検証済み',
@@ -1536,20 +1420,18 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'ytlsno6n': {
       'en': 'You Can’t Transfer Money to Yourself.',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Sie können sich selbst kein Geld überweisen.',
+      'fr': 'Vous ne pouvez pas vous transférer de l\'argent à vous-même.',
+      'it': 'Non è possibile trasferire denaro a se stessi.',
+      'ja': '自分自身に送金することはできません。',
+      'ko': '본인에게 돈을 이체할 수는 없습니다.',
+      'pl': 'Nie możesz przesyłać pieniędzy sobie samemu.',
+      'ro': 'Nu poți transfera bani către tine însuți.',
+      'zh_Hant': '你不能給自己轉帳。',
     },
     'xucfv2an': {
       'en': 'Amount',
       'de': 'Menge',
-      'es': 'Cantidad',
       'fr': 'Montant',
       'it': 'Quantità',
       'ja': '額',
@@ -1561,7 +1443,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ilxw6gjq': {
       'en': '10.00-5,000',
       'de': '10,00-5.000',
-      'es': '10,00-5.000',
       'fr': '10,00-5 000',
       'it': '10.00-5.000',
       'ja': '10.00～5,000',
@@ -1573,7 +1454,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ci7zphc9': {
       'en': '( Estimated )',
       'de': '( Geschätzt )',
-      'es': '( Estimado )',
       'fr': '( Estimé )',
       'it': '(Stimato)',
       'ja': '（ 推定 ）',
@@ -1584,80 +1464,76 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'zu38yqw9': {
       'en': 'Transaction Limit Exceeded.',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Transaktionslimit überschritten.',
+      'fr': 'Limite de transactions dépassée.',
+      'it': 'Limite di transazioni superato.',
+      'ja': '取引限度額を超過しました。',
+      'ko': '거래 한도를 초과했습니다.',
+      'pl': 'Przekroczono limit transakcji.',
+      'ro': 'Limita de tranzacții a fost depășită.',
+      'zh_Hant': '交易限額已超額。',
     },
     '0q31fuwz': {
       'en': 'Insufficient Funds',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Unzureichende Mittel',
+      'fr': 'Fonds insuffisants',
+      'it': 'Fondi insufficienti',
+      'ja': '資金不足',
+      'ko': '자금 부족',
+      'pl': 'Niewystarczające środki',
+      'ro': 'Fonduri insuficiente',
+      'zh_Hant': '資金不足',
     },
     '9i0tfpcl': {
       'en': 'Transaction Amount Exceeds Recipient’s Top-Up Limit.',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de':
+          'Der Transaktionsbetrag überschreitet das Aufladelimit des Empfängers.',
+      'fr':
+          'Le montant de la transaction dépasse la limite de recharge du destinataire.',
+      'it':
+          'L\'importo della transazione supera il limite di ricarica del destinatario.',
+      'ja': '取引金額が受取人のチャージ限度額を超えています。',
+      'ko': '거래 금액이 수신자의 충전 한도를 초과했습니다.',
+      'pl': 'Kwota transakcji przekracza limit doładowania odbiorcy.',
+      'ro': 'Suma tranzacției depășește limita de încărcare a destinatarului.',
+      'zh_Hant': '交易金額超過收款人儲值限額。',
     },
     'zbjl608t': {
       'en': '50',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': '50',
+      'fr': '50',
+      'it': '50',
+      'ja': '50',
+      'ko': '50',
+      'pl': '50',
+      'ro': '50',
+      'zh_Hant': '50',
     },
     'p9dzibvd': {
       'en': '100',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': '100',
+      'fr': '100',
+      'it': '100',
+      'ja': '100',
+      'ko': '100',
+      'pl': '100',
+      'ro': '100',
+      'zh_Hant': '100',
     },
     'cv85x6et': {
       'en': '150',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': '150',
+      'fr': '150',
+      'it': '150',
+      'ja': '150',
+      'ko': '150',
+      'pl': '150',
+      'ro': '150',
+      'zh_Hant': '150',
     },
     'leuke6sz': {
       'en': 'Add a note (optional)',
       'de': 'Fügen Sie eine Notiz hinzu (optional)',
-      'es': 'Añade una nota (opcional)',
       'fr': 'Ajouter une note (facultatif)',
       'it': 'Aggiungi una nota (facoltativa)',
       'ja': 'メモを追加する（任意）',
@@ -1669,7 +1545,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'm51df3j2': {
       'en': 'Enter note',
       'de': 'Notiz eingeben',
-      'es': 'Introduzca una nota',
       'fr': 'Saisir une note',
       'it': 'Inserisci nota',
       'ja': 'メモを入力してください',
@@ -1681,7 +1556,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'h1cehve1': {
       'en': 'Continue',
       'de': 'Weitermachen',
-      'es': 'Continuar',
       'fr': 'Continuer',
       'it': 'Continuare',
       'ja': '続く',
@@ -1693,7 +1567,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     't2u8heht': {
       'en': 'Secure transfer',
       'de': 'Sichere Übertragung',
-      'es': 'Transferencia segura',
       'fr': 'Transfert sécurisé',
       'it': 'Trasferimento sicuro',
       'ja': '安全な転送',
@@ -1705,7 +1578,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '8gi4kvl5': {
       'en': 'Protected by SchatzApp',
       'de': 'Geschützt durch SchatzApp',
-      'es': 'Protegido por SchatzApp',
       'fr': 'Protégé par SchatzApp',
       'it': 'Protetto da SchatzApp',
       'ja': 'SchatzAppによって保護されています',
@@ -1717,7 +1589,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'rxhrhj6l': {
       'en': 'Send Money',
       'de': 'Geld senden',
-      'es': 'Enviar dinero',
       'fr': 'Envoyer de l\'argent',
       'it': 'Invia denaro',
       'ja': '送金する',
@@ -1729,7 +1600,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'mo4l7sp6': {
       'en': 'Send money quickly and securely to anyone.',
       'de': 'Senden Sie Geld schnell und sicher an jeden.',
-      'es': 'Envía dinero de forma rápida y segura a cualquier persona.',
       'fr':
           'Envoyez de l\'argent rapidement et en toute sécurité à n\'importe qui.',
       'it': 'Invia denaro in modo rapido e sicuro a chiunque.',
@@ -1742,7 +1612,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '6uph84xy': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -1757,7 +1626,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '88hqffrj': {
       'en': 'Search friends',
       'de': 'Freunde suchen',
-      'es': 'Buscar amigos',
       'fr': 'Rechercher des amis',
       'it': 'Cerca amici',
       'ja': '友達を探す',
@@ -1769,7 +1637,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '7jys0hm5': {
       'en': 'All Contacts',
       'de': 'Alle Kontakte',
-      'es': 'Todos los contactos',
       'fr': 'Tous les contacts',
       'it': 'Tutti i contatti',
       'ja': 'すべての連絡先',
@@ -1781,7 +1648,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'zwf39cdz': {
       'en': 'Friends',
       'de': 'Freunde',
-      'es': 'Amigos',
       'fr': 'Amis',
       'it': 'Amici',
       'ja': '友達',
@@ -1793,7 +1659,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'yzh60ynt': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -1808,7 +1673,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'b775hpkt': {
       'en': 'Amount',
       'de': 'Menge',
-      'es': 'Cantidad',
       'fr': 'Montant',
       'it': 'Quantità',
       'ja': '額',
@@ -1820,7 +1684,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ypvla7sp': {
       'en': '( Estimated )',
       'de': '( Geschätzt )',
-      'es': '( Estimado )',
       'fr': '( Estimé )',
       'it': '(Stimato)',
       'ja': '（ 推定 ）',
@@ -1832,7 +1695,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'w749wg59': {
       'en': 'Your Schatz Account Number',
       'de': 'Ihre Schatz-Kontonummer',
-      'es': 'Su número de cuenta de Schatz',
       'fr': 'Votre numéro de compte Schatz',
       'it': 'Il tuo numero di conto Schatz',
       'ja': 'あなたのSchatzアカウント番号',
@@ -1843,44 +1705,40 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'njyivf1b': {
       'en': '50',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': '50',
+      'fr': '50',
+      'it': '50',
+      'ja': '50',
+      'ko': '50',
+      'pl': '50',
+      'ro': '50',
+      'zh_Hant': '50',
     },
     'yexs1h3n': {
       'en': '100',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': '100',
+      'fr': '100',
+      'it': '100',
+      'ja': '100',
+      'ko': '100',
+      'pl': '100',
+      'ro': '100',
+      'zh_Hant': '100',
     },
     'wvhps2ae': {
       'en': '150',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': '150',
+      'fr': '150',
+      'it': '150',
+      'ja': '150',
+      'ko': '150',
+      'pl': '150',
+      'ro': '150',
+      'zh_Hant': '150',
     },
     '1x1dcame': {
       'en': 'Click to Continue Top Up',
       'de': 'Klicken Sie hier, um mit dem Aufladen fortzufahren.',
-      'es': 'Haz clic para continuar recargando',
       'fr': 'Cliquez pour continuer le rechargement',
       'it': 'Fai clic per continuare a ricaricare',
       'ja': 'クリックしてチャージを続ける',
@@ -1891,56 +1749,51 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '8sfcis90': {
       'en': 'Payment Method',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Zahlungsmethode',
+      'fr': 'Mode de paiement',
+      'it': 'Metodo di pagamento',
+      'ja': '支払方法',
+      'ko': '결제 방법',
+      'pl': 'Metoda płatności',
+      'ro': 'Modalitate de plată',
+      'zh_Hant': '付款方式',
     },
     't05k6w9o': {
       'en': 'Bank Transfer',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Banküberweisung',
+      'fr': 'Virement bancaire',
+      'it': 'Bonifico bancario',
+      'ja': '銀行振込',
+      'ko': '은행 송금',
+      'pl': 'Przelew bankowy',
+      'ro': 'Transfer bancar',
+      'zh_Hant': '銀行轉帳',
     },
     'fe5i8x32': {
       'en': 'Top up via SEPA bank transfer',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Aufladung per SEPA-Überweisung',
+      'fr': 'Rechargement par virement bancaire SEPA',
+      'it': 'Ricarica tramite bonifico bancario SEPA',
+      'ja': 'SEPA銀行振込でチャージする',
+      'ko': 'SEPA 은행 송금을 통해 충전하세요',
+      'pl': 'Doładowanie przelewem bankowym SEPA',
+      'ro': 'Încărcare prin transfer bancar SEPA',
+      'zh_Hant': '透過SEPA銀行轉帳充值',
     },
     '0tbvse2h': {
       'en': 'Top Up Wallet',
       'de': 'Guthaben aufladen',
-      'es': 'Recarga tu monedero',
       'fr': 'Recharger mon portefeuille',
       'it': 'Ricarica il portafoglio',
       'ja': 'ウォレットにチャージする',
       'ko': '지갑 충전',
-      'pl': 'Doładowanie portfela',
+      'pl': 'Doładuj portfel',
       'ro': 'Reîncărcare portofel',
       'zh_Hant': '儲值錢包',
     },
     '7iayd6c2': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -1955,7 +1808,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'smhj6the': {
       'en': 'Mobile Number',
       'de': 'Handynummer',
-      'es': 'Número de teléfono móvil',
       'fr': 'Numéro de portable',
       'it': 'Numero di cellulare',
       'ja': '携帯電話番号',
@@ -1967,7 +1819,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'kyjcaz1t': {
       'en': '+1 280******',
       'de': '+1 280******',
-      'es': '+1 280******',
       'fr': '+1 280******',
       'it': '+1 280******',
       'ja': '+1 280******',
@@ -1979,7 +1830,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'lbnuk59n': {
       'en': 'Operator',
       'de': 'Operator',
-      'es': 'Operador',
       'fr': 'Opérateur',
       'it': 'Operatore',
       'ja': 'オペレーター',
@@ -1991,7 +1841,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'vcw1tfvi': {
       'en': 'Custom Amount',
       'de': 'Benutzerdefinierter Betrag',
-      'es': 'Cantidad personalizada',
       'fr': 'Montant personnalisé',
       'it': 'Importo personalizzato',
       'ja': 'カスタム金額',
@@ -2003,7 +1852,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'oblrvznt': {
       'en': '\$200',
       'de': '200 US-Dollar',
-      'es': '\$200',
       'fr': '200 \$',
       'it': '\$200',
       'ja': '200ドル',
@@ -2015,7 +1863,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'bowwge9y': {
       'en': 'Amount',
       'de': 'Menge',
-      'es': 'Cantidad',
       'fr': 'Montant',
       'it': 'Quantità',
       'ja': '額',
@@ -2027,7 +1874,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'aj4ieb9x': {
       'en': 'Recent Contact',
       'de': 'Aktueller Kontakt',
-      'es': 'Contacto reciente',
       'fr': 'Contact récent',
       'it': 'Contatto recente',
       'ja': '最近の連絡',
@@ -2038,20 +1884,18 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '2l02ns03': {
       'en': 'Continue',
-      'de': 'Zahlen',
-      'es': 'Pagar',
-      'fr': 'Payer',
-      'it': 'Paga',
-      'ja': '支払う',
-      'ko': '지불하다',
-      'pl': 'Płacić',
-      'ro': 'Plată',
-      'zh_Hant': '支付',
+      'de': 'Weitermachen',
+      'fr': 'Continuer',
+      'it': 'Continuare',
+      'ja': '続く',
+      'ko': '계속하다',
+      'pl': 'Kontynuować',
+      'ro': 'Continua',
+      'zh_Hant': '繼續',
     },
     '2zfblt4v': {
       'en': 'Airtime',
       'de': 'Sendezeit',
-      'es': 'Tiempo en antena',
       'fr': 'Temps d\'antenne',
       'it': 'Tempo di trasmissione',
       'ja': '通話時間',
@@ -2063,7 +1907,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ohcfeebb': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -2078,7 +1921,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '9erw8wc7': {
       'en': 'Select a country',
       'de': 'Wählen Sie ein Land aus',
-      'es': 'Seleccione un país',
       'fr': 'Sélectionnez un pays',
       'it': 'Seleziona un paese',
       'ja': '国を選択してください',
@@ -2090,7 +1932,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'pjb1ch7e': {
       'en': 'Search...',
       'de': 'Suchen...',
-      'es': 'Buscar...',
       'fr': 'Recherche...',
       'it': 'Ricerca...',
       'ja': '検索...',
@@ -2102,7 +1943,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '2eunsffg': {
       'en': 'Nigeria',
       'de': 'Nigeria',
-      'es': 'Nigeria',
       'fr': 'Nigeria',
       'it': 'Nigeria',
       'ja': 'ナイジェリア',
@@ -2114,7 +1954,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'f2etnhgp': {
       'en': 'Ghana',
       'de': 'Ghana',
-      'es': 'Ghana',
       'fr': 'Ghana',
       'it': 'Ghana',
       'ja': 'ガーナ',
@@ -2126,7 +1965,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'kouz40lh': {
       'en': 'United States',
       'de': 'Vereinigte Staaten',
-      'es': 'Estados Unidos',
       'fr': 'États-Unis',
       'it': 'Stati Uniti',
       'ja': 'アメリカ合衆国',
@@ -2138,7 +1976,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '5qie7e85': {
       'en': 'United Kingdom',
       'de': 'Vereinigtes Königreich',
-      'es': 'Reino Unido',
       'fr': 'Royaume-Uni',
       'it': 'Regno Unito',
       'ja': 'イギリス',
@@ -2150,7 +1987,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'uklfsc2t': {
       'en': 'Germany',
       'de': 'Deutschland',
-      'es': 'Alemania',
       'fr': 'Allemagne',
       'it': 'Germania',
       'ja': 'ドイツ',
@@ -2162,7 +1998,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'vb2slrgm': {
       'en': 'Search for brands',
       'de': 'Marken suchen',
-      'es': 'Buscar marcas',
       'fr': 'Recherche de marques',
       'it': 'Cerca marchi',
       'ja': 'ブランドを検索',
@@ -2174,7 +2009,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'l710o3xd': {
       'en': 'Purpolar Brands',
       'de': 'Purpolar Brands',
-      'es': 'Marcas Purpolar',
       'fr': 'Marques Purpolar',
       'it': 'Purpolar Brands',
       'ja': 'パーポラーブランド',
@@ -2186,7 +2020,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'z2239lxf': {
       'en': 'Gift Card',
       'de': 'Geschenkgutschein',
-      'es': 'Tarjeta de regalo',
       'fr': 'Carte-cadeau',
       'it': 'Carta regalo',
       'ja': 'ギフトカード',
@@ -2198,7 +2031,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'vtd2og46': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -2213,7 +2045,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'p6sk2d5r': {
       'en': 'Page Title',
       'de': 'Seitentitel',
-      'es': 'Título de la página',
       'fr': 'Titre de la page',
       'it': 'Titolo della pagina',
       'ja': 'ページタイトル',
@@ -2225,7 +2056,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'j8i1ttwg': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -2240,7 +2070,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'fs3eobld': {
       'en': 'Add Members',
       'de': 'Mitglieder hinzufügen',
-      'es': 'Agregar miembros',
       'fr': 'Ajouter des membres',
       'it': 'Aggiungi membri',
       'ja': 'メンバーを追加する',
@@ -2252,7 +2081,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'hx372l07': {
       'en': 'Invite Via Link',
       'de': 'Einladung per Link',
-      'es': 'Invitar mediante enlace',
       'fr': 'Invitation via lien',
       'it': 'Invita tramite link',
       'ja': 'リンク経由で招待する',
@@ -2264,7 +2092,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'lv1r3oye': {
       'en': 'QR Code',
       'de': 'QR-Code',
-      'es': 'Código QR',
       'fr': 'Code QR',
       'it': 'Codice QR',
       'ja': 'QRコード',
@@ -2276,7 +2103,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '6zp6yoow': {
       'en': 'Search Chat',
       'de': 'Chat suchen',
-      'es': 'Buscar Chat',
       'fr': 'Rechercher une conversation',
       'it': 'Cerca nella chat',
       'ja': '検索チャット',
@@ -2288,7 +2114,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'tw7ksehx': {
       'en': 'Group Type',
       'de': 'Gruppentyp',
-      'es': 'Tipo de grupo',
       'fr': 'Type de groupe',
       'it': 'Tipo di gruppo',
       'ja': 'グループタイプ',
@@ -2299,20 +2124,18 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'w8htxd75': {
       'en': 'Convert to Private Chat Lock',
-      'de': 'Privat',
-      'es': 'Privado',
-      'fr': 'Privé',
-      'it': 'Privato',
-      'ja': 'プライベート',
-      'ko': '사적인',
-      'pl': 'Prywatny',
-      'ro': 'Privat',
-      'zh_Hant': '私人的',
+      'de': 'In privaten Chat umwandeln',
+      'fr': 'Convertir en verrouillage de conversation privée',
+      'it': 'Converti in chat privata Blocca',
+      'ja': 'プライベートチャットロックに変換',
+      'ko': '비공개 채팅 잠금으로 전환',
+      'pl': 'Konwertuj na blokadę prywatnego czatu',
+      'ro': 'Convertește în blocare pentru chat privat',
+      'zh_Hant': '轉換為私密聊天鎖定',
     },
     'gj9v7od3': {
       'en': 'Permissions',
       'de': 'Berechtigungen',
-      'es': 'Permisos',
       'fr': 'Autorisations',
       'it': 'Autorizzazioni',
       'ja': '権限',
@@ -2324,7 +2147,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '1fmemk64': {
       'en': 'Only admins can send messages',
       'de': 'Nur Administratoren können Nachrichten senden.',
-      'es': 'Solo los administradores pueden enviar mensajes.',
       'fr': 'Seuls les administrateurs peuvent envoyer des messages',
       'it': 'Solo gli amministratori possono inviare messaggi',
       'ja': '管理者のみがメッセージを送信できます',
@@ -2336,7 +2158,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'way6amoh': {
       'en': 'Notifications',
       'de': 'Benachrichtigungen',
-      'es': 'Notificaciones',
       'fr': 'Notifications',
       'it': 'Notifiche',
       'ja': '通知',
@@ -2347,44 +2168,40 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'xmbik5qg': {
       'en': 'Turn on or off notifications',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Benachrichtigungen ein- oder ausschalten',
+      'fr': 'Activer ou désactiver les notifications',
+      'it': 'Attiva o disattiva le notifiche',
+      'ja': '通知をオンまたはオフにする',
+      'ko': '알림 켜기 또는 끄기',
+      'pl': 'Włącz lub wyłącz powiadomienia',
+      'ro': 'Activarea sau dezactivarea notificărilor',
+      'zh_Hant': '開啟或關閉通知',
     },
     'xal5c6hp': {
       'en': 'Save to Gallary',
-      'de': 'Medienpräsenz',
-      'es': 'Visibilidad en los medios',
-      'fr': 'Visibilité médiatique',
-      'it': 'Visibilità mediatica',
-      'ja': 'メディア露出',
-      'ko': '미디어 노출도',
-      'pl': 'Widoczność w mediach',
-      'ro': 'Vizibilitate media',
-      'zh_Hant': '媒體曝光度',
+      'de': 'In Galerie speichern',
+      'fr': 'Enregistrer dans la galerie',
+      'it': 'Salva nella galleria',
+      'ja': 'ギャラリーに保存',
+      'ko': '갤러리에 저장',
+      'pl': 'Zapisz w Gallary',
+      'ro': 'Salvați în Galerie',
+      'zh_Hant': '儲存到圖庫',
     },
     'wbzc56f8': {
       'en': 'Automatically save media',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Medien automatisch speichern',
+      'fr': 'Sauvegarde automatique des médias',
+      'it': 'Salvataggio automatico dei file multimediali',
+      'ja': 'メディアを自動的に保存する',
+      'ko': '미디어를 자동으로 저장합니다.',
+      'pl': 'Automatyczne zapisywanie multimediów',
+      'ro': 'Salvați automat fișierele media',
+      'zh_Hant': '自動儲存媒體',
     },
     'ya2403ky': {
       'en': 'Important',
       'de': 'Wichtig',
-      'es': 'Importante',
       'fr': 'Important',
       'it': 'Importante',
       'ja': '重要',
@@ -2396,7 +2213,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'zlyio2l1': {
       'en': 'View important chats',
       'de': 'Wichtige Chats ansehen',
-      'es': 'Ver chats importantes',
       'fr': 'Consultez les conversations importantes',
       'it': 'Visualizza le chat importanti',
       'ja': '重要なチャットを表示する',
@@ -2407,68 +2223,62 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'dxnr3w0z': {
       'en': 'Chat theme',
-      'de': 'Dateien und Links',
-      'es': 'Archivos y enlaces',
-      'fr': 'Fichiers et liens',
-      'it': 'File e collegamenti',
-      'ja': 'ファイルとリンク',
-      'ko': '파일 및 링크',
-      'pl': 'Pliki i linki',
-      'ro': 'Fișiere și linkuri',
-      'zh_Hant': '文件和連結',
+      'de': 'Chat-Thema',
+      'fr': 'Thème de chat',
+      'it': 'Tema della chat',
+      'ja': 'チャットテーマ',
+      'ko': '채팅 테마',
+      'pl': 'Motyw czatu',
+      'ro': 'Temă de chat',
+      'zh_Hant': '聊天主題',
     },
     '46yrhrkh': {
       'en': 'Pick your preference',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Wählen Sie Ihre Präferenz',
+      'fr': 'Choisissez votre préférence',
+      'it': 'Scegli la tua preferenza',
+      'ja': 'お好みのものをお選びください',
+      'ko': '원하는 것을 선택하세요',
+      'pl': 'Wybierz swoje preferencje',
+      'ro': 'Alege-ți preferința',
+      'zh_Hant': '選擇你的偏好',
     },
     'g1ifmeg4': {
       'en': 'Clear Chat',
-      'de': 'Dateien und Links',
-      'es': 'Archivos y enlaces',
-      'fr': 'Fichiers et liens',
-      'it': 'File e collegamenti',
-      'ja': 'ファイルとリンク',
-      'ko': '파일 및 링크',
-      'pl': 'Pliki i linki',
-      'ro': 'Fișiere și linkuri',
-      'zh_Hant': '文件和連結',
+      'de': 'Chat löschen',
+      'fr': 'Clear Chat',
+      'it': 'Clear Chat',
+      'ja': 'クリアチャット',
+      'ko': '클리어챗',
+      'pl': 'Wyczyść czat',
+      'ro': 'Chat clar',
+      'zh_Hant': '清晰聊天',
     },
     'o00wlzh1': {
       'en': 'Delete all messages in this chat',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Lösche alle Nachrichten in diesem Chat',
+      'fr': 'Supprimer tous les messages de cette conversation',
+      'it': 'Elimina tutti i messaggi in questa chat',
+      'ja': 'このチャットのすべてのメッセージを削除',
+      'ko': '이 채팅의 모든 메시지를 삭제하세요',
+      'pl': 'Usuń wszystkie wiadomości w tym czacie',
+      'ro': 'Ștergeți toate mesajele din acest chat',
+      'zh_Hant': '刪除此聊天中的所有訊息',
     },
     'ot1futgw': {
       'en': 'Media, Links and Files ',
-      'de': 'Dateien und Links',
-      'es': 'Archivos y enlaces',
-      'fr': 'Fichiers et liens',
-      'it': 'File e collegamenti',
-      'ja': 'ファイルとリンク',
-      'ko': '파일 및 링크',
-      'pl': 'Pliki i linki',
-      'ro': 'Fișiere și linkuri',
-      'zh_Hant': '文件和連結',
+      'de': 'Medien, Links und Dateien',
+      'fr': 'Médias, liens et fichiers',
+      'it': 'Contenuti multimediali, link e file',
+      'ja': 'メディア、リンク、ファイル',
+      'ko': '미디어, 링크 및 파일',
+      'pl': 'Media, linki i pliki',
+      'ro': 'Media, linkuri și fișiere',
+      'zh_Hant': '媒體、連結和文件',
     },
     'drswh72c': {
       'en': 'Group Members',
       'de': 'Gruppenmitglieder',
-      'es': 'Miembros del grupo',
       'fr': 'Membres du groupe',
       'it': 'Membri del gruppo',
       'ja': 'グループメンバー',
@@ -2480,7 +2290,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '0wlioqgd': {
       'en': 'Exit Group',
       'de': 'Exit-Gruppe',
-      'es': 'Grupo de salida',
       'fr': 'Groupe de sortie',
       'it': 'Gruppo di uscita',
       'ja': '退出グループ',
@@ -2492,7 +2301,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '7xngt2hp': {
       'en': 'Delete Group',
       'de': 'Gruppe löschen',
-      'es': 'Eliminar grupo',
       'fr': 'Supprimer le groupe',
       'it': 'Elimina gruppo',
       'ja': 'グループを削除',
@@ -2504,7 +2312,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     's0v8tg1j': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -2519,7 +2326,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'khl0rf31': {
       'en': 'Add by number',
       'de': 'Addiere nach Zahl',
-      'es': 'Sumar por número',
       'fr': 'Ajouter par nombre',
       'it': 'Aggiungi per numero',
       'ja': '数値で加算',
@@ -2531,7 +2337,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'eh278zcj': {
       'en': 'Save a new contact to your phone',
       'de': 'Einen neuen Kontakt auf Ihrem Telefon speichern',
-      'es': 'Guarda un nuevo contacto en tu teléfono.',
       'fr': 'Enregistrer un nouveau contact sur votre téléphone',
       'it': 'Salva un nuovo contatto sul tuo telefono',
       'ja': '新しい連絡先を携帯電話に保存する',
@@ -2543,7 +2348,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '7sn66447': {
       'en': 'Full name',
       'de': 'Vollständiger Name',
-      'es': 'Nombre completo',
       'fr': 'Nom et prénom',
       'it': 'Nome e cognome',
       'ja': 'フルネーム',
@@ -2555,7 +2359,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '9owho4f2': {
       'en': 'Enter name ',
       'de': 'Name eingeben',
-      'es': 'Ingrese su nombre',
       'fr': 'Entrez le nom',
       'it': 'Inserisci il nome',
       'ja': '名前を入力してください',
@@ -2567,7 +2370,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'xekud1w1': {
       'en': 'Phone number',
       'de': 'Telefonnummer',
-      'es': 'Número de teléfono',
       'fr': 'Numéro de téléphone',
       'it': 'Numero di telefono',
       'ja': '電話番号',
@@ -2579,7 +2381,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'lsu72k7g': {
       'en': 'xxx xxxx xxxxx',
       'de': 'xxx xxxx xxxxx',
-      'es': 'xxx xxxx xxxxx',
       'fr': 'xxx xxxx xxxxx',
       'it': 'xxx xxxx xxxxx',
       'ja': 'xxx xxxx xxxxx',
@@ -2591,7 +2392,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'bftytrvp': {
       'en': 'Save Contact',
       'de': 'Kontakt speichern',
-      'es': 'Guardar contacto',
       'fr': 'Enregistrer le contact',
       'it': 'Salva Contatto',
       'ja': '連絡先を保存',
@@ -2603,7 +2403,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'rayqf71t': {
       'en': 'Your privacy is important to us',
       'de': 'Ihre Privatsphäre ist uns wichtig.',
-      'es': 'Su privacidad es importante para nosotros.',
       'fr': 'Le respect de votre vie privée est important pour nous.',
       'it': 'La tua privacy è importante per noi',
       'ja': 'お客様のプライバシーは私たちにとって重要です',
@@ -2617,8 +2416,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
           'We\'ll save this contact to your phone so you can message them easily.',
       'de':
           'Wir speichern diesen Kontakt auf Ihrem Telefon, damit Sie ihm/ihr einfach Nachrichten senden können.',
-      'es':
-          'Guardaremos este contacto en tu teléfono para que puedas enviarle mensajes fácilmente.',
       'fr':
           'Nous enregistrerons ce contact dans votre téléphone afin que vous puissiez lui envoyer facilement des messages.',
       'it':
@@ -2634,7 +2431,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'zgtrgtmy': {
       'en': 'SchatzApp',
       'de': 'SchatzApp',
-      'es': 'Aplicación Schatz',
       'fr': 'SchatzApp',
       'it': 'SchatzApp',
       'ja': 'SchatzApp',
@@ -2646,7 +2442,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'trx7v12x': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -2661,7 +2456,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'v4ggvu3d': {
       'en': 'SchatzApp',
       'de': 'SchatzApp',
-      'es': 'Aplicación Schatz',
       'fr': 'SchatzApp',
       'it': 'SchatzApp',
       'ja': 'SchatzApp',
@@ -2673,7 +2467,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'pq9smydg': {
       'en': 'Contact saved!',
       'de': 'Kontakt gespeichert!',
-      'es': '¡Contacto guardado!',
       'fr': 'Contact enregistré !',
       'it': 'Contatto salvato!',
       'ja': '連絡先を保存しました！',
@@ -2685,7 +2478,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'qdqlrdlf': {
       'en': 'You can now start chatting with',
       'de': 'Sie können jetzt mit dem Chatten beginnen.',
-      'es': 'Ahora puedes empezar a chatear con',
       'fr': 'Vous pouvez maintenant commencer à discuter avec',
       'it': 'Ora puoi iniziare a chattare con',
       'ja': 'これでチャットを開始できます',
@@ -2697,7 +2489,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'vina1mlm': {
       'en': 'Message',
       'de': 'Nachricht',
-      'es': 'Mensaje',
       'fr': 'Message',
       'it': 'Messaggio',
       'ja': 'メッセージ',
@@ -2709,7 +2500,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'wlxvxtlv': {
       'en': 'Voice Call',
       'de': 'Sprachanruf',
-      'es': 'Llamada de voz',
       'fr': 'Appel vocal',
       'it': 'Chiamata vocale',
       'ja': '音声通話',
@@ -2721,7 +2511,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'i0mcjoco': {
       'en': 'Video Call',
       'de': 'Videoanruf',
-      'es': 'Videollamada',
       'fr': 'appel vidéo',
       'it': 'Videochiamata',
       'ja': 'ビデオ通話',
@@ -2733,7 +2522,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'vwmcag7f': {
       'en': 'View Contact',
       'de': 'Kontakt anzeigen',
-      'es': 'Ver contacto',
       'fr': 'Voir les coordonnées',
       'it': 'Visualizza il contatto',
       'ja': '連絡先を表示',
@@ -2745,7 +2533,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'md9u27sk': {
       'en': 'SchatzApp',
       'de': 'SchatzApp',
-      'es': 'Aplicación Schatz',
       'fr': 'SchatzApp',
       'it': 'SchatzApp',
       'ja': 'SchatzApp',
@@ -2757,7 +2544,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'vt9kre4i': {
       'en': 'Connect, Share, Together.',
       'de': 'Verbinden, teilen, gemeinsam.',
-      'es': 'Conectar, compartir, juntos.',
       'fr': 'Se connecter, partager, ensemble.',
       'it': 'Connettersi, condividere, insieme.',
       'ja': 'つながり、共有し、共に。',
@@ -2769,7 +2555,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'v5ms1t2r': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -2784,7 +2569,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'rbppm1v8': {
       'en': 'Add by Username',
       'de': 'Hinzufügen nach Benutzername',
-      'es': 'Agregar por nombre de usuario',
       'fr': 'Ajouter par nom d\'utilisateur',
       'it': 'Aggiungi tramite nome utente',
       'ja': 'ユーザー名で追加',
@@ -2796,7 +2580,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '27brghx8': {
       'en': 'Save a new contact to your phone',
       'de': 'Einen neuen Kontakt auf Ihrem Telefon speichern',
-      'es': 'Guarda un nuevo contacto en tu teléfono.',
       'fr': 'Enregistrer un nouveau contact sur votre téléphone',
       'it': 'Salva un nuovo contatto sul tuo telefono',
       'ja': '新しい連絡先を携帯電話に保存する',
@@ -2808,7 +2591,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'lryjgtz3': {
       'en': 'Full name',
       'de': 'Vollständiger Name',
-      'es': 'Nombre completo',
       'fr': 'Nom et prénom',
       'it': 'Nome e cognome',
       'ja': 'フルネーム',
@@ -2820,7 +2602,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'icpg4kvp': {
       'en': '@Enter username',
       'de': '@Geben Sie Ihren Benutzernamen ein',
-      'es': '@Introduce tu nombre de usuario',
       'fr': '@Entrez votre nom d\'utilisateur',
       'it': '@Inserisci il nome utente',
       'ja': '@ユーザー名を入力してください',
@@ -2832,7 +2613,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'zloiq62f': {
       'en': 'Save Contact',
       'de': 'Kontakt speichern',
-      'es': 'Guardar contacto',
       'fr': 'Enregistrer le contact',
       'it': 'Salva Contatto',
       'ja': '連絡先を保存',
@@ -2844,7 +2624,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'rrowhhpq': {
       'en': 'Your privacy is important to us',
       'de': 'Ihre Privatsphäre ist uns wichtig.',
-      'es': 'Su privacidad es importante para nosotros.',
       'fr': 'Le respect de votre vie privée est important pour nous.',
       'it': 'La tua privacy è importante per noi',
       'ja': 'お客様のプライバシーは私たちにとって重要です',
@@ -2858,8 +2637,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
           'We\'ll save this user name to your phone so you can message them easily.',
       'de':
           'Wir speichern diesen Benutzernamen auf Ihrem Telefon, damit Sie ihnen problemlos Nachrichten senden können.',
-      'es':
-          'Guardaremos este nombre de usuario en tu teléfono para que puedas enviarle mensajes fácilmente.',
       'fr':
           'Nous enregistrerons ce nom d\'utilisateur sur votre téléphone afin que vous puissiez leur envoyer des messages facilement.',
       'it':
@@ -2869,13 +2646,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'pl':
           'Zapiszemy tę nazwę użytkownika w Twoim telefonie, aby ułatwić Ci wysyłanie wiadomości.',
       'ro':
-          'Vom salva acest nume de utilizator pe telefonul dvs., astfel încât să le puteți trimite mesaje cu ușurință.',
+          'Vom salva acest nume de utilizator pe telefonul dvs., astfel încât să îi puteți trimite mesaje cu ușurință.',
       'zh_Hant': '我們會將此使用者名稱儲存到您的手機中，方便您輕鬆地向他們發送訊息。',
     },
     'h4lisi3o': {
       'en': 'SchatzApp',
       'de': 'SchatzApp',
-      'es': 'Aplicación Schatz',
       'fr': 'SchatzApp',
       'it': 'SchatzApp',
       'ja': 'SchatzApp',
@@ -2887,7 +2663,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '71ac2g7w': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -2902,7 +2677,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'pbx57l1o': {
       'en': 'Add friend',
       'de': 'Freund hinzufügen',
-      'es': 'Agregar amigo',
       'fr': 'Ajouter un ami',
       'it': 'Aggiungi amico',
       'ja': '友達を追加',
@@ -2914,7 +2688,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'xc2g9ptn': {
       'en': 'Find your friends on SchatzApp\nand start chatting',
       'de': 'Finde deine Freunde auf SchatzApp\nund chatte los!',
-      'es': 'Encuentra a tus amigos en SchatzApp y empieza a chatear.',
       'fr': 'Retrouvez vos amis sur SchatzApp\net commencez à discuter',
       'it': 'Trova i tuoi amici su SchatzApp\ne inizia a chattare',
       'ja': 'SchatzAppで友達を見つけて、チャットを始めましょう！',
@@ -2926,7 +2699,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'jcwoqbip': {
       'en': 'Add by username',
       'de': 'Hinzufügen per Benutzernamen',
-      'es': 'Agregar por nombre de usuario',
       'fr': 'Ajouter par nom d\'utilisateur',
       'it': 'Aggiungi tramite nome utente',
       'ja': 'ユーザー名で追加',
@@ -2938,7 +2710,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'uowal47b': {
       'en': 'Add by number',
       'de': 'Addiere nach Zahl',
-      'es': 'Sumar por número',
       'fr': 'Ajouter par nombre',
       'it': 'Aggiungi per numero',
       'ja': '数値で加算',
@@ -2950,7 +2721,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'eq8y2l6l': {
       'en': 'Invite your friends',
       'de': 'Lade deine Freunde ein',
-      'es': 'Invita a tus amigos',
       'fr': 'Invitez vos amis',
       'it': 'Invita i tuoi amici',
       'ja': '友達を招待する',
@@ -2962,8 +2732,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'nhsgea19': {
       'en': 'Share your SchatzApp invite link with friends and family.',
       'de': 'Teile deinen SchatzApp-Einladungslink mit Freunden und Familie.',
-      'es':
-          'Comparte tu enlace de invitación de SchatzApp con tus amigos y familiares.',
       'fr':
           'Partagez votre lien d\'invitation SchatzApp avec vos amis et votre famille.',
       'it':
@@ -2978,7 +2746,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'jbv1bbd5': {
       'en': 'invite',
       'de': 'einladen',
-      'es': 'invitar',
       'fr': 'inviter',
       'it': 'invitare',
       'ja': '招待する',
@@ -2990,7 +2757,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'n1s9sjf2': {
       'en': 'SchatzApp',
       'de': 'SchatzApp',
-      'es': 'Aplicación Schatz',
       'fr': 'SchatzApp',
       'it': 'SchatzApp',
       'ja': 'SchatzApp',
@@ -3002,7 +2768,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'y2mgurqu': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -3017,7 +2782,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'fs9lubkz': {
       'en': 'Online',
       'de': 'Online',
-      'es': 'En línea',
       'fr': 'En ligne',
       'it': 'Online',
       'ja': 'オンライン',
@@ -3029,7 +2793,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'khfeaywd': {
       'en': 'Message',
       'de': 'Nachricht',
-      'es': 'Mensaje',
       'fr': 'Message',
       'it': 'Messaggio',
       'ja': 'メッセージ',
@@ -3041,7 +2804,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'o92ubx5l': {
       'en': 'Voice Call',
       'de': 'Sprachanruf',
-      'es': 'Llamada de voz',
       'fr': 'Appel vocal',
       'it': 'Chiamata vocale',
       'ja': '音声通話',
@@ -3053,7 +2815,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'u6q5l9y2': {
       'en': 'Video Call',
       'de': 'Videoanruf',
-      'es': 'Videollamada',
       'fr': 'appel vidéo',
       'it': 'Videochiamata',
       'ja': 'ビデオ通話',
@@ -3065,7 +2826,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '8r1pu17j': {
       'en': 'More',
       'de': 'Mehr',
-      'es': 'Más',
       'fr': 'Plus',
       'it': 'Di più',
       'ja': 'もっと',
@@ -3076,68 +2836,40 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'qpy9suo1': {
       'en': 'Lock Chat',
-      'de': 'Medien, Links und Dateien',
-      'es': 'Medios, enlaces y archivos',
-      'fr': 'Médias, liens et fichiers',
-      'it': 'Contenuti multimediali, link e file',
-      'ja': 'メディア、リンク、ファイル',
-      'ko': '미디어, 링크 및 파일',
-      'pl': 'Media, linki i pliki',
-      'ro': 'Media, linkuri și fișiere',
-      'zh_Hant': '媒體、連結和文件',
-    },
-    'xxmunmem': {
-      'en': 'Lock and hide his chat on this device.',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
-    },
-    'i4hj3awi': {
-      'en': 'Unlock and unhide his chat on this device.',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Chat sperren',
+      'fr': 'Verrouiller le chat',
+      'it': 'Blocca chat',
+      'ja': 'チャットをロックする',
+      'ko': '채팅 잠금',
+      'pl': 'Zablokuj czat',
+      'ro': 'Blocare chat',
+      'zh_Hant': '鎖定聊天',
     },
     'c48tfj6z': {
       'en': 'Save to Gallary',
-      'de': 'Medien, Links und Dateien',
-      'es': 'Medios, enlaces y archivos',
-      'fr': 'Médias, liens et fichiers',
-      'it': 'Contenuti multimediali, link e file',
-      'ja': 'メディア、リンク、ファイル',
-      'ko': '미디어, 링크 및 파일',
-      'pl': 'Media, linki i pliki',
-      'ro': 'Media, linkuri și fișiere',
-      'zh_Hant': '媒體、連結和文件',
+      'de': 'In Galerie speichern',
+      'fr': 'Enregistrer dans la galerie',
+      'it': 'Salva nella galleria',
+      'ja': 'ギャラリーに保存',
+      'ko': '갤러리에 저장',
+      'pl': 'Zapisz w Gallary',
+      'ro': 'Salvați în Galerie',
+      'zh_Hant': '儲存到圖庫',
     },
     'ia5ilxd4': {
       'en': 'Automatically sae media',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Automatisch sae Medien',
+      'fr': 'médias de sauvegarde automatique',
+      'it': 'Media SAE automatici',
+      'ja': '自動的にsaeメディア',
+      'ko': '자동으로 sae 미디어',
+      'pl': 'Automatycznie zapisz media',
+      'ro': 'Salvați automat fișierele media',
+      'zh_Hant': '自動儲存媒體',
     },
     '8lxsu8tk': {
       'en': 'Media, Links and Files',
       'de': 'Medien, Links und Dateien',
-      'es': 'Medios, enlaces y archivos',
       'fr': 'Médias, liens et fichiers',
       'it': 'Contenuti multimediali, link e file',
       'ja': 'メディア、リンク、ファイル',
@@ -3149,7 +2881,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'krdtheyv': {
       'en': 'Groups in Common',
       'de': 'Gemeinsamkeiten',
-      'es': 'Grupos en común',
       'fr': 'Groupes en commun',
       'it': 'Gruppi in comune',
       'ja': '共通するグループ',
@@ -3161,7 +2892,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'bl615ntx': {
       'en': 'Important',
       'de': 'Wichtig',
-      'es': 'Importante',
       'fr': 'Important',
       'it': 'Importante',
       'ja': '重要',
@@ -3173,7 +2903,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'rznu9fnv': {
       'en': 'View important chats',
       'de': 'Wichtige Chats ansehen',
-      'es': 'Ver chats importantes',
       'fr': 'Consultez les conversations importantes',
       'it': 'Visualizza le chat importanti',
       'ja': '重要なチャットを表示する',
@@ -3185,7 +2914,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'a7n9gymc': {
       'en': 'Clear Chat',
       'de': 'Chat löschen',
-      'es': 'Chat claro',
       'fr': 'Clear Chat',
       'it': 'Clear Chat',
       'ja': 'クリアチャット',
@@ -3197,7 +2925,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'wexcnd2y': {
       'en': 'Delete all messages in this chat',
       'de': 'Lösche alle Nachrichten in diesem Chat',
-      'es': 'Borrar todos los mensajes de este chat',
       'fr': 'Supprimer tous les messages de cette conversation',
       'it': 'Elimina tutti i messaggi in questa chat',
       'ja': 'このチャットのすべてのメッセージを削除',
@@ -3209,7 +2936,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'fnvoxsia': {
       'en': 'Chat theme',
       'de': 'Chat-Thema',
-      'es': 'Tema de chat',
       'fr': 'Thème de chat',
       'it': 'Tema della chat',
       'ja': 'チャットテーマ',
@@ -3221,7 +2947,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '0xrrie6y': {
       'en': 'Pick your preference',
       'de': 'Wählen Sie Ihre Präferenz',
-      'es': 'Elige tu preferencia',
       'fr': 'Choisissez votre préférence',
       'it': 'Scegli la tua preferenza',
       'ja': 'お好みのものをお選びください',
@@ -3233,7 +2958,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'lsj18d14': {
       'en': 'Mutual Contacts',
       'de': 'Gegenseitige Kontakte',
-      'es': 'Contactos mutuos',
       'fr': 'Contacts mutuels',
       'it': 'Contatti reciproci',
       'ja': '相互連絡',
@@ -3245,7 +2969,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '4jg71tcm': {
       'en': 'Encryption',
       'de': 'Verschlüsselung',
-      'es': 'Cifrado',
       'fr': 'Cryptage',
       'it': 'Crittografia',
       'ja': '暗号化',
@@ -3257,7 +2980,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'tfavtuds': {
       'en': 'Message and calls are end-to end encrypted',
       'de': 'Nachrichten und Anrufe sind Ende-zu-Ende-verschlüsselt.',
-      'es': 'Los mensajes y las llamadas están cifrados de extremo a extremo.',
       'fr': 'Les messages et les appels sont chiffrés de bout en bout',
       'it': 'Messaggi e chiamate sono crittografati end-to-end',
       'ja': 'メッセージと通話はエンドツーエンドで暗号化されます',
@@ -3269,7 +2991,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '2w5qg4po': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -3284,7 +3005,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'z04na8g4': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -3299,7 +3019,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'y1yr6b8y': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -3314,7 +3033,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'zvrpbrx1': {
       'en': 'Enter chatting mood',
       'de': 'Chat-Stimmung einschalten',
-      'es': 'Entra en modo charla.',
       'fr': 'Entrez dans l\'ambiance de la conversation',
       'it': 'Entra in modalità chat',
       'ja': 'チャットモードに入る',
@@ -3326,7 +3044,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '09uf67sr': {
       'en': 'You Left This Group Already',
       'de': 'Du hast diese Gruppe bereits verlassen',
-      'es': 'Ya abandonaste este grupo.',
       'fr': 'Vous avez déjà quitté ce groupe',
       'it': 'Hai già lasciato questo gruppo',
       'ja': 'あなたは既にこのグループを脱退しました',
@@ -3338,7 +3055,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'bilzefg7': {
       'en': 'Photos',
       'de': 'Fotos',
-      'es': 'Fotos',
       'fr': 'Photos',
       'it': 'Foto',
       'ja': '写真',
@@ -3350,7 +3066,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'oy5suy4i': {
       'en': 'Show All',
       'de': 'Alle anzeigen',
-      'es': 'Mostrar todo',
       'fr': 'Afficher tout',
       'it': 'Mostra tutto',
       'ja': 'すべて表示',
@@ -3362,7 +3077,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'wg9oo2k1': {
       'en': 'Document',
       'de': 'Dokumentieren',
-      'es': 'Documento',
       'fr': 'Document',
       'it': 'Documento',
       'ja': '書類',
@@ -3374,7 +3088,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '6v9cp5i2': {
       'en': 'Location',
       'de': 'Standort',
-      'es': 'Ubicación',
       'fr': 'Emplacement',
       'it': 'Posizione',
       'ja': '位置',
@@ -3386,7 +3099,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'lcbqsh40': {
       'en': 'Schedule message',
       'de': 'Nachricht planen',
-      'es': 'Mensaje programado',
       'fr': 'Message programmé',
       'it': 'Messaggio programmato',
       'ja': 'スケジュールメッセージ',
@@ -3398,7 +3110,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'o5nuqwtd': {
       'en': 'Share Contact',
       'de': 'Kontakt teilen',
-      'es': 'Compartir contacto',
       'fr': 'Partager le contact',
       'it': 'Condividi Contatto',
       'ja': '連絡先を共有する',
@@ -3410,7 +3121,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ibc8d7ks': {
       'en': 'SchatzApp',
       'de': 'SchatzApp',
-      'es': 'Aplicación Schatz',
       'fr': 'SchatzApp',
       'it': 'SchatzApp',
       'ja': 'SchatzApp',
@@ -3422,7 +3132,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'b7ser7ma': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -3437,7 +3146,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'pyf39l9t': {
       'en': 'Amount',
       'de': 'Menge',
-      'es': 'Cantidad',
       'fr': 'Montant',
       'it': 'Quantità',
       'ja': '額',
@@ -3449,7 +3157,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'tcuop4kw': {
       'en': 'Custom Amount',
       'de': 'Benutzerdefinierter Betrag',
-      'es': 'Cantidad personalizada',
       'fr': 'Montant personnalisé',
       'it': 'Importo personalizzato',
       'ja': 'カスタム金額',
@@ -3461,7 +3168,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'n97ys1qh': {
       'en': '\$200',
       'de': '200 US-Dollar',
-      'es': '\$200',
       'fr': '200 \$',
       'it': '\$200',
       'ja': '200ドル',
@@ -3473,7 +3179,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'g0nl282d': {
       'en': 'Quantity',
       'de': 'Menge',
-      'es': 'Cantidad',
       'fr': 'Quantité',
       'it': 'Quantità',
       'ja': '量',
@@ -3485,7 +3190,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'nh6ral6s': {
       'en': 'Total',
       'de': 'Gesamt',
-      'es': 'Total',
       'fr': 'Total',
       'it': 'Totale',
       'ja': '合計',
@@ -3497,7 +3201,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ue9ix09d': {
       'en': 'Email address',
       'de': 'E-Mail-Adresse',
-      'es': 'Dirección de correo electrónico',
       'fr': 'Adresse email',
       'it': 'Indirizzo e-mail',
       'ja': '電子メールアドレス',
@@ -3509,7 +3212,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ubu5lqqz': {
       'en': ' Recipient email address',
       'de': 'E-Mail-Adresse des Empfängers',
-      'es': 'Dirección de correo electrónico del destinatario',
       'fr': 'Adresse e-mail du destinataire',
       'it': 'Indirizzo email del destinatario',
       'ja': '受信者のメールアドレス',
@@ -3521,7 +3223,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '3rnqvcap': {
       'en': 'Buy',
       'de': 'Kaufen',
-      'es': 'Comprar',
       'fr': 'Acheter',
       'it': 'Acquistare',
       'ja': '買う',
@@ -3533,7 +3234,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'wdnfwcl6': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -3548,7 +3248,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'as2o4zcm': {
       'en': 'Mobile Number',
       'de': 'Handynummer',
-      'es': 'Número de teléfono móvil',
       'fr': 'Numéro de portable',
       'it': 'Numero di cellulare',
       'ja': '携帯電話番号',
@@ -3560,7 +3259,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'f6oxbbnn': {
       'en': '+1 280******',
       'de': '+1 280******',
-      'es': '+1 280******',
       'fr': '+1 280******',
       'it': '+1 280******',
       'ja': '+1 280******',
@@ -3572,7 +3270,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'e4u6e4c4': {
       'en': 'Operator',
       'de': 'Operator',
-      'es': 'Operador',
       'fr': 'Opérateur',
       'it': 'Operatore',
       'ja': 'オペレーター',
@@ -3584,7 +3281,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'lcd9kge9': {
       'en': 'Select a Data Plan',
       'de': 'Wählen Sie einen Datentarif',
-      'es': 'Seleccione un plan de datos',
       'fr': 'Choisissez un forfait de données',
       'it': 'Seleziona un piano dati',
       'ja': 'データプランを選択してください',
@@ -3596,7 +3292,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '53g28duy': {
       'en': 'Recent Contact',
       'de': 'Aktueller Kontakt',
-      'es': 'Contacto reciente',
       'fr': 'Contact récent',
       'it': 'Contatto recente',
       'ja': '最近の連絡',
@@ -3607,20 +3302,18 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'dwkafm6d': {
       'en': 'Continue',
-      'de': 'Zahlen',
-      'es': 'Pagar',
-      'fr': 'Payer',
-      'it': 'Paga',
-      'ja': '支払う',
-      'ko': '지불하다',
-      'pl': 'Płacić',
-      'ro': 'Plată',
-      'zh_Hant': '支付',
+      'de': 'Weitermachen',
+      'fr': 'Continuer',
+      'it': 'Continuare',
+      'ja': '続く',
+      'ko': '계속하다',
+      'pl': 'Kontynuować',
+      'ro': 'Continua',
+      'zh_Hant': '繼續',
     },
     'lzy38aq3': {
       'en': 'Data',
       'de': 'Daten',
-      'es': 'Datos',
       'fr': 'Données',
       'it': 'Dati',
       'ja': 'データ',
@@ -3632,7 +3325,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'dqjlaa07': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -3647,7 +3339,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '5n6yxhuz': {
       'en': 'Transaction Details',
       'de': 'Transaktionsdetails',
-      'es': 'Detalles de la transacción',
       'fr': 'Détails de la transaction',
       'it': 'Dettagli della transazione',
       'ja': '取引の詳細',
@@ -3659,7 +3350,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'o2ob2e7c': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -3674,7 +3364,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     's5p2irso': {
       'en': 'QR Code',
       'de': 'QR-Code',
-      'es': 'Código QR',
       'fr': 'Code QR',
       'it': 'Codice QR',
       'ja': 'QRコード',
@@ -3686,7 +3375,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '4grlvucb': {
       'en': 'QR Code',
       'de': 'QR-Code',
-      'es': 'Código QR',
       'fr': 'Code QR',
       'it': 'Codice QR',
       'ja': 'QRコード',
@@ -3698,7 +3386,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '4ekclfgl': {
       'en': 'QR Code',
       'de': 'QR-Code',
-      'es': 'Código QR',
       'fr': 'Code QR',
       'it': 'Codice QR',
       'ja': 'QRコード',
@@ -3710,7 +3397,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '10xpx509': {
       'en': 'QR Code',
       'de': 'QR-Code',
-      'es': 'Código QR',
       'fr': 'Code QR',
       'it': 'Codice QR',
       'ja': 'QRコード',
@@ -3722,7 +3408,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '5dxez2kq': {
       'en': 'QR Code',
       'de': 'QR-Code',
-      'es': 'Código QR',
       'fr': 'Code QR',
       'it': 'Codice QR',
       'ja': 'QRコード',
@@ -3734,7 +3419,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'kjidnwgq': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -3746,58 +3430,75 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // SchatzAppWeb_login
   {
-    'fa90q3ps': {
-      'en': 'Hello World',
-      'de': 'Hallo Welt',
-      'es': 'Hola Mundo',
-      'fr': 'Bonjour le monde',
-      'it': 'Ciao mondo',
-      'ja': 'こんにちは世界',
-      'ko': '안녕하세요',
-      'pl': 'Witaj świecie',
-      'ro': 'Salut Lume',
-      'zh_Hant': '你好世界',
+    'kzrknurx': {
+      'en': 'SchatzApp',
+      'de': '',
+      'fr': '',
+      'it': '',
+      'ja': '',
+      'ko': '',
+      'pl': '',
+      'ro': '',
+      'zh_Hant': '',
     },
-    'rnor33wu': {
+    'zs8c0qth': {
       'en': 'Hello World',
-      'de': 'Hallo Welt',
-      'es': 'Hola Mundo',
-      'fr': 'Bonjour le monde',
-      'it': 'Ciao mondo',
-      'ja': 'こんにちは世界',
-      'ko': '안녕하세요',
-      'pl': 'Witaj świecie',
-      'ro': 'Salut Lume',
-      'zh_Hant': '你好世界',
+      'de': '',
+      'fr': '',
+      'it': '',
+      'ja': '',
+      'ko': '',
+      'pl': '',
+      'ro': '',
+      'zh_Hant': '',
     },
-    'dwyu2ipn': {
+    'b6wiqu1m': {
       'en': 'Hello World',
-      'de': 'Hallo Welt',
-      'es': 'Hola Mundo',
-      'fr': 'Bonjour le monde',
-      'it': 'Ciao mondo',
-      'ja': 'こんにちは世界',
-      'ko': '안녕하세요',
-      'pl': 'Witaj świecie',
-      'ro': 'Salut Lume',
-      'zh_Hant': '你好世界',
+      'de': '',
+      'fr': '',
+      'it': '',
+      'ja': '',
+      'ko': '',
+      'pl': '',
+      'ro': '',
+      'zh_Hant': '',
     },
-    'vhfgyj7u': {
+    '1d2ydxxw': {
       'en': 'Hello World',
-      'de': 'Hallo Welt',
-      'es': 'Hola Mundo',
-      'fr': 'Bonjour le monde',
-      'it': 'Ciao mondo',
-      'ja': 'こんにちは世界',
-      'ko': '안녕하세요',
-      'pl': 'Witaj świecie',
-      'ro': 'Salut Lume',
-      'zh_Hant': '你好世界',
+      'de': '',
+      'fr': '',
+      'it': '',
+      'ja': '',
+      'ko': '',
+      'pl': '',
+      'ro': '',
+      'zh_Hant': '',
+    },
+    'th5ll3fh': {
+      'en': '1',
+      'de': '',
+      'fr': '',
+      'it': '',
+      'ja': '',
+      'ko': '',
+      'pl': '',
+      'ro': '',
+      'zh_Hant': '',
+    },
+    '1gitdjvq': {
+      'en': 'Hello World',
+      'de': '',
+      'fr': '',
+      'it': '',
+      'ja': '',
+      'ko': '',
+      'pl': '',
+      'ro': '',
+      'zh_Hant': '',
     },
     'ffj9wy84': {
       'en': 'Page Title',
       'de': 'Seitentitel',
-      'es': 'Título de la página',
       'fr': 'Titre de la page',
       'it': 'Titolo della pagina',
       'ja': 'ページタイトル',
@@ -3809,7 +3510,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'z2m8war6': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -3824,7 +3524,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'hu5ona7v': {
       'en': 'Log in to SchatzApp',
       'de': 'Melden Sie sich bei SchatzApp an',
-      'es': 'Inicia sesión en SchatzApp.',
       'fr': 'Connectez-vous à SchatzApp',
       'it': 'Accedi a SchatzApp',
       'ja': 'SchatzAppにログイン',
@@ -3838,12 +3537,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
           'Continue to experience powerful features\nfor seamless communication.',
       'de':
           'Profitieren Sie weiterhin von leistungsstarken Funktionen\nfür eine reibungslose Kommunikation.',
-      'es':
-          'Sigue disfrutando de potentes funciones para una comunicación fluida.',
       'fr':
           'Continuez à profiter de fonctionnalités performantes\npour une communication fluide.',
       'it':
-          'Continua a sperimentare funzionalità avanzate\nper una comunicazione senza interruzioni.',
+          'Continua a sperimentare funzionalità avanzate per una comunicazione senza interruzioni.',
       'ja': '引き続き、シームレスなコミュニケーションを実現する強力な機能をご利用ください。',
       'ko': '원활한 커뮤니케이션을 위한 강력한 기능을 계속해서 경험해 보세요.',
       'pl':
@@ -3855,7 +3552,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '30uloi9c': {
       'en': 'End-to-End Encrypted',
       'de': 'Ende-zu-Ende-Verschlüsselung',
-      'es': 'Cifrado de extremo a extremo',
       'fr': 'Chiffrement de bout en bout',
       'it': 'Crittografia end-to-end',
       'ja': 'エンドツーエンド暗号化',
@@ -3867,7 +3563,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'vewu762q': {
       'en': 'Lightning Fast',
       'de': 'Blitzschnell',
-      'es': 'Rapidez como el rayo',
       'fr': 'Rapide comme l\'éclair',
       'it': 'Velocissimo',
       'ja': '超高速',
@@ -3879,7 +3574,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '7afkzzmd': {
       'en': 'Works Everywhere',
       'de': 'Funktioniert überall',
-      'es': 'Funciona en todas partes',
       'fr': 'Fonctionne partout',
       'it': 'Funziona ovunque',
       'ja': 'どこでも使える',
@@ -3891,7 +3585,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'tr1m3e0g': {
       'en': 'Enter your number to continue',
       'de': 'Geben Sie Ihre Nummer ein, um fortzufahren.',
-      'es': 'Introduce tu número para continuar',
       'fr': 'Saisissez votre numéro pour continuer',
       'it': 'Inserisci il tuo numero per continuare',
       'ja': '続行するには番号を入力してください',
@@ -3903,7 +3596,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'b0hmls2e': {
       'en': '---  ---- -----',
       'de': '--- ---- -----',
-      'es': '--- ---- -----',
       'fr': '--- ---- -----',
       'it': '--- ---- -----',
       'ja': '--- ---- -----',
@@ -3915,7 +3607,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'mdb721lf': {
       'en': 'Get OTP',
       'de': 'OTP anfordern',
-      'es': 'Obtén el código OTP',
       'fr': 'Obtenez un code OTP',
       'it': 'Ottieni l\'OTP',
       'ja': 'OTPを取得する',
@@ -3927,7 +3618,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'k6etwdb6': {
       'en': '\"Need help logging in?\"',
       'de': '\"Brauchen Sie Hilfe beim Anmelden?\"',
-      'es': '\"¿Necesitas ayuda para iniciar sesión?\"',
       'fr': '«Besoin d\'aide pour vous connecter ?»',
       'it': 'Hai bisogno di aiuto per accedere?',
       'ja': 'ログインでお困りですか？',
@@ -3939,7 +3629,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'c1fg7uyc': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -3954,7 +3643,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'd7ybpgnj': {
       'en': 'Verify Mobile',
       'de': 'Mobiltelefon verifizieren',
-      'es': 'Verificar móvil',
       'fr': 'Vérifier le mobile',
       'it': 'Verifica mobile',
       'ja': 'モバイル認証',
@@ -3966,7 +3654,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '5j47s48z': {
       'en': 'Verify',
       'de': 'Verifizieren',
-      'es': 'Verificar',
       'fr': 'Vérifier',
       'it': 'Verificare',
       'ja': '確認する',
@@ -3978,7 +3665,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'j65kpshd': {
       'en': 'Didn\'t receive OTP?',
       'de': 'Haben Sie keinen OTP-Code erhalten?',
-      'es': '¿No recibiste el código OTP?',
       'fr': 'Vous n\'avez pas reçu le code OTP ?',
       'it': 'Non hai ricevuto l\'OTP?',
       'ja': 'OTPが届きませんでしたか？',
@@ -3990,7 +3676,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '666l5c4j': {
       'en': 'Resend code',
       'de': 'Code erneut senden',
-      'es': 'Reenviar código',
       'fr': 'Renvoyer le code',
       'it': 'Reinvia il codice',
       'ja': '再送信コード',
@@ -4002,7 +3687,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '1qtm8en0': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -4017,7 +3701,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'to9o45dw': {
       'en': 'Forget Number?',
       'de': 'Nummer vergessen?',
-      'es': '¿Olvidaste tu número?',
       'fr': 'Numéro oublié ?',
       'it': 'Hai dimenticato il numero?',
       'ja': '電話番号を忘れましたか？',
@@ -4029,7 +3712,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'q9c46fy0': {
       'en': 'Troubleshoot OTP',
       'de': 'Fehlerbehebung bei OTP',
-      'es': 'Solución de problemas de OTP',
       'fr': 'Dépannage des mots de passe à usage unique (OTP)',
       'it': 'Risoluzione dei problemi OTP',
       'ja': 'OTPのトラブルシューティング',
@@ -4041,7 +3723,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '0411h8ea': {
       'en': 'Account Locked?',
       'de': 'Konto gesperrt?',
-      'es': '¿Cuenta bloqueada?',
       'fr': 'Compte verrouillé ?',
       'it': 'Account bloccato?',
       'ja': 'アカウントがロックされましたか？',
@@ -4053,7 +3734,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'uhicvqnl': {
       'en': 'Find your account',
       'de': 'Finden Sie Ihr Konto',
-      'es': 'Encuentra tu cuenta',
       'fr': 'Trouvez votre compte',
       'it': 'Trova il tuo account',
       'ja': 'アカウントを探す',
@@ -4065,7 +3745,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'y8ucx3ro': {
       'en': 'Enter your recovery email',
       'de': 'Geben Sie Ihre Wiederherstellungs-E-Mail-Adresse ein.',
-      'es': 'Ingrese su correo electrónico de recuperación',
       'fr': 'Veuillez saisir votre adresse e-mail de récupération',
       'it': 'Inserisci il tuo indirizzo email di recupero',
       'ja': '復旧用メールアドレスを入力してください',
@@ -4077,7 +3756,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'cxqa8w9i': {
       'en': 'Submit Request',
       'de': 'Anfrage einreichen',
-      'es': 'Enviar solicitud',
       'fr': 'Soumettre une demande',
       'it': 'Invia richiesta',
       'ja': 'リクエストを送信',
@@ -4089,7 +3767,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '0i9jhi9v': {
       'en': 'Common Issues & FAQs',
       'de': 'Häufige Probleme & FAQs',
-      'es': 'Problemas comunes y preguntas frecuentes',
       'fr': 'Problèmes courants et FAQ',
       'it': 'Problemi comuni e domande frequenti',
       'ja': 'よくある問題とよくある質問',
@@ -4101,7 +3778,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'tyoq0nm4': {
       'en': '1. I\'m not receiving my OPT',
       'de': '1. Ich erhalte meine OPT-Zahlungen nicht.',
-      'es': '1. No estoy recibiendo mi OPT.',
       'fr': '1. Je ne reçois pas mon OPT',
       'it': '1. Non sto ricevendo il mio OPT',
       'ja': '1. OPTを受け取れていません',
@@ -4113,7 +3789,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'xrtnhema': {
       'en': '2. Is my country code correct?',
       'de': '2. Ist meine Ländervorwahl korrekt?',
-      'es': '2. ¿Es correcto mi código de país?',
       'fr': '2. Mon indicatif pays est-il correct ?',
       'it': '2. Il prefisso internazionale è corretto?',
       'ja': '2. 私の国コードは正しいですか？',
@@ -4125,7 +3800,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'qfhhgztr': {
       'en': '3. My account is locked due to attempts.',
       'de': '3. Mein Konto wurde aufgrund von Zugriffsversuchen gesperrt.',
-      'es': '3. Mi cuenta está bloqueada debido a intentos fallidos.',
       'fr': '3. Mon compte est bloqué suite à des tentatives de vol.',
       'it':
           '3. Il mio account è bloccato a causa di tentativi di accesso non autorizzati.',
@@ -4138,7 +3812,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'kdbp8gp1': {
       'en': 'Still need help?',
       'de': 'Benötigen Sie noch Hilfe?',
-      'es': '¿Sigues necesitando ayuda?',
       'fr': 'Vous avez encore besoin d\'aide ?',
       'it': 'Hai ancora bisogno di aiuto?',
       'ja': 'まだお困りですか？',
@@ -4150,10 +3823,9 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'au3h4jpp': {
       'en': 'Contact Support',
       'de': 'Kontaktieren Sie den Support.',
-      'es': 'Contactar con soporte',
       'fr': 'Contacter l\'assistance',
       'it': 'Contatta l\'assistenza',
-      'ja': 'サポートに問い合わせる',
+      'ja': 'サポートにお問い合わせください',
       'ko': '고객 지원팀에 문의하세요',
       'pl': 'Skontaktuj się z pomocą techniczną',
       'ro': 'Contactați asistența',
@@ -4162,7 +3834,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'v2jryuu9': {
       'en': 'Start Chat',
       'de': 'Chat starten',
-      'es': 'Iniciar chat',
       'fr': 'Démarrer une conversation',
       'it': 'Avvia la chat',
       'ja': 'チャットを開始',
@@ -4174,7 +3845,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '4sono9fn': {
       'en': '2-3 min',
       'de': '2-3 Minuten',
-      'es': '2-3 minutos',
       'fr': '2-3 min',
       'it': '2-3 minuti',
       'ja': '2～3分',
@@ -4186,7 +3856,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'okd0povh': {
       'en': 'View Tutorials',
       'de': 'Tutorials ansehen',
-      'es': 'Ver tutoriales',
       'fr': 'Voir les tutoriels',
       'it': 'Guarda i tutorial',
       'ja': 'チュートリアルを見る',
@@ -4198,7 +3867,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '7g04twea': {
       'en': 'Open Video Help',
       'de': 'Videohilfe öffnen',
-      'es': 'Abrir ayuda de vídeo',
       'fr': 'Ouvrir l\'aide vidéo',
       'it': 'Apri la guida video',
       'ja': 'ビデオヘルプを開く',
@@ -4210,7 +3878,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'if8lhwm4': {
       'en': 'Back to Log in',
       'de': 'Zurück zur Anmeldeseite',
-      'es': 'Volver a Iniciar sesión',
       'fr': 'Retour à la page de connexion',
       'it': 'Torna alla pagina di accesso',
       'ja': 'ログイン画面に戻る',
@@ -4222,7 +3889,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ezf9g47f': {
       'en': 'Log in Help',
       'de': 'Anmelden Hilfe',
-      'es': 'Iniciar sesión Ayuda',
       'fr': 'Se connecter Aide',
       'it': 'Accedi Aiuto',
       'ja': 'ログインヘルプ',
@@ -4234,7 +3900,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'bx2uzzol': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -4249,7 +3914,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'g6lc11t6': {
       'en': 'Who can see my number?',
       'de': 'Wer kann meine Nummer sehen?',
-      'es': '¿Quién puede ver mi número?',
       'fr': 'Qui peut voir mon numéro ?',
       'it': 'Chi può vedere il mio numero?',
       'ja': '私の電話番号は誰が見ることができますか？',
@@ -4261,25 +3925,19 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'chi4zqy0': {
       'en': 'Choose who sees your number and who can message you.',
       'de':
-          'Wenn diese Option aktiviert ist, können nur Personen, die Ihre Nummer haben, Ihre Nummer sehen.',
-      'es':
-          'Cuando esté activada, solo las personas que tengan tu número podrán verlo.',
+          'Legen Sie fest, wer Ihre Nummer sieht und wer Ihnen Nachrichten senden kann.',
       'fr':
-          'Lorsque cette option est activée, seules les personnes qui possèdent votre numéro peuvent voir votre numéro.',
-      'it':
-          'Quando è attiva, solo le persone che hanno il tuo numero possono vederlo.',
-      'ja': 'この機能をオンにすると、あなたの番号を知っている人だけがあなたの番号を見ることができます。',
-      'ko': '이 기능을 켜면 내 번호를 아는 사람만 내 번호를 볼 수 있습니다.',
-      'pl':
-          'Po włączeniu będą mogły go zobaczyć tylko osoby, które mają Twój numer.',
-      'ro':
-          'Când este activată, doar persoanele care au numărul tău îl pot vedea.',
-      'zh_Hant': '開啟此功能後，只有擁有您號碼的人才能看到您的號碼。',
+          'Choisissez qui voit votre numéro et qui peut vous envoyer des messages.',
+      'it': 'Scegli chi può vedere il tuo numero e chi può inviarti messaggi.',
+      'ja': 'あなたの電話番号を誰に見せるか、誰にメッセージを送れるかを選択できます。',
+      'ko': '누가 내 전화번호를 볼 수 있고 누가 나에게 메시지를 보낼 수 있는지 선택하세요.',
+      'pl': 'Wybierz, kto widzi Twój numer i kto może wysyłać Ci wiadomości.',
+      'ro': 'Alege cine îți vede numărul și cine îți poate trimite mesaje.',
+      'zh_Hant': '選擇誰可以看到你的號碼以及誰可以給你發訊息。',
     },
     'wutwf9c3': {
       'en': 'Stories',
       'de': 'Geschichten',
-      'es': 'Historias',
       'fr': 'Histoires',
       'it': 'Abiti',
       'ja': '物語',
@@ -4291,7 +3949,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'lxtrjc2k': {
       'en': 'Everyone',
       'de': 'Alle',
-      'es': 'Todos',
       'fr': 'Tout le monde',
       'it': 'Tutti',
       'ja': 'みんな',
@@ -4303,7 +3960,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'bw96l8ro': {
       'en': 'Lock Chat',
       'de': 'Chat sperren',
-      'es': 'Bloquear chat',
       'fr': 'Verrouiller le chat',
       'it': 'Blocca chat',
       'ja': 'チャットをロックする',
@@ -4315,7 +3971,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'mh63zyi6': {
       'en': 'Chat privately',
       'de': 'Chatte privat',
-      'es': 'Chatea en privado',
       'fr': 'Discutez en privé',
       'it': 'Chatta in privato',
       'ja': 'プライベートチャット',
@@ -4327,7 +3982,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'byz1h455': {
       'en': 'Bio',
       'de': 'Bio',
-      'es': 'Biografía',
       'fr': 'Bio',
       'it': 'Biografia',
       'ja': 'バイオ',
@@ -4340,7 +3994,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'If turn off, other users won\'t be able to see your bio.',
       'de':
           'Wenn Sie diese Option deaktivieren, können andere Nutzer Ihre Biografie nicht sehen.',
-      'es': 'Si la desactivas, otros usuarios no podrán ver tu biografía.',
       'fr':
           'Si vous désactivez cette option, les autres utilisateurs ne pourront pas voir votre bio.',
       'it':
@@ -4356,7 +4009,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'gc2oydvr': {
       'en': 'Gost Mood',
       'de': 'Gruselige Stimmung',
-      'es': 'Ambiente fantasmal',
       'fr': 'Ambiance fantomatique',
       'it': 'Spirito di Gost',
       'ja': 'ゴーストムード',
@@ -4370,8 +4022,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
           'If you turn off your read receipt, other users won\'t see your online mark',
       'de':
           'Wenn Sie Ihre Lesebestätigung deaktivieren, sehen andere Nutzer Ihre Online-Markierung nicht.',
-      'es':
-          'Si desactivas la confirmación de lectura, otros usuarios no verán tu estado en línea.',
       'fr':
           'Si vous désactivez les accusés de réception, les autres utilisateurs ne verront pas votre statut en ligne.',
       'it':
@@ -4387,7 +4037,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'tidgfwwe': {
       'en': 'Full Gost Mood',
       'de': 'Volle Geisterstimmung',
-      'es': 'Ambiente fantasmal completo',
       'fr': 'Ambiance fantôme complète',
       'it': 'Atmosfera da fantasma completo',
       'ja': '幽霊の雰囲気満載',
@@ -4401,8 +4050,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
           'If turn on full ghost mode, all your SchatzApp settings will become private.',
       'de':
           'Wenn Sie den vollständigen Geistermodus aktivieren, werden alle Ihre SchatzApp-Einstellungen privat.',
-      'es':
-          'Si activas el modo fantasma completo, todos los ajustes de tu aplicación SchatzApp se volverán privados.',
       'fr':
           'Si vous activez le mode fantôme complet, tous vos paramètres SchatzApp deviendront privés.',
       'it':
@@ -4418,7 +4065,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '0trh2k6q': {
       'en': 'Blocked Users',
       'de': 'Blockierte Benutzer',
-      'es': 'Usuarios bloqueados',
       'fr': 'Utilisateurs bloqués',
       'it': 'Utenti bloccati',
       'ja': 'ブロックされたユーザー',
@@ -4430,7 +4076,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'zu80yzbi': {
       'en': 'View all your block friends.',
       'de': 'Sieh dir alle deine Blockfreunde an.',
-      'es': 'Ver todos tus amigos del bloque.',
       'fr': 'Afficher tous vos amis du bloc.',
       'it': 'Visualizza tutti i tuoi amici di quartiere.',
       'ja': 'ブロック内の友達をすべて表示します。',
@@ -4442,7 +4087,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'se6e6hbg': {
       'en': 'Privacy',
       'de': 'Datenschutz',
-      'es': 'Privacidad',
       'fr': 'Confidentialité',
       'it': 'Privacy',
       'ja': 'プライバシー',
@@ -4454,7 +4098,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '0u1f51br': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -4469,7 +4112,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '5lbxd6dj': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -4484,7 +4126,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'bguj3zd7': {
       'en': 'Notifications',
       'de': 'Benachrichtigungen',
-      'es': 'Notificaciones',
       'fr': 'Notifications',
       'it': 'Notifiche',
       'ja': '通知',
@@ -4496,7 +4137,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'yosi87cg': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -4511,7 +4151,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'xzupsfw9': {
       'en': 'Search list of block users',
       'de': 'Liste der blockierten Benutzer durchsuchen',
-      'es': 'Lista de búsqueda de usuarios bloqueados',
       'fr': 'Liste de recherche des utilisateurs bloqués',
       'it': 'Cerca nell\'elenco degli utenti bloccati',
       'ja': 'ブロックユーザーのリストを検索',
@@ -4523,7 +4162,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '796sdi2j': {
       'en': 'All Blocked Users',
       'de': 'Alle gesperrten Benutzer',
-      'es': 'Todos los usuarios bloqueados',
       'fr': 'Tous les utilisateurs bloqués',
       'it': 'Tutti gli utenti bloccati',
       'ja': 'ブロックされたすべてのユーザー',
@@ -4535,7 +4173,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'zfc3hf0t': {
       'en': 'Blocked Users',
       'de': 'Blockierte Benutzer',
-      'es': 'Usuarios bloqueados',
       'fr': 'Utilisateurs bloqués',
       'it': 'Utenti bloccati',
       'ja': 'ブロックされたユーザー',
@@ -4547,7 +4184,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '9b69jwhd': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -4562,7 +4198,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '1enbmdxp': {
       'en': 'Add a caption...',
       'de': 'Füge eine Bildunterschrift hinzu...',
-      'es': 'Añade un pie de foto...',
       'fr': 'Ajouter une légende...',
       'it': 'Aggiungi una didascalia...',
       'ja': 'キャプションを追加…',
@@ -4574,7 +4209,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '9ye5dp11': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -4589,7 +4223,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     't6ox5q5e': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -4604,7 +4237,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'gl494ugv': {
       'en': 'Your story',
       'de': 'Ihre Geschichte',
-      'es': 'Tu historia',
       'fr': 'Votre histoire',
       'it': 'La tua storia',
       'ja': 'あなたの物語',
@@ -4616,7 +4248,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'vxq0grd1': {
       'en': 'people viewed your story',
       'de': 'Menschen haben deine Geschichte angesehen',
-      'es': 'La gente vio tu historia',
       'fr': 'Des personnes ont consulté votre histoire',
       'it': 'persone hanno visualizzato la tua storia',
       'ja': 'あなたのストーリーを見た人は',
@@ -4628,7 +4259,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'fs0qf4q7': {
       'en': 'Share',
       'de': 'Aktie',
-      'es': 'Compartir',
       'fr': 'Partager',
       'it': 'Condividere',
       'ja': '共有',
@@ -4640,7 +4270,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'k4z1zgsc': {
       'en': 'Search viewer...',
       'de': 'Suchanzeige...',
-      'es': 'visor de búsqueda...',
       'fr': 'Visionneuse de recherche...',
       'it': 'Visualizzatore di ricerca...',
       'ja': '検索ビューア...',
@@ -4652,7 +4281,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'p92qdf37': {
       'en': 'Add to your story',
       'de': 'Füge es deiner Geschichte hinzu',
-      'es': 'Añade algo a tu historia.',
       'fr': 'Ajoutez votre histoire',
       'it': 'Aggiungi alla tua storia',
       'ja': 'あなたのストーリーに追加',
@@ -4664,7 +4292,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     't0hkixsl': {
       'en': 'Share a moment with your friend',
       'de': 'Teile einen Moment mit deinem Freund',
-      'es': 'Comparte un momento con tu amigo.',
       'fr': 'Partagez un moment avec votre ami',
       'it': 'Condividi un momento con il tuo amico',
       'ja': '友達とひとときを共有しよう',
@@ -4676,7 +4303,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'gh9567fc': {
       'en': 'Gallery',
       'de': 'Galerie',
-      'es': 'Galería',
       'fr': 'Galerie',
       'it': 'Galleria',
       'ja': 'ギャラリー',
@@ -4688,7 +4314,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'qwqt5402': {
       'en': 'Camera',
       'de': 'Kamera',
-      'es': 'Cámara',
       'fr': 'Caméra',
       'it': 'Telecamera',
       'ja': 'カメラ',
@@ -4700,7 +4325,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'bmqovo14': {
       'en': 'Text',
       'de': 'Text',
-      'es': 'Texto',
       'fr': 'Texte',
       'it': 'Testo',
       'ja': '文章',
@@ -4712,7 +4336,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '1fcdmk1r': {
       'en': 'Stickers',
       'de': 'Aufkleber',
-      'es': 'Pegatinas',
       'fr': 'Autocollants',
       'it': 'Adesivi',
       'ja': 'ステッカー',
@@ -4724,7 +4347,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '8xrrjhyf': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -4738,20 +4360,18 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     'g5ewa6t4': {
       'en': 'Tag people',
-      'de': 'Markiere Leute',
-      'es': 'Etiqueta pepple',
-      'fr': 'Étiquette pepple',
+      'de': 'Markiere Personen',
+      'fr': 'Identifiez les personnes',
       'it': 'Tagga le persone',
-      'ja': 'タグペプル',
-      'ko': '태그 페플',
-      'pl': 'Tag pepple',
-      'ro': 'Etichetă pepple',
-      'zh_Hant': '標籤 pepple',
+      'ja': '人をタグ付けする',
+      'ko': '사람들을 태그하세요',
+      'pl': 'Oznaczanie osób',
+      'ro': 'Etichetează persoane',
+      'zh_Hant': '標籤用戶',
     },
     'bmw46vpm': {
       'en': 'Mention friends',
       'de': 'Freunde erwähnen',
-      'es': 'Menciona a tus amigos',
       'fr': 'Mentionnez vos amis',
       'it': 'Menziona gli amici',
       'ja': '友達について言及する',
@@ -4763,7 +4383,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'mxqn4mru': {
       'en': 'Privacy',
       'de': 'Datenschutz',
-      'es': 'Privacidad',
       'fr': 'Confidentialité',
       'it': 'Privacy',
       'ja': 'プライバシー',
@@ -4775,7 +4394,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'cl9mw9vr': {
       'en': 'Everyone',
       'de': 'Alle',
-      'es': 'Todos',
       'fr': 'Tout le monde',
       'it': 'Tutti',
       'ja': 'みんな',
@@ -4787,7 +4405,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '4i78lkkz': {
       'en': 'Story Duration',
       'de': 'Dauer der Geschichte',
-      'es': 'Duración de la historia',
       'fr': 'Durée de l\'histoire',
       'it': 'Durata della storia',
       'ja': 'ストーリーの長さ',
@@ -4798,32 +4415,29 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'mhud26ot': {
       'en': 'Comments',
-      'de': 'Dauer der Geschichte',
-      'es': 'Duración de la historia',
-      'fr': 'Durée de l\'histoire',
-      'it': 'Durata della storia',
-      'ja': 'ストーリーの長さ',
-      'ko': '스토리 길이',
-      'pl': 'Czas trwania historii',
-      'ro': 'Durata poveștii',
-      'zh_Hant': '故事時長',
+      'de': 'Kommentare',
+      'fr': 'Commentaires',
+      'it': 'Commenti',
+      'ja': 'コメント',
+      'ko': '댓글',
+      'pl': 'Uwagi',
+      'ro': 'Comentarii',
+      'zh_Hant': '評論',
     },
     '8kup3ary': {
       'en': 'Allow people to comment',
-      'de': '54 Stunden',
-      'es': '54 horas',
-      'fr': '54 heures',
-      'it': '54 ore',
-      'ja': '54時間',
-      'ko': '54시간',
-      'pl': '54 godziny',
-      'ro': '54 de ore',
-      'zh_Hant': '54小時',
+      'de': 'Ermöglichen Sie es den Nutzern, Kommentare abzugeben.',
+      'fr': 'Autoriser les commentaires',
+      'it': 'Consentire ai commenti',
+      'ja': '人々がコメントできるようにする',
+      'ko': '댓글 기능을 활성화하세요',
+      'pl': 'Zezwól ludziom na komentowanie',
+      'ro': 'Permiteți oamenilor să comenteze',
+      'zh_Hant': '允許用戶評論',
     },
     'ykpak7r0': {
       'en': 'Post',
       'de': 'Post',
-      'es': 'Correo',
       'fr': 'Poste',
       'it': 'Inviare',
       'ja': '役職',
@@ -4835,7 +4449,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'zwgg4o1g': {
       'en': '',
       'de': '',
-      'es': '',
       'fr': '',
       'it': '',
       'ja': '',
@@ -4847,7 +4460,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     't02yo9k7': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -4862,7 +4474,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ei78t12t': {
       'en': 'Share your thoughts...',
       'de': 'Teilen Sie Ihre Gedanken mit...',
-      'es': 'Comparte tus opiniones...',
       'fr': 'Partagez vos réflexions...',
       'it': 'Condividi i tuoi pensieri...',
       'ja': 'ご意見をお聞かせください。',
@@ -4874,7 +4485,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '8kn59kjt': {
       'en': '😂',
       'de': '😂',
-      'es': '😂',
       'fr': '😂',
       'it': '😂',
       'ja': '😂',
@@ -4886,7 +4496,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'vjxl3r1b': {
       'en': '❤️',
       'de': '❤️',
-      'es': '❤️',
       'fr': '❤️',
       'it': '❤️',
       'ja': '❤️',
@@ -4898,7 +4507,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'fiirxutt': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -4913,7 +4521,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'wj130dmo': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -4928,7 +4535,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '9ubd67bt': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -4943,7 +4549,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'uxj0veqt': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -4958,7 +4563,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'de1aa9j4': {
       'en': 'Search contact',
       'de': 'Kontakt suchen',
-      'es': 'Buscar contacto',
       'fr': 'Rechercher un contact',
       'it': 'Cerca contatto',
       'ja': 'お問い合わせ先を検索',
@@ -4970,7 +4574,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '7xzxpm13': {
       'en': 'Contacts on ',
       'de': 'Kontakte auf',
-      'es': 'Contactos en',
       'fr': 'Contacts sur',
       'it': 'Contatti su',
       'ja': '連絡先',
@@ -4982,7 +4585,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'n97mqjzr': {
       'en': 'SchatzApp',
       'de': 'SchatzApp',
-      'es': 'Aplicación Schatz',
       'fr': 'SchatzApp',
       'it': 'SchatzApp',
       'ja': 'SchatzApp',
@@ -4994,7 +4596,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'nnwrucwu': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -5009,7 +4610,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ywz0h4ci': {
       'en': 'Search messages or people',
       'de': 'Nachrichten oder Personen suchen',
-      'es': 'Buscar mensajes o personas',
       'fr': 'Rechercher des messages ou des personnes',
       'it': 'Cerca messaggi o persone',
       'ja': 'メッセージまたは人物を検索',
@@ -5021,7 +4621,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'd1og1syc': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -5036,7 +4635,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'jjy5zc3y': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -5053,8 +4651,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
           'We\'ll use your device language or location to set the app language automatically. \nYou can always change it here.',
       'de':
           'Wir verwenden die Gerätesprache oder den Standort, um die App-Sprache automatisch festzulegen.\nSie können sie jederzeit hier ändern.',
-      'es':
-          'Usaremos el idioma o la ubicación de tu dispositivo para configurar automáticamente el idioma de la aplicación.\nSiempre puedes cambiarlo aquí.',
       'fr':
           'Nous utiliserons la langue de votre appareil ou votre localisation pour définir automatiquement la langue de l\'application.\n\nVous pouvez la modifier ici à tout moment.',
       'it':
@@ -5072,7 +4668,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'mk747qga': {
       'en': 'LANGUAGE',
       'de': 'SPRACHE',
-      'es': 'IDIOMA',
       'fr': 'LANGUE',
       'it': 'LINGUA',
       'ja': '言語',
@@ -5084,7 +4679,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ddod7qtx': {
       'en': 'Language',
       'de': 'Sprache',
-      'es': 'Idioma',
       'fr': 'Langue',
       'it': 'Lingua',
       'ja': '言語',
@@ -5096,7 +4690,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'xu8y0hkm': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -5110,50 +4703,42 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     '3t9jmdov': {
       'en': 'Turn your',
-      'de': 'Verwandle deine\nSchatz Gidt Card\nin etwas Besonderes',
-      'es': 'Convierte tu\nTarjeta de Regalo Schatz\nen algo especial',
-      'fr':
-          'Transformez votre\n\nCarte Schatz Gidt\n\nen quelque chose de spécial',
-      'it': 'Trasforma la tua\nSchatz Gidt Card\nin qualcosa di speciale',
-      'ja': 'あなたのSchatz Gidt Cardを特別なものにしましょう\n',
-      'ko': '당신의\n샤츠 기트 카드를\n특별한 것으로 만들어보세요',
-      'pl': 'Zmień swoją\nkartę podarunkową Schatz\nw coś wyjątkowego',
-      'ro': 'Transformă-ți\ncardul Schatz Gidt\nîn ceva special',
-      'zh_Hant': '讓你的\n\nSchatz Gidt 卡\n\n變得特別',
+      'de': 'Verwandeln Sie Ihren',
+      'fr': 'Tournez votre',
+      'it': 'Trasforma il tuo',
+      'ja': 'あなたの',
+      'ko': '당신의 것을 돌리세요',
+      'pl': 'Obróć swój',
+      'ro': 'Întoarce-ți',
+      'zh_Hant': '轉動你的',
     },
     'soc20iy0': {
       'en': 'Schatz Gift Card',
-      'de': 'Verwandle deine\nSchatz Gidt Card\nin etwas Besonderes',
-      'es': 'Convierte tu\nTarjeta de Regalo Schatz\nen algo especial',
-      'fr':
-          'Transformez votre\n\nCarte Schatz Gidt\n\nen quelque chose de spécial',
-      'it': 'Trasforma la tua\nSchatz Gidt Card\nin qualcosa di speciale',
-      'ja': 'あなたのSchatz Gidt Cardを特別なものにしましょう\n',
-      'ko': '당신의\n샤츠 기트 카드를\n특별한 것으로 만들어보세요',
-      'pl': 'Zmień swoją\nkartę podarunkową Schatz\nw coś wyjątkowego',
-      'ro': 'Transformă-ți\ncardul Schatz Gidt\nîn ceva special',
-      'zh_Hant': '讓你的\n\nSchatz Gidt 卡\n\n變得特別',
+      'de': 'Schatz Geschenkkarte',
+      'fr': 'Carte-cadeau Schatz',
+      'it': 'Carta regalo Schatz',
+      'ja': 'シャッツギフトカード',
+      'ko': '샤츠 상품권',
+      'pl': 'Karta podarunkowa Schatz',
+      'ro': 'Card cadou Schatz',
+      'zh_Hant': 'Schatz禮品卡',
     },
     'dsbq9fja': {
       'en': 'into something special',
-      'de': 'Verwandle deine\nSchatz Gidt Card\nin etwas Besonderes',
-      'es': 'Convierte tu\nTarjeta de Regalo Schatz\nen algo especial',
-      'fr':
-          'Transformez votre\n\nCarte Schatz Gidt\n\nen quelque chose de spécial',
-      'it': 'Trasforma la tua\nSchatz Gidt Card\nin qualcosa di speciale',
-      'ja': 'あなたのSchatz Gidt Cardを特別なものにしましょう\n',
-      'ko': '당신의\n샤츠 기트 카드를\n특별한 것으로 만들어보세요',
-      'pl': 'Zmień swoją\nkartę podarunkową Schatz\nw coś wyjątkowego',
-      'ro': 'Transformă-ți\ncardul Schatz Gidt\nîn ceva special',
-      'zh_Hant': '讓你的\n\nSchatz Gidt 卡\n\n變得特別',
+      'de': 'zu etwas Besonderem',
+      'fr': 'en quelque chose de spécial',
+      'it': 'in qualcosa di speciale',
+      'ja': '特別なものへ',
+      'ko': '특별한 무언가로',
+      'pl': 'w coś wyjątkowego',
+      'ro': 'în ceva special',
+      'zh_Hant': '變成特別的東西',
     },
     '1d5eceuu': {
       'en':
           'Add your gift card code below and\nunlock your credit. features or premium\naccess in SchatzApp.',
       'de':
           'Gib unten deinen Geschenkkartencode ein und\nschalte dein Guthaben, deine Funktionen oder deinen Premium-Zugang in der SchatzApp frei.',
-      'es':
-          'Introduce el código de tu tarjeta regalo a continuación y\ndesbloquea tu crédito, funciones o acceso premium\nen SchatzApp.',
       'fr':
           'Saisissez votre code de carte cadeau ci-dessous et\n\ndébloquez votre crédit, vos fonctionnalités ou votre accès premium\ndans SchatzApp.',
       'it':
@@ -5168,129 +4753,123 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'ejyym9kf': {
       'en': 'Enter Gift Card Code',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Geschenkkartencode eingeben',
+      'fr': 'Saisissez le code de la carte-cadeau',
+      'it': 'Inserisci il codice della carta regalo',
+      'ja': 'ギフトカードコードを入力してください',
+      'ko': '기프트 카드 코드를 입력하세요',
+      'pl': 'Wprowadź kod karty podarunkowej',
+      'ro': 'Introduceți codul cardului cadou',
+      'zh_Hant': '輸入禮品卡代碼',
     },
     'g5197nn6': {
       'en':
           'The code is usally 20 characters and can be found on your gift card or in the email your received.',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de':
+          'Der Code ist in der Regel 20 Zeichen lang und befindet sich auf Ihrer Geschenkkarte oder in der E-Mail, die Sie erhalten haben.',
+      'fr':
+          'Le code comporte généralement 20 caractères et se trouve sur votre carte cadeau ou dans l\'e-mail que vous avez reçu.',
+      'it':
+          'Il codice è solitamente composto da 20 caratteri e si trova sulla carta regalo o nell\'email di conferma ricevuta.',
+      'ja': 'コードは通常20文字で、ギフトカードまたは受信したメールに記載されています。',
+      'ko': '일반적으로 코드는 20자리이며, 선물 카드 또는 수신하신 이메일에서 찾으실 수 있습니다.',
+      'pl':
+          'Kod składa się zazwyczaj z 20 znaków i znajdziesz go na karcie podarunkowej lub w otrzymanej wiadomości e-mail.',
+      'ro':
+          'Codul are de obicei 20 de caractere și poate fi găsit pe cardul cadou sau în e-mailul pe care l-ați primit.',
+      'zh_Hant': '該代碼通常為 20 個字符，可以在您的禮品卡上或您收到的電子郵件中找到。',
     },
     'zzqq0lm1': {
       'en': 'e.g. SCHZ -1234-GH9K-5678-9012',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'z.B. SCHZ-1234-GH9K-5678-9012',
+      'fr': 'par ex. SCHZ-1234-GH9K-5678-9012',
+      'it': 'per esempio. SCHZ-1234-GH9K-5678-9012',
+      'ja': '例えばSCHZ-1234-GH9K-5678-9012',
+      'ko': '예를 들어 SCHZ -1234-GH9K-5678-9012',
+      'pl': 'np. SCHZ -1234-GH9K-5678-9012',
+      'ro': 'de ex. SCHZ -1234-GH9K-5678-9012',
+      'zh_Hant': '例如SCHZ -1234-GH9K-5678-9012',
     },
     'gta235r1': {
       'en': 'Valid Gift Card',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Gültige Geschenkkarte',
+      'fr': 'Carte-cadeau valide',
+      'it': 'Carta regalo valida',
+      'ja': '有効なギフトカード',
+      'ko': '유효한 상품권',
+      'pl': 'Ważna karta podarunkowa',
+      'ro': 'Card cadou valid',
+      'zh_Hant': '有效禮品卡',
     },
     'bvtr5w7r': {
       'en': 'Used Gift Card',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Geschenkkarte verwendet',
+      'fr': 'Carte-cadeau utilisée',
+      'it': 'Carta regalo utilizzata',
+      'ja': '使用済みギフトカード',
+      'ko': '사용한 상품권',
+      'pl': 'Używana karta podarunkowa',
+      'ro': 'Card cadou folosit',
+      'zh_Hant': '已使用的禮品卡',
     },
     'y2zsg3yo': {
       'en': 'Invalid Gift Card',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Ungültige Geschenkkarte',
+      'fr': 'Carte cadeau invalide',
+      'it': 'Carta regalo non valida',
+      'ja': '無効なギフトカード',
+      'ko': '유효하지 않은 상품권',
+      'pl': 'Nieprawidłowa karta podarunkowa',
+      'ro': 'Card cadou nevalid',
+      'zh_Hant': '無效禮品卡',
     },
     '192i6shi': {
       'en': 'Redeem Gift Card',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Geschenkkarte einlösen',
+      'fr': 'Échanger une carte-cadeau',
+      'it': 'Riscatta la carta regalo',
+      'ja': 'ギフトカードを引き換える',
+      'ko': '기프트 카드 사용',
+      'pl': 'Zrealizuj kartę podarunkową',
+      'ro': 'Răscumpărați cardul cadou',
+      'zh_Hant': '兌換禮品卡',
     },
     'h3a9twa4': {
       'en': 'Get Premium\n Features',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Premium-Funktionen\n\nFunktionen',
+      'fr': 'Obtenez la version Premium\n\nFonctionnalités',
+      'it': 'Ottieni le funzionalità Premium\n\n',
+      'ja': 'プレミアム会員になる\n\n機能',
+      'ko': '프리미엄 기능 이용하기\n\n기능',
+      'pl': 'Uzyskaj Premium\nFunkcje',
+      'ro': 'Obțineți funcții Premium Funcții',
+      'zh_Hant': '取得高級版\n\n功能',
     },
     'hwmzbbew': {
       'en': 'Add Credit\nto your wallet',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Guthaben hinzufügen\nIhrem Guthaben hinzufügen',
+      'fr': 'Ajouter du crédit\nà votre portefeuille',
+      'it': 'Aggiungi credito al tuo portafoglio',
+      'ja': 'ウォレットにクレジットを追加する\n',
+      'ko': '지갑에 크레딧을 추가하세요\n(추가 정보 입력)',
+      'pl': 'Dodaj środki\ndo swojego portfela',
+      'ro': 'Adaugă credit în portofelul tău',
+      'zh_Hant': '儲值\n\n到您的錢包',
     },
     'ozoaag9v': {
       'en': 'Enjoy more in \nSchatzApp',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Mehr entdecken in der SchatzApp',
+      'fr': 'Profitez-en davantage dans\nSchatzApp',
+      'it': 'Divertiti di più con SchatzApp.',
+      'ja': 'SchatzAppでさらに楽しもう',
+      'ko': 'SchatzApp에서 더 많은 것을 즐겨보세요\n',
+      'pl': 'Ciesz się więcej w \nSchatzApp',
+      'ro': 'Bucură-te de mai multe în SchatzApp',
+      'zh_Hant': '在 SchatzApp 中享受更多樂趣',
     },
     '9929rvg1': {
       'en': 'Redeem Schatz Gift Card',
       'de': 'Schatz-Geschenkkarte einlösen',
-      'es': 'Canjea la tarjeta de regalo de Schatz',
       'fr': 'Échanger une carte-cadeau Schatz',
       'it': 'Riscatta la carta regalo Schatz',
       'ja': 'Schatzギフトカードを引き換える',
@@ -5302,7 +4881,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'j9p17wge': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -5317,7 +4895,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '8sdf17ls': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -5332,7 +4909,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'tndhkvwd': {
       'en': 'STAY CONNECTED',
       'de': 'BLEIBEN SIE IN VERBINDUNG',
-      'es': 'MANTÉNGASE CONECTADO',
       'fr': 'RESTEZ CONNECTÉS',
       'it': 'RIMANI CONNESSO',
       'ja': 'つながりを保ちましょう',
@@ -5344,7 +4920,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'pe2do5qq': {
       'en': 'Link your device',
       'de': 'Verbinden Sie Ihr Gerät',
-      'es': 'Vincula tu dispositivo',
       'fr': 'Connectez votre appareil',
       'it': 'Collega il tuo dispositivo',
       'ja': 'デバイスをリンクしてください',
@@ -5356,7 +4931,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'vtjkqj3l': {
       'en': 'to',
       'de': 'Zu',
-      'es': 'a',
       'fr': 'à',
       'it': 'A',
       'ja': 'に',
@@ -5368,7 +4942,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ecua6jbt': {
       'en': ' SchatzApp',
       'de': 'SchatzApp',
-      'es': 'Aplicación Schatz',
       'fr': 'SchatzApp',
       'it': 'SchatzApp',
       'ja': 'SchatzApp',
@@ -5381,8 +4954,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Access your message, stories and\nmore - on any evice, anytime.',
       'de':
           'Greifen Sie auf Ihre Nachrichten, Geschichten und mehr zu\n\n– jederzeit und auf jedem Gerät.',
-      'es':
-          'Accede a tus mensajes, historias y más, desde cualquier dispositivo y en cualquier momento.',
       'fr':
           'Accédez à vos messages, stories et\n\nplus encore - sur n\'importe quel appareil, à tout moment.',
       'it':
@@ -5398,7 +4969,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '6ntgpk90': {
       'en': 'Secure\nconnection',
       'de': 'Sichere\nVerbindung',
-      'es': 'Conexión segura',
       'fr': 'Connexion sécurisée\n',
       'it': 'Connessione sicura\n',
       'ja': '安全な接続',
@@ -5410,7 +4980,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'd2xgb7l2': {
       'en': 'Sync your\nmessages',
       'de': 'Synchronisieren Sie Ihre\nNachrichten',
-      'es': 'Sincroniza tus\nmensajes',
       'fr': 'Synchronisez vos\nmessages',
       'it': 'Sincronizza i tuoi messaggi',
       'ja': 'メッセージを同期する',
@@ -5422,7 +4991,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'lpd0vm6q': {
       'en': 'Use on multiple\ndevices',
       'de': 'Nutzung auf mehreren\nGeräten',
-      'es': 'Úselo en varios dispositivos.',
       'fr': 'Utilisation sur plusieurs\nappareils',
       'it': 'Utilizzabile su più dispositivi\n',
       'ja': '複数のデバイスで使用可能\n',
@@ -5434,7 +5002,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'lnvz8htx': {
       'en': 'Your data\nstay private',
       'de': 'Ihre Daten bleiben privat',
-      'es': 'Tus datos se mantendrán privados.',
       'fr': 'Vos données\nrestent privées',
       'it': 'I tuoi dati restano privati',
       'ja': 'あなたのデータはプライバシーが保護されます。',
@@ -5446,7 +5013,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'rwhfmo34': {
       'en': 'Link a Device',
       'de': 'Gerät verbinden',
-      'es': 'Vincular un dispositivo',
       'fr': 'Associer un appareil',
       'it': 'Collegare un dispositivo',
       'ja': 'デバイスをリンクする',
@@ -5458,7 +5024,28 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ze1r5pw1': {
       'en': 'Scan a QR code or enter a code',
       'de': 'Scannen Sie einen QR-Code oder geben Sie einen Code ein',
-      'es': 'Escanee un código QR o introduzca un código.',
+      'fr': 'Scannez un code QR ou saisissez un code',
+      'it': 'Scansiona un codice QR o inserisci un codice',
+      'ja': 'QRコードをスキャンするか、コードを入力してください',
+      'ko': 'QR 코드를 스캔하거나 코드를 입력하세요',
+      'pl': 'Zeskanuj kod QR lub wprowadź kod',
+      'ro': 'Scanați un cod QR sau introduceți un cod',
+      'zh_Hant': '掃描二維碼或輸入代碼',
+    },
+    '9wi7eeyh': {
+      'en': 'Link with code',
+      'de': 'Gerät verbinden',
+      'fr': 'Associer un appareil',
+      'it': 'Collegare un dispositivo',
+      'ja': 'デバイスをリンクする',
+      'ko': '기기 연결하기',
+      'pl': 'Połącz urządzenie',
+      'ro': 'Conectați un dispozitiv',
+      'zh_Hant': '連接裝置',
+    },
+    'jwzhy0hj': {
+      'en': 'Click here to link your device with code',
+      'de': 'Scannen Sie einen QR-Code oder geben Sie einen Code ein',
       'fr': 'Scannez un code QR ou saisissez un code',
       'it': 'Scansiona un codice QR o inserisci un codice',
       'ja': 'QRコードをスキャンするか、コードを入力してください',
@@ -5470,7 +5057,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'x0bdw20z': {
       'en': 'Supported Devices',
       'de': 'Unterstützte Geräte',
-      'es': 'Dispositivos compatibles',
       'fr': 'Appareils compatibles',
       'it': 'Dispositivi supportati',
       'ja': '対応デバイス',
@@ -5482,7 +5068,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'obop7sfr': {
       'en': 'You can link and use SchatzApp on:',
       'de': 'Sie können SchatzApp verlinken und nutzen auf:',
-      'es': 'Puedes vincular y usar SchatzApp en:',
       'fr': 'Vous pouvez connecter et utiliser SchatzApp sur :',
       'it': 'È possibile collegare e utilizzare SchatzApp su:',
       'ja': 'SchatzAppは以下のプラットフォームでリンクして使用できます。',
@@ -5494,7 +5079,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'l33jd45e': {
       'en': 'Mobile App',
       'de': 'Mobile App',
-      'es': 'Aplicación móvil',
       'fr': 'Application mobile',
       'it': 'Applicazione mobile',
       'ja': 'モバイルアプリ',
@@ -5506,7 +5090,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'einxjyni': {
       'en': 'iPhone & Android',
       'de': 'iPhone & Android',
-      'es': 'iPhone y Android',
       'fr': 'iPhone et Android',
       'it': 'iPhone e Android',
       'ja': 'iPhoneとAndroid',
@@ -5518,7 +5101,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'vxdomska': {
       'en': 'Web Browser',
       'de': 'Webbrowser',
-      'es': 'Navegador web',
       'fr': 'Navigateur Web',
       'it': 'Browser web',
       'ja': 'ウェブブラウザ',
@@ -5530,7 +5112,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'r358gzts': {
       'en': 'Chrome, Safari, Firefox, Edge',
       'de': 'Chrome, Safari, Firefox, Edge',
-      'es': 'Chrome, Safari, Firefox, Edge',
       'fr': 'Chrome, Safari, Firefox, Edge',
       'it': 'Chrome, Safari, Firefox, Edge',
       'ja': 'Chrome、Safari、Firefox、Edge',
@@ -5542,7 +5123,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '028zns6z': {
       'en': 'Tablet',
       'de': 'Tablette',
-      'es': 'Tableta',
       'fr': 'Comprimé',
       'it': 'Tablet',
       'ja': '錠剤',
@@ -5554,7 +5134,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ypzcnv6o': {
       'en': 'iPad & Android Tablets',
       'de': 'iPad & Android-Tablets',
-      'es': 'iPad y tabletas Android',
       'fr': 'iPad et tablettes Android',
       'it': 'iPad e tablet Android',
       'ja': 'iPadとAndroidタブレット',
@@ -5566,7 +5145,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'hyxmnxbs': {
       'en': 'Your personal messages are ',
       'de': 'Ihre persönlichen Nachrichten sind',
-      'es': 'Sus mensajes personales son',
       'fr': 'Vos messages personnels sont',
       'it': 'I tuoi messaggi personali sono',
       'ja': 'あなたの個人的なメッセージは',
@@ -5578,7 +5156,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'tzan1ce6': {
       'en': 'end-to-end encrypted',
       'de': 'Ende-zu-Ende-verschlüsselt',
-      'es': 'cifrado de extremo a extremo',
       'fr': 'chiffrement de bout en bout',
       'it': 'crittografia end-to-end',
       'ja': 'エンドツーエンド暗号化',
@@ -5590,7 +5167,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'vxz3zy13': {
       'en': 'on all linked devices.',
       'de': 'auf allen verbundenen Geräten.',
-      'es': 'en todos los dispositivos vinculados.',
       'fr': 'sur tous les appareils connectés.',
       'it': 'su tutti i dispositivi collegati.',
       'ja': 'すべての接続機器において。',
@@ -5602,7 +5178,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '9vbcsyxn': {
       'en': 'Link a Device',
       'de': 'Gerät verbinden',
-      'es': 'Vincular un dispositivo',
       'fr': 'Associer un appareil',
       'it': 'Collegare un dispositivo',
       'ja': 'デバイスをリンクする',
@@ -5614,7 +5189,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'iq1bzqn4': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -5628,20 +5202,18 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     'zqs84x8a': {
       'en': 'Privacy settings',
-      'de': 'Seitentitel',
-      'es': 'Título de la página',
-      'fr': 'Titre de la page',
-      'it': 'Titolo della pagina',
-      'ja': 'ページタイトル',
-      'ko': '페이지 제목',
-      'pl': 'Tytuł strony',
-      'ro': 'Titlul paginii',
-      'zh_Hant': '頁面標題',
+      'de': 'Datenschutzeinstellungen',
+      'fr': 'Paramètres de confidentialité',
+      'it': 'Impostazioni sulla privacy',
+      'ja': 'プライバシー設定',
+      'ko': '개인 정보 설정',
+      'pl': 'Ustawienia prywatności',
+      'ro': 'Setări de confidențialitate',
+      'zh_Hant': '隱私設定',
     },
     'k4jmlhz8': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -5656,7 +5228,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'jxabfs3i': {
       'en': 'Notification Settings',
       'de': 'Benachrichtigungseinstellungen',
-      'es': 'Configuración de notificaciones',
       'fr': 'Paramètres de notification',
       'it': 'Impostazioni di notifica',
       'ja': '通知設定',
@@ -5669,8 +5240,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Stay updated with important activity messages and app news.',
       'de':
           'Bleiben Sie über wichtige Aktivitätsmeldungen und App-Neuigkeiten auf dem Laufenden.',
-      'es':
-          'Mantente al día con los mensajes de actividad importantes y las novedades de la aplicación.',
       'fr':
           'Restez informé(e) des messages importants concernant l\'activité et des actualités de l\'application.',
       'it':
@@ -5686,7 +5255,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'g5cea0rh': {
       'en': 'Notification Types',
       'de': 'Benachrichtigungstypen',
-      'es': 'Tipos de notificación',
       'fr': 'Types de notifications',
       'it': 'Tipi di notifica',
       'ja': '通知の種類',
@@ -5698,7 +5266,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'k64atyx7': {
       'en': 'Receive notifications on your device.',
       'de': 'Erhalten Sie Benachrichtigungen auf Ihrem Gerät.',
-      'es': 'Recibe notificaciones en tu dispositivo.',
       'fr': 'Recevez des notifications sur votre appareil.',
       'it': 'Ricevi notifiche sul tuo dispositivo.',
       'ja': 'お使いのデバイスで通知を受け取ることができます。',
@@ -5710,7 +5277,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'rp9coibc': {
       'en': 'Notification Types',
       'de': 'Benachrichtigungstypen',
-      'es': 'Tipos de notificación',
       'fr': 'Types de notifications',
       'it': 'Tipi di notifica',
       'ja': '通知の種類',
@@ -5722,7 +5288,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'y96x933i': {
       'en': 'Messages',
       'de': 'Nachrichten',
-      'es': 'Mensajes',
       'fr': 'Messages',
       'it': 'Messaggi',
       'ja': 'メッセージ',
@@ -5734,7 +5299,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '94kpedb5': {
       'en': 'New message and replies',
       'de': 'Neue Nachricht und Antworten',
-      'es': 'Nuevo mensaje y respuestas',
       'fr': 'Nouveau message et réponses',
       'it': 'Nuovo messaggio e risposte',
       'ja': '新しいメッセージと返信',
@@ -5746,7 +5310,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'zdo10k6f': {
       'en': 'Private Chat',
       'de': 'Privater Chat',
-      'es': 'Chat privado',
       'fr': 'Discussion privée',
       'it': 'Chat privata',
       'ja': 'プライベートチャット',
@@ -5758,7 +5321,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'rb0jexcu': {
       'en': 'New message and replies',
       'de': 'Neue Nachricht und Antworten',
-      'es': 'Nuevo mensaje y respuestas',
       'fr': 'Nouveau message et réponses',
       'it': 'Nuovo messaggio e risposte',
       'ja': '新しいメッセージと返信',
@@ -5770,7 +5332,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'hmbwjkie': {
       'en': 'Likes & Interactions',
       'de': 'Likes & Interaktionen',
-      'es': 'Me gusta e interacciones',
       'fr': 'J\'aime et interactions',
       'it': 'Mi piace e interazioni',
       'ja': 'いいねとインタラクション',
@@ -5782,7 +5343,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '1k7w8am7': {
       'en': 'Likes, Comments and new followers',
       'de': 'Likes, Kommentare und neue Follower',
-      'es': 'Me gusta, comentarios y nuevos seguidores',
       'fr': 'J\'aime, commentaires et nouveaux abonnés',
       'it': 'Mi piace, commenti e nuovi follower',
       'ja': 'いいね、コメント、新しいフォロワー',
@@ -5794,7 +5354,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'cxwapi0a': {
       'en': 'Deals & Offers',
       'de': 'Angebote & Aktionen',
-      'es': 'Ofertas y promociones',
       'fr': 'Offres et promotions',
       'it': 'Offerte e promozioni',
       'ja': 'セール＆キャンペーン',
@@ -5806,7 +5365,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'yeqcithm': {
       'en': 'Exclusive deals and special offers',
       'de': 'Exklusive Angebote und Sonderaktionen',
-      'es': 'Ofertas exclusivas y promociones especiales',
       'fr': 'Offres exclusives et promotions spéciales',
       'it': 'Offerte esclusive e promozioni speciali',
       'ja': '限定セールと特別オファー',
@@ -5818,7 +5376,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'g57k1o1b': {
       'en': 'App Updates',
       'de': 'App-Updates',
-      'es': 'Actualizaciones de la aplicación',
       'fr': 'Mises à jour de l\'application',
       'it': 'Aggiornamenti dell\'app',
       'ja': 'アプリのアップデート',
@@ -5830,7 +5387,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '3sgowb05': {
       'en': 'New features and important updates',
       'de': 'Neue Funktionen und wichtige Aktualisierungen',
-      'es': 'Nuevas funciones y actualizaciones importantes',
       'fr': 'Nouvelles fonctionnalités et mises à jour importantes',
       'it': 'Nuove funzionalità e aggiornamenti importanti',
       'ja': '新機能と重要なアップデート',
@@ -5842,7 +5398,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'f4somnf7': {
       'en': 'Security Alerts',
       'de': 'Sicherheitswarnungen',
-      'es': 'Alertas de seguridad',
       'fr': 'Alertes de sécurité',
       'it': 'Avvisi di sicurezza',
       'ja': 'セキュリティ警告',
@@ -5854,7 +5409,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'yeyvanpk': {
       'en': 'Login activity and device alerts',
       'de': 'Anmeldeaktivitäten und Gerätebenachrichtigungen',
-      'es': 'Actividad de inicio de sesión y alertas del dispositivo',
       'fr': 'Activité de connexion et alertes relatives aux appareils',
       'it': 'Attività di accesso e avvisi sui dispositivi',
       'ja': 'ログインアクティビティとデバイスアラート',
@@ -5866,7 +5420,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'onlgw9ix': {
       'en': 'Quiet Hours',
       'de': 'Ruhezeiten',
-      'es': 'Horas de silencio',
       'fr': 'Heures de silence',
       'it': 'Orari di silenzio',
       'ja': '静粛時間',
@@ -5878,7 +5431,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'gq240fj1': {
       'en': 'Do Not Disturb',
       'de': 'Bitte nicht stören',
-      'es': 'No molestar',
       'fr': 'Ne pas déranger',
       'it': 'Non disturbare',
       'ja': '邪魔しないでください',
@@ -5890,7 +5442,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'oucwy2lx': {
       'en': 'Silence notification during selected hours.',
       'de': 'Benachrichtigungen während ausgewählter Zeiten stummschalten.',
-      'es': 'Silenciar las notificaciones durante determinadas horas.',
       'fr': 'Désactiver les notifications pendant les heures sélectionnées.',
       'it': 'Silenzia le notifiche durante determinate fasce orarie.',
       'ja': '指定した時間帯の通知を消音する。',
@@ -5902,7 +5453,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ueelsyh5': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -5917,7 +5467,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'bflx2c1w': {
       'en': 'Name',
       'de': 'Name',
-      'es': 'Nombre',
       'fr': 'Nom',
       'it': 'Nome',
       'ja': '名前',
@@ -5929,7 +5478,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ug4ez4xk': {
       'en': 'Bio',
       'de': 'Bio',
-      'es': 'Biografía',
       'fr': 'Bio',
       'it': 'Biografia',
       'ja': 'バイオ',
@@ -5941,7 +5489,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'b0tq00gs': {
       'en': 'Username',
       'de': 'Benutzername',
-      'es': 'Nombre de usuario',
       'fr': 'Nom d\'utilisateur',
       'it': 'Nome utente',
       'ja': 'ユーザー名',
@@ -5952,20 +5499,18 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '0oo17mln': {
       'en': 'St Username',
-      'de': '@null',
-      'es': '@nulo',
-      'fr': '@nul',
-      'it': '@null',
-      'ja': '@null',
-      'ko': '@null',
-      'pl': '@nieważny',
-      'ro': '@nul',
-      'zh_Hant': '@無效的',
+      'de': 'St Benutzername',
+      'fr': 'Nom d\'utilisateur St',
+      'it': 'Nome utente St',
+      'ja': 'Stユーザー名',
+      'ko': 'St 사용자 이름',
+      'pl': 'Nazwa użytkownika St',
+      'ro': 'Nume de utilizator St',
+      'zh_Hant': 'St 使用者名稱',
     },
     'hhqlkvgk': {
       'en': 'Phone number',
       'de': 'Telefonnummer',
-      'es': 'Número de teléfono',
       'fr': 'Numéro de téléphone',
       'it': 'Numero di telefono',
       'ja': '電話番号',
@@ -5977,7 +5522,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'b428ay2v': {
       'en': 'Links',
       'de': 'Links',
-      'es': 'Campo de golf',
       'fr': 'Links',
       'it': 'Collegamenti',
       'ja': 'リンク',
@@ -5989,7 +5533,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'yh108nod': {
       'en': 'Add links',
       'de': 'Links hinzufügen',
-      'es': 'Agregar enlaces',
       'fr': 'Ajouter des liens',
       'it': 'Aggiungi collegamenti',
       'ja': 'リンクを追加する',
@@ -6001,7 +5544,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'avqy5871': {
       'en': 'Keep your info up to date',
       'de': 'Halten Sie Ihre Informationen auf dem neuesten Stand',
-      'es': 'Mantén tu información actualizada',
       'fr': 'Tenez vos informations à jour',
       'it': 'Mantieni aggiornate le tue informazioni',
       'ja': '情報を常に最新の状態に保ってください。',
@@ -6013,7 +5555,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '5qoy3x6e': {
       'en': 'Register your wallet to set a username.',
       'de': 'Registrieren Sie Ihre Wallet, um einen Benutzernamen festzulegen.',
-      'es': 'Registra tu billetera para establecer un nombre de usuario.',
       'fr':
           'Enregistrez votre portefeuille pour définir un nom d\'utilisateur.',
       'it': 'Registra il tuo portafoglio per impostare un nome utente.',
@@ -6025,20 +5566,18 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'm0vdfqkt': {
       'en': 'Profile Info',
-      'de': 'Seitentitel',
-      'es': 'Título de la página',
-      'fr': 'Titre de la page',
-      'it': 'Titolo della pagina',
-      'ja': 'ページタイトル',
-      'ko': '페이지 제목',
-      'pl': 'Tytuł strony',
-      'ro': 'Titlul paginii',
-      'zh_Hant': '頁面標題',
+      'de': 'Profilinformationen',
+      'fr': 'Informations du profil',
+      'it': 'Informazioni del profilo',
+      'ja': 'プロフィール情報',
+      'ko': '프로필 정보',
+      'pl': 'Informacje o profilu',
+      'ro': 'Informații despre profil',
+      'zh_Hant': '個人資料',
     },
     'ak6i3k12': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -6053,7 +5592,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'zl647wga': {
       'en': '',
       'de': '',
-      'es': '',
       'fr': '',
       'it': '',
       'ja': '',
@@ -6065,7 +5603,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'tcsblx17': {
       'en': 'Save',
       'de': 'Speichern',
-      'es': 'Ahorrar',
       'fr': 'Sauvegarder',
       'it': 'Salva',
       'ja': '保存',
@@ -6077,7 +5614,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'cdbdu0vq': {
       'en': 'Edit Bio',
       'de': 'Profil bearbeiten',
-      'es': 'Editar biografía',
       'fr': 'Modifier la bio',
       'it': 'Modifica la biografia',
       'ja': 'プロフィールを編集する',
@@ -6089,7 +5625,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '95ddcly5': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -6104,7 +5639,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'q3i2o7w4': {
       'en': 'This is how your name will appear \non your profile',
       'de': 'So wird Ihr Name in Ihrem Profil angezeigt.',
-      'es': 'Así aparecerá tu nombre en tu perfil.',
       'fr': 'Voici comment votre nom apparaîtra :\n\nsur votre profil',
       'it': 'Ecco come apparirà il tuo nome sul tuo profilo',
       'ja': 'あなたの名前はプロフィールにこのように表示されます。',
@@ -6116,7 +5650,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'sfr2voia': {
       'en': 'Name',
       'de': 'Name',
-      'es': 'Nombre',
       'fr': 'Nom',
       'it': 'Nome',
       'ja': '名前',
@@ -6128,7 +5661,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'egzfdcnl': {
       'en': '',
       'de': '',
-      'es': '',
       'fr': '',
       'it': '',
       'ja': '',
@@ -6140,7 +5672,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '8pefdy4b': {
       'en': 'Enter your name',
       'de': 'Geben Sie Ihren Namen ein',
-      'es': 'Introduce tu nombre',
       'fr': 'Entrez votre nom',
       'it': 'Inserisci il tuo nome',
       'ja': 'お名前を入力してください',
@@ -6151,20 +5682,18 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'wjg08wfi': {
       'en': 'New Name',
-      'de': 'Name',
-      'es': 'Nombre',
-      'fr': 'Nom',
-      'it': 'Nome',
-      'ja': '名前',
-      'ko': '이름',
-      'pl': 'Nazwa',
-      'ro': 'Nume',
-      'zh_Hant': '姓名',
+      'de': 'Neuer Name',
+      'fr': 'Nouveau nom',
+      'it': 'Nuovo nome',
+      'ja': '新しい名前',
+      'ko': '새로운 이름',
+      'pl': 'Nowa nazwa',
+      'ro': 'Nume nou',
+      'zh_Hant': '新名稱',
     },
     'jbflbkfd': {
       'en': '',
       'de': '',
-      'es': '',
       'fr': '',
       'it': '',
       'ja': '',
@@ -6176,7 +5705,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'j7ly5uvv': {
       'en': 'Enter your name',
       'de': 'Geben Sie Ihren Namen ein',
-      'es': 'Introduce tu nombre',
       'fr': 'Entrez votre nom',
       'it': 'Inserisci il tuo nome',
       'ja': 'お名前を入力してください',
@@ -6188,7 +5716,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'asagaftg': {
       'en': 'Your name can be up to 50 characters.',
       'de': 'Ihr Name darf maximal 50 Zeichen lang sein.',
-      'es': 'Tu nombre puede tener hasta 50 caracteres.',
       'fr': 'Votre nom peut comporter jusqu\'à 50 caractères.',
       'it': 'Il tuo nome può contenere fino a 50 caratteri.',
       'ja': '名前は最大50文字まで入力できます。',
@@ -6200,7 +5727,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'eryxiwlg': {
       'en': 'Save',
       'de': 'Speichern',
-      'es': 'Ahorrar',
       'fr': 'Sauvegarder',
       'it': 'Salva',
       'ja': '保存',
@@ -6212,7 +5738,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'mxrbbh71': {
       'en': 'Edit Name',
       'de': 'Name bearbeiten',
-      'es': 'Editar nombre',
       'fr': 'Modifier le nom',
       'it': 'Modifica nome',
       'ja': '名前を編集',
@@ -6224,7 +5749,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '9hlwlqto': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -6240,7 +5764,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Share your website, socail media or\nany other link.',
       'de':
           'Teilen Sie Ihre Website, Social-Media-Beiträge oder\neinen anderen Link.',
-      'es': 'Comparte tu sitio web, redes sociales o cualquier otro enlace.',
       'fr':
           'Partagez votre site web, vos réseaux sociaux ou\n\ntout autre lien.',
       'it': 'Condividi il tuo sito web, i social media o qualsiasi altro link.',
@@ -6254,7 +5777,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'hgfmmcv2': {
       'en': 'Link Title',
       'de': 'Linktitel',
-      'es': 'Título del enlace',
       'fr': 'Titre du lien',
       'it': 'Titolo del collegamento',
       'ja': 'リンクタイトル',
@@ -6266,7 +5788,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '7imrg1gq': {
       'en': '',
       'de': '',
-      'es': '',
       'fr': '',
       'it': '',
       'ja': '',
@@ -6278,7 +5799,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '1qiwt2cu': {
       'en': 'Website',
       'de': 'Webseite',
-      'es': 'Sitio web',
       'fr': 'Site web',
       'it': 'Sito web',
       'ja': 'Webサイト',
@@ -6290,7 +5810,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'cg02li9b': {
       'en': 'URL',
       'de': 'URL',
-      'es': 'URL',
       'fr': 'URL',
       'it': 'URL',
       'ja': 'URL',
@@ -6302,7 +5821,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'a7v6dieh': {
       'en': '',
       'de': '',
-      'es': '',
       'fr': '',
       'it': '',
       'ja': '',
@@ -6314,7 +5832,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '6l6hd8bz': {
       'en': 'https://www.example.com',
       'de': 'https://www.example.com',
-      'es': 'https://www.example.com',
       'fr': 'https://www.example.com',
       'it': 'https://www.example.com',
       'ja': 'https://www.example.com',
@@ -6326,7 +5843,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ajue7fz4': {
       'en': 'Tips',
       'de': 'Tipps',
-      'es': 'Consejos',
       'fr': 'Conseils',
       'it': 'Suggerimenti',
       'ja': 'ヒント',
@@ -6338,8 +5854,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '819hep21': {
       'en': 'Use a valid URL (e.g. https://...)',
       'de': 'Verwenden Sie eine gültige URL (z. B. https://...).',
-      'es': 'Utilice una URL válida (por ejemplo, https://...)',
-      'fr': 'Utilisez une URL valide (par exemple https://...)',
+      'fr': 'Utilisez une URL valide (par exemple : https://...)',
       'it': 'Utilizzare un URL valido (ad esempio https://...)',
       'ja': '有効なURLを使用してください（例：https://...）',
       'ko': '유효한 URL을 사용하세요(예: https://...).',
@@ -6350,7 +5865,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'uqguo8po': {
       'en': 'You can add multiple links later',
       'de': 'Sie können später mehrere Links hinzufügen.',
-      'es': 'Puedes añadir varios enlaces más tarde.',
       'fr': 'Vous pourrez ajouter plusieurs liens ultérieurement.',
       'it': 'È possibile aggiungere più link in seguito.',
       'ja': '後から複数のリンクを追加できます',
@@ -6362,7 +5876,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ed7x4hvn': {
       'en': 'This link will be visible on your profile',
       'de': 'Dieser Link wird in Ihrem Profil sichtbar sein.',
-      'es': 'Este enlace será visible en tu perfil.',
       'fr': 'Ce lien sera visible sur votre profil',
       'it': 'Questo link sarà visibile sul tuo profilo',
       'ja': 'このリンクはあなたのプロフィールに表示されます',
@@ -6374,7 +5887,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'un7k01xl': {
       'en': 'Save',
       'de': 'Speichern',
-      'es': 'Ahorrar',
       'fr': 'Sauvegarder',
       'it': 'Salva',
       'ja': '保存',
@@ -6386,7 +5898,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'flovgenu': {
       'en': 'Add Link',
       'de': 'Link hinzufügen',
-      'es': 'Agregar enlace',
       'fr': 'Ajouter un lien',
       'it': 'Aggiungi collegamento',
       'ja': 'リンクを追加',
@@ -6398,7 +5909,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'jafdgp7q': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -6413,7 +5923,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ilultsu4': {
       'en': 'We\'re here to help',
       'de': 'Wir sind hier, um zu helfen.',
-      'es': 'Estamos aquí para ayudar',
       'fr': 'Nous sommes là pour vous aider',
       'it': 'Siamo qui per aiutarti',
       'ja': '私たちはお手伝いします',
@@ -6427,8 +5936,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
           'Find answer to common questions,\nget in touch with our support team, or learn more about SchatzApp.',
       'de':
           'Hier finden Sie Antworten auf häufig gestellte Fragen,\nnehmen Sie Kontakt mit unserem Support-Team auf oder erfahren Sie mehr über SchatzApp.',
-      'es':
-          'Encuentra respuestas a preguntas frecuentes, ponte en contacto con nuestro equipo de soporte o descubre más sobre SchatzApp.',
       'fr':
           'Trouvez les réponses aux questions fréquentes,\n\ncontactez notre équipe d\'assistance ou découvrez-en plus sur SchatzApp.',
       'it':
@@ -6444,7 +5951,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'adq0cqs3': {
       'en': 'FAQs',
       'de': 'Häufig gestellte Fragen',
-      'es': 'Preguntas frecuentes',
       'fr': 'FAQ',
       'it': 'FAQ',
       'ja': 'よくある質問',
@@ -6456,7 +5962,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'i0dfsuyo': {
       'en': 'Quick answer\'s to common questions',
       'de': 'Kurze Antworten auf häufig gestellte Fragen',
-      'es': 'Respuestas rápidas a preguntas frecuentes',
       'fr': 'Réponses rapides aux questions fréquentes',
       'it': 'Risposte rapide alle domande più frequenti',
       'ja': 'よくある質問への簡単な回答',
@@ -6468,10 +5973,9 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'srxhic7r': {
       'en': 'Contact Support',
       'de': 'Kontaktieren Sie den Support.',
-      'es': 'Contactar con soporte',
       'fr': 'Contacter l\'assistance',
       'it': 'Contatta l\'assistenza',
-      'ja': 'サポートに問い合わせる',
+      'ja': 'サポートにお問い合わせください',
       'ko': '고객 지원팀에 문의하세요',
       'pl': 'Skontaktuj się z pomocą techniczną',
       'ro': 'Contactați asistența',
@@ -6480,7 +5984,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'mx8kis6g': {
       'en': 'We\'ll get back to you as soon as possible',
       'de': 'Wir melden uns so schnell wie möglich bei Ihnen zurück.',
-      'es': 'Nos pondremos en contacto con usted lo antes posible.',
       'fr': 'Nous vous répondrons dès que possible.',
       'it': 'Vi ricontatteremo al più presto.',
       'ja': 'できるだけ早くご連絡いたします。',
@@ -6492,7 +5995,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '7zcib67h': {
       'en': 'Report a Problem',
       'de': 'Problem melden',
-      'es': 'Informar de un problema',
       'fr': 'Signaler un problème',
       'it': 'Segnala un problema',
       'ja': '問題を報告する',
@@ -6504,7 +6006,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'omont7a6': {
       'en': 'Let us know whats\'s not working',
       'de': 'Teilen Sie uns mit, was nicht funktioniert.',
-      'es': 'Háganos saber qué no funciona.',
       'fr': 'Signalez-nous ce qui ne fonctionne pas.',
       'it': 'Facci sapere cosa non funziona',
       'ja': '何がうまくいっていないのか教えてください',
@@ -6516,7 +6017,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'bund6yfw': {
       'en': 'Terms & Conditions',
       'de': 'Allgemeine Geschäftsbedingungen',
-      'es': 'Términos y condiciones',
       'fr': 'Conditions générales',
       'it': 'Termini e condizioni',
       'ja': '利用規約',
@@ -6528,7 +6028,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'gxisupqi': {
       'en': 'Read our terms or service',
       'de': 'Lesen Sie unsere Nutzungsbedingungen.',
-      'es': 'Lea nuestros términos de servicio.',
       'fr': 'Veuillez lire nos conditions d\'utilisation.',
       'it': 'Leggi i nostri termini di servizio',
       'ja': '当社の利用規約をお読みください',
@@ -6540,7 +6039,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'uuf2xx30': {
       'en': 'Help & Support',
       'de': 'Hilfe & Unterstützung',
-      'es': 'Ayuda y soporte',
       'fr': 'Aide et assistance',
       'it': 'Aiuto e supporto',
       'ja': 'ヘルプ＆サポート',
@@ -6552,7 +6050,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'uraukv2w': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -6567,7 +6064,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'm7osutac': {
       'en': 'Your account, your security',
       'de': 'Ihr Konto, Ihre Sicherheit',
-      'es': 'Tu cuenta, tu seguridad',
       'fr': 'Votre compte, votre sécurité',
       'it': 'Il tuo account, la tua sicurezza',
       'ja': 'あなたのアカウント、あなたのセキュリティ',
@@ -6581,8 +6077,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
           'We take your privacy seriously, Here are\nthe ways you can keep your account safe.',
       'de':
           'Wir nehmen Ihre Privatsphäre ernst. Hier sind die Möglichkeiten, wie Sie Ihr Konto schützen können.',
-      'es':
-          'Nos tomamos muy en serio tu privacidad. Aquí te mostramos cómo puedes mantener tu cuenta segura.',
       'fr':
           'Nous prenons votre vie privée au sérieux. Voici\nles moyens de protéger votre compte.',
       'it':
@@ -6598,7 +6092,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'mqlubt01': {
       'en': 'App Password',
       'de': 'App-Passwort',
-      'es': 'Contraseña de la aplicación',
       'fr': 'Mot de passe de l\'application',
       'it': 'Password dell\'app',
       'ja': 'アプリのパスワード',
@@ -6610,7 +6103,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '9y5gugxb': {
       'en': 'Set/Update your password ',
       'de': 'Passwort festlegen/aktualisieren',
-      'es': 'Establecer/actualizar su contraseña',
       'fr': 'Définir/mettre à jour votre mot de passe',
       'it': 'Imposta/Aggiorna la tua password',
       'ja': 'パスワードを設定／更新する',
@@ -6622,7 +6114,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'uvyf1vmg': {
       'en': 'Two-Factor Authentication',
       'de': 'Zwei-Faktor-Authentifizierung',
-      'es': 'Autenticación de dos factores',
       'fr': 'Authentification à deux facteurs',
       'it': 'Autenticazione a due fattori',
       'ja': '二段階認証',
@@ -6634,7 +6125,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'zto4tyfc': {
       'en': 'Add an extra layer of protection',
       'de': 'Fügen Sie eine zusätzliche Schutzschicht hinzu.',
-      'es': 'Añade una capa extra de protección',
       'fr': 'Ajoutez une couche de protection supplémentaire',
       'it': 'Aggiungi un ulteriore livello di protezione',
       'ja': '保護層をさらに追加する',
@@ -6646,7 +6136,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'e8k737m7': {
       'en': 'Change Phone Number',
       'de': 'Telefonnummer ändern',
-      'es': 'Cambiar número de teléfono',
       'fr': 'Changer de numéro de téléphone',
       'it': 'Cambiare numero di telefono',
       'ja': '電話番号を変更する',
@@ -6658,7 +6147,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '823w0llo': {
       'en': 'Update your phone number to a new one.',
       'de': 'Bitte aktualisieren Sie Ihre Telefonnummer.',
-      'es': 'Actualiza tu número de teléfono por uno nuevo.',
       'fr': 'Mettez à jour votre numéro de téléphone.',
       'it': 'Aggiorna il tuo numero di telefono con uno nuovo.',
       'ja': '電話番号を新しい番号に更新してください。',
@@ -6670,7 +6158,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ec15237c': {
       'en': 'Close an account for someone',
       'de': 'Jemandens Konto schließen',
-      'es': 'Cerrar la cuenta de alguien',
       'fr': 'Fermer le compte de quelqu\'un',
       'it': 'Chiudere un conto per qualcuno',
       'ja': '誰かのアカウントを閉鎖する',
@@ -6683,7 +6170,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Learn how to help someone close their account.',
       'de':
           'Erfahren Sie, wie Sie jemandem bei der Schließung seines Kontos helfen können.',
-      'es': 'Aprende cómo ayudar a alguien a cerrar su cuenta.',
       'fr': 'Apprenez comment aider quelqu\'un à fermer son compte.',
       'it': 'Scopri come aiutare qualcuno a chiudere il proprio conto.',
       'ja': '顧客のアカウント解約を支援する方法を学びましょう。',
@@ -6695,7 +6181,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'dlqu4yss': {
       'en': 'Delete Account',
       'de': 'Konto löschen',
-      'es': 'Eliminar cuenta',
       'fr': 'Supprimer le compte',
       'it': 'Elimina account',
       'ja': 'アカウントを削除',
@@ -6707,7 +6192,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '9lttxzy3': {
       'en': 'Read our terms or service',
       'de': 'Lesen Sie unsere Nutzungsbedingungen.',
-      'es': 'Lea nuestros términos de servicio.',
       'fr': 'Veuillez lire nos conditions d\'utilisation.',
       'it': 'Leggi i nostri termini di servizio',
       'ja': '当社の利用規約をお読みください',
@@ -6719,7 +6203,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ql7yy8s8': {
       'en': 'Security',
       'de': 'Sicherheit',
-      'es': 'Seguridad',
       'fr': 'Sécurité',
       'it': 'Sicurezza',
       'ja': '安全',
@@ -6731,7 +6214,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '662hogyq': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -6748,8 +6230,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
           'Deleting of your account, will delete all your Account infomations, and your Schatz Wallet.\n\nPlease make sure you remove all  your Funds in your wallet before you delete your account.\n\nYou have 30 days to reassess your Wallet before it get deleted completly from our data base.',
       'de':
           'Wenn Sie Ihr Konto löschen, werden alle Ihre Kontoinformationen und Ihre Schatz-Wallet gelöscht.\n\nBitte stellen Sie sicher, dass Sie Ihr gesamtes Guthaben aus Ihrer Wallet entfernen, bevor Sie Ihr Konto löschen.\n\nSie haben 30 Tage Zeit, Ihre Wallet erneut zu überprüfen, bevor sie endgültig aus unserer Datenbank gelöscht wird.',
-      'es':
-          'Al eliminar tu cuenta, se borrará toda la información de tu cuenta y tu billetera Schatz.\n\nAsegúrate de retirar todos los fondos de tu billetera antes de eliminar tu cuenta.\n\nTienes 30 días para revisar tu billetera antes de que se elimine definitivamente de nuestra base de datos.',
       'fr':
           'La suppression de votre compte entraînera la suppression de toutes vos informations de compte et de votre portefeuille Schatz.\n\nVeuillez vous assurer de retirer tous les fonds de votre portefeuille avant de supprimer votre compte.\n\nVous disposez de 30 jours pour vérifier à nouveau votre portefeuille avant sa suppression définitive de notre base de données.',
       'it':
@@ -6768,7 +6248,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'q0yftcvw': {
       'en': 'Save',
       'de': 'Speichern',
-      'es': 'Ahorrar',
       'fr': 'Sauvegarder',
       'it': 'Salva',
       'ja': '保存',
@@ -6780,7 +6259,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'jvrxqm9s': {
       'en': 'Delete Account',
       'de': 'Konto löschen',
-      'es': 'Eliminar cuenta',
       'fr': 'Supprimer le compte',
       'it': 'Elimina account',
       'ja': 'アカウントを削除',
@@ -6792,7 +6270,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ol9lmclo': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -6807,7 +6284,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'p6sk2d5r': {
       'en': 'Page Title',
       'de': 'Seitentitel',
-      'es': 'Título de la página',
       'fr': 'Titre de la page',
       'it': 'Titolo della pagina',
       'ja': 'ページタイトル',
@@ -6819,7 +6295,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '7s397lip': {
       'en': 'Stories',
       'de': 'Geschichten',
-      'es': 'Historias',
       'fr': 'Histoires',
       'it': 'Abiti',
       'ja': '物語',
@@ -6831,7 +6306,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'tdgk4nyv': {
       'en': 'Emma Johnson',
       'de': 'Emma Johnson',
-      'es': 'Emma Johnson',
       'fr': 'Emma Johnson',
       'it': 'Emma Johnson',
       'ja': 'エマ・ジョンソン',
@@ -6843,7 +6317,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '8o80jpv4': {
       'en': '2h ago',
       'de': 'vor 2 Stunden',
-      'es': 'Hace 2 horas',
       'fr': 'il y a 2 heures',
       'it': '2 ore fa',
       'ja': '2時間前',
@@ -6855,7 +6328,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'yig06vkv': {
       'en': 'About/Caption',
       'de': 'Über/Bildunterschrift',
-      'es': 'Acerca de/Leyenda',
       'fr': 'À propos/Légende',
       'it': 'Informazioni/Didascalia',
       'ja': '概要/キャプション',
@@ -6867,7 +6339,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'rglll1re': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -6882,7 +6353,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'a9wao859': {
       'en': 'Add by number',
       'de': 'Addiere nach Zahl',
-      'es': 'Sumar por número',
       'fr': 'Ajouter par nombre',
       'it': 'Aggiungi per numero',
       'ja': '数値で加算',
@@ -6894,7 +6364,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'htgsnml1': {
       'en': 'Save a new contact to your phone',
       'de': 'Einen neuen Kontakt auf Ihrem Telefon speichern',
-      'es': 'Guarda un nuevo contacto en tu teléfono.',
       'fr': 'Enregistrer un nouveau contact sur votre téléphone',
       'it': 'Salva un nuovo contatto sul tuo telefono',
       'ja': '新しい連絡先を携帯電話に保存する',
@@ -6906,7 +6375,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'su8tgqo4': {
       'en': 'Full name',
       'de': 'Vollständiger Name',
-      'es': 'Nombre completo',
       'fr': 'Nom et prénom',
       'it': 'Nome e cognome',
       'ja': 'フルネーム',
@@ -6918,7 +6386,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'yvay5uxi': {
       'en': 'Enter name ',
       'de': 'Name eingeben',
-      'es': 'Ingrese su nombre',
       'fr': 'Entrez le nom',
       'it': 'Inserisci il nome',
       'ja': '名前を入力してください',
@@ -6930,7 +6397,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '9jq9115y': {
       'en': 'Phone number',
       'de': 'Telefonnummer',
-      'es': 'Número de teléfono',
       'fr': 'Numéro de téléphone',
       'it': 'Numero di telefono',
       'ja': '電話番号',
@@ -6942,7 +6408,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'vczaehtp': {
       'en': 'xxx xxxx xxxxx',
       'de': 'xxx xxxx xxxxx',
-      'es': 'xxx xxxx xxxxx',
       'fr': 'xxx xxxx xxxxx',
       'it': 'xxx xxxx xxxxx',
       'ja': 'xxx xxxx xxxxx',
@@ -6954,7 +6419,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'pli3kqx6': {
       'en': 'Save Contact',
       'de': 'Kontakt speichern',
-      'es': 'Guardar contacto',
       'fr': 'Enregistrer le contact',
       'it': 'Salva Contatto',
       'ja': '連絡先を保存',
@@ -6966,7 +6430,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'kmn9unnd': {
       'en': 'Your privacy is important to us',
       'de': 'Ihre Privatsphäre ist uns wichtig.',
-      'es': 'Su privacidad es importante para nosotros.',
       'fr': 'Le respect de votre vie privée est important pour nous.',
       'it': 'La tua privacy è importante per noi',
       'ja': 'お客様のプライバシーは私たちにとって重要です',
@@ -6980,8 +6443,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
           'We\'ll save this contact to your phone so you can message them easily.',
       'de':
           'Wir speichern diesen Kontakt auf Ihrem Telefon, damit Sie ihm/ihr einfach Nachrichten senden können.',
-      'es':
-          'Guardaremos este contacto en tu teléfono para que puedas enviarle mensajes fácilmente.',
       'fr':
           'Nous enregistrerons ce contact dans votre téléphone afin que vous puissiez lui envoyer facilement des messages.',
       'it':
@@ -6997,7 +6458,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'bknpg0f5': {
       'en': 'SchatzApp',
       'de': 'SchatzApp',
-      'es': 'Aplicación Schatz',
       'fr': 'SchatzApp',
       'it': 'SchatzApp',
       'ja': 'SchatzApp',
@@ -7009,7 +6469,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ipvid3sk': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -7024,7 +6483,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     's6xpo2zb': {
       'en': '',
       'de': '',
-      'es': '',
       'fr': '',
       'it': '',
       'ja': '',
@@ -7036,7 +6494,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'qxurtnt6': {
       'en': 'Save',
       'de': 'Speichern',
-      'es': 'Ahorrar',
       'fr': 'Sauvegarder',
       'it': 'Salva',
       'ja': '保存',
@@ -7048,7 +6505,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'kgx59fn5': {
       'en': 'Edit Username',
       'de': 'Benutzername bearbeiten',
-      'es': 'Editar nombre de usuario',
       'fr': 'Modifier le nom d\'utilisateur',
       'it': 'Modifica nome utente',
       'ja': 'ユーザー名を編集',
@@ -7060,7 +6516,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'snnchk2d': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -7075,7 +6530,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'chcrtaz5': {
       'en': 'Camouflage Message',
       'de': 'Tarnungsnachricht',
-      'es': 'Mensaje de camuflaje',
       'fr': 'Message de camouflage',
       'it': 'Messaggio mimetico',
       'ja': '偽装メッセージ',
@@ -7089,8 +6543,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
           'Set 3 fixed messages that will appear as notifications when receive a private messge',
       'de':
           'Legen Sie 3 feste Meldungen fest, die als Benachrichtigungen beim Empfang einer privaten Nachricht angezeigt werden.',
-      'es':
-          'Establece 3 mensajes fijos que aparecerán como notificaciones al recibir un mensaje privado.',
       'fr':
           'Définissez 3 messages fixes qui apparaîtront comme notifications lors de la réception d\'un message privé.',
       'it':
@@ -7106,7 +6558,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'q80vamrj': {
       'en': 'Message 1',
       'de': 'Nachricht 1',
-      'es': 'Mensaje 1',
       'fr': 'Message 1',
       'it': 'Messaggio 1',
       'ja': 'メッセージ1',
@@ -7118,7 +6569,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'n7wnfy5s': {
       'en': 'Message 2',
       'de': 'Nachricht 2',
-      'es': 'Mensaje 2',
       'fr': 'Message 2',
       'it': 'Messaggio 2',
       'ja': 'メッセージ2',
@@ -7130,7 +6580,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'm212ob30': {
       'en': 'Message 3',
       'de': 'Nachricht 3',
-      'es': 'Mensaje 3',
       'fr': 'Message 3',
       'it': 'Messaggio 3',
       'ja': 'メッセージ3',
@@ -7142,7 +6591,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'tcg1c3xt': {
       'en': 'Save',
       'de': 'Speichern',
-      'es': 'Ahorrar',
       'fr': 'Sauvegarder',
       'it': 'Salva',
       'ja': '保存',
@@ -7154,7 +6602,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ofhn74mt': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -7169,7 +6616,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'xwvfik4a': {
       'en': 'Camouflage Profile',
       'de': 'Tarnprofil',
-      'es': 'Perfil de camuflaje',
       'fr': 'Profil de camouflage',
       'it': 'Profilo mimetico',
       'ja': '迷彩プロファイル',
@@ -7183,8 +6629,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
           'Select which contact profile you want to show when you receive a private message.',
       'de':
           'Wählen Sie aus, welches Kontaktprofil angezeigt werden soll, wenn Sie eine private Nachricht erhalten.',
-      'es':
-          'Selecciona el perfil de contacto que deseas ver cuando recibas un mensaje privado.',
       'fr':
           'Sélectionnez le profil de contact que vous souhaitez afficher lorsque vous recevez un message privé.',
       'it':
@@ -7200,7 +6644,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'rsas57dg': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -7215,7 +6658,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'cn6dp1n3': {
       'en': 'Lock Chat Privacy',
       'de': 'Chat-Datenschutz sperren',
-      'es': 'Bloquear la privacidad del chat',
       'fr': 'Confidentialité du chat verrouillé',
       'it': 'Blocca la privacy della chat',
       'ja': 'ロックチャットプライバシー',
@@ -7227,7 +6669,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'mddbvgoo': {
       'en': 'Lock Chat Privacy',
       'de': 'Chat-Datenschutz sperren',
-      'es': 'Bloquear la privacidad del chat',
       'fr': 'Confidentialité du chat verrouillé',
       'it': 'Blocca la privacy della chat',
       'ja': 'ロックチャットプライバシー',
@@ -7240,7 +6681,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Protect your chat activity and control what other see.',
       'de':
           'Schützen Sie Ihre Chataktivitäten und kontrollieren Sie, was andere sehen.',
-      'es': 'Protege tu actividad en el chat y controla lo que ven los demás.',
       'fr':
           'Protégez votre activité de chat et contrôlez ce que les autres voient.',
       'it':
@@ -7254,7 +6694,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'dm3b9t16': {
       'en': 'Off Notification',
       'de': 'Benachrichtigung aus',
-      'es': 'Desactivar notificaciones',
       'fr': 'Notification désactivée',
       'it': 'Disattiva notifica',
       'ja': '通知をオフにする',
@@ -7266,7 +6705,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '4kcne1p6': {
       'en': 'Hide message notification from this app.',
       'de': 'Benachrichtigungen dieser App ausblenden.',
-      'es': 'Ocultar las notificaciones de mensajes de esta aplicación.',
       'fr': 'Masquer les notifications de messages de cette application.',
       'it': 'Nascondi le notifiche dei messaggi da questa app.',
       'ja': 'このアプリからのメッセージ通知を非表示にする。',
@@ -7277,33 +6715,37 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '6yira923': {
       'en': 'Show locked chat Stories',
-      'de': 'Benachrichtigung aus',
-      'es': 'Desactivar notificaciones',
-      'fr': 'Notification désactivée',
-      'it': 'Disattiva notifica',
-      'ja': '通知をオフにする',
-      'ko': '알림 끄기',
-      'pl': 'Wyłącz powiadomienie',
-      'ro': 'Notificare dezactivată',
-      'zh_Hant': '關閉通知',
+      'de': 'Gesperrten Chat anzeigen Geschichten',
+      'fr': 'Afficher les stories de la conversation verrouillée',
+      'it': 'Mostra le storie della chat bloccata',
+      'ja': 'ロックされたチャットストーリーを表示',
+      'ko': '잠긴 채팅 스토리를 표시합니다',
+      'pl': 'Pokaż zablokowane historie czatu',
+      'ro': 'Afișează poveștile din chatul blocat',
+      'zh_Hant': '顯示已鎖定的聊天故事',
     },
     '25zar07l': {
       'en':
           'Show Stories from your Private Chat Lock chats in the normal Stories row. When off, view them only inside Private Chat Lock.',
-      'de': 'Benachrichtigungen dieser App ausblenden.',
-      'es': 'Ocultar las notificaciones de mensajes de esta aplicación.',
-      'fr': 'Masquer les notifications de messages de cette application.',
-      'it': 'Nascondi le notifiche dei messaggi da questa app.',
-      'ja': 'このアプリからのメッセージ通知を非表示にする。',
-      'ko': '이 앱에서 메시지 알림을 숨기세요.',
-      'pl': 'Ukryj powiadomienia o wiadomościach w tej aplikacji.',
-      'ro': 'Ascunde notificările de mesaje din această aplicație.',
-      'zh_Hant': '隱藏此應用程式的訊息通知。',
+      'de':
+          'Geschichten aus deinen privaten Chats werden in der normalen Geschichtenzeile angezeigt. Wenn die Option „Privater Chat“ deaktiviert ist, werden sie nur innerhalb des privaten Chats angezeigt.',
+      'fr':
+          'Afficher les stories de vos conversations privées verrouillées dans la barre des stories habituelle. Lorsqu\'elles sont désactivées, elles ne sont visibles que dans les conversations privées verrouillées.',
+      'it':
+          'Mostra le Storie delle tue chat con Blocco chat privato nella normale riga Storie. Quando è disattivato, visualizzale solo all\'interno di Blocco chat privato.',
+      'ja':
+          'プライベートチャットロックのチャットのストーリーを、通常のストーリー行に表示します。オフにすると、プライベートチャットロック内でのみ表示されます。',
+      'ko':
+          '비공개 채팅 잠금으로 설정한 채팅의 스토리를 일반 스토리 행에 표시합니다. 이 기능을 끄면 비공개 채팅 잠금 내에서만 스토리를 볼 수 있습니다.',
+      'pl':
+          'Pokaż historie z czatów z blokadą prywatnego czatu w normalnym wierszu „Historie”. Po wyłączeniu wyświetlaj je tylko w trybie blokady prywatnego czatu.',
+      'ro':
+          'Afișează poveștile din chaturile tale cu Blocare chat privat în rândul normal de povești. Când este dezactivat, le poți vizualiza doar în interiorul Blocării chatului privat.',
+      'zh_Hant': '在「故事」欄中顯示來自「私密聊天鎖定」的聊天記錄。關閉此功能後，則只能在「私密聊天鎖定」內查看。',
     },
     '40f018ez': {
       'en': 'Camouflage Profile',
       'de': 'Tarnprofil',
-      'es': 'Perfil de camuflaje',
       'fr': 'Profil de camouflage',
       'it': 'Profilo mimetico',
       'ja': '迷彩プロファイル',
@@ -7316,7 +6758,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Choose which profile to show when you receive a private message',
       'de':
           'Wähle aus, welches Profil angezeigt werden soll, wenn du eine private Nachricht erhältst.',
-      'es': 'Elige qué perfil mostrar cuando recibas un mensaje privado.',
       'fr':
           'Choisissez le profil à afficher lorsque vous recevez un message privé',
       'it': 'Scegli quale profilo mostrare quando ricevi un messaggio privato',
@@ -7330,7 +6771,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '25iweon4': {
       'en': 'Camouflage Message',
       'de': 'Tarnungsnachricht',
-      'es': 'Mensaje de camuflaje',
       'fr': 'Message de camouflage',
       'it': 'Messaggio mimetico',
       'ja': '偽装メッセージ',
@@ -7343,8 +6783,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Set up to 3 fixed messages to show as notifications.',
       'de':
           'Richten Sie bis zu 3 feste Meldungen ein, die als Benachrichtigungen angezeigt werden sollen.',
-      'es':
-          'Configure hasta 3 mensajes fijos para que se muestren como notificaciones.',
       'fr':
           'Configurez jusqu\'à 3 messages fixes à afficher comme notifications.',
       'it':
@@ -7361,8 +6799,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'To view your locked chats, search your app password in the app.',
       'de':
           'Um Ihre gesperrten Chats anzuzeigen, suchen Sie in der App nach Ihrem App-Passwort.',
-      'es':
-          'Para ver tus chats bloqueados, busca la contraseña de tu aplicación dentro de la misma.',
       'fr':
           'Pour consulter vos conversations verrouillées, recherchez votre mot de passe d\'application dans l\'application.',
       'it':
@@ -7378,7 +6814,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'eqnbqy29': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -7393,7 +6828,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'pauwj5s7': {
       'en': 'Set App Password',
       'de': 'App-Passwort festlegen',
-      'es': 'Establecer contraseña de la aplicación',
       'fr': 'Définir le mot de passe de l\'application',
       'it': 'Imposta la password dell\'app',
       'ja': 'アプリのパスワードを設定する',
@@ -7407,8 +6841,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
           'Create an app password to access\nyour locked chats and privacy settings.\nkeep it secure and don\'t share it\nwith anyone.',
       'de':
           'Erstelle ein App-Passwort, um auf deine gesperrten Chats und Datenschutzeinstellungen zuzugreifen.\nBewahre es sicher auf und gib es niemandem weiter.',
-      'es':
-          'Crea una contraseña de aplicación para acceder a\ntus chats bloqueados y ajustes de privacidad.\nMantenla segura y no la compartas\ncon nadie.',
       'fr':
           'Créez un mot de passe d\'application pour accéder à\nvos conversations verrouillées et à vos paramètres de confidentialité.\n\nConservez-le en lieu sûr et ne le partagez\navec personne.',
       'it':
@@ -7426,7 +6858,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'zd7uaxkh': {
       'en': 'Enter app password',
       'de': 'App-Passwort eingeben',
-      'es': 'Introduce la contraseña de la aplicación',
       'fr': 'Saisissez le mot de passe de l\'application',
       'it': 'Inserisci la password dell\'app',
       'ja': 'アプリのパスワードを入力してください',
@@ -7438,7 +6869,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'h6gincqu': {
       'en': 'Confirm app password',
       'de': 'App-Passwort bestätigen',
-      'es': 'Confirma la contraseña de la aplicación',
       'fr': 'Confirmer le mot de passe de l\'application',
       'it': 'Conferma la password dell\'app',
       'ja': 'アプリのパスワードを確認してください',
@@ -7450,7 +6880,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'o66wfl3n': {
       'en': 'Continue',
       'de': 'Weitermachen',
-      'es': 'Continuar',
       'fr': 'Continuer',
       'it': 'Continuare',
       'ja': '続く',
@@ -7462,7 +6891,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'rjvmlxcd': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -7477,7 +6905,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'gtrwhhra': {
       'en': 'Change App Password',
       'de': 'App-Passwort ändern',
-      'es': 'Cambiar la contraseña de la aplicación',
       'fr': 'Modifier le mot de passe de l\'application',
       'it': 'Cambia la password dell\'app',
       'ja': 'アプリのパスワードを変更する',
@@ -7490,7 +6917,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Update your app password and keep it secure.',
       'de':
           'Aktualisieren Sie Ihr App-Passwort und sorgen Sie für dessen Sicherheit.',
-      'es': 'Actualiza la contraseña de tu aplicación y mantenla segura.',
       'fr':
           'Mettez à jour le mot de passe de votre application et assurez-vous de sa sécurité.',
       'it': 'Aggiorna la password della tua app e mantienila al sicuro.',
@@ -7503,7 +6929,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '1nksivu1': {
       'en': 'Enter old app password',
       'de': 'Altes App-Passwort eingeben',
-      'es': 'Introduce la contraseña de la aplicación anterior.',
       'fr': 'Saisissez l\'ancien mot de passe de l\'application',
       'it': 'Inserisci la vecchia password dell\'app',
       'ja': '古いアプリのパスワードを入力してください',
@@ -7515,7 +6940,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'jwactfgw': {
       'en': 'Reset Password',
       'de': 'Passwort zurücksetzen',
-      'es': 'Restablecer contraseña',
       'fr': 'Réinitialiser le mot de passe',
       'it': 'Reimposta password',
       'ja': 'パスワードをリセット',
@@ -7527,7 +6951,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'x5zvvhjk': {
       'en': 'Continue',
       'de': 'Weitermachen',
-      'es': 'Continuar',
       'fr': 'Continuer',
       'it': 'Continuare',
       'ja': '続く',
@@ -7539,7 +6962,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'zzustja4': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -7554,7 +6976,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'm457ahqi': {
       'en': 'Transactions',
       'de': 'Transaktionen',
-      'es': 'Actas',
       'fr': 'Transactions',
       'it': 'Transazioni',
       'ja': '取引',
@@ -7566,7 +6987,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ylf4zejd': {
       'en': 'Download',
       'de': 'Herunterladen',
-      'es': 'Descargar',
       'fr': 'Télécharger',
       'it': 'Scaricamento',
       'ja': 'ダウンロード',
@@ -7578,7 +6998,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     's5wilkty': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -7593,7 +7012,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'k3eytypu': {
       'en': 'Billing Card',
       'de': 'Rechnungskarte',
-      'es': 'Tarjeta de facturación',
       'fr': 'Carte de facturation',
       'it': 'Carta di fatturazione',
       'ja': '請求カード',
@@ -7604,80 +7022,73 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '7q9xan58': {
       'en': 'Card Number',
-      'de': 'Vorname',
-      'es': 'Nombre de pila',
-      'fr': 'Prénom',
-      'it': 'Nome di battesimo',
-      'ja': 'ファーストネーム',
-      'ko': '이름',
-      'pl': 'Imię',
-      'ro': 'Prenume',
-      'zh_Hant': '名',
+      'de': 'Kartennummer',
+      'fr': 'Numéro de carte',
+      'it': 'Numero di carta',
+      'ja': 'カード番号',
+      'ko': '카드 번호',
+      'pl': 'Numer karty',
+      'ro': 'Numărul de card',
+      'zh_Hant': '卡號',
     },
     'jelpgoa2': {
       'en': '1111222233334444',
-      'de': 'Erforderlich',
-      'es': 'Requerido',
-      'fr': 'Requis',
-      'it': 'Necessario',
-      'ja': '必須',
-      'ko': '필수의',
-      'pl': 'Wymagany',
-      'ro': 'Necesar',
-      'zh_Hant': '必需的',
+      'de': '1111222233334444',
+      'fr': '1111222233334444',
+      'it': '1111222233334444',
+      'ja': '1111222233334444',
+      'ko': '1111222233334444',
+      'pl': '1111222233334444',
+      'ro': '11112222333344444',
+      'zh_Hant': '1111222233334444',
     },
     '9vo2fqux': {
       'en': 'Exp Date',
-      'de': 'Vorname',
-      'es': 'Nombre de pila',
-      'fr': 'Prénom',
-      'it': 'Nome di battesimo',
-      'ja': 'ファーストネーム',
-      'ko': '이름',
-      'pl': 'Imię',
-      'ro': 'Prenume',
-      'zh_Hant': '名',
+      'de': 'Ablaufdatum',
+      'fr': 'Date d\'expiration',
+      'it': 'Data di scadenza',
+      'ja': '賞味期限',
+      'ko': '유효기간',
+      'pl': 'Data ważności',
+      'ro': 'Data expirării',
+      'zh_Hant': '到期日',
     },
     't43kbm8m': {
       'en': '12/24',
-      'de': 'Erforderlich',
-      'es': 'Requerido',
-      'fr': 'Requis',
-      'it': 'Necessario',
-      'ja': '必須',
-      'ko': '필수의',
-      'pl': 'Wymagany',
-      'ro': 'Necesar',
-      'zh_Hant': '必需的',
+      'de': '24.12.',
+      'fr': '24/12',
+      'it': '12/24',
+      'ja': '12/24',
+      'ko': '12/24',
+      'pl': '12/24',
+      'ro': '24.12',
+      'zh_Hant': '12/24',
     },
     'mquappmx': {
       'en': 'CVV',
-      'de': 'Vorname',
-      'es': 'Nombre de pila',
-      'fr': 'Prénom',
-      'it': 'Nome di battesimo',
-      'ja': 'ファーストネーム',
-      'ko': '이름',
-      'pl': 'Imię',
-      'ro': 'Prenume',
-      'zh_Hant': '名',
+      'de': 'CVV',
+      'fr': 'CVV',
+      'it': 'CVV',
+      'ja': 'CVV',
+      'ko': 'CVV',
+      'pl': 'CVV',
+      'ro': 'CVV',
+      'zh_Hant': 'CVV',
     },
     '3wdzpxrr': {
       'en': '123',
-      'de': 'Erforderlich',
-      'es': 'Requerido',
-      'fr': 'Requis',
-      'it': 'Necessario',
-      'ja': '必須',
-      'ko': '필수의',
-      'pl': 'Wymagany',
-      'ro': 'Necesar',
-      'zh_Hant': '必需的',
+      'de': '123',
+      'fr': '123',
+      'it': '123',
+      'ja': '123',
+      'ko': '123',
+      'pl': '123',
+      'ro': '123',
+      'zh_Hant': '123',
     },
     'l4i08vea': {
       'en': 'Billing Name',
       'de': 'Rechnungsname',
-      'es': 'Nombre de facturación',
       'fr': 'Nom de facturation',
       'it': 'Nome di fatturazione',
       'ja': '請求名',
@@ -7689,7 +7100,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'oglygs3q': {
       'en': 'First Name',
       'de': 'Vorname',
-      'es': 'Nombre de pila',
       'fr': 'Prénom',
       'it': 'Nome di battesimo',
       'ja': 'ファーストネーム',
@@ -7701,7 +7111,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '83eexgl3': {
       'en': 'Required',
       'de': 'Erforderlich',
-      'es': 'Requerido',
       'fr': 'Requis',
       'it': 'Necessario',
       'ja': '必須',
@@ -7713,7 +7122,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '3rrx6rfg': {
       'en': 'Last Name',
       'de': 'Nachname',
-      'es': 'Apellido',
       'fr': 'Nom de famille',
       'it': 'Cognome',
       'ja': '苗字',
@@ -7725,7 +7133,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'gp0xzl6g': {
       'en': 'Required',
       'de': 'Erforderlich',
-      'es': 'Requerido',
       'fr': 'Requis',
       'it': 'Necessario',
       'ja': '必須',
@@ -7737,7 +7144,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'k48dl9qs': {
       'en': 'Billing Address',
       'de': 'Rechnungsadresse',
-      'es': 'Dirección de Envio',
       'fr': 'adresse de facturation',
       'it': 'Indirizzo di fatturazione',
       'ja': '請求先住所',
@@ -7749,7 +7155,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'a661zxi1': {
       'en': 'Street address',
       'de': 'Straßenadresse',
-      'es': 'Dirección de la calle',
       'fr': 'Adresse de la rue',
       'it': 'Indirizzo stradale',
       'ja': '住所',
@@ -7761,7 +7166,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'dg9hkwjq': {
       'en': 'Street address',
       'de': 'Straßenadresse',
-      'es': 'Dirección de la calle',
       'fr': 'Adresse de la rue',
       'it': 'Indirizzo stradale',
       'ja': '住所',
@@ -7773,7 +7177,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ui6bz9k4': {
       'en': 'City/Town',
       'de': 'Stadt/Ort',
-      'es': 'Ciudad/Pueblo',
       'fr': 'Ville',
       'it': 'Città/Paese',
       'ja': '都市/町',
@@ -7785,7 +7188,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'r2q2tyr2': {
       'en': 'City or Town',
       'de': 'Stadt oder Gemeinde',
-      'es': 'Ciudad o pueblo',
       'fr': 'Ville ou village',
       'it': 'Città o paese',
       'ja': '都市または町',
@@ -7797,7 +7199,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '0x1l7iz2': {
       'en': 'State/Region',
       'de': 'Bundesland/Region',
-      'es': 'Estado/Región',
       'fr': 'État/Région',
       'it': 'Stato/Regione',
       'ja': '州/地域',
@@ -7809,7 +7210,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '8rt8dw7u': {
       'en': 'State or region',
       'de': 'Bundesland oder Region',
-      'es': 'Estado o región',
       'fr': 'État ou région',
       'it': 'Stato o regioni',
       'ja': '州または地域',
@@ -7821,7 +7221,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'hgu2rs99': {
       'en': 'Postcode',
       'de': 'Postleitzahl',
-      'es': 'Código postal',
       'fr': 'Code postal',
       'it': 'Codice postale',
       'ja': '郵便番号',
@@ -7833,7 +7232,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'kub7bmgn': {
       'en': 'Postcode',
       'de': 'Postleitzahl',
-      'es': 'Código postal',
       'fr': 'Code postal',
       'it': 'Codice postale',
       'ja': '郵便番号',
@@ -7845,7 +7243,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'lttepwqj': {
       'en': 'Country',
       'de': 'Land',
-      'es': 'País',
       'fr': 'Pays',
       'it': 'Paese',
       'ja': '国',
@@ -7857,7 +7254,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'pc5477hg': {
       'en': 'Select Country',
       'de': 'Land auswählen',
-      'es': 'Seleccione país',
       'fr': 'Sélectionner un pays',
       'it': 'Seleziona il Paese',
       'ja': '国を選択',
@@ -7869,7 +7265,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'xnvk6a9f': {
       'en': 'Search...',
       'de': 'Suchen...',
-      'es': 'Buscar...',
       'fr': 'Recherche...',
       'it': 'Ricerca...',
       'ja': '検索...',
@@ -7881,7 +7276,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'vjanh29k': {
       'en': 'Option 1',
       'de': 'Option 1',
-      'es': 'Opción 1',
       'fr': 'Option 1',
       'it': 'Opzione 1',
       'ja': 'オプション1',
@@ -7893,7 +7287,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'e8kztsqw': {
       'en': 'Option 2',
       'de': 'Option 2',
-      'es': 'Opción 2',
       'fr': 'Option 2',
       'it': 'Opzione 2',
       'ja': 'オプション2',
@@ -7905,7 +7298,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'q7x8fb4j': {
       'en': 'Option 3',
       'de': 'Option 3',
-      'es': 'Opción 3',
       'fr': 'Option 3',
       'it': 'Opzione 3',
       'ja': 'オプション3',
@@ -7917,7 +7309,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'gkhsjnb4': {
       'en': 'Your card details are encrypted and secure.',
       'de': 'Ihre Kartendaten sind verschlüsselt und sicher.',
-      'es': 'Los datos de su tarjeta están cifrados y seguros.',
       'fr': 'Les informations de votre carte sont cryptées et sécurisées.',
       'it': 'I dati della tua carta sono crittografati e protetti.',
       'ja': 'お客様のカード情報は暗号化されており、安全です。',
@@ -7930,8 +7321,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Cardholder name must match your legal name.',
       'de':
           'Der Name des Karteninhabers muss mit Ihrem rechtlichen Namen übereinstimmen.',
-      'es':
-          'El nombre del titular de la tarjeta debe coincidir con su nombre legal.',
       'fr':
           'Le nom du titulaire de la carte doit correspondre à votre nom légal.',
       'it':
@@ -7946,260 +7335,238 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'x78ql9fn': {
       'en': '1111222233334444 is required',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': '1111222233334444 ist erforderlich',
+      'fr': '1111222233334444 est requis',
+      'it': '1111222233334444 è richiesto',
+      'ja': '1111222233334444 が必要です',
+      'ko': '1111222233334444가 필요합니다.',
+      'pl': '1111222233334444 jest wymagane',
+      'ro': '1111222233334444 este obligatoriu',
+      'zh_Hant': '需要 1111222233334444',
     },
     'gv0ea0u0': {
       'en': 'Please choose an option from the dropdown',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Bitte wählen Sie eine Option aus dem Dropdown-Menü.',
+      'fr': 'Veuillez choisir une option dans le menu déroulant.',
+      'it': 'Seleziona un\'opzione dal menu a tendina',
+      'ja': 'ドロップダウンメニューからオプションを選択してください',
+      'ko': '드롭다운 메뉴에서 옵션을 선택해 주세요.',
+      'pl': 'Proszę wybrać opcję z listy rozwijanej',
+      'ro': 'Vă rugăm să alegeți o opțiune din meniul derulant',
+      'zh_Hant': '請從下拉式選單中選擇一個選項',
     },
     '6p8kucj4': {
       'en': '12/24 is required',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': '12/24 ist erforderlich',
+      'fr': '12/24 requis',
+      'it': 'È richiesto un preavviso di 12/24 ore',
+      'ja': '12/24が必要です',
+      'ko': '12/24가 필요합니다.',
+      'pl': 'Wymagane jest 12/24',
+      'ro': 'Este necesar 12/24',
+      'zh_Hant': '需要 12/24',
     },
     '7oqm4y88': {
       'en': 'Please choose an option from the dropdown',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Bitte wählen Sie eine Option aus dem Dropdown-Menü.',
+      'fr': 'Veuillez choisir une option dans le menu déroulant.',
+      'it': 'Seleziona un\'opzione dal menu a tendina',
+      'ja': 'ドロップダウンメニューからオプションを選択してください',
+      'ko': '드롭다운 메뉴에서 옵션을 선택해 주세요.',
+      'pl': 'Proszę wybrać opcję z listy rozwijanej',
+      'ro': 'Vă rugăm să alegeți o opțiune din meniul derulant',
+      'zh_Hant': '請從下拉式選單中選擇一個選項',
     },
     'r1fl5xiq': {
       'en': '123 is required',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': '123 ist erforderlich',
+      'fr': '123 est requis',
+      'it': '123 è richiesto',
+      'ja': '123が必要です',
+      'ko': '123이 필요합니다',
+      'pl': '123 jest wymagane',
+      'ro': '123 este necesar',
+      'zh_Hant': '需要 123',
     },
     '2ixhox66': {
       'en': '3 digits',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': '3 Ziffern',
+      'fr': '3 chiffres',
+      'it': '3 cifre',
+      'ja': '3桁',
+      'ko': '세 자리 숫자',
+      'pl': '3 cyfry',
+      'ro': '3 cifre',
+      'zh_Hant': '3位數',
     },
     'pymighrq': {
       'en': '3 digits',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': '3 Ziffern',
+      'fr': '3 chiffres',
+      'it': '3 cifre',
+      'ja': '3桁',
+      'ko': '세 자리 숫자',
+      'pl': '3 cyfry',
+      'ro': '3 cifre',
+      'zh_Hant': '3位數',
     },
     'sd8rmcyn': {
       'en': 'Please choose an option from the dropdown',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Bitte wählen Sie eine Option aus dem Dropdown-Menü.',
+      'fr': 'Veuillez choisir une option dans le menu déroulant.',
+      'it': 'Seleziona un\'opzione dal menu a tendina',
+      'ja': 'ドロップダウンメニューからオプションを選択してください',
+      'ko': '드롭다운 메뉴에서 옵션을 선택해 주세요.',
+      'pl': 'Proszę wybrać opcję z listy rozwijanej',
+      'ro': 'Vă rugăm să alegeți o opțiune din meniul derulant',
+      'zh_Hant': '請從下拉式選單中選擇一個選項',
     },
     'mdnvvn2o': {
       'en': 'Required is required',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Erforderlich ist erforderlich',
+      'fr': 'Obligatoire est obligatoire',
+      'it': 'È richiesto',
+      'ja': '必須は必須です',
+      'ko': '필수 항목은 필수 항목입니다.',
+      'pl': 'Wymagane jest wymagane',
+      'ro': 'Obligatoriu este obligatoriu',
+      'zh_Hant': '必填項',
     },
     'k0r5z0l5': {
       'en': 'Please choose an option from the dropdown',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Bitte wählen Sie eine Option aus dem Dropdown-Menü.',
+      'fr': 'Veuillez choisir une option dans le menu déroulant.',
+      'it': 'Seleziona un\'opzione dal menu a tendina',
+      'ja': 'ドロップダウンメニューからオプションを選択してください',
+      'ko': '드롭다운 메뉴에서 옵션을 선택해 주세요.',
+      'pl': 'Proszę wybrać opcję z listy rozwijanej',
+      'ro': 'Vă rugăm să alegeți o opțiune din meniul derulant',
+      'zh_Hant': '請從下拉式選單中選擇一個選項',
     },
     'qxne93o5': {
       'en': 'Required is required',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Erforderlich ist erforderlich',
+      'fr': 'Obligatoire est obligatoire',
+      'it': 'È richiesto',
+      'ja': '必須は必須です',
+      'ko': '필수 항목은 필수 항목입니다.',
+      'pl': 'Wymagane jest wymagane',
+      'ro': 'Obligatoriu este obligatoriu',
+      'zh_Hant': '必填項',
     },
     'p0zgb9q8': {
       'en': 'Please choose an option from the dropdown',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Bitte wählen Sie eine Option aus dem Dropdown-Menü.',
+      'fr': 'Veuillez choisir une option dans le menu déroulant.',
+      'it': 'Seleziona un\'opzione dal menu a tendina',
+      'ja': 'ドロップダウンメニューからオプションを選択してください',
+      'ko': '드롭다운 메뉴에서 옵션을 선택해 주세요.',
+      'pl': 'Proszę wybrać opcję z listy rozwijanej',
+      'ro': 'Vă rugăm să alegeți o opțiune din meniul derulant',
+      'zh_Hant': '請從下拉式選單中選擇一個選項',
     },
     'q4i5cojq': {
       'en': 'Street address is required',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Eine Straßenadresse ist erforderlich.',
+      'fr': 'Une adresse postale est requise.',
+      'it': 'È necessario indicare l\'indirizzo stradale.',
+      'ja': '番地住所が必要です',
+      'ko': '도로명 주소가 필요합니다.',
+      'pl': 'Adres ulicy jest wymagany',
+      'ro': 'Adresa este obligatorie',
+      'zh_Hant': '需要街道地址',
     },
     'ixdoa5bz': {
       'en': 'Please choose an option from the dropdown',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Bitte wählen Sie eine Option aus dem Dropdown-Menü.',
+      'fr': 'Veuillez choisir une option dans le menu déroulant.',
+      'it': 'Seleziona un\'opzione dal menu a tendina',
+      'ja': 'ドロップダウンメニューからオプションを選択してください',
+      'ko': '드롭다운 메뉴에서 옵션을 선택해 주세요.',
+      'pl': 'Proszę wybrać opcję z listy rozwijanej',
+      'ro': 'Vă rugăm să alegeți o opțiune din meniul derulant',
+      'zh_Hant': '請從下拉式選單中選擇一個選項',
     },
     'nang01it': {
       'en': 'City or Town is required',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Stadt oder Gemeinde erforderlich',
+      'fr': 'La ville ou le village est requis.',
+      'it': 'È richiesta la città o il paese',
+      'ja': '市区町村名が必要です',
+      'ko': '도시 또는 읍/면 이름을 입력해야 합니다.',
+      'pl': 'Miasto lub miejscowość jest wymagane',
+      'ro': 'Orașul sau localitatea este obligatoriu',
+      'zh_Hant': '必須填寫城市或城鎮。',
     },
     'gg78qveg': {
       'en': 'Please choose an option from the dropdown',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Bitte wählen Sie eine Option aus dem Dropdown-Menü.',
+      'fr': 'Veuillez choisir une option dans le menu déroulant.',
+      'it': 'Seleziona un\'opzione dal menu a tendina',
+      'ja': 'ドロップダウンメニューからオプションを選択してください',
+      'ko': '드롭다운 메뉴에서 옵션을 선택해 주세요.',
+      'pl': 'Proszę wybrać opcję z listy rozwijanej',
+      'ro': 'Vă rugăm să alegeți o opțiune din meniul derulant',
+      'zh_Hant': '請從下拉式選單中選擇一個選項',
     },
     'b14ss2up': {
       'en': 'State or region is required',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Bundesland oder Region erforderlich',
+      'fr': 'L\'État ou la région est requis.',
+      'it': 'È richiesto lo stato o la regione',
+      'ja': '州または地域が必要です',
+      'ko': '주 또는 지역을 입력해야 합니다.',
+      'pl': 'Wymagane jest podanie stanu lub regionu',
+      'ro': 'Statul sau regiunea este obligatorie',
+      'zh_Hant': '需要填寫州或地區。',
     },
     '7j9uqf3z': {
       'en': 'Please choose an option from the dropdown',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Bitte wählen Sie eine Option aus dem Dropdown-Menü.',
+      'fr': 'Veuillez choisir une option dans le menu déroulant.',
+      'it': 'Seleziona un\'opzione dal menu a tendina',
+      'ja': 'ドロップダウンメニューからオプションを選択してください',
+      'ko': '드롭다운 메뉴에서 옵션을 선택해 주세요.',
+      'pl': 'Proszę wybrać opcję z listy rozwijanej',
+      'ro': 'Vă rugăm să alegeți o opțiune din meniul derulant',
+      'zh_Hant': '請從下拉式選單中選擇一個選項',
     },
     'ine90dey': {
       'en': 'Postcode is required',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Postleitzahl erforderlich',
+      'fr': 'Le code postal est requis.',
+      'it': 'È richiesto il codice postale',
+      'ja': '郵便番号は必須です。',
+      'ko': '우편번호를 입력해야 합니다.',
+      'pl': 'Kod pocztowy jest wymagany',
+      'ro': 'Codul poștal este obligatoriu',
+      'zh_Hant': '郵遞區號為必填項',
     },
     'subyje8r': {
       'en': 'Please choose an option from the dropdown',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Bitte wählen Sie eine Option aus dem Dropdown-Menü.',
+      'fr': 'Veuillez choisir une option dans le menu déroulant.',
+      'it': 'Seleziona un\'opzione dal menu a tendina',
+      'ja': 'ドロップダウンメニューからオプションを選択してください',
+      'ko': '드롭다운 메뉴에서 옵션을 선택해 주세요.',
+      'pl': 'Proszę wybrać opcję z listy rozwijanej',
+      'ro': 'Vă rugăm să alegeți o opțiune din meniul derulant',
+      'zh_Hant': '請從下拉式選單中選擇一個選項',
     },
     '931tblzg': {
       'en': 'Add Card',
-      'de': 'Seitentitel',
-      'es': 'Título de la página',
-      'fr': 'Titre de la page',
-      'it': 'Titolo della pagina',
-      'ja': 'ページタイトル',
-      'ko': '페이지 제목',
-      'pl': 'Tytuł strony',
-      'ro': 'Titlul paginii',
-      'zh_Hant': '頁面標題',
+      'de': 'Karte hinzufügen',
+      'fr': 'Ajouter une carte',
+      'it': 'Aggiungi carta',
+      'ja': 'カードを追加',
+      'ko': '카드 추가',
+      'pl': 'Dodaj kartę',
+      'ro': 'Adăugați cardul',
+      'zh_Hant': '添加卡片',
     },
     'hxce8401': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -8214,7 +7581,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'jjkfxcx6': {
       'en': 'Donation',
       'de': 'Spende',
-      'es': 'Donación',
       'fr': 'Donation',
       'it': 'Donazione',
       'ja': '寄付',
@@ -8226,7 +7592,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'k472cieu': {
       'en': 'Donate to\nSchatzAPP',
       'de': 'Spenden Sie an\nSchatzAPP',
-      'es': 'Dona a SchatzAPP',
       'fr': 'Faites un don à\nSchatzAPP',
       'it': 'Fai una donazione a\nSchatzAPP',
       'ja': 'SchatzAPPに寄付する\n',
@@ -8239,161 +7604,160 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en':
           'Be part of the future of SchatzAPP. Your donation helps us build innovative features, strengthen security, and deliver a better user experience.\n',
       'de':
-          'Gestalte die Zukunft von SchatzAPP mit!\n\nDeine Spende hilft uns, innovative Funktionen zu entwickeln, die Sicherheit zu erhöhen und ein besseres Nutzererlebnis zu bieten.\n\n**Unterstütze unsere Vision noch heute – spende und hilf uns, SchatzAPP weiterzuentwickeln!**',
-      'es':
-          'Forma parte del futuro de SchatzAPP.\n\nTu donación nos ayuda a desarrollar funciones innovadoras, fortalecer la seguridad y ofrecer\nuna mejor experiencia de usuario.\n\n**Apoya nuestra visión hoy mismo: ¡haz una donación y ayúdanos a hacer crecer SchatzAPP!**',
+          'Gestalten Sie die Zukunft von SchatzAPP mit. Ihre Spende hilft uns, innovative Funktionen zu entwickeln, die Sicherheit zu erhöhen und ein besseres Nutzererlebnis zu bieten.',
       'fr':
-          'Participez à l\'avenir de SchatzAPP.\n\nVotre don nous aide à développer des fonctionnalités innovantes, à renforcer la sécurité et à offrir une meilleure expérience utilisateur.\n\nSoutenez notre vision dès aujourd\'hui ! Faites un don et contribuez à la croissance de SchatzAPP !',
+          'Contribuez à l\'avenir de SchatzAPP. Votre don nous aide à développer des fonctionnalités innovantes, à renforcer la sécurité et à offrir une meilleure expérience utilisateur.',
       'it':
-          'Entra a far parte del futuro di SchatzAPP.\n\nLa tua donazione ci aiuta a sviluppare funzionalità innovative, rafforzare la sicurezza e offrire un\'esperienza utente migliore.\n\n**Sostieni la nostra visione oggi stesso: fai una donazione e aiutaci a far crescere SchatzAPP!**',
+          'Entra a far parte del futuro di SchatzAPP. La tua donazione ci aiuta a sviluppare funzionalità innovative, rafforzare la sicurezza e offrire un\'esperienza utente migliore.',
       'ja':
-          'SchatzAPPの未来を共に築きませんか？\n\n皆様からのご寄付は、革新的な機能の開発、セキュリティの強化、そしてより良いユーザーエクスペリエンスの提供に役立てられます。\n\n**今すぐ私たちのビジョンを応援してください。ご寄付でSchatzAPPの成長を支えましょう！**',
+          'SchatzAPPの未来を共に築きましょう。皆様からのご寄付は、革新的な機能の開発、セキュリティの強化、そしてより良いユーザーエクスペリエンスの提供に役立てられます。',
       'ko':
-          'SchatzAPP의 미래를 함께 만들어가세요.\n\n여러분의 기부는 혁신적인 기능 개발, 보안 강화, 그리고 더 나은 사용자 경험 제공에 큰 도움이 됩니다.\n\n**오늘 저희의 비전을 응원해주세요. 기부를 통해 SchatzAPP의 성장을 도와주세요!**',
+          'SchatzAPP의 미래를 함께 만들어가세요. 여러분의 기부는 혁신적인 기능 개발, 보안 강화, 그리고 더 나은 사용자 경험 제공에 큰 도움이 됩니다.',
       'pl':
-          'Bądź częścią przyszłości SchatzAPP.\nTwoja darowizna pomoże nam tworzyć innowacyjne \nfunkcje, wzmacniać bezpieczeństwo i zapewniać \nlepsze doświadczenia użytkownika.\n\n**Wesprzyj naszą wizję już dziś — przekaż \ndarowiznę i pomóż nam rozwijać SchatzAPP!**',
+          'Bądź częścią przyszłości SchatzAPP. Twoja darowizna pomoże nam tworzyć innowacyjne funkcje, wzmacniać bezpieczeństwo i zapewniać lepsze doświadczenia użytkownika.',
       'ro':
-          'Fii parte din viitorul SchatzAPP.\nDonația ta ne ajută să construim funcții inovatoare, să consolidăm securitatea și să oferim o experiență mai bună utilizatorilor.\n\n**Susține viziunea noastră astăzi — fă o\ndonație și ajută-ne să dezvoltăm SchatzAPP!**',
-      'zh_Hant':
-          '加入 SchatzAPP 的未來！\n\n您的捐款將幫助我們開發創新功能、加強安全性並提供更好的使用者體驗。\n\n\n立即支持我們的願景—捐贈並幫助我們發展 SchatzAPP！',
+          'Fii parte din viitorul SchatzAPP. Donația ta ne ajută să construim funcții inovatoare, să consolidăm securitatea și să oferim o experiență mai bună utilizatorilor.',
+      'zh_Hant': '加入 SchatzAPP 的未來。您的捐款將幫助我們開發創新功能、加強安全性並提供更好的使用者體驗。',
     },
     'jz6wusix': {
       'en': '100',
-      'de': 'SFZ 50',
-      'es': 'SFZ 50',
-      'fr': 'SFZ 50',
-      'it': 'SFZ 50',
-      'ja': 'SFZ 50',
-      'ko': 'SFZ 50',
-      'pl': 'Strefa wolnocłowa 50',
-      'ro': 'SFZ 50',
-      'zh_Hant': 'SFZ 50',
+      'de': '100',
+      'fr': '100',
+      'it': '100',
+      'ja': '100',
+      'ko': '100',
+      'pl': '100',
+      'ro': '100',
+      'zh_Hant': '100',
     },
     'fatdg13k': {
       'en': '500',
-      'de': 'SFZ 50',
-      'es': 'SFZ 50',
-      'fr': 'SFZ 50',
-      'it': 'SFZ 50',
-      'ja': 'SFZ 50',
-      'ko': 'SFZ 50',
-      'pl': 'Strefa wolnocłowa 50',
-      'ro': 'SFZ 50',
-      'zh_Hant': 'SFZ 50',
+      'de': '500',
+      'fr': '500',
+      'it': '500',
+      'ja': '500',
+      'ko': '500',
+      'pl': '500',
+      'ro': '500',
+      'zh_Hant': '500',
     },
     'x38i0se3': {
       'en': '1,000',
-      'de': 'SFZ 50',
-      'es': 'SFZ 50',
-      'fr': 'SFZ 50',
-      'it': 'SFZ 50',
-      'ja': 'SFZ 50',
-      'ko': 'SFZ 50',
-      'pl': 'Strefa wolnocłowa 50',
-      'ro': 'SFZ 50',
-      'zh_Hant': 'SFZ 50',
+      'de': '1.000',
+      'fr': '1 000',
+      'it': '1.000',
+      'ja': '1,000',
+      'ko': '1,000',
+      'pl': '1000',
+      'ro': '1.000',
+      'zh_Hant': '1,000',
     },
     '39ietl14': {
       'en': 'Other',
-      'de': 'SFZ 50',
-      'es': 'SFZ 50',
-      'fr': 'SFZ 50',
-      'it': 'SFZ 50',
-      'ja': 'SFZ 50',
-      'ko': 'SFZ 50',
-      'pl': 'Strefa wolnocłowa 50',
-      'ro': 'SFZ 50',
-      'zh_Hant': 'SFZ 50',
+      'de': 'Andere',
+      'fr': 'Autre',
+      'it': 'Altro',
+      'ja': '他の',
+      'ko': '다른',
+      'pl': 'Inny',
+      'ro': 'Alte',
+      'zh_Hant': '其他',
     },
     '5dzwhgv3': {
       'en': 'Donate to SchatzAPP',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Spende an SchatzAPP',
+      'fr': 'Faites un don à SchatzAPP',
+      'it': 'Fai una donazione a SchatzAPP',
+      'ja': 'SchatzAPPに寄付する',
+      'ko': 'SchatzAPP에 기부하세요',
+      'pl': 'Przekaż darowiznę na rzecz SchatzAPP',
+      'ro': 'Donează către SchatzAPP',
+      'zh_Hant': '向 SchatzAPP 捐款',
     },
     'nr5pixr9': {
       'en': 'Other Charity Organizations',
-      'de': 'Hallo Welt',
-      'es': 'Hola Mundo',
-      'fr': 'Bonjour le monde',
-      'it': 'Ciao mondo',
-      'ja': 'こんにちは世界',
-      'ko': '안녕하세요',
-      'pl': 'Witaj świecie',
-      'ro': 'Salut Lume',
-      'zh_Hant': '你好世界',
+      'de': 'Andere Wohltätigkeitsorganisationen',
+      'fr': 'Autres organisations caritatives',
+      'it': 'Altre organizzazioni benefiche',
+      'ja': 'その他の慈善団体',
+      'ko': '기타 자선 단체',
+      'pl': 'Inne organizacje charytatywne',
+      'ro': 'Alte organizații caritabile',
+      'zh_Hant': '其他慈善組織',
     },
     'cxcelj0y': {
       'en':
           'Support trusted organizations making a positive impact around the world.',
-      'de': 'Hallo Welt',
-      'es': 'Hola Mundo',
-      'fr': 'Bonjour le monde',
-      'it': 'Ciao mondo',
-      'ja': 'こんにちは世界',
-      'ko': '안녕하세요',
-      'pl': 'Witaj świecie',
-      'ro': 'Salut Lume',
-      'zh_Hant': '你好世界',
+      'de':
+          'Unterstützen Sie vertrauenswürdige Organisationen, die weltweit einen positiven Einfluss ausüben.',
+      'fr':
+          'Soutenez les organisations de confiance qui ont un impact positif dans le monde entier.',
+      'it':
+          'Sostieni organizzazioni affidabili che hanno un impatto positivo in tutto il mondo.',
+      'ja': '世界中で良い影響を与えている信頼できる団体を支援しましょう。',
+      'ko': '전 세계에 긍정적인 영향을 미치는 신뢰할 수 있는 단체들을 지원하세요.',
+      'pl':
+          'Wspieraj zaufane organizacje, które wywierają pozytywny wpływ na cały świat.',
+      'ro':
+          'Sprijiniți organizațiile de încredere care au un impact pozitiv în întreaga lume.',
+      'zh_Hant': '支持那些在世界各地產生正面影響的值得信賴的組織。',
     },
     'bxniib8t': {
       'en': 'UNICEF',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'UNICEF',
+      'fr': 'UNICEF',
+      'it': 'UNICEF',
+      'ja': 'ユニセフ',
+      'ko': '유니세프',
+      'pl': 'UNICEF',
+      'ro': 'UNICEF',
+      'zh_Hant': '聯合國兒童基金會',
     },
     '9b8dmy3x': {
       'en': 'Helping children worldwide with education, health and protection.',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de':
+          'Wir helfen Kindern weltweit in den Bereichen Bildung, Gesundheit und Schutz.',
+      'fr':
+          'Aider les enfants du monde entier en matière d\'éducation, de santé et de protection.',
+      'it':
+          'Aiutiamo i bambini di tutto il mondo con l\'istruzione, la salute e la protezione.',
+      'ja': '世界中の子どもたちの教育、健康、そして安全を守るための支援を行っています。',
+      'ko': '전 세계 어린이들의 교육, 건강 및 보호를 돕습니다.',
+      'pl':
+          'Pomagamy dzieciom na całym świecie zapewnić edukację, opiekę zdrowotną i ochronę.',
+      'ro':
+          'Ajutând copiii din întreaga lume cu educație, sănătate și protecție.',
+      'zh_Hant': '為世界各地的兒童提供教育、健康和保護。',
     },
     'dfi2auzk': {
       'en': 'Red Cross',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Rotes Kreuz',
+      'fr': 'Croix Rouge',
+      'it': 'Croce Rossa',
+      'ja': '赤十字',
+      'ko': '국제 적십자사',
+      'pl': 'Czerwony Krzyż',
+      'ro': 'Crucea Roșie',
+      'zh_Hant': '紅十字會',
     },
     'yqrqjrbr': {
       'en': 'Providing emergency assistance and disaster relief globally.',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Weltweite Bereitstellung von Nothilfe und Katastrophenschutz.',
+      'fr':
+          'Fournir une aide d\'urgence et des secours en cas de catastrophe à l\'échelle mondiale.',
+      'it':
+          'Fornire assistenza di emergenza e soccorso in caso di calamità a livello globale.',
+      'ja': '世界中で緊急支援と災害救援活動を提供する。',
+      'ko': '전 세계적으로 긴급 지원 및 재난 구호 활동을 제공합니다.',
+      'pl':
+          'Udzielanie pomocy doraźnej i usuwanie skutków katastrof na całym świecie.',
+      'ro':
+          'Oferirea de asistență de urgență și ajutor în caz de dezastru la nivel global.',
+      'zh_Hant': '在全球範圍內提供緊急援助和災害救援。',
     },
     'o8nyie11': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -8408,7 +7772,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '2q60e0xn': {
       'en': 'Get Verified',
       'de': 'Verifizieren lassen',
-      'es': 'Obtén la verificación',
       'fr': 'Obtenez la vérification',
       'it': 'Ottieni la verifica',
       'ja': '認証を受ける',
@@ -8422,8 +7785,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
           'Complete your KYC to unlock higher limits,\nmore features and a safer experience.',
       'de':
           'Schließen Sie Ihre KYC-Prüfung ab, um höhere Limits freizuschalten,\nmehr Funktionen zu nutzen und von einem sichereren Nutzererlebnis zu profitieren.',
-      'es':
-          'Completa tu verificación de identidad (KYC) para desbloquear límites más altos, más funciones y una experiencia más segura.',
       'fr':
           'Complétez votre procédure KYC pour débloquer des limites plus élevées,\n\nplus de fonctionnalités et une expérience plus sûre.',
       'it':
@@ -8439,7 +7800,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '000qay9t': {
       'en': 'Higher transaction limits',
       'de': 'Höhere Transaktionslimits',
-      'es': 'Límites de transacción más altos',
       'fr': 'Limites de transaction plus élevées',
       'it': 'Limiti di transazione più elevati',
       'ja': '取引限度額の引き上げ',
@@ -8451,7 +7811,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'gcwfp9si': {
       'en': 'Acces to all features',
       'de': 'Zugriff auf alle Funktionen',
-      'es': 'Acceso a todas las funciones',
       'fr': 'Accès à toutes les fonctionnalités',
       'it': 'Accesso a tutte le funzionalità',
       'ja': 'すべての機能へのアクセス',
@@ -8463,7 +7822,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'qfq1ynvy': {
       'en': 'Improved account security',
       'de': 'Verbesserte Kontosicherheit',
-      'es': 'Seguridad de la cuenta mejorada',
       'fr': 'Sécurité des comptes améliorée',
       'it': 'Sicurezza dell\'account migliorata',
       'ja': 'アカウントのセキュリティが向上しました',
@@ -8475,7 +7833,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'abc6q90g': {
       'en': 'Start Verification',
       'de': 'Überprüfung starten',
-      'es': 'Iniciar verificación',
       'fr': 'Démarrer la vérification',
       'it': 'Avvia la verifica',
       'ja': '検証を開始する',
@@ -8487,7 +7844,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '7gf6gpu5': {
       'en': 'Your information is secure and encryted.',
       'de': 'Ihre Daten sind sicher und verschlüsselt.',
-      'es': 'Su información está segura y cifrada.',
       'fr': 'Vos informations sont sécurisées et cryptées.',
       'it': 'Le tue informazioni sono al sicuro e crittografate.',
       'ja': 'お客様の情報は安全に保護され、暗号化されています。',
@@ -8499,7 +7855,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'xrtpxyte': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -8514,7 +7869,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '21b7sk0n': {
       'en': 'Selfie Verification',
       'de': 'Selbstverifizierung',
-      'es': 'Verificación de selfie',
       'fr': 'Vérification par selfie',
       'it': 'Verifica tramite selfie',
       'ja': 'セルフィー認証',
@@ -8526,7 +7880,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '6b6mi07w': {
       'en': 'Take a clear selfie for identity verification.',
       'de': 'Machen Sie ein klares Selfie zur Identitätsprüfung.',
-      'es': 'Tómate una selfie clara para verificar tu identidad.',
       'fr': 'Prenez un selfie net pour la vérification d\'identité.',
       'it': 'Scatta un selfie nitido per la verifica dell\'identità.',
       'ja': '本人確認のため、鮮明な自撮り写真を撮影してください。',
@@ -8538,7 +7891,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '0sr9l2d1': {
       'en': 'Make sure your face is clearly visible',
       'de': 'Stellen Sie sicher, dass Ihr Gesicht deutlich sichtbar ist.',
-      'es': 'Asegúrate de que tu rostro sea claramente visible.',
       'fr': 'Assurez-vous que votre visage soit clairement visible.',
       'it': 'Assicurati che il tuo viso sia ben visibile',
       'ja': '顔がはっきりと見えるようにしてください',
@@ -8550,7 +7902,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'jmm2b4uh': {
       'en': 'Good lighting ( not too dark or bright )',
       'de': 'Gute Beleuchtung (nicht zu dunkel und nicht zu hell)',
-      'es': 'Buena iluminación (ni demasiado oscura ni demasiado brillante).',
       'fr': 'Un bon éclairage (ni trop sombre ni trop lumineux)',
       'it': 'Buona illuminazione (né troppo buia né troppo intensa)',
       'ja': '適切な照明（暗すぎず明るすぎない）',
@@ -8562,7 +7913,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ye3c9osg': {
       'en': 'No sunglasses or hats',
       'de': 'Keine Sonnenbrillen oder Hüte',
-      'es': 'No se permiten gafas de sol ni sombreros.',
       'fr': 'Pas de lunettes de soleil ni de chapeaux',
       'it': 'Vietato indossare occhiali da sole o cappelli.',
       'ja': 'サングラスや帽子は着用しないでください。',
@@ -8574,7 +7924,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '9329wld7': {
       'en': 'Look straight at the camera',
       'de': 'Schauen Sie direkt in die Kamera.',
-      'es': 'Mira directamente a la cámara.',
       'fr': 'Regardez droit dans l\'objectif de la caméra.',
       'it': 'Guarda dritto nella telecamera',
       'ja': 'カメラをまっすぐ見てください',
@@ -8586,7 +7935,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'x70qh3xy': {
       'en': 'Open Camera',
       'de': 'Kamera öffnen',
-      'es': 'Abrir cámara',
       'fr': 'Ouvrir la caméra',
       'it': 'Apri la fotocamera',
       'ja': 'カメラを開く',
@@ -8598,7 +7946,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'e5f55bzr': {
       'en': '1',
       'de': '1',
-      'es': '1',
       'fr': '1',
       'it': '1',
       'ja': '1',
@@ -8610,7 +7957,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ix87pjni': {
       'en': '2',
       'de': '2',
-      'es': '2',
       'fr': '2',
       'it': '2',
       'ja': '2',
@@ -8622,7 +7968,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'f18so707': {
       'en': '3',
       'de': '3',
-      'es': '3',
       'fr': '3',
       'it': '3',
       'ja': '3',
@@ -8634,7 +7979,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'xb6lhxx9': {
       'en': '4',
       'de': '4',
-      'es': '4',
       'fr': '4',
       'it': '4',
       'ja': '4',
@@ -8646,7 +7990,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'o0uibwof': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -8661,7 +8004,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '4plibkk6': {
       'en': 'Personal Information',
       'de': 'Persönliche Daten',
-      'es': 'Información personal',
       'fr': 'Informations personnelles',
       'it': 'Informazioni personali',
       'ja': '個人情報',
@@ -8675,8 +8017,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
           'Please provide your personal details as they appear on your offficial documents.',
       'de':
           'Bitte geben Sie Ihre persönlichen Daten so an, wie sie in Ihren offiziellen Dokumenten erscheinen.',
-      'es':
-          'Por favor, facilite sus datos personales tal como aparecen en sus documentos oficiales.',
       'fr':
           'Veuillez fournir vos informations personnelles telles qu\'elles apparaissent sur vos documents officiels.',
       'it':
@@ -8692,7 +8032,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'k5byppzn': {
       'en': 'Date of Birth',
       'de': 'Geburtsdatum',
-      'es': 'Fecha de nacimiento',
       'fr': 'Date de naissance',
       'it': 'Data di nascita',
       'ja': '生年月日',
@@ -8704,7 +8043,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'revfysxu': {
       'en': 'Date of Birth',
       'de': 'Geburtsdatum',
-      'es': 'Fecha de nacimiento',
       'fr': 'Date de naissance',
       'it': 'Data di nascita',
       'ja': '生年月日',
@@ -8716,7 +8054,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ae7dkb5m': {
       'en': '',
       'de': '',
-      'es': '',
       'fr': '',
       'it': '',
       'ja': '',
@@ -8728,10 +8065,9 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'qdx9vjfq': {
       'en': 'DD/MM/YYYY',
       'de': 'TT/MM/JJJJ',
-      'es': 'DD/MM/AAAA',
       'fr': 'JJ/MM/AAAA',
       'it': 'GG/MM/AAAA',
-      'ja': 'DD/MM/YYY',
+      'ja': 'DD/MM/YYYY',
       'ko': '일/월/년',
       'pl': 'DD/MM/RRRR',
       'ro': 'ZZ/LL/AAAA',
@@ -8740,7 +8076,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '9qdddnrf': {
       'en': 'First Name',
       'de': 'Vorname',
-      'es': 'Nombre de pila',
       'fr': 'Prénom',
       'it': 'Nome di battesimo',
       'ja': 'ファーストネーム',
@@ -8752,7 +8087,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ocpjpge2': {
       'en': 'Enter your first name',
       'de': 'Geben Sie Ihren Vornamen ein',
-      'es': 'Ingrese su nombre',
       'fr': 'Veuillez saisir votre prénom',
       'it': 'Inserisci il tuo nome',
       'ja': '名を入力してください',
@@ -8764,7 +8098,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ivjkkrb9': {
       'en': 'Last Name',
       'de': 'Nachname',
-      'es': 'Apellido',
       'fr': 'Nom de famille',
       'it': 'Cognome',
       'ja': '苗字',
@@ -8776,7 +8109,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '4i3fic94': {
       'en': 'Enter your last name',
       'de': 'Geben Sie Ihren Nachnamen ein',
-      'es': 'Ingrese su apellido',
       'fr': 'Saisissez votre nom de famille',
       'it': 'Inserisci il tuo cognome',
       'ja': '姓を入力してください',
@@ -8788,7 +8120,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'nz9sovqa': {
       'en': 'Gender',
       'de': 'Geschlecht',
-      'es': 'Género',
       'fr': 'Genre',
       'it': 'Genere',
       'ja': '性別',
@@ -8800,7 +8131,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '9zhll6zy': {
       'en': 'Select gender',
       'de': 'Geschlecht auswählen',
-      'es': 'Seleccione el género',
       'fr': 'Sélectionnez le sexe',
       'it': 'Seleziona il genere',
       'ja': '性別を選択してください',
@@ -8812,7 +8142,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'cqs8qxm6': {
       'en': 'Search...',
       'de': 'Suchen...',
-      'es': 'Buscar...',
       'fr': 'Recherche...',
       'it': 'Ricerca...',
       'ja': '検索...',
@@ -8824,7 +8153,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'mma7r3sd': {
       'en': 'Male',
       'de': 'Männlich',
-      'es': 'Masculino',
       'fr': 'Mâle',
       'it': 'Maschio',
       'ja': '男',
@@ -8836,7 +8164,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '97hbgej9': {
       'en': 'Female',
       'de': 'Weiblich',
-      'es': 'Femenino',
       'fr': 'Femelle',
       'it': 'Femmina',
       'ja': '女性',
@@ -8848,7 +8175,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '4te8x2zz': {
       'en': 'Next',
       'de': 'Nächste',
-      'es': 'Próximo',
       'fr': 'Suivant',
       'it': 'Prossimo',
       'ja': '次',
@@ -8860,7 +8186,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'qv4xyiea': {
       'en': '1',
       'de': '1',
-      'es': '1',
       'fr': '1',
       'it': '1',
       'ja': '1',
@@ -8872,7 +8197,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'jzpwlr8w': {
       'en': '2',
       'de': '2',
-      'es': '2',
       'fr': '2',
       'it': '2',
       'ja': '2',
@@ -8884,7 +8208,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'c7qp0c3f': {
       'en': '3',
       'de': '3',
-      'es': '3',
       'fr': '3',
       'it': '3',
       'ja': '3',
@@ -8896,7 +8219,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'onjx175c': {
       'en': '4',
       'de': '4',
-      'es': '4',
       'fr': '4',
       'it': '4',
       'ja': '4',
@@ -8908,7 +8230,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'hpmlz1du': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -8923,7 +8244,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'xb2bt5fx': {
       'en': 'Residential Address',
       'de': 'Wohnadresse',
-      'es': 'Dirección residencial',
       'fr': 'Adresse résidentielle',
       'it': 'Indirizzo di residenza',
       'ja': '居住地住所',
@@ -8935,7 +8255,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'a56m3g0q': {
       'en': 'Provide your current resident address.',
       'de': 'Geben Sie Ihre aktuelle Wohnadresse an.',
-      'es': 'Proporcione su dirección de residencia actual.',
       'fr': 'Veuillez indiquer votre adresse de résidence actuelle.',
       'it': 'Fornisci il tuo attuale indirizzo di residenza.',
       'ja': '現在お住まいの住所をご記入ください。',
@@ -8947,7 +8266,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'jl90yvnh': {
       'en': 'Street Address',
       'de': 'Straßenadresse',
-      'es': 'Dirección postal',
       'fr': 'Adresse de la rue',
       'it': 'Indirizzo stradale',
       'ja': '住所',
@@ -8959,7 +8277,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '1lg9dwim': {
       'en': 'Enter streset address',
       'de': 'Straße eingeben',
-      'es': 'Ingrese la dirección de la calle',
       'fr': 'Saisissez l\'adresse du centre-ville',
       'it': 'Inserisci l\'indirizzo',
       'ja': 'stresetアドレスを入力してください',
@@ -8971,7 +8288,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'd1pl66iw': {
       'en': 'City / Town',
       'de': 'Stadt / Ort',
-      'es': 'Ciudad / Pueblo',
       'fr': 'Ville',
       'it': 'Città / Paese',
       'ja': '都市／町',
@@ -8983,7 +8299,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'br7m54vu': {
       'en': 'Enter city or town',
       'de': 'Stadt oder Ort eingeben',
-      'es': 'Ingrese la ciudad o pueblo',
       'fr': 'Entrez le nom de la ville ou du village',
       'it': 'Inserisci la città o il paese',
       'ja': '都市名または町名を入力してください',
@@ -8995,7 +8310,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'd4fxwe4n': {
       'en': 'State',
       'de': 'Zustand',
-      'es': 'Estado',
       'fr': 'État',
       'it': 'Stato',
       'ja': '州',
@@ -9007,7 +8321,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '82fwcqns': {
       'en': 'Select State',
       'de': 'Bundesland auswählen',
-      'es': 'Seleccione un estado',
       'fr': 'Sélectionner l\'État',
       'it': 'Seleziona lo stato',
       'ja': '州を選択してください',
@@ -9019,7 +8332,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'qvpfmbb2': {
       'en': 'Search...',
       'de': 'Suchen...',
-      'es': 'Buscar...',
       'fr': 'Recherche...',
       'it': 'Ricerca...',
       'ja': '検索...',
@@ -9031,7 +8343,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'kxl8uds0': {
       'en': 'Lagos',
       'de': 'Lagos',
-      'es': 'Lagos',
       'fr': 'Lagos',
       'it': 'Lagos',
       'ja': 'ラゴス',
@@ -9043,7 +8354,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '6ltlpriu': {
       'en': 'Postcode',
       'de': 'Postleitzahl',
-      'es': 'Código postal',
       'fr': 'Code postal',
       'it': 'Codice postale',
       'ja': '郵便番号',
@@ -9055,7 +8365,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'l8fc58dd': {
       'en': 'Enter postcode',
       'de': 'Postleitzahl eingeben',
-      'es': 'Introduzca el código postal',
       'fr': 'Saisissez le code postal',
       'it': 'Inserisci il codice postale',
       'ja': '郵便番号を入力してください',
@@ -9067,7 +8376,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '150rny5k': {
       'en': 'Country',
       'de': 'Land',
-      'es': 'País',
       'fr': 'Pays',
       'it': 'Paese',
       'ja': '国',
@@ -9079,7 +8387,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'odr0wykh': {
       'en': 'Select country',
       'de': 'Land auswählen',
-      'es': 'Seleccione país',
       'fr': 'Sélectionnez un pays',
       'it': 'Seleziona il paese',
       'ja': '国を選択してください',
@@ -9091,7 +8398,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'eknfh6z6': {
       'en': 'Search...',
       'de': 'Suchen...',
-      'es': 'Buscar...',
       'fr': 'Recherche...',
       'it': 'Ricerca...',
       'ja': '検索...',
@@ -9103,7 +8409,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '1qs8aht0': {
       'en': 'Nigeria',
       'de': 'Nigeria',
-      'es': 'Nigeria',
       'fr': 'Nigeria',
       'it': 'Nigeria',
       'ja': 'ナイジェリア',
@@ -9115,7 +8420,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'bcu556jm': {
       'en': 'Next',
       'de': 'Nächste',
-      'es': 'Próximo',
       'fr': 'Suivant',
       'it': 'Prossimo',
       'ja': '次',
@@ -9127,7 +8431,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'lxnx1ffh': {
       'en': '1',
       'de': '1',
-      'es': '1',
       'fr': '1',
       'it': '1',
       'ja': '1',
@@ -9139,7 +8442,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ouyqjeeq': {
       'en': '2',
       'de': '2',
-      'es': '2',
       'fr': '2',
       'it': '2',
       'ja': '2',
@@ -9151,7 +8453,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '03k8kt0z': {
       'en': '3',
       'de': '3',
-      'es': '3',
       'fr': '3',
       'it': '3',
       'ja': '3',
@@ -9163,7 +8464,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '949yj2ss': {
       'en': '4',
       'de': '4',
-      'es': '4',
       'fr': '4',
       'it': '4',
       'ja': '4',
@@ -9175,7 +8475,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'my4lmoji': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -9190,7 +8489,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'r92sxv8h': {
       'en': 'Upload ID document',
       'de': 'Ausweisdokument hochladen',
-      'es': 'Subir documento de identificación',
       'fr': 'Télécharger une pièce d\'identité',
       'it': 'Carica il documento d\'identità',
       'ja': '身分証明書をアップロードしてください',
@@ -9203,7 +8501,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Choose a valid government-issued ID.',
       'de':
           'Wählen Sie einen gültigen, von der Regierung ausgestellten Ausweis.',
-      'es': 'Elija una identificación oficial válida.',
       'fr': 'Choisissez une pièce d\'identité officielle valide.',
       'it':
           'Scegli un documento d\'identità valido rilasciato da un ente governativo.',
@@ -9216,7 +8513,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'mrcoos8n': {
       'en': 'National ID Card',
       'de': 'Nationaler Personalausweis',
-      'es': 'Documento Nacional de Identidad',
       'fr': 'Carte d\'identité nationale',
       'it': 'Carta d\'identità nazionale',
       'ja': '国民IDカード',
@@ -9228,7 +8524,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '90kk3l3w': {
       'en': 'Passsport',
       'de': 'Passport',
-      'es': 'Pasaporte',
       'fr': 'Passeport',
       'it': 'Passaporto',
       'ja': 'パスポート',
@@ -9240,7 +8535,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'xnyjxpv1': {
       'en': 'Driving License',
       'de': 'Führerschein',
-      'es': 'Carnet de conducir',
       'fr': 'Permis de conduire',
       'it': 'Patente di guida',
       'ja': '運転免許証',
@@ -9252,7 +8546,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'z1cngy0a': {
       'en': 'Tap to upload  front image',
       'de': 'Tippen Sie hier, um ein Frontbild hochzuladen.',
-      'es': 'Toca para subir la imagen frontal',
       'fr': 'Appuyez pour télécharger l\'image de face',
       'it': 'Tocca per caricare l\'immagine frontale',
       'ja': '前面画像をアップロードするにはタップしてください',
@@ -9264,7 +8557,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '4ed1b9hm': {
       'en': 'Tap to upload back image',
       'de': 'Tippen Sie hier, um das Hintergrundbild hochzuladen.',
-      'es': 'Toca para subir la imagen de atrás',
       'fr': 'Appuyez pour télécharger l\'image de fond',
       'it': 'Tocca per caricare l\'immagine di sfondo',
       'ja': 'タップしてバック画像をアップロード',
@@ -9276,7 +8568,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'j2hqpydt': {
       'en': 'Next',
       'de': 'Nächste',
-      'es': 'Próximo',
       'fr': 'Suivant',
       'it': 'Prossimo',
       'ja': '次',
@@ -9288,7 +8579,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '52l98ksm': {
       'en': '1',
       'de': '1',
-      'es': '1',
       'fr': '1',
       'it': '1',
       'ja': '1',
@@ -9300,7 +8590,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'l99dvh15': {
       'en': '2',
       'de': '2',
-      'es': '2',
       'fr': '2',
       'it': '2',
       'ja': '2',
@@ -9312,7 +8601,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '74ckdi2x': {
       'en': '3',
       'de': '3',
-      'es': '3',
       'fr': '3',
       'it': '3',
       'ja': '3',
@@ -9324,7 +8612,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '3eijqk9t': {
       'en': '4',
       'de': '4',
-      'es': '4',
       'fr': '4',
       'it': '4',
       'ja': '4',
@@ -9336,7 +8623,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '302klgbx': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -9351,7 +8637,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '1hw2ga78': {
       'en': 'KYC Review',
       'de': 'KYC-Überprüfung',
-      'es': 'Revisión KYC',
       'fr': 'Examen KYC',
       'it': 'Revisione KYC',
       'ja': 'KYCレビュー',
@@ -9365,8 +8650,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
           'We\'re reviewing your information.\nThis usually takes a few mintutes',
       'de':
           'Wir prüfen Ihre Angaben.\nDies dauert in der Regel einige Minuten.',
-      'es':
-          'Estamos revisando su información.\n\nEsto suele tardar unos minutos.',
       'fr':
           'Nous examinons vos informations.\n\nCela prend généralement quelques minutes.',
       'it':
@@ -9381,7 +8664,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ixbl3b4o': {
       'en': 'Personal Information',
       'de': 'Persönliche Daten',
-      'es': 'Información personal',
       'fr': 'Informations personnelles',
       'it': 'Informazioni personali',
       'ja': '個人情報',
@@ -9393,7 +8675,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '9runn965': {
       'en': 'Completed',
       'de': 'Vollendet',
-      'es': 'Terminado',
       'fr': 'Complété',
       'it': 'Completato',
       'ja': '完了',
@@ -9405,7 +8686,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'pt15s0ca': {
       'en': 'Address',
       'de': 'Adresse',
-      'es': 'DIRECCIÓN',
       'fr': 'Adresse',
       'it': 'Indirizzo',
       'ja': '住所',
@@ -9417,7 +8697,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ls0co4x4': {
       'en': 'Completed',
       'de': 'Vollendet',
-      'es': 'Terminado',
       'fr': 'Complété',
       'it': 'Completato',
       'ja': '完了',
@@ -9429,7 +8708,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'peubm5du': {
       'en': 'ID Document',
       'de': 'Ausweisdokument',
-      'es': 'Documento de identidad',
       'fr': 'pièce d\'identité',
       'it': 'Documento d\'identità',
       'ja': '身分証明書',
@@ -9441,7 +8719,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'fiqgqqmf': {
       'en': 'Completed',
       'de': 'Vollendet',
-      'es': 'Terminado',
       'fr': 'Complété',
       'it': 'Completato',
       'ja': '完了',
@@ -9453,7 +8730,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ryxpxmcm': {
       'en': 'Seifie Verification',
       'de': 'Seifie-Verifizierung',
-      'es': 'Verificación de Seifie',
       'fr': 'Vérification Seifie',
       'it': 'Verifica di sicurezza',
       'ja': 'セイフィー認証',
@@ -9465,7 +8741,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '2lhvtorl': {
       'en': '',
       'de': '',
-      'es': '',
       'fr': '',
       'it': '',
       'ja': '',
@@ -9477,7 +8752,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '031nx8x4': {
       'en': 'You\'ll be notified once your account is verified.',
       'de': 'Sie werden benachrichtigt, sobald Ihr Konto verifiziert ist.',
-      'es': 'Recibirás una notificación una vez que tu cuenta esté verificada.',
       'fr': 'Vous serez averti(e) une fois votre compte vérifié.',
       'it': 'Riceverai una notifica non appena il tuo account sarà verificato.',
       'ja': 'アカウントの認証が完了すると通知されます。',
@@ -9489,7 +8763,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'cxu3b0u3': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -9504,7 +8777,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ychkz5bw': {
       'en': 'Verification Successful!',
       'de': 'Verifizierung erfolgreich!',
-      'es': '¡Verificación exitosa!',
       'fr': 'Vérification réussie !',
       'it': 'Verifica completata con successo!',
       'ja': '認証成功！',
@@ -9518,8 +8790,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
           'Your account has been verified and you now have full access to all features.',
       'de':
           'Ihr Konto wurde verifiziert und Sie haben nun vollen Zugriff auf alle Funktionen.',
-      'es':
-          'Tu cuenta ha sido verificada y ahora tienes acceso completo a todas las funciones.',
       'fr':
           'Votre compte a été vérifié et vous avez désormais un accès complet à toutes les fonctionnalités.',
       'it':
@@ -9535,7 +8805,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'rt9sbo9c': {
       'en': 'Continue',
       'de': 'Weitermachen',
-      'es': 'Continuar',
       'fr': 'Continuer',
       'it': 'Continuare',
       'ja': '続く',
@@ -9547,7 +8816,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ekbsja09': {
       'en': 'Thank you for being part of SchatWallet',
       'de': 'Vielen Dank, dass Sie Teil von SchatWallet sind.',
-      'es': 'Gracias por formar parte de SchatWallet.',
       'fr': 'Merci de faire partie de SchatWallet',
       'it': 'Grazie per far parte di SchatWallet',
       'ja': 'SchatWalletにご参加いただきありがとうございます。',
@@ -9559,7 +8827,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'sxep6gae': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -9574,7 +8841,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'axbdwqxa': {
       'en': 'Additional information Requred',
       'de': 'Zusätzliche Informationen erforderlich',
-      'es': 'Se requiere información adicional.',
       'fr': 'Informations complémentaires requises',
       'it': 'Sono richieste ulteriori informazioni.',
       'ja': '追加情報が必要です',
@@ -9588,8 +8854,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
           'We couldn\'t verify your details. Please provide the follwing information and try again.',
       'de':
           'Ihre Angaben konnten nicht verifiziert werden. Bitte geben Sie die folgenden Informationen an und versuchen Sie es erneut.',
-      'es':
-          'No pudimos verificar sus datos. Proporcione la siguiente información e inténtelo de nuevo.',
       'fr':
           'Nous n\'avons pas pu vérifier vos informations. Veuillez fournir les informations suivantes et réessayer.',
       'it':
@@ -9605,7 +8869,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '8w3zx069': {
       'en': 'Proof of Address',
       'de': 'Adressnachweis',
-      'es': 'Comprobante de domicilio',
       'fr': 'Preuve d\'adresse',
       'it': 'Prova di residenza',
       'ja': '住所証明',
@@ -9619,8 +8882,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
           'Upload a recent utility bil or bank\n statement ( not older than 3 months).',
       'de':
           'Laden Sie eine aktuelle Strom-, Gas- oder Wasserrechnung oder einen Kontoauszug hoch\n\n(nicht älter als 3 Monate).',
-      'es':
-          'Sube una factura reciente de servicios públicos o un extracto bancario (con una antigüedad máxima de 3 meses).',
       'fr':
           'Veuillez télécharger une facture de services publics ou un relevé bancaire récent\n\n(datant de moins de 3 mois).',
       'it':
@@ -9636,7 +8897,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '6gdm5jv9': {
       'en': 'Next',
       'de': 'Nächste',
-      'es': 'Próximo',
       'fr': 'Suivant',
       'it': 'Prossimo',
       'ja': '次',
@@ -9648,7 +8908,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'phxmnnav': {
       'en': 'Reupload your Id card',
       'de': 'Laden Sie Ihre ID-Karte erneut hoch.',
-      'es': 'Vuelve a subir tu documento de identidad.',
       'fr': 'Téléchargez à nouveau votre carte d\'identité',
       'it': 'Ricarica la tua carta d\'identità',
       'ja': '身分証明書を再アップロードしてください',
@@ -9662,8 +8921,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
           'Upload a clear photo of your ID with\n good lighting and the full card visible.',
       'de':
           'Laden Sie ein klares Foto Ihres Ausweises hoch, auf dem\ndie Beleuchtung gut ist und die gesamte Karte sichtbar ist.',
-      'es':
-          'Sube una foto clara de tu documento de identidad con\n\nbuena iluminación y donde se vea la tarjeta completa.',
       'fr':
           'Téléchargez une photo nette de votre pièce d\'identité,\n\navec un bon éclairage et la carte entièrement visible.',
       'it':
@@ -9679,7 +8936,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'bh2q71bh': {
       'en': 'Next',
       'de': 'Nächste',
-      'es': 'Próximo',
       'fr': 'Suivant',
       'it': 'Prossimo',
       'ja': '次',
@@ -9691,7 +8947,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'hixsvf51': {
       'en': 'Age Mismatch',
       'de': 'Altersunterschied',
-      'es': 'Desajuste de edad',
       'fr': 'Inadéquation de l\'âge',
       'it': 'Differenza di età',
       'ja': '年齢差',
@@ -9705,8 +8960,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
           'Your age doesn’t match the on your ID. \nVerify your date of birth and try again.',
       'de':
           'Ihr Alter stimmt nicht mit dem auf Ihrem Ausweis überein. Überprüfen Sie Ihr Geburtsdatum und versuchen Sie es erneut.',
-      'es':
-          'Tu edad no coincide con la de tu documento de identidad.\nVerifica tu fecha de nacimiento e inténtalo de nuevo.',
       'fr':
           'Votre âge ne correspond pas à celui indiqué sur votre pièce d\'identité.\n\nVeuillez vérifier votre date de naissance et réessayer.',
       'it':
@@ -9722,7 +8975,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'gwdu9gy5': {
       'en': 'Next',
       'de': 'Nächste',
-      'es': 'Próximo',
       'fr': 'Suivant',
       'it': 'Prossimo',
       'ja': '次',
@@ -9734,7 +8986,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '30r9fli1': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -9749,7 +9000,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'hacsw51r': {
       'en': 'Personal Information',
       'de': 'Persönliche Daten',
-      'es': 'Información personal',
       'fr': 'Informations personnelles',
       'it': 'Informazioni personali',
       'ja': '個人情報',
@@ -9761,7 +9011,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'kwishmab': {
       'en': 'KYC Status',
       'de': 'KYC-Status',
-      'es': 'Estado KYC',
       'fr': 'Statut KYC',
       'it': 'Stato KYC',
       'ja': 'KYCステータス',
@@ -9773,7 +9022,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'kx71sy1u': {
       'en': 'Verified',
       'de': 'Bestätigt',
-      'es': 'Verificado',
       'fr': 'Vérifié',
       'it': 'Verificato',
       'ja': '検証済み',
@@ -9785,7 +9033,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '215ft03i': {
       'en': 'Complete KYC',
       'de': 'Vollständige KYC-Prüfung',
-      'es': 'Completar el proceso KYC',
       'fr': 'Complétez la procédure KYC.',
       'it': 'Completa la procedura KYC',
       'ja': '本人確認手続きを完了してください。',
@@ -9797,7 +9044,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ajoy6juw': {
       'en': 'Failed',
       'de': 'Fehlgeschlagen',
-      'es': 'Fallido',
       'fr': 'Échoué',
       'it': 'Fallito',
       'ja': '失敗した',
@@ -9809,7 +9055,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'l4sv5v7t': {
       'en': 'Pending',
       'de': 'Ausstehend',
-      'es': 'Pendiente',
       'fr': 'En attente',
       'it': 'In attesa di',
       'ja': '保留中',
@@ -9821,7 +9066,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'j8je49do': {
       'en': 'Account Limits',
       'de': 'Kontolimits',
-      'es': 'Límites de cuenta',
       'fr': 'Limites du compte',
       'it': 'Limiti dell\'account',
       'ja': 'アカウント制限',
@@ -9833,7 +9077,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ylqtirdy': {
       'en': 'View limits',
       'de': 'Sichtbeschränkungen',
-      'es': 'Ver límites',
       'fr': 'Limites d\'affichage',
       'it': 'Limiti di visualizzazione',
       'ja': '表示制限',
@@ -9845,7 +9088,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '8l0vo3tg': {
       'en': 'Set PIN',
       'de': 'PIN-Einstellung',
-      'es': 'Establecer PIN',
       'fr': 'Définir le code PIN',
       'it': 'Imposta il PIN',
       'ja': 'PINを設定する',
@@ -9857,7 +9099,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'rkg3y0s1': {
       'en': 'Help & Support',
       'de': 'Hilfe & Unterstützung',
-      'es': 'Ayuda y soporte',
       'fr': 'Aide et assistance',
       'it': 'Aiuto e supporto',
       'ja': 'ヘルプ＆サポート',
@@ -9869,7 +9110,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'rk7zm5vw': {
       'en': 'About SchatzWallet',
       'de': 'Über SchatzWallet',
-      'es': 'Acerca de SchatzWallet',
       'fr': 'À propos de SchatzWallet',
       'it': 'Informazioni su SchatzWallet',
       'ja': 'SchatzWalletについて',
@@ -9881,7 +9121,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'lml2bxuh': {
       'en': 'Logout',
       'de': 'Abmelden',
-      'es': 'Cerrar sesión',
       'fr': 'Déconnexion',
       'it': 'Disconnettiti',
       'ja': 'ログアウト',
@@ -9893,7 +9132,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'dvbyy20v': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -9910,8 +9148,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
           'Manage your personal details associated with\nyour SchatzWallet account.',
       'de':
           'Verwalten Sie Ihre persönlichen Daten, die mit Ihrem SchatzWallet-Konto verknüpft sind.',
-      'es':
-          'Gestiona tus datos personales asociados a tu cuenta de SchatzWallet.',
       'fr':
           'Gérez vos informations personnelles associées à\nvotre compte SchatzWallet.',
       'it':
@@ -9926,7 +9162,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '3kffpkyy': {
       'en': 'Personal Details',
       'de': 'Persönliche Daten',
-      'es': 'Datos personales',
       'fr': 'Informations personnelles',
       'it': 'Dati personali',
       'ja': '個人情報',
@@ -9938,7 +9173,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '3joen3qd': {
       'en': 'Full legal name',
       'de': 'Vollständiger juristischer Name',
-      'es': 'Nombre legal completo',
       'fr': 'Nom complet légal',
       'it': 'Nome legale completo',
       'ja': '正式な氏名',
@@ -9950,7 +9184,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'gnb4ebfw': {
       'en': 'Display name',
       'de': 'Anzeigename',
-      'es': 'Nombre para mostrar',
       'fr': 'Nom d\'affichage',
       'it': 'Nome da visualizzare',
       'ja': '表示名',
@@ -9962,7 +9195,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'uhbv05x9': {
       'en': 'Date of birth',
       'de': 'Geburtsdatum',
-      'es': 'Fecha de nacimiento',
       'fr': 'Date de naissance',
       'it': 'Data di nascita',
       'ja': '生年月日',
@@ -9974,7 +9206,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '2rt3v3gu': {
       'en': 'Email address',
       'de': 'E-Mail-Adresse',
-      'es': 'Dirección de correo electrónico',
       'fr': 'Adresse email',
       'it': 'Indirizzo e-mail',
       'ja': '電子メールアドレス',
@@ -9986,7 +9217,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'qahaoxfq': {
       'en': 'Phone number',
       'de': 'Telefonnummer',
-      'es': 'Número de teléfono',
       'fr': 'Numéro de téléphone',
       'it': 'Numero di telefono',
       'ja': '電話番号',
@@ -9998,7 +9228,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'kwisk94c': {
       'en': 'Country of residence',
       'de': 'Aufenthaltsland',
-      'es': 'País de residencia',
       'fr': 'Pays de résidence',
       'it': 'Paese di residenza',
       'ja': '居住国',
@@ -10010,7 +9239,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'gf2zg979': {
       'en': 'Account Information',
       'de': 'Kontoinformationen',
-      'es': 'Información de la cuenta',
       'fr': 'Informations sur le compte',
       'it': 'Informazioni sull\'account',
       'ja': 'アカウント情報',
@@ -10022,7 +9250,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'sttvk57i': {
       'en': 'Account number',
       'de': 'Kontonummer',
-      'es': 'Número de cuenta',
       'fr': 'Numéro de compte',
       'it': 'Numero di conto',
       'ja': '口座番号',
@@ -10034,7 +9261,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'eyfdz96p': {
       'en': 'Account status',
       'de': 'Kontostatus',
-      'es': 'Estado de la cuenta',
       'fr': 'État du compte',
       'it': 'Stato dell\'account',
       'ja': 'アカウントステータス',
@@ -10046,7 +9272,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'facd0fm3': {
       'en': 'Verified',
       'de': 'Bestätigt',
-      'es': 'Verificado',
       'fr': 'Vérifié',
       'it': 'Verificato',
       'ja': '検証済み',
@@ -10058,7 +9283,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '07befvrm': {
       'en': 'Unverified',
       'de': 'Unbestätigt',
-      'es': 'Inconfirmado',
       'fr': 'Non vérifié',
       'it': 'Non verificato',
       'ja': '未確認',
@@ -10070,7 +9294,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'c1x4vla3': {
       'en': 'Date joined',
       'de': 'Beitrittsdatum',
-      'es': 'Fecha de ingreso',
       'fr': 'Date d\'adhésion',
       'it': 'Data di iscrizione',
       'ja': '入社日',
@@ -10081,20 +9304,18 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'aql1lamp': {
       'en': 'Personal Information',
-      'de': 'Seitentitel',
-      'es': 'Título de la página',
-      'fr': 'Titre de la page',
-      'it': 'Titolo della pagina',
-      'ja': 'ページタイトル',
-      'ko': '페이지 제목',
-      'pl': 'Tytuł strony',
-      'ro': 'Titlul paginii',
-      'zh_Hant': '頁面標題',
+      'de': 'Persönliche Daten',
+      'fr': 'Informations personnelles',
+      'it': 'Informazioni personali',
+      'ja': '個人情報',
+      'ko': '개인 정보',
+      'pl': 'Informacje osobiste',
+      'ro': 'Informații personale',
+      'zh_Hant': '個人資訊',
     },
     '50lq1vm8': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -10111,8 +9332,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
           'Your account limits may increase as you use SchatzWallet and build a positive transaction history.',
       'de':
           'Ihre Kontolimits können sich erhöhen, wenn Sie SchatzWallet nutzen und eine positive Transaktionshistorie aufbauen.',
-      'es':
-          'Los límites de tu cuenta pueden aumentar a medida que uses SchatzWallet y acumules un historial de transacciones positivo.',
       'fr':
           'Vos limites de compte pourront augmenter à mesure que vous utiliserez SchatzWallet et que vous constituerez un historique de transactions positif.',
       'it':
@@ -10128,7 +9347,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'axlou3dz': {
       'en': 'Top-up Limits',
       'de': 'Aufladegrenzen',
-      'es': 'Límites de recarga',
       'fr': 'Limites de recharge',
       'it': 'Limiti di ricarica',
       'ja': 'チャージ限度額',
@@ -10140,7 +9358,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '5rpwcj3k': {
       'en': 'Transaction',
       'de': 'Transaktion',
-      'es': 'Transacción',
       'fr': 'Transaction',
       'it': 'Transazione',
       'ja': '取引',
@@ -10152,11 +9369,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '8tszplte': {
       'en': 'Your limit (SCHATZ)',
       'de': 'Dein Limit (SCHATZ)',
-      'es': 'Tu límite (SCHATZ)',
       'fr': 'Votre limite (SCHATZ)',
       'it': 'Il tuo limite (SCHATZ)',
       'ja': 'あなたの限界（SCHATZ）',
-      'ko': '당신의 한계 (샤츠)',
+      'ko': '당신의 한계 (SCHATZ)',
       'pl': 'Twój limit (SCHATZ)',
       'ro': 'Limita ta (SCHATZ)',
       'zh_Hant': '你的極限（SCHATZ）',
@@ -10164,7 +9380,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ouby22bo': {
       'en': 'Euro equivalent',
       'de': 'Euro-Gegenwert',
-      'es': 'Equivalente en euros',
       'fr': 'équivalent en euros',
       'it': 'equivalente in euro',
       'ja': 'ユーロ相当額',
@@ -10176,7 +9391,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '5az1abj6': {
       'en': 'Single Deposit',
       'de': 'Einmalige Einzahlung',
-      'es': 'Depósito único',
       'fr': 'Dépôt unique',
       'it': 'Deposito unico',
       'ja': '一括預金',
@@ -10188,7 +9402,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'e7at6obd': {
       'en': '1,000,000',
       'de': '1.000.000',
-      'es': '1.000.000',
       'fr': '1 000 000',
       'it': '1.000.000',
       'ja': '1,000,000',
@@ -10200,7 +9413,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'jz3gi6n5': {
       'en': '€10,000',
       'de': '10.000 €',
-      'es': '10.000 €',
       'fr': '10 000 €',
       'it': '10.000 euro',
       'ja': '10,000ユーロ',
@@ -10212,7 +9424,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'qhq316q5': {
       'en': 'Daily Deposit',
       'de': 'Tägliche Einzahlung',
-      'es': 'Depósito diario',
       'fr': 'Dépôt quotidien',
       'it': 'Deposito giornaliero',
       'ja': '毎日の入金',
@@ -10224,7 +9435,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'bxzb8ln0': {
       'en': '1,000,000',
       'de': '1.000.000',
-      'es': '1.000.000',
       'fr': '1 000 000',
       'it': '1.000.000',
       'ja': '1,000,000',
@@ -10236,7 +9446,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'rnbekd9p': {
       'en': '€10,000',
       'de': '10.000 €',
-      'es': '10.000 €',
       'fr': '10 000 €',
       'it': '10.000 euro',
       'ja': '10,000ユーロ',
@@ -10248,7 +9457,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'dr8rmza4': {
       'en': 'Monthly Deposit',
       'de': 'Monatliche Einzahlung',
-      'es': 'Depósito mensual',
       'fr': 'Dépôt mensuel',
       'it': 'Deposito mensile',
       'ja': '毎月の預金',
@@ -10260,7 +9468,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'c24jiw75': {
       'en': '1,000,000',
       'de': '1.000.000',
-      'es': '1.000.000',
       'fr': '1 000 000',
       'it': '1.000.000',
       'ja': '1,000,000',
@@ -10272,7 +9479,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'd39314si': {
       'en': '€100,000',
       'de': '100.000 €',
-      'es': '100.000 €',
       'fr': '100 000 €',
       'it': '€100.000',
       'ja': '10万ユーロ',
@@ -10284,7 +9490,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ew79xwv2': {
       'en': 'Transfer Limits',
       'de': 'Transferlimits',
-      'es': 'Límites de transferencia',
       'fr': 'Limites de transfert',
       'it': 'Limiti di trasferimento',
       'ja': '送金限度額',
@@ -10296,7 +9501,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'wpx7lle4': {
       'en': 'Transaction',
       'de': 'Transaktion',
-      'es': 'Transacción',
       'fr': 'Transaction',
       'it': 'Transazione',
       'ja': '取引',
@@ -10308,7 +9512,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ndq09c0w': {
       'en': 'Your limit (SCHATZ)',
       'de': 'Dein Limit (SCHATZ)',
-      'es': 'Tu límite (SCHATZ)',
       'fr': 'Votre limite (SCHATZ)',
       'it': 'Il tuo limite (SCHATZ)',
       'ja': 'あなたの限界（SCHATZ）',
@@ -10320,7 +9523,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'rd5dr2xe': {
       'en': 'Euro equivalent',
       'de': 'Euro-Gegenwert',
-      'es': 'Equivalente en euros',
       'fr': 'équivalent en euros',
       'it': 'equivalente in euro',
       'ja': 'ユーロ相当額',
@@ -10332,7 +9534,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'do404jdr': {
       'en': 'Single Transfer',
       'de': 'Einzelübertragung',
-      'es': 'Transferencia única',
       'fr': 'Transfert unique',
       'it': 'Trasferimento unico',
       'ja': '単一転送',
@@ -10344,7 +9545,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'grdeecqd': {
       'en': '500,000',
       'de': '500.000',
-      'es': '500.000',
       'fr': '500 000',
       'it': '500.000',
       'ja': '50万',
@@ -10356,7 +9556,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ix0v4wcn': {
       'en': '€5,000',
       'de': '5.000 €',
-      'es': '5.000 €',
       'fr': '5 000 €',
       'it': '5.000 euro',
       'ja': '5,000ユーロ',
@@ -10368,7 +9567,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '4zn33f6x': {
       'en': 'Daily Transfer',
       'de': 'Tägliche Überweisung',
-      'es': 'Traslado diario',
       'fr': 'Transfert quotidien',
       'it': 'Trasferimento giornaliero',
       'ja': '毎日輸送',
@@ -10380,7 +9578,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'vwduoma4': {
       'en': '1,500,000',
       'de': '1.500.000',
-      'es': '1.500.000',
       'fr': '1 500 000',
       'it': '1.500.000',
       'ja': '1,500,000',
@@ -10392,7 +9589,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'k9olyrh4': {
       'en': '€15,000',
       'de': '15.000 €',
-      'es': '15.000 €',
       'fr': '15 000 €',
       'it': '€15.000',
       'ja': '15,000ユーロ',
@@ -10404,7 +9600,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '462m1tjt': {
       'en': 'Monthly Transfer',
       'de': 'Monatliche Überweisung',
-      'es': 'Transferencia mensual',
       'fr': 'Transfert mensuel',
       'it': 'Trasferimento mensile',
       'ja': '毎月の送金',
@@ -10416,7 +9611,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '22jvkiq5': {
       'en': '45,000,000',
       'de': '45.000.000',
-      'es': '45.000.000',
       'fr': '45 000 000',
       'it': '45.000.000',
       'ja': '45,000,000',
@@ -10428,7 +9622,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'wvle7ddv': {
       'en': '€450,000',
       'de': '450.000 €',
-      'es': '450.000 euros',
       'fr': '450 000 €',
       'it': '450.000 euro',
       'ja': '45万ユーロ',
@@ -10442,8 +9635,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
           'Your account limits will increase as you verify your SchatzWallet.',
       'de':
           'Ihre Kontolimits erhöhen sich, sobald Sie Ihr SchatzWallet verifiziert haben.',
-      'es':
-          'Los límites de tu cuenta aumentarán a medida que verifiques tu SchatzWallet.',
       'fr':
           'Les limites de votre compte augmenteront au fur et à mesure que vous vérifierez votre SchatzWallet.',
       'it':
@@ -10458,7 +9649,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '6txjjzdf': {
       'en': 'Top-up Limits',
       'de': 'Aufladegrenzen',
-      'es': 'Límites de recarga',
       'fr': 'Limites de recharge',
       'it': 'Limiti di ricarica',
       'ja': 'チャージ限度額',
@@ -10470,7 +9660,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'gn55m3jy': {
       'en': 'Transaction',
       'de': 'Transaktion',
-      'es': 'Transacción',
       'fr': 'Transaction',
       'it': 'Transazione',
       'ja': '取引',
@@ -10482,7 +9671,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '4ev9d567': {
       'en': 'Your limit (SCHATZ)',
       'de': 'Dein Limit (SCHATZ)',
-      'es': 'Tu límite (SCHATZ)',
       'fr': 'Votre limite (SCHATZ)',
       'it': 'Il tuo limite (SCHATZ)',
       'ja': 'あなたの限界（SCHATZ）',
@@ -10494,7 +9682,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'g8qn72nh': {
       'en': 'Euro equivalent',
       'de': 'Euro-Gegenwert',
-      'es': 'Equivalente en euros',
       'fr': 'équivalent en euros',
       'it': 'equivalente in euro',
       'ja': 'ユーロ相当額',
@@ -10506,7 +9693,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '37i80pt7': {
       'en': 'Single Deposit',
       'de': 'Einmalige Einzahlung',
-      'es': 'Depósito único',
       'fr': 'Dépôt unique',
       'it': 'Deposito unico',
       'ja': '一括預金',
@@ -10518,7 +9704,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'mlwi1ydy': {
       'en': '6,000',
       'de': '6.000',
-      'es': '6.000',
       'fr': '6 000',
       'it': '6.000',
       'ja': '6,000',
@@ -10530,7 +9715,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'f1a7zpxz': {
       'en': '€60',
       'de': '60 €',
-      'es': '60 €',
       'fr': '60 €',
       'it': '60 €',
       'ja': '60ユーロ',
@@ -10542,7 +9726,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'z9nzfqmy': {
       'en': 'Daily Deposit',
       'de': 'Tägliche Einzahlung',
-      'es': 'Depósito diario',
       'fr': 'Dépôt quotidien',
       'it': 'Deposito giornaliero',
       'ja': '毎日の入金',
@@ -10554,7 +9737,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'osalvpwp': {
       'en': '6,000',
       'de': '6.000',
-      'es': '6.000',
       'fr': '6 000',
       'it': '6.000',
       'ja': '6,000',
@@ -10566,7 +9748,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'o92uhkvc': {
       'en': '€60',
       'de': '60 €',
-      'es': '60 €',
       'fr': '60 €',
       'it': '60 €',
       'ja': '60ユーロ',
@@ -10578,7 +9759,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '3cvq4rxb': {
       'en': 'Monthly Deposit',
       'de': 'Monatliche Einzahlung',
-      'es': 'Depósito mensual',
       'fr': 'Dépôt mensuel',
       'it': 'Deposito mensile',
       'ja': '毎月の預金',
@@ -10590,7 +9770,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'mtzdghud': {
       'en': '10,000',
       'de': '10.000',
-      'es': '10.000',
       'fr': '10 000',
       'it': '10.000',
       'ja': '10,000',
@@ -10602,7 +9781,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '6hr2qgjn': {
       'en': '€100',
       'de': '100 €',
-      'es': '100 €',
       'fr': '100 €',
       'it': '€100',
       'ja': '100ユーロ',
@@ -10614,7 +9792,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'c4b2f2lp': {
       'en': 'Transfer Limits',
       'de': 'Transferlimits',
-      'es': 'Límites de transferencia',
       'fr': 'Limites de transfert',
       'it': 'Limiti di trasferimento',
       'ja': '送金限度額',
@@ -10626,7 +9803,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'zv0xu056': {
       'en': 'Transaction',
       'de': 'Transaktion',
-      'es': 'Transacción',
       'fr': 'Transaction',
       'it': 'Transazione',
       'ja': '取引',
@@ -10638,7 +9814,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '2vu1832v': {
       'en': 'Your limit (SCHATZ)',
       'de': 'Dein Limit (SCHATZ)',
-      'es': 'Tu límite (SCHATZ)',
       'fr': 'Votre limite (SCHATZ)',
       'it': 'Il tuo limite (SCHATZ)',
       'ja': 'あなたの限界（SCHATZ）',
@@ -10650,7 +9825,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '0rpkfv6m': {
       'en': 'Euro equivalent',
       'de': 'Euro-Gegenwert',
-      'es': 'Equivalente en euros',
       'fr': 'équivalent en euros',
       'it': 'equivalente in euro',
       'ja': 'ユーロ相当額',
@@ -10662,7 +9836,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '1nqjdsrx': {
       'en': 'Single Transfer',
       'de': 'Einzelübertragung',
-      'es': 'Transferencia única',
       'fr': 'Transfert unique',
       'it': 'Trasferimento unico',
       'ja': '単一転送',
@@ -10674,7 +9847,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '2ss0dsrf': {
       'en': '1,500',
       'de': '1.500',
-      'es': '1.500',
       'fr': '1 500',
       'it': '1.500',
       'ja': '1,500',
@@ -10686,7 +9858,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'nythp5qq': {
       'en': '€15',
       'de': '15 €',
-      'es': '15 €',
       'fr': '15 €',
       'it': '€15',
       'ja': '15ユーロ',
@@ -10698,7 +9869,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'w23grzfw': {
       'en': 'Daily Transfer',
       'de': 'Tägliche Überweisung',
-      'es': 'Traslado diario',
       'fr': 'Transfert quotidien',
       'it': 'Trasferimento giornaliero',
       'ja': '毎日輸送',
@@ -10710,7 +9880,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     's5uyffo2': {
       'en': '1,500',
       'de': '1.500',
-      'es': '1.500',
       'fr': '1 500',
       'it': '1.500',
       'ja': '1,500',
@@ -10722,7 +9891,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ikrqh2tr': {
       'en': '€15',
       'de': '15 €',
-      'es': '15 €',
       'fr': '15 €',
       'it': '€15',
       'ja': '15ユーロ',
@@ -10734,7 +9902,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'chkbp01x': {
       'en': 'Monthly Transfer',
       'de': 'Monatliche Überweisung',
-      'es': 'Transferencia mensual',
       'fr': 'Transfert mensuel',
       'it': 'Trasferimento mensile',
       'ja': '毎月の送金',
@@ -10746,7 +9913,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'v93zaslv': {
       'en': '6,000',
       'de': '6.000',
-      'es': '6.000',
       'fr': '6 000',
       'it': '6.000',
       'ja': '6,000',
@@ -10758,7 +9924,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'hnhnf5ud': {
       'en': '€60',
       'de': '60 €',
-      'es': '60 €',
       'fr': '60 €',
       'it': '60 €',
       'ja': '60ユーロ',
@@ -10770,7 +9935,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '6k00ey76': {
       'en': 'Account Limits',
       'de': 'Kontolimits',
-      'es': 'Límites de cuenta',
       'fr': 'Limites du compte',
       'it': 'Limiti dell\'account',
       'ja': 'アカウント制限',
@@ -10782,7 +9946,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ubslmlvu': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -10797,7 +9960,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     's9vbtp0k': {
       'en': 'We\'re here to help you with your SchatzWallet account.',
       'de': 'Wir helfen Ihnen gerne bei Ihrem SchatzWallet-Konto.',
-      'es': 'Estamos aquí para ayudarte con tu cuenta de SchatzWallet.',
       'fr': 'Nous sommes là pour vous aider avec votre compte SchatzWallet.',
       'it': 'Siamo qui per aiutarti con il tuo conto SchatzWallet.',
       'ja': 'SchatzWalletアカウントに関するご質問は、こちらでお手伝いいたします。',
@@ -10809,7 +9971,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'b0rrj9iq': {
       'en': 'Search for help...',
       'de': 'Hilfe suchen...',
-      'es': 'Buscar ayuda...',
       'fr': 'Rechercher de l\'aide...',
       'it': 'Cerca aiuto...',
       'ja': 'ヘルプを探す...',
@@ -10821,7 +9982,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'parinhq1': {
       'en': 'Popular Topics',
       'de': 'Beliebte Themen',
-      'es': 'Temas populares',
       'fr': 'Sujets populaires',
       'it': 'Argomenti popolari',
       'ja': '人気トピック',
@@ -10833,7 +9993,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'qkc401n4': {
       'en': 'Deposits and payments',
       'de': 'Einzahlungen und Zahlungen',
-      'es': 'Depósitos y pagos',
       'fr': 'Dépôts et paiements',
       'it': 'Depositi e pagamenti',
       'ja': '預金と支払い',
@@ -10845,7 +10004,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '92udbu0f': {
       'en': 'Sending and receiving Schatz',
       'de': 'Senden und Empfangen von Schatz',
-      'es': 'Envío y recepción de Schatz',
       'fr': 'Envoi et réception de Schatz',
       'it': 'Invio e ricezione di Schatz',
       'ja': 'Schatzの送受信',
@@ -10857,7 +10015,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'q9kywepv': {
       'en': 'Transaction fees',
       'de': 'Transaktionsgebühren',
-      'es': 'Comisiones por transacción',
       'fr': 'Frais de transaction',
       'it': 'commissioni di transazione',
       'ja': '取引手数料',
@@ -10869,7 +10026,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'josby0x0': {
       'en': 'Account verification',
       'de': 'Kontoverifizierung',
-      'es': 'Verificación de cuenta',
       'fr': 'Vérification du compte',
       'it': 'Verifica dell\'account',
       'ja': 'アカウント認証',
@@ -10881,7 +10037,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'w3ahd5ge': {
       'en': 'Account limits',
       'de': 'Kontolimits',
-      'es': 'límites de la cuenta',
       'fr': 'Limites du compte',
       'it': 'Limiti dell\'account',
       'ja': 'アカウント制限',
@@ -10893,7 +10048,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'a9hfkxs5': {
       'en': 'Security and privacy',
       'de': 'Sicherheit und Datenschutz',
-      'es': 'Seguridad y privacidad',
       'fr': 'Sécurité et confidentialité',
       'it': 'Sicurezza e privacy',
       'ja': 'セキュリティとプライバシー',
@@ -10905,7 +10059,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'p7yc79ad': {
       'en': 'Chat with support',
       'de': 'Chatten Sie mit dem Support',
-      'es': 'Chatea con soporte',
       'fr': 'Discutez avec l\'assistance',
       'it': 'Chatta con l\'assistenza',
       'ja': 'サポートとチャットする',
@@ -10917,7 +10070,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '6lpc5417': {
       'en': 'Get instant help',
       'de': 'Erhalten Sie sofortige Hilfe',
-      'es': 'Obtén ayuda inmediata',
       'fr': 'Obtenez une aide immédiate',
       'it': 'Ottieni assistenza immediata',
       'ja': 'すぐにサポートを受けられます',
@@ -10929,7 +10081,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'mzhioe0j': {
       'en': 'Other Information',
       'de': 'Sonstige Informationen',
-      'es': 'Otra información',
       'fr': 'Autres informations',
       'it': 'Altre informazioni',
       'ja': 'その他の情報',
@@ -10941,7 +10092,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'p2rvnlry': {
       'en': 'Frequently asked questions',
       'de': 'Häufig gestellte Fragen',
-      'es': 'Preguntas frecuentes',
       'fr': 'Foire aux questions',
       'it': 'Domande frequenti',
       'ja': 'よくある質問',
@@ -10953,7 +10103,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '5pa86690': {
       'en': 'Terms and conditions',
       'de': 'Geschäftsbedingungen',
-      'es': 'Términos y condiciones',
       'fr': 'Termes et conditions',
       'it': 'Termini e Condizioni',
       'ja': '利用規約',
@@ -10965,7 +10114,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'rednhi3n': {
       'en': 'Privacy policy',
       'de': 'Datenschutzrichtlinie',
-      'es': 'Política de privacidad',
       'fr': 'Politique de confidentialité',
       'it': 'Politica sulla riservatezza',
       'ja': 'プライバシーポリシー',
@@ -10977,7 +10125,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'zax76e9b': {
       'en': 'Help & Support',
       'de': 'Hilfe & Unterstützung',
-      'es': 'Ayuda y soporte',
       'fr': 'Aide et assistance',
       'it': 'Aiuto e supporto',
       'ja': 'ヘルプ＆サポート',
@@ -10989,7 +10136,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '2h9366qb': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -11004,7 +10150,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'e7ajyblf': {
       'en': 'Verification pending',
       'de': 'Überprüfung ausstehend',
-      'es': 'Verificación pendiente',
       'fr': 'Vérification en cours',
       'it': 'Verifica in corso',
       'ja': '確認待ち',
@@ -11018,8 +10163,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
           'We are currently reviewing your information. This usually takes a few minutes, but it can take up to 24 hours.',
       'de':
           'Wir prüfen derzeit Ihre Angaben. Dies dauert in der Regel einige Minuten, kann aber bis zu 24 Stunden dauern.',
-      'es':
-          'Actualmente estamos revisando su información. Esto suele tardar unos minutos, pero puede demorar hasta 24 horas.',
       'fr':
           'Nous examinons actuellement vos informations. Cela prend généralement quelques minutes, mais peut aller jusqu\'à 24 heures.',
       'it':
@@ -11035,7 +10178,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '49shea6s': {
       'en': 'In Review',
       'de': 'Im Überblick',
-      'es': 'En revisión',
       'fr': 'En bref',
       'it': 'In revisione',
       'ja': 'レビュー中',
@@ -11047,7 +10189,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'moe46xom': {
       'en': 'Your document have been submitted and are being verified.',
       'de': 'Ihre Unterlagen wurden eingereicht und werden derzeit geprüft.',
-      'es': 'Sus documentos han sido enviados y están siendo verificados.',
       'fr': 'Vos documents ont été soumis et sont en cours de vérification.',
       'it': 'Il tuo documento è stato inviato ed è in fase di verifica.',
       'ja': '提出された書類は現在確認中です。',
@@ -11060,7 +10201,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'vg3h8ohd': {
       'en': 'Submitted on',
       'de': 'Eingereicht am',
-      'es': 'Enviado el',
       'fr': 'Soumis le',
       'it': 'Inviato il',
       'ja': '提出日',
@@ -11072,7 +10212,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'vka8oa5r': {
       'en': '12 OCT 2026, 10:24 AM',
       'de': '12. Oktober 2026, 10:24 Uhr',
-      'es': '12 de octubre de 2026, 10:24 a. m.',
       'fr': '12 OCT 2026, 10:24',
       'it': '12 ottobre 2026, ore 10:24',
       'ja': '2026年10月12日 午前10時24分',
@@ -11084,7 +10223,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '6q2ur1a1': {
       'en': '2',
       'de': '2',
-      'es': '2',
       'fr': '2',
       'it': '2',
       'ja': '2',
@@ -11096,7 +10234,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '7oe7gsiy': {
       'en': '3',
       'de': '3',
-      'es': '3',
       'fr': '3',
       'it': '3',
       'ja': '3',
@@ -11108,7 +10245,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'cyy21ovb': {
       'en': '4',
       'de': '4',
-      'es': '4',
       'fr': '4',
       'it': '4',
       'ja': '4',
@@ -11120,7 +10256,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'w8wu4y85': {
       'en': 'Documents\nSubmitted',
       'de': 'Dokumente\neingereicht',
-      'es': 'Documentos presentados',
       'fr': 'Documents\nSoumis',
       'it': 'Documenti inviati',
       'ja': '提出書類\n',
@@ -11132,7 +10267,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'wu8ruyhi': {
       'en': 'Under\nReview',
       'de': 'In Bearbeitung\n',
-      'es': 'En revisión',
       'fr': 'En cours d\'examen\n',
       'it': 'In fase di revisione',
       'ja': '審査中\n',
@@ -11144,7 +10278,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '34lxjkvg': {
       'en': 'Verification\nin Progress',
       'de': 'Überprüfung läuft\n',
-      'es': 'Verificación en curso',
       'fr': 'Vérification en cours\n\n',
       'it': 'Verifica in corso',
       'ja': '検証中',
@@ -11156,7 +10289,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'wl9vtffj': {
       'en': 'Complete',
       'de': 'Vollständig',
-      'es': 'Completo',
       'fr': 'Complet',
       'it': 'Completare',
       'ja': '完了',
@@ -11168,7 +10300,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'nbbv971m': {
       'en': 'What happens next?',
       'de': 'Was geschieht als Nächstes?',
-      'es': '¿Qué sucederá después?',
       'fr': 'Que va-t-il se passer ensuite ?',
       'it': 'Cosa succederà dopo?',
       'ja': '次に何が起こるのか？',
@@ -11181,25 +10312,22 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en':
           'We will notify you once yourverification is complete. You can continue to use limited features while your account is under review.',
       'de':
-          'Wir benachrichtigen Sie, sobald Ihre Verifizierung abgeschlossen ist.\nSie können während der Überprüfung Ihres Kontos weiterhin eingeschränkte Funktionen nutzen.',
-      'es':
-          'Te notificaremos cuando se complete la verificación.\nPuedes seguir utilizando algunas funciones mientras tu cuenta está en revisión.',
+          'Wir benachrichtigen Sie, sobald Ihre Verifizierung abgeschlossen ist. Während der Überprüfung Ihres Kontos können Sie weiterhin eingeschränkte Funktionen nutzen.',
       'fr':
-          'Nous vous informerons dès que votre vérification sera terminée.\n\nVous pouvez continuer à utiliser certaines fonctionnalités pendant que votre compte est en cours d\'examen.',
+          'Nous vous informerons dès que votre vérification sera terminée. Vous pourrez continuer à utiliser certaines fonctionnalités pendant l\'examen de votre compte.',
       'it':
-          'Ti avviseremo non appena la verifica sarà completata.\nPotrai continuare a utilizzare alcune funzionalità limitate mentre il tuo account è in fase di revisione.',
-      'ja': '本人確認が完了次第、ご連絡いたします。\n\nアカウントの審査中は、一部の機能のみご利用いただけます。',
-      'ko': '인증이 완료되면 알려드리겠습니다.\n계정 검토 중에도 일부 기능을 계속 사용하실 수 있습니다.',
+          'Ti avviseremo non appena la verifica sarà completata. Potrai continuare a utilizzare alcune funzionalità limitate mentre il tuo account è in fase di revisione.',
+      'ja': '本人確認が完了次第、ご連絡いたします。アカウントの審査中は、一部の機能のみご利用いただけます。',
+      'ko': '인증이 완료되면 알려드리겠습니다. 계정 검토가 진행되는 동안에는 일부 기능을 계속 사용하실 수 있습니다.',
       'pl':
-          'Powiadomimy Cię, gdy weryfikacja zostanie zakończona.\nMożesz nadal korzystać z ograniczonych funkcji, podczas gdy Twoje\nkonto jest weryfikowane.',
+          'Powiadomimy Cię, gdy weryfikacja zostanie zakończona. Możesz nadal korzystać z ograniczonych funkcji, podczas gdy Twoje konto jest weryfikowane.',
       'ro':
-          'Vă vom notifica după finalizarea verificării.\n\nPuteți continua să utilizați funcții limitate în timp ce contul dvs. este în curs de verificare.',
-      'zh_Hant': '驗證完成後，我們會通知您。\n\n在您的帳戶審核期間，您可以繼續使用部分功能。',
+          'Vă vom notifica după finalizarea verificării. Puteți continua să utilizați funcții limitate în timp ce contul dvs. este în curs de examinare.',
+      'zh_Hant': '驗證完成後我們會通知您。帳戶審核期間，您可以繼續使用部分功能。',
     },
     's34pn66a': {
       'en': 'Back to Home',
       'de': 'Zurück zur Startseite',
-      'es': 'Volver a la página principal',
       'fr': 'Retour à l\'accueil',
       'it': 'Torna alla home',
       'ja': 'ホームに戻る',
@@ -11211,7 +10339,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'z0zktumq': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -11225,413 +10352,380 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     'l951iqo1': {
       'en': 'Schatz',
-      'de': 'Spende',
-      'es': 'Donación',
-      'fr': 'Donation',
-      'it': 'Donazione',
-      'ja': '寄付',
-      'ko': '기부',
-      'pl': 'Darowizna',
-      'ro': 'Donare',
-      'zh_Hant': '捐款',
+      'de': 'Schatz',
+      'fr': 'Schatz',
+      'it': 'Schatz',
+      'ja': 'シャッツ',
+      'ko': '샤츠',
+      'pl': 'Schatz',
+      'ro': 'Schatz',
+      'zh_Hant': '沙茨',
     },
     'a42jv551': {
       'en': 'Wallet',
-      'de': 'Spende',
-      'es': 'Donación',
-      'fr': 'Donation',
-      'it': 'Donazione',
-      'ja': '寄付',
-      'ko': '기부',
-      'pl': 'Darowizna',
-      'ro': 'Donare',
-      'zh_Hant': '捐款',
+      'de': 'Geldbörse',
+      'fr': 'Portefeuille',
+      'it': 'Portafoglio',
+      'ja': '財布',
+      'ko': '지갑',
+      'pl': 'Portfel',
+      'ro': 'Portofel',
+      'zh_Hant': '錢包',
     },
     'vj8jd0zt': {
       'en': 'Purchase\nSchatz Gift Cards',
-      'de': 'Spenden Sie an\nSchatzAPP',
-      'es': 'Dona a SchatzAPP',
-      'fr': 'Faites un don à\nSchatzAPP',
-      'it': 'Fai una donazione a\nSchatzAPP',
-      'ja': 'SchatzAPPに寄付する\n',
-      'ko': 'SchatzAPP에 기부하세요\nSchatzAPP',
-      'pl': 'Przekaż darowiznę na\nSchatzAPP',
-      'ro': 'Donează către\nSchatzAPP',
-      'zh_Hant': '捐贈給 SchatzAPP\n\nSchatzAPP',
+      'de': 'Kaufen\nSchatz-Geschenkgutscheine',
+      'fr': 'Acheter des cartes-cadeaux Schatz',
+      'it': 'Acquista\nCarte regalo Schatz',
+      'ja': '購入\nシャッツギフトカード',
+      'ko': '구매\n샤츠 기프트 카드',
+      'pl': 'Zakup\nKarty podarunkowe Schatz',
+      'ro': 'Achiziție\nCarduri cadou Schatz',
+      'zh_Hant': '購買 Schatz 禮品卡\n\nSchatz 禮品卡',
     },
     'm32p6myn': {
       'en': 'Give the gift of SCHATZ. Perfect for family, friendsor business.',
       'de':
-          'Gestalte die Zukunft von SchatzAPP mit!\n\nDeine Spende hilft uns, innovative Funktionen zu entwickeln, die Sicherheit zu erhöhen und ein besseres Nutzererlebnis zu bieten.\n\n**Unterstütze unsere Vision noch heute – spende und hilf uns, SchatzAPP weiterzuentwickeln!**',
-      'es':
-          'Forma parte del futuro de SchatzAPP.\n\nTu donación nos ayuda a desarrollar funciones innovadoras, fortalecer la seguridad y ofrecer\nuna mejor experiencia de usuario.\n\n**Apoya nuestra visión hoy mismo: ¡haz una donación y ayúdanos a hacer crecer SchatzAPP!**',
+          'Verschenken Sie SCHATZ. Perfekt für Familie, Freunde oder Geschäftspartner.',
       'fr':
-          'Participez à l\'avenir de SchatzAPP.\n\nVotre don nous aide à développer des fonctionnalités innovantes, à renforcer la sécurité et à offrir une meilleure expérience utilisateur.\n\nSoutenez notre vision dès aujourd\'hui ! Faites un don et contribuez à la croissance de SchatzAPP !',
+          'Offrez SCHATZ en cadeau. Idéal pour la famille, les amis ou les affaires.',
       'it':
-          'Entra a far parte del futuro di SchatzAPP.\n\nLa tua donazione ci aiuta a sviluppare funzionalità innovative, rafforzare la sicurezza e offrire un\'esperienza utente migliore.\n\n**Sostieni la nostra visione oggi stesso: fai una donazione e aiutaci a far crescere SchatzAPP!**',
-      'ja':
-          'SchatzAPPの未来を共に築きませんか？\n\n皆様からのご寄付は、革新的な機能の開発、セキュリティの強化、そしてより良いユーザーエクスペリエンスの提供に役立てられます。\n\n**今すぐ私たちのビジョンを応援してください。ご寄付でSchatzAPPの成長を支えましょう！**',
-      'ko':
-          'SchatzAPP의 미래를 함께 만들어가세요.\n\n여러분의 기부는 혁신적인 기능 개발, 보안 강화, 그리고 더 나은 사용자 경험 제공에 큰 도움이 됩니다.\n\n**오늘 저희의 비전을 응원해주세요. 기부를 통해 SchatzAPP의 성장을 도와주세요!**',
-      'pl':
-          'Bądź częścią przyszłości SchatzAPP.\nTwoja darowizna pomoże nam tworzyć innowacyjne \nfunkcje, wzmacniać bezpieczeństwo i zapewniać \nlepsze doświadczenia użytkownika.\n\n**Wesprzyj naszą wizję już dziś — przekaż \ndarowiznę i pomóż nam rozwijać SchatzAPP!**',
+          'Regala un capo SCHATZ. Perfetto per la famiglia, gli amici o i colleghi.',
+      'ja': 'SCHATZを贈りましょう。家族、友人、ビジネス関係者への贈り物に最適です。',
+      'ko': '샤츠를 선물하세요. 가족, 친구, 비즈니스 선물로 제격입니다.',
+      'pl': 'Podaruj SCHATZ. Idealne dla rodziny, przyjaciół lub firmy.',
       'ro':
-          'Fii parte din viitorul SchatzAPP.\nDonația ta ne ajută să construim funcții inovatoare, să consolidăm securitatea și să oferim o experiență mai bună utilizatorilor.\n\n**Susține viziunea noastră astăzi — fă o\ndonație și ajută-ne să dezvoltăm SchatzAPP!**',
-      'zh_Hant':
-          '加入 SchatzAPP 的未來！\n\n您的捐款將幫助我們開發創新功能、加強安全性並提供更好的使用者體驗。\n\n\n立即支持我們的願景—捐贈並幫助我們發展 SchatzAPP！',
+          'Oferă în dar SCHATZ. Perfect pentru familie, prieteni sau afaceri.',
+      'zh_Hant': '贈送SCHATZ禮品，完美之選。無論是送給家人、朋友或商務夥伴，都是絕佳選擇。',
     },
     '8ex22wim': {
       'en': 'Instant delivery',
-      'de': 'Chatten Sie mit dem Support',
-      'es': 'Chatea con soporte',
-      'fr': 'Discutez avec l\'assistance',
-      'it': 'Chatta con l\'assistenza',
-      'ja': 'サポートとチャットする',
-      'ko': '고객 지원팀과 채팅하세요',
-      'pl': 'Porozmawiaj z pomocą techniczną',
-      'ro': 'Discutați cu asistența',
-      'zh_Hant': '聯絡客服',
+      'de': 'Sofortige Lieferung',
+      'fr': 'Livraison instantanée',
+      'it': 'Consegna immediata',
+      'ja': '即時配達',
+      'ko': '즉시 배송',
+      'pl': 'Dostawa natychmiastowa',
+      'ro': 'Livrare instantanee',
+      'zh_Hant': '即時送達',
     },
     '1e6hse8y': {
       'en': 'Sent to your email or directly to the recipient',
-      'de': 'Erhalten Sie sofortige Hilfe',
-      'es': 'Obtén ayuda inmediata',
-      'fr': 'Obtenez une aide immédiate',
-      'it': 'Ottieni assistenza immediata',
-      'ja': 'すぐにサポートを受けられます',
-      'ko': '즉시 도움을 받으세요',
-      'pl': 'Uzyskaj natychmiastową pomoc',
-      'ro': 'Obțineți ajutor instantaneu',
-      'zh_Hant': '立即獲得協助',
+      'de': 'An Ihre E-Mail-Adresse oder direkt an den Empfänger gesendet',
+      'fr':
+          'Envoyé à votre adresse électronique ou directement au destinataire',
+      'it': 'Inviato alla tua email o direttamente al destinatario',
+      'ja': 'あなたのメールアドレスまたは受信者に直接送信されます',
+      'ko': '귀하의 이메일로 보내거나 수신자에게 직접 보냅니다.',
+      'pl': 'Wysłane na Twój adres e-mail lub bezpośrednio do odbiorcy',
+      'ro': 'Trimis pe adresa dvs. de e-mail sau direct destinatarului',
+      'zh_Hant': '發送到您的郵箱或直接發送給收件人',
     },
     'spkm9dzu': {
       'en': 'Secure and safe',
-      'de': 'Chatten Sie mit dem Support',
-      'es': 'Chatea con soporte',
-      'fr': 'Discutez avec l\'assistance',
-      'it': 'Chatta con l\'assistenza',
-      'ja': 'サポートとチャットする',
-      'ko': '고객 지원팀과 채팅하세요',
-      'pl': 'Porozmawiaj z pomocą techniczną',
-      'ro': 'Discutați cu asistența',
-      'zh_Hant': '聯絡客服',
+      'de': 'Sicher und geschützt',
+      'fr': 'Sûr et sûr',
+      'it': 'Sicuro e protetto',
+      'ja': '安全で安心',
+      'ko': '안전하고 보안이 철저합니다',
+      'pl': 'Bezpieczne i pewne',
+      'ro': 'Sigur și protejat',
+      'zh_Hant': '安全可靠',
     },
     'dfbsi5jy': {
       'en': 'Use SCHATZ Gift Cards across the Schatz ecosystem.',
-      'de': 'Erhalten Sie sofortige Hilfe',
-      'es': 'Obtén ayuda inmediata',
-      'fr': 'Obtenez une aide immédiate',
-      'it': 'Ottieni assistenza immediata',
-      'ja': 'すぐにサポートを受けられます',
-      'ko': '즉시 도움을 받으세요',
-      'pl': 'Uzyskaj natychmiastową pomoc',
-      'ro': 'Obțineți ajutor instantaneu',
-      'zh_Hant': '立即獲得協助',
+      'de': 'Nutzen Sie SCHATZ-Geschenkkarten im gesamten Schatz-Ökosystem.',
+      'fr':
+          'Utilisez les cartes-cadeaux SCHATZ dans tout l\'écosystème Schatz.',
+      'it': 'Utilizza le carte regalo SCHATZ nell\'intero ecosistema Schatz.',
+      'ja': 'Schatzギフトカードは、Schatzのエコシステム全体でご利用いただけます。',
+      'ko': 'SCHATZ 기프트 카드는 Schatz 생태계 전반에서 사용할 수 있습니다.',
+      'pl': 'Używaj kart podarunkowych SCHATZ w całym ekosystemie Schatz.',
+      'ro': 'Folosește cardurile cadou SCHATZ în întreg ecosistemul Schatz.',
+      'zh_Hant': '在 Schatz 生態系統中使用 SCHATZ 禮品卡。',
     },
     '44w5b4xx': {
       'en': 'Choose a Gifft Card Amount',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Wählen Sie einen Geschenkkartenbetrag',
+      'fr': 'Choisissez le montant de votre carte-cadeau',
+      'it': 'Scegli l\'importo della tua carta regalo',
+      'ja': 'ギフトカードの金額を選択してください',
+      'ko': '원하는 상품권 금액을 선택하세요',
+      'pl': 'Wybierz kwotę karty podarunkowej',
+      'ro': 'Alegeți suma cardului cadou',
+      'zh_Hant': '選擇禮品卡金額',
     },
     'h167xhr6': {
       'en': 'Currency:',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Währung:',
+      'fr': 'Devise:',
+      'it': 'Valuta:',
+      'ja': '通貨：',
+      'ko': '통화:',
+      'pl': 'Waluta:',
+      'ro': 'Valută:',
+      'zh_Hant': '貨幣：',
     },
     'niadj5ns': {
       'en': 'SCHATZ',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'SCHATZ',
+      'fr': 'SCHATZ',
+      'it': 'SCHATZ',
+      'ja': 'シャッツ',
+      'ko': '샤츠',
+      'pl': 'SCHATZ',
+      'ro': 'SCHATZ',
+      'zh_Hant': '沙茨',
     },
     'eyw337vo': {
       'en': '1,000',
-      'de': 'Chatten Sie mit dem Support',
-      'es': 'Chatea con soporte',
-      'fr': 'Discutez avec l\'assistance',
-      'it': 'Chatta con l\'assistenza',
-      'ja': 'サポートとチャットする',
-      'ko': '고객 지원팀과 채팅하세요',
-      'pl': 'Porozmawiaj z pomocą techniczną',
-      'ro': 'Discutați cu asistența',
-      'zh_Hant': '聯絡客服',
+      'de': '1.000',
+      'fr': '1 000',
+      'it': '1.000',
+      'ja': '1,000',
+      'ko': '1,000',
+      'pl': '1000',
+      'ro': '1.000',
+      'zh_Hant': '1,000',
     },
     'd43ygjfb': {
       'en': 'Schatz\n€10',
-      'de': 'Erhalten Sie sofortige Hilfe',
-      'es': 'Obtén ayuda inmediata',
-      'fr': 'Obtenez une aide immédiate',
-      'it': 'Ottieni assistenza immediata',
-      'ja': 'すぐにサポートを受けられます',
-      'ko': '즉시 도움을 받으세요',
-      'pl': 'Uzyskaj natychmiastową pomoc',
-      'ro': 'Obțineți ajutor instantaneu',
-      'zh_Hant': '立即獲得協助',
+      'de': 'Schatz\n10 €',
+      'fr': 'Schatz\n10 €',
+      'it': 'Schatz\n€10',
+      'ja': 'シャッツ\n10ユーロ',
+      'ko': '샤츠\n10유로',
+      'pl': 'Schatz\n10 €',
+      'ro': 'Schatz\n10 €',
+      'zh_Hant': '沙茨\n\n10歐元',
     },
     'dbz6zg5a': {
       'en': '5,000',
-      'de': 'Chatten Sie mit dem Support',
-      'es': 'Chatea con soporte',
-      'fr': 'Discutez avec l\'assistance',
-      'it': 'Chatta con l\'assistenza',
-      'ja': 'サポートとチャットする',
-      'ko': '고객 지원팀과 채팅하세요',
-      'pl': 'Porozmawiaj z pomocą techniczną',
-      'ro': 'Discutați cu asistența',
-      'zh_Hant': '聯絡客服',
+      'de': '5.000',
+      'fr': '5 000',
+      'it': '5.000',
+      'ja': '5,000',
+      'ko': '5,000',
+      'pl': '5000',
+      'ro': '5.000',
+      'zh_Hant': '5,000',
     },
     'zt50oaq5': {
       'en': 'Schatz\n€50',
-      'de': 'Erhalten Sie sofortige Hilfe',
-      'es': 'Obtén ayuda inmediata',
-      'fr': 'Obtenez une aide immédiate',
-      'it': 'Ottieni assistenza immediata',
-      'ja': 'すぐにサポートを受けられます',
-      'ko': '즉시 도움을 받으세요',
-      'pl': 'Uzyskaj natychmiastową pomoc',
-      'ro': 'Obțineți ajutor instantaneu',
-      'zh_Hant': '立即獲得協助',
+      'de': 'Schatz\n50 €',
+      'fr': 'Schatz\n50 €',
+      'it': 'Schatz\n€50',
+      'ja': 'シャッツ\n50ユーロ',
+      'ko': '샤츠\n50유로',
+      'pl': 'Schatz\n50 €',
+      'ro': 'Schatz\n50 €',
+      'zh_Hant': '沙茨\n\n50歐元',
     },
     'mjzbxf2d': {
       'en': '10,000',
-      'de': 'Chatten Sie mit dem Support',
-      'es': 'Chatea con soporte',
-      'fr': 'Discutez avec l\'assistance',
-      'it': 'Chatta con l\'assistenza',
-      'ja': 'サポートとチャットする',
-      'ko': '고객 지원팀과 채팅하세요',
-      'pl': 'Porozmawiaj z pomocą techniczną',
-      'ro': 'Discutați cu asistența',
-      'zh_Hant': '聯絡客服',
+      'de': '10.000',
+      'fr': '10 000',
+      'it': '10.000',
+      'ja': '10,000',
+      'ko': '10,000',
+      'pl': '10 000',
+      'ro': '10.000',
+      'zh_Hant': '10,000',
     },
     'nsjpms59': {
       'en': 'Schatz\n€100',
-      'de': 'Erhalten Sie sofortige Hilfe',
-      'es': 'Obtén ayuda inmediata',
-      'fr': 'Obtenez une aide immédiate',
-      'it': 'Ottieni assistenza immediata',
-      'ja': 'すぐにサポートを受けられます',
-      'ko': '즉시 도움을 받으세요',
-      'pl': 'Uzyskaj natychmiastową pomoc',
-      'ro': 'Obțineți ajutor instantaneu',
-      'zh_Hant': '立即獲得協助',
+      'de': 'Schatz\n100 €',
+      'fr': 'Schatz\n\n100 €',
+      'it': 'Schatz\n€100',
+      'ja': 'シャッツ\n100ユーロ',
+      'ko': '샤츠\n100유로',
+      'pl': 'Schatz\n100 €',
+      'ro': 'Schatz\n100 €',
+      'zh_Hant': '沙茨\n\n100 歐元',
     },
     'q9ztx13h': {
       'en': '25,000',
-      'de': 'Chatten Sie mit dem Support',
-      'es': 'Chatea con soporte',
-      'fr': 'Discutez avec l\'assistance',
-      'it': 'Chatta con l\'assistenza',
-      'ja': 'サポートとチャットする',
-      'ko': '고객 지원팀과 채팅하세요',
-      'pl': 'Porozmawiaj z pomocą techniczną',
-      'ro': 'Discutați cu asistența',
-      'zh_Hant': '聯絡客服',
+      'de': '25.000',
+      'fr': '25 000',
+      'it': '25.000',
+      'ja': '25,000',
+      'ko': '25,000',
+      'pl': '25 000',
+      'ro': '25.000',
+      'zh_Hant': '25,000',
     },
     'rxtxsnfs': {
       'en': 'Schatz\n€250',
-      'de': 'Erhalten Sie sofortige Hilfe',
-      'es': 'Obtén ayuda inmediata',
-      'fr': 'Obtenez une aide immédiate',
-      'it': 'Ottieni assistenza immediata',
-      'ja': 'すぐにサポートを受けられます',
-      'ko': '즉시 도움을 받으세요',
-      'pl': 'Uzyskaj natychmiastową pomoc',
-      'ro': 'Obțineți ajutor instantaneu',
-      'zh_Hant': '立即獲得協助',
+      'de': 'Schatz\n250 €',
+      'fr': 'Schatz\n\n250 €',
+      'it': 'Schatz\n€250',
+      'ja': 'シャッツ\n250ユーロ',
+      'ko': '샤츠\n250유로',
+      'pl': 'Schatz\n250 €',
+      'ro': 'Schatz\n250 €',
+      'zh_Hant': '沙茨\n\n250 歐元',
     },
     'gxagxbi4': {
       'en': '50,000',
-      'de': 'Chatten Sie mit dem Support',
-      'es': 'Chatea con soporte',
-      'fr': 'Discutez avec l\'assistance',
-      'it': 'Chatta con l\'assistenza',
-      'ja': 'サポートとチャットする',
-      'ko': '고객 지원팀과 채팅하세요',
-      'pl': 'Porozmawiaj z pomocą techniczną',
-      'ro': 'Discutați cu asistența',
-      'zh_Hant': '聯絡客服',
+      'de': '50.000',
+      'fr': '50 000',
+      'it': '50.000',
+      'ja': '50,000',
+      'ko': '5만',
+      'pl': '50 000',
+      'ro': '50.000',
+      'zh_Hant': '50,000',
     },
     '8ngdl09d': {
       'en': 'Schatz\n€500',
-      'de': 'Erhalten Sie sofortige Hilfe',
-      'es': 'Obtén ayuda inmediata',
-      'fr': 'Obtenez une aide immédiate',
-      'it': 'Ottieni assistenza immediata',
-      'ja': 'すぐにサポートを受けられます',
-      'ko': '즉시 도움을 받으세요',
-      'pl': 'Uzyskaj natychmiastową pomoc',
-      'ro': 'Obțineți ajutor instantaneu',
-      'zh_Hant': '立即獲得協助',
+      'de': 'Schatz\n500 €',
+      'fr': 'Schatz\n\n500 €',
+      'it': 'Schatz\n€500',
+      'ja': 'シャッツ\n500ユーロ',
+      'ko': '샤츠\n500유로',
+      'pl': 'Schatz\n500 €',
+      'ro': 'Schatz\n500 €',
+      'zh_Hant': '沙茨\n\n500歐元',
     },
     'r3zam8rz': {
       'en': '100,000',
-      'de': 'Chatten Sie mit dem Support',
-      'es': 'Chatea con soporte',
-      'fr': 'Discutez avec l\'assistance',
-      'it': 'Chatta con l\'assistenza',
-      'ja': 'サポートとチャットする',
-      'ko': '고객 지원팀과 채팅하세요',
-      'pl': 'Porozmawiaj z pomocą techniczną',
-      'ro': 'Discutați cu asistența',
-      'zh_Hant': '聯絡客服',
+      'de': '100.000',
+      'fr': '100 000',
+      'it': '100.000',
+      'ja': '10万',
+      'ko': '10만',
+      'pl': '100 000',
+      'ro': '100.000',
+      'zh_Hant': '100,000',
     },
     'jqu6l57l': {
       'en': 'Schatz\n€1,000',
-      'de': 'Erhalten Sie sofortige Hilfe',
-      'es': 'Obtén ayuda inmediata',
-      'fr': 'Obtenez une aide immédiate',
-      'it': 'Ottieni assistenza immediata',
-      'ja': 'すぐにサポートを受けられます',
-      'ko': '즉시 도움을 받으세요',
-      'pl': 'Uzyskaj natychmiastową pomoc',
-      'ro': 'Obțineți ajutor instantaneu',
-      'zh_Hant': '立即獲得協助',
+      'de': 'Schatz\n1.000 €',
+      'fr': 'Schatz\n\n1 000 €',
+      'it': 'Schatz\n€1.000',
+      'ja': 'シャッツ\n1,000ユーロ',
+      'ko': '샤츠\n1,000유로',
+      'pl': 'Schatz\n1000 €',
+      'ro': 'Schatz\n1.000 €',
+      'zh_Hant': '沙茨\n\n1000歐元',
     },
     'q74o0ke3': {
       'en': 'Custom Amount',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Benutzerdefinierter Betrag',
+      'fr': 'Montant personnalisé',
+      'it': 'Importo personalizzato',
+      'ja': 'カスタム金額',
+      'ko': '사용자 지정 금액',
+      'pl': 'Kwota niestandardowa',
+      'ro': 'Sumă personalizată',
+      'zh_Hant': '自訂金額',
     },
     'ycfu54wf': {
       'en': 'Enter the amount you want to purchase.',
-      'de': 'Erhalten Sie sofortige Hilfe',
-      'es': 'Obtén ayuda inmediata',
-      'fr': 'Obtenez une aide immédiate',
-      'it': 'Ottieni assistenza immediata',
-      'ja': 'すぐにサポートを受けられます',
-      'ko': '즉시 도움을 받으세요',
-      'pl': 'Uzyskaj natychmiastową pomoc',
-      'ro': 'Obțineți ajutor instantaneu',
-      'zh_Hant': '立即獲得協助',
+      'de': 'Geben Sie den gewünschten Kaufbetrag ein.',
+      'fr': 'Saisissez le montant que vous souhaitez acheter.',
+      'it': 'Inserisci la quantità che desideri acquistare.',
+      'ja': '購入希望数量を入力してください。',
+      'ko': '구매하실 수량을 입력하세요.',
+      'pl': 'Wprowadź kwotę, którą chcesz kupić.',
+      'ro': 'Introduceți suma pe care doriți să o cumpărați.',
+      'zh_Hant': '請輸入您要購買的數量。',
     },
     'qddpvwk4': {
       'en': 'Enter amount (min 1,000 - max 300,000)',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Betrag eingeben (min. 1.000 - max. 300.000)',
+      'fr': 'Saisissez le montant (min 1 000 - max 300 000)',
+      'it': 'Inserisci l\'importo (min 1.000 - max 300.000)',
+      'ja': '金額を入力してください（最小1,000～最大300,000）',
+      'ko': '금액을 입력하세요 (최소 1,000 - 최대 300,000)',
+      'pl': 'Wprowadź kwotę (min. 1000 - maks. 300 000)',
+      'ro': 'Introduceți suma (min 1.000 - max 300.000)',
+      'zh_Hant': '請輸入金額（最小 1,000 - 最大 300,000）',
     },
     'b582g6ig': {
       'en': 'SCHATZ',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'SCHATZ',
+      'fr': 'SCHATZ',
+      'it': 'SCHATZ',
+      'ja': 'シャッツ',
+      'ko': '샤츠',
+      'pl': 'SCHATZ',
+      'ro': 'SCHATZ',
+      'zh_Hant': '沙茨',
     },
     'pu0hro67': {
       'en': 'Delivery Method',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Liefermethode',
+      'fr': 'Méthode de livraison',
+      'it': 'Metodo di consegna',
+      'ja': '配送方法',
+      'ko': '배송 방법',
+      'pl': 'Metoda dostawy',
+      'ro': 'Metodă de livrare',
+      'zh_Hant': '配送方式',
     },
     'k3ddo1ow': {
       'en': 'Send to my email',
-      'de': 'Chatten Sie mit dem Support',
-      'es': 'Chatea con soporte',
-      'fr': 'Discutez avec l\'assistance',
-      'it': 'Chatta con l\'assistenza',
-      'ja': 'サポートとチャットする',
-      'ko': '고객 지원팀과 채팅하세요',
-      'pl': 'Porozmawiaj z pomocą techniczną',
-      'ro': 'Discutați cu asistența',
-      'zh_Hant': '聯絡客服',
+      'de': 'An meine E-Mail-Adresse senden',
+      'fr': 'Envoyer à mon adresse e-mail',
+      'it': 'Invia alla mia email',
+      'ja': '私のメールアドレスに送信',
+      'ko': '내 이메일로 보내주세요',
+      'pl': 'Wyślij na mój adres e-mail',
+      'ro': 'Trimiteți la adresa mea de e-mail',
+      'zh_Hant': '寄到我的信箱',
     },
     '81y0s85i': {
       'en': 'Receive the gift card on your email.',
-      'de': 'Erhalten Sie sofortige Hilfe',
-      'es': 'Obtén ayuda inmediata',
-      'fr': 'Obtenez une aide immédiate',
-      'it': 'Ottieni assistenza immediata',
-      'ja': 'すぐにサポートを受けられます',
-      'ko': '즉시 도움을 받으세요',
-      'pl': 'Uzyskaj natychmiastową pomoc',
-      'ro': 'Obțineți ajutor instantaneu',
-      'zh_Hant': '立即獲得協助',
+      'de': 'Sie erhalten die Geschenkkarte per E-Mail.',
+      'fr': 'Vous recevrez la carte cadeau par courriel.',
+      'it': 'Riceverai la carta regalo via email.',
+      'ja': 'ギフトカードはメールでお送りします。',
+      'ko': '선물 카드는 이메일로 발송됩니다.',
+      'pl': 'Otrzymasz kartę podarunkową na swój adres e-mail.',
+      'ro': 'Primește cardul cadou pe adresa ta de e-mail.',
+      'zh_Hant': '您將透過電子郵件收到禮品卡。',
     },
     'v3wynwyd': {
       'en': 'Send to recipient',
-      'de': 'Chatten Sie mit dem Support',
-      'es': 'Chatea con soporte',
-      'fr': 'Discutez avec l\'assistance',
-      'it': 'Chatta con l\'assistenza',
-      'ja': 'サポートとチャットする',
-      'ko': '고객 지원팀과 채팅하세요',
-      'pl': 'Porozmawiaj z pomocą techniczną',
-      'ro': 'Discutați cu asistența',
-      'zh_Hant': '聯絡客服',
+      'de': 'An Empfänger senden',
+      'fr': 'Envoyer au destinataire',
+      'it': 'Invia al destinatario',
+      'ja': '受取人に送信する',
+      'ko': '수신자에게 보내기',
+      'pl': 'Wyślij do odbiorcy',
+      'ro': 'Trimiteți destinatarului',
+      'zh_Hant': '傳送給收件人',
     },
     '6iypxat1': {
       'en': 'Enter recipient\'s email or phone number',
-      'de': 'Erhalten Sie sofortige Hilfe',
-      'es': 'Obtén ayuda inmediata',
-      'fr': 'Obtenez une aide immédiate',
-      'it': 'Ottieni assistenza immediata',
-      'ja': 'すぐにサポートを受けられます',
-      'ko': '즉시 도움을 받으세요',
-      'pl': 'Uzyskaj natychmiastową pomoc',
-      'ro': 'Obțineți ajutor instantaneu',
-      'zh_Hant': '立即獲得協助',
+      'de':
+          'Geben Sie die E-Mail-Adresse oder Telefonnummer des Empfängers ein.',
+      'fr':
+          'Saisissez l\'adresse e-mail ou le numéro de téléphone du destinataire',
+      'it':
+          'Inserisci l\'indirizzo email o il numero di telefono del destinatario.',
+      'ja': '受信者のメールアドレスまたは電話番号を入力してください',
+      'ko': '수신자의 이메일 주소 또는 전화번호를 입력하세요.',
+      'pl': 'Wprowadź adres e-mail lub numer telefonu odbiorcy',
+      'ro':
+          'Introduceți adresa de e-mail sau numărul de telefon al destinatarului',
+      'zh_Hant': '輸入收件者的電子郵件地址或電話號碼',
     },
     'm12xi5r9': {
       'en': 'Continue to Payment',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Weiter zur Zahlung',
+      'fr': 'Poursuivre le paiement',
+      'it': 'Procedi al pagamento',
+      'ja': '支払い手続きに進む',
+      'ko': '결제 계속하기',
+      'pl': 'Przejdź do płatności',
+      'ro': 'Continuați la plată',
+      'zh_Hant': '繼續付款',
     },
     'reg6rfer': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -11645,20 +10739,18 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     '61u31hu9': {
       'en': 'Page Title',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Seitentitel',
+      'fr': 'Titre de la page',
+      'it': 'Titolo della pagina',
+      'ja': 'ページタイトル',
+      'ko': '페이지 제목',
+      'pl': 'Tytuł strony',
+      'ro': 'Titlul paginii',
+      'zh_Hant': '頁面標題',
     },
     'g8irctqq': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -11672,58 +10764,63 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     'xbtmb8lq': {
       'en': 'Create a 6-digit PIN',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Erstellen Sie eine 6-stellige PIN',
+      'fr': 'Créez un code PIN à 6 chiffres',
+      'it': 'Crea un PIN di 6 cifre',
+      'ja': '6桁のPINコードを作成してください',
+      'ko': '6자리 PIN을 생성하세요',
+      'pl': 'Utwórz 6-cyfrowy kod PIN',
+      'ro': 'Creați un cod PIN din 6 cifre',
+      'zh_Hant': '建立一個 6 位數的 PIN 碼',
     },
     'xndfum0e': {
       'en':
           'Create a 6-digit PIN to access your wallet and keep your account secure.',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de':
+          'Erstellen Sie eine 6-stellige PIN, um auf Ihre Wallet zuzugreifen und Ihr Konto zu schützen.',
+      'fr':
+          'Créez un code PIN à 6 chiffres pour accéder à votre portefeuille et sécuriser votre compte.',
+      'it':
+          'Crea un PIN di 6 cifre per accedere al tuo portafoglio e proteggere il tuo account.',
+      'ja': 'ウォレットにアクセスし、アカウントを安全に保つために、6桁のPINコードを作成してください。',
+      'ko': '지갑에 접근하고 계정을 안전하게 보호하려면 6자리 PIN을 생성하세요.',
+      'pl':
+          'Utwórz 6-cyfrowy kod PIN, aby uzyskać dostęp do swojego portfela i zadbać o bezpieczeństwo swojego konta.',
+      'ro':
+          'Creați un cod PIN de 6 cifre pentru a accesa portofelul și a vă menține contul în siguranță.',
+      'zh_Hant': '建立6位數PIN碼以存取您的錢包並確保您的帳戶安全。',
     },
     'ukn906zq': {
       'en':
           'Use a PIN thst is not easy to guess.\nDo not share your PIN with anyon.',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de':
+          'Verwenden Sie eine schwer zu erratende PIN.\nGeben Sie Ihre PIN an niemanden weiter.',
+      'fr':
+          'Utilisez un code PIN difficile à deviner.\n\nNe partagez votre code PIN avec personne.',
+      'it':
+          'Utilizza un PIN difficile da indovinare.\nNon condividere il tuo PIN con nessuno.',
+      'ja': '推測されにくい暗証番号（PIN）を設定してください。\n\n暗証番号は誰にも教えないでください。',
+      'ko': '추측하기 어려운 PIN을 사용하세요.\nPIN을 다른 사람과 공유하지 마세요.',
+      'pl':
+          'Użyj kodu PIN, którego nie da się łatwo odgadnąć.\nNie udostępniaj swojego kodu PIN nikomu.',
+      'ro':
+          'Folosește un cod PIN care nu este ușor de ghicit.\nNu împărtășește codul PIN cu nimeni.',
+      'zh_Hant': '使用不易被猜到的密碼。\n\n不要與任何人分享您的密碼。',
     },
     'q8qm2xa6': {
       'en': 'Set PIN',
-      'de': 'Kontolimits',
-      'es': 'Límites de cuenta',
-      'fr': 'Limites du compte',
-      'it': 'Limiti dell\'account',
-      'ja': 'アカウント制限',
-      'ko': '계좌 한도',
-      'pl': 'Limity konta',
-      'ro': 'Limite de cont',
-      'zh_Hant': '帳戶限額',
+      'de': 'PIN-Einstellung',
+      'fr': 'Définir le code PIN',
+      'it': 'Imposta il PIN',
+      'ja': 'PINを設定する',
+      'ko': 'PIN 설정',
+      'pl': 'Ustaw PIN',
+      'ro': 'Setați codul PIN',
+      'zh_Hant': '設定密碼',
     },
     'bgxyhjo1': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -11737,68 +10834,65 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     '3i1zymtm': {
       'en': 'Confirm Your PIN',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'PIN bestätigen',
+      'fr': 'Confirmez votre code PIN',
+      'it': 'Conferma il tuo PIN',
+      'ja': 'PINを確認してください',
+      'ko': 'PIN을 확인하세요',
+      'pl': 'Potwierdź swój PIN',
+      'ro': 'Confirmați codul PIN',
+      'zh_Hant': '確認您的密碼',
     },
     '4txm5yma': {
       'en': 'Enter your 6_digit PIN again\nto confirm.',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Geben Sie Ihre 6-stellige PIN erneut ein,\num zu bestätigen.',
+      'fr':
+          'Saisissez à nouveau votre code PIN à 6 chiffres\n\npour confirmer.',
+      'it': 'Inserisci nuovamente il tuo PIN di 6 cifre per confermare.',
+      'ja': '確認のため、6桁の暗証番号をもう一度入力してください。',
+      'ko': '확인하려면 6자리 PIN 번호를 다시 입력하세요.',
+      'pl': 'Wprowadź ponownie swój 6-cyfrowy kod PIN,\naby potwierdzić.',
+      'ro':
+          'Introduceți din nou codul PIN format din 6 cifre pentru a confirma.',
+      'zh_Hant': '請再輸入您的6位PIN碼\n\n以確認。',
     },
     '7febudb4': {
       'en': 'Unable to set PIN. Please try again.',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de':
+          'PIN konnte nicht festgelegt werden. Bitte versuchen Sie es erneut.',
+      'fr': 'Impossible de définir le code PIN. Veuillez réessayer.',
+      'it': 'Impossibile impostare il PIN. Riprova.',
+      'ja': 'PINを設定できませんでした。もう一度お試しください。',
+      'ko': 'PIN을 설정할 수 없습니다. 다시 시도해 주세요.',
+      'pl': 'Nie można ustawić kodu PIN. Spróbuj ponownie.',
+      'ro': 'Nu se poate seta codul PIN. Vă rugăm să încercați din nou.',
+      'zh_Hant': '設定密碼失敗，請重試。',
     },
     'zhts5k3r': {
       'en': 'PINs do not match. Please try again.',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Die PINs stimmen nicht überein. Bitte versuchen Sie es erneut.',
+      'fr': 'Les codes PIN ne correspondent pas. Veuillez réessayer.',
+      'it': 'I PIN non corrispondono. Riprova.',
+      'ja': '暗証番号が一致しません。もう一度お試しください。',
+      'ko': 'PIN 번호가 일치하지 않습니다. 다시 시도해 주세요.',
+      'pl': 'Kody PIN nie pasują. Spróbuj ponownie.',
+      'ro': 'Codurile PIN nu se potrivesc. Vă rugăm să încercați din nou.',
+      'zh_Hant': '密碼不匹配，請重試。',
     },
     '59bg55s0': {
       'en': 'Re-enter PIN',
-      'de': 'Kontolimits',
-      'es': 'Límites de cuenta',
-      'fr': 'Limites du compte',
-      'it': 'Limiti dell\'account',
-      'ja': 'アカウント制限',
-      'ko': '계좌 한도',
-      'pl': 'Limity konta',
-      'ro': 'Limite de cont',
-      'zh_Hant': '帳戶限額',
+      'de': 'PIN erneut eingeben',
+      'fr': 'Saisissez à nouveau le code PIN',
+      'it': 'Reinserisci il PIN',
+      'ja': 'PINを再入力してください',
+      'ko': 'PIN을 다시 입력하세요',
+      'pl': 'Wprowadź ponownie PIN',
+      'ro': 'Reintroduceți codul PIN',
+      'zh_Hant': '重新輸入密碼',
     },
     'c50k74yy': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -11812,33 +10906,35 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     '17am52v2': {
       'en': 'Reset Your PIN',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'PIN zurücksetzen',
+      'fr': 'Réinitialisez votre code PIN',
+      'it': 'Reimposta il tuo PIN',
+      'ja': 'PINをリセット',
+      'ko': 'PIN 재설정',
+      'pl': 'Zresetuj swój PIN',
+      'ro': 'Resetează-ți codul PIN',
+      'zh_Hant': '重設您的PIN碼',
     },
     'hln9z8g7': {
       'en':
           'Enter the email and phone number linked to your SchatzWallet account.',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de':
+          'Geben Sie die E-Mail-Adresse und die Telefonnummer ein, die mit Ihrem SchatzWallet-Konto verknüpft sind.',
+      'fr':
+          'Saisissez l\'adresse e-mail et le numéro de téléphone associés à votre compte SchatzWallet.',
+      'it':
+          'Inserisci l\'indirizzo email e il numero di telefono associati al tuo account SchatzWallet.',
+      'ja': 'SchatzWalletアカウントに登録されているメールアドレスと電話番号を入力してください。',
+      'ko': 'SchatzWallet 계정에 연결된 이메일 주소와 전화번호를 입력하세요.',
+      'pl':
+          'Wprowadź adres e-mail i numer telefonu powiązany z Twoim kontem SchatzWallet.',
+      'ro':
+          'Introdu adresa de e-mail și numărul de telefon asociate contului tău SchatzWallet.',
+      'zh_Hant': '輸入與您的 SchatzWallet 帳戶關聯的電子郵件地址和電話號碼。',
     },
     '90ecn9bq': {
       'en': 'Email Address',
       'de': 'E-Mail-Adresse',
-      'es': 'Dirección de correo electrónico',
       'fr': 'Adresse email',
       'it': 'Indirizzo e-mail',
       'ja': '電子メールアドレス',
@@ -11850,7 +10946,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '70oz1vif': {
       'en': 'Enter your email address',
       'de': 'Geben Sie Ihre E-Mail-Adresse ein.',
-      'es': 'Introduce tu dirección de correo electrónico',
       'fr': 'Saisissez votre adresse e-mail',
       'it': 'Inserisci il tuo indirizzo email',
       'ja': 'メールアドレスを入力してください',
@@ -11862,7 +10957,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '884isxcr': {
       'en': 'Phone Numbeer',
       'de': 'Telefonnummer',
-      'es': 'Número de teléfono',
       'fr': 'Numéro de téléphone',
       'it': 'Numero di telefono',
       'ja': '電話番号',
@@ -11874,43 +10968,39 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'krolay2o': {
       'en': 'Enter your phone number',
       'de': 'Geben Sie Ihre Telefonnummer ein',
-      'es': 'Ingrese su número de teléfono',
       'fr': 'Saisissez votre numéro de téléphone',
       'it': 'Inserisci il tuo numero di telefono',
       'ja': '電話番号を入力してください',
       'ko': '전화번호를 입력하세요',
-      'pl': 'Wprowadź swój numer telefonu',
+      'pl': 'Podaj swój numer telefonu',
       'ro': 'Introduceți numărul dvs. de telefon',
       'zh_Hant': '請輸入您的電話號碼',
     },
     'p57zkgk2': {
       'en': 'Send Code',
-      'de': 'Weitermachen',
-      'es': 'Continuar',
-      'fr': 'Continuer',
-      'it': 'Continuare',
-      'ja': '続く',
-      'ko': '계속하다',
-      'pl': 'Kontynuować',
-      'ro': 'Continua',
-      'zh_Hant': '繼續',
+      'de': 'Code senden',
+      'fr': 'Envoyer le code',
+      'it': 'Invia il codice',
+      'ja': '送信コード',
+      'ko': '전송 코드',
+      'pl': 'Wyślij kod',
+      'ro': 'Trimiteți codul',
+      'zh_Hant': '傳送代碼',
     },
     '6zxlu61d': {
       'en': 'Back to Login',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Zurück zum Login',
+      'fr': 'Retour à la connexion',
+      'it': 'Torna alla pagina di accesso',
+      'ja': 'ログイン画面に戻る',
+      'ko': '로그인으로 돌아가기',
+      'pl': 'Powrót do logowania',
+      'ro': 'Înapoi la Autentificare',
+      'zh_Hant': '返回登入',
     },
     'f6kikoxm': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -11924,57 +11014,57 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     '0nsyrptr': {
       'en': 'Enter Verification Code',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Bestätigungscode eingeben',
+      'fr': 'Saisissez le code de vérification',
+      'it': 'Inserisci il codice di verifica',
+      'ja': '確認コードを入力してください',
+      'ko': '인증 코드를 입력하세요',
+      'pl': 'Wprowadź kod weryfikacyjny',
+      'ro': 'Introduceți codul de verificare',
+      'zh_Hant': '請輸入驗證碼',
     },
     '5mbgs4i4': {
       'en':
           'We\'ve sent a 6-digit code to your email. Please enter the code below to continue.',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de':
+          'Wir haben Ihnen einen 6-stelligen Code per E-Mail zugesendet. Bitte geben Sie den Code unten ein, um fortzufahren.',
+      'fr':
+          'Nous vous avons envoyé un code à 6 chiffres par courriel. Veuillez saisir ce code ci-dessous pour continuer.',
+      'it':
+          'Abbiamo inviato un codice di 6 cifre al tuo indirizzo email. Inserisci il codice qui sotto per continuare.',
+      'ja': 'お客様のメールアドレスに6桁のコードを送信しました。続行するには、以下の欄にコードを入力してください。',
+      'ko': '고객님의 이메일로 6자리 인증 코드를 보내드렸습니다. 아래에 코드를 입력하여 진행해 주세요.',
+      'pl':
+          'Wysłaliśmy 6-cyfrowy kod na Twój adres e-mail. Wprowadź kod poniżej, aby kontynuować.',
+      'ro':
+          'Ți-am trimis un cod de 6 cifre la adresa de e-mail. Te rugăm să introduci codul de mai jos pentru a continua.',
+      'zh_Hant': '我們已向您的信箱發送了一封包含6位驗證碼的郵件。請在下方輸入驗證碼以繼續。',
     },
     'kvkkgrzp': {
       'en': 'Didn\'t receive the code?',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Sie haben den Code nicht erhalten?',
+      'fr': 'Vous n\'avez pas reçu le code ?',
+      'it': 'Non hai ricevuto il codice?',
+      'ja': 'コードが届きませんでしたか？',
+      'ko': '코드를 받지 못하셨나요?',
+      'pl': 'Nie otrzymałeś kodu?',
+      'ro': 'Nu ai primit codul?',
+      'zh_Hant': '沒有收到驗證碼？',
     },
     '9n28tqx1': {
       'en': 'Back to Login',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Zurück zum Login',
+      'fr': 'Retour à la connexion',
+      'it': 'Torna alla pagina di accesso',
+      'ja': 'ログイン画面に戻る',
+      'ko': '로그인으로 돌아가기',
+      'pl': 'Powrót do logowania',
+      'ro': 'Înapoi la Autentificare',
+      'zh_Hant': '返回登入',
     },
     'e76l9oi3': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -11988,69 +11078,74 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     'vqkqldp7': {
       'en': 'Face Verification',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Gesichtserkennung',
+      'fr': 'Vérification faciale',
+      'it': 'Verifica del volto',
+      'ja': '顔認証',
+      'ko': '얼굴 인증',
+      'pl': 'Weryfikacja twarzy',
+      'ro': 'Verificare facială',
+      'zh_Hant': '臉部驗證',
     },
     '8czd4h0f': {
       'en':
           'Look at the camera and follow the instrustions to verify it\'s you.',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de':
+          'Schauen Sie in die Kamera und folgen Sie den Anweisungen, um zu bestätigen, dass Sie es sind.',
+      'fr':
+          'Regardez la caméra et suivez les instructions pour confirmer votre identité.',
+      'it':
+          'Guarda la telecamera e segui le istruzioni per verificare che si tratti di te.',
+      'ja': 'カメラを見て、指示に従って本人確認を行ってください。',
+      'ko': '카메라를 보고 지시에 따라 본인임을 확인하세요.',
+      'pl':
+          'Spójrz w kamerę i postępuj zgodnie z instrukcjami, aby upewnić się, że to Ty.',
+      'ro':
+          'Uită-te la cameră și urmează instrucțiunile pentru a verifica identitatea.',
+      'zh_Hant': '看著攝像頭，按照指示操​​作，以確認是你本人。',
     },
     'rhqqm33d': {
       'en': 'Keep your face in the circle',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Halte dein Gesicht im Kreis',
+      'fr': 'Gardez votre visage dans le cercle',
+      'it': 'Mantieni il viso all\'interno del cerchio',
+      'ja': '顔を円の中に収めてください',
+      'ko': '얼굴을 원 안에 넣으세요',
+      'pl': 'Trzymaj twarz w okręgu',
+      'ro': 'Ține-ți fața în cerc',
+      'zh_Hant': '臉部要保持在圓圈內。',
     },
     'k8vao3g8': {
       'en': 'Make sure you\'re in a well-lit area',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de':
+          'Stellen Sie sicher, dass Sie sich in einem gut beleuchteten Bereich befinden.',
+      'fr': 'Assurez-vous d\'être dans un endroit bien éclairé.',
+      'it': 'Assicurati di trovarti in una zona ben illuminata',
+      'ja': '明るい場所にいることを確認してください',
+      'ko': '조명이 밝은 곳에 있는지 확인하세요.',
+      'pl': 'Upewnij się, że znajdujesz się w dobrze oświetlonym miejscu',
+      'ro': 'Asigură-te că te afli într-o zonă bine luminată',
+      'zh_Hant': '請確保你身處光線充足的地方。',
     },
     'jsu3ki2d': {
       'en': 'Follow the on-screen instructions (e.g. blink or turn your head)',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de':
+          'Befolgen Sie die Anweisungen auf dem Bildschirm (z. B. blinzeln oder den Kopf drehen).',
+      'fr':
+          'Suivez les instructions à l\'écran (par exemple, clignez des yeux ou tournez la tête).',
+      'it':
+          'Segui le istruzioni visualizzate sullo schermo (ad esempio, sbatti le palpebre o gira la testa).',
+      'ja': '画面の指示に従ってください（例：まばたきをする、頭を動かすなど）。',
+      'ko': '화면의 지시사항을 따르세요 (예: 눈을 깜빡이거나 고개를 돌리세요).',
+      'pl':
+          'Postępuj zgodnie z instrukcjami wyświetlanymi na ekranie (np. mrugnij lub obróć głowę)',
+      'ro':
+          'Urmați instrucțiunile de pe ecran (de exemplu, clipiți sau întoarceți capul)',
+      'zh_Hant': '請依照螢幕上的指示操作（例如，眨眼或轉頭）。',
     },
     'flqkpnry': {
       'en': 'Continue',
       'de': 'Weitermachen',
-      'es': 'Continuar',
       'fr': 'Continuer',
       'it': 'Continuare',
       'ja': '続く',
@@ -12062,7 +11157,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '54hjef5x': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -12076,104 +11170,97 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     '2b2ev66i': {
       'en': 'Set New PIN',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Neue PIN festlegen',
+      'fr': 'Définir un nouveau code PIN',
+      'it': 'Imposta un nuovo PIN',
+      'ja': '新しいPINを設定',
+      'ko': '새 PIN 설정',
+      'pl': 'Ustaw nowy PIN',
+      'ro': 'Setați noul PIN',
+      'zh_Hant': '設定新密碼',
     },
     'c9p34tgf': {
       'en': 'Create a new 6-digit PIN for your SchatzWallet account.',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de':
+          'Erstellen Sie eine neue 6-stellige PIN für Ihr SchatzWallet-Konto.',
+      'fr':
+          'Créez un nouveau code PIN à 6 chiffres pour votre compte SchatzWallet.',
+      'it': 'Crea un nuovo PIN di 6 cifre per il tuo account SchatzWallet.',
+      'ja': 'SchatzWalletアカウント用に新しい6桁のPINを作成してください。',
+      'ko': 'SchatzWallet 계정에 사용할 새 6자리 PIN을 만드세요.',
+      'pl': 'Utwórz nowy 6-cyfrowy kod PIN dla swojego konta SchatzWallet.',
+      'ro': 'Creați un nou cod PIN de 6 cifre pentru contul dvs. SchatzWallet.',
+      'zh_Hant': '為您的 SchatzWallet 帳戶建立一個新的 6 位數 PIN 碼。',
     },
     's0jssmgg': {
       'en': 'Enter new 6-digit PIN',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Neue 6-stellige PIN eingeben',
+      'fr': 'Saisissez votre nouveau code PIN à 6 chiffres',
+      'it': 'Inserisci il nuovo PIN di 6 cifre',
+      'ja': '新しい6桁の暗証番号を入力してください',
+      'ko': '새로운 6자리 PIN 번호를 입력하세요.',
+      'pl': 'Wprowadź nowy 6-cyfrowy PIN',
+      'ro': 'Introduceți noul cod PIN din 6 cifre',
+      'zh_Hant': '請輸入新的 6 位數 PIN 碼',
     },
     'vydlb9ys': {
       'en': 'Confirm new 6-digit PIN',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Neue 6-stellige PIN bestätigen',
+      'fr': 'Confirmez votre nouveau code PIN à 6 chiffres',
+      'it': 'Conferma il nuovo PIN di 6 cifre',
+      'ja': '新しい6桁のPINを確認してください',
+      'ko': '새로운 6자리 PIN을 확인하세요',
+      'pl': 'Potwierdź nowy 6-cyfrowy PIN',
+      'ro': 'Confirmați noul cod PIN din 6 cifre',
+      'zh_Hant': '確認新的 6 位數 PIN 碼',
     },
     'r5s1qbm3': {
       'en': 'Use 6 digits',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Verwenden Sie 6 Ziffern',
+      'fr': 'Utilisez 6 chiffres',
+      'it': 'Utilizzare 6 cifre',
+      'ja': '6桁の数字を使用してください',
+      'ko': '6자리 숫자를 사용하세요',
+      'pl': 'Użyj 6 cyfr',
+      'ro': 'Folosește 6 cifre',
+      'zh_Hant': '使用6位數字',
     },
     '5q2kp5k3': {
       'en': 'Avoid easy combinations (e.g. 123456)',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Vermeiden Sie einfache Kombinationen (z. B. 123456).',
+      'fr': 'Évitez les combinaisons faciles (par exemple 123456).',
+      'it': 'Evitate combinazioni facili (ad esempio 123456).',
+      'ja': '簡単な組み合わせ（例：123456）は避けてください。',
+      'ko': '쉽게 조합할 수 있는 숫자(예: 123456)는 피하세요.',
+      'pl': 'Unikaj łatwych kombinacji (np. 123456)',
+      'ro': 'Evitați combinațiile ușoare (de exemplu, 123456)',
+      'zh_Hant': '避免使用簡單的組合（例如 123456）',
     },
     '7f190zo9': {
       'en': 'Keep your PIN private',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Halten Sie Ihre PIN geheim',
+      'fr': 'Gardez votre code PIN confidentiel',
+      'it': 'Mantieni riservato il tuo PIN',
+      'ja': 'PINコードは他人に教えないでください',
+      'ko': 'PIN 번호를 안전하게 보관하세요.',
+      'pl': 'Zachowaj swój PIN w tajemnicy',
+      'ro': 'Păstrează-ți codul PIN privat',
+      'zh_Hant': '請務必妥善保管您的PIN碼。',
     },
     '4szwa1m8': {
       'en': 'Reset PIN',
-      'de': 'Weitermachen',
-      'es': 'Continuar',
-      'fr': 'Continuer',
-      'it': 'Continuare',
-      'ja': '続く',
-      'ko': '계속하다',
-      'pl': 'Kontynuować',
-      'ro': 'Continua',
-      'zh_Hant': '繼續',
+      'de': 'PIN zurücksetzen',
+      'fr': 'Réinitialiser le code PIN',
+      'it': 'Reimposta il PIN',
+      'ja': 'PINをリセット',
+      'ko': 'PIN 재설정',
+      'pl': 'Zresetuj PIN',
+      'ro': 'Resetare PIN',
+      'zh_Hant': '重置引腳',
     },
     '9shd1we9': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -12187,176 +11274,161 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     'o1sl7xb0': {
       'en': '500,000',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': '500.000',
+      'fr': '500 000',
+      'it': '500.000',
+      'ja': '50万',
+      'ko': '50만',
+      'pl': '500 000',
+      'ro': '500.000',
+      'zh_Hant': '500,000',
     },
     'ci48rlwu': {
       'en': 'SCHATZ',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'SCHATZ',
+      'fr': 'SCHATZ',
+      'it': 'SCHATZ',
+      'ja': 'シャッツ',
+      'ko': '샤츠',
+      'pl': 'SCHATZ',
+      'ro': 'SCHATZ',
+      'zh_Hant': '沙茨',
     },
     'l09g2r62': {
       'en': '12:10 PM',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': '12:10 Uhr',
+      'fr': '12h10',
+      'it': '12:10 PM',
+      'ja': '午後12時10分',
+      'ko': '오후 12시 10분',
+      'pl': '12:10 po południu',
+      'ro': '12:10 PM',
+      'zh_Hant': '下午12:10',
     },
     'o2sp1ang': {
       'en': '500,000',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': '500.000',
+      'fr': '500 000',
+      'it': '500.000',
+      'ja': '50万',
+      'ko': '50만',
+      'pl': '500 000',
+      'ro': '500.000',
+      'zh_Hant': '500,000',
     },
     'u2o1guqn': {
       'en': 'SCHATZ',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'SCHATZ',
+      'fr': 'SCHATZ',
+      'it': 'SCHATZ',
+      'ja': 'シャッツ',
+      'ko': '샤츠',
+      'pl': 'SCHATZ',
+      'ro': 'SCHATZ',
+      'zh_Hant': '沙茨',
     },
     'yeav06tt': {
       'en': 'SCHZ-1234-GH7K-7864-FH89',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'SCHZ-1234-GH7K-7864-FH89',
+      'fr': 'SCHZ-1234-GH7K-7864-FH89',
+      'it': 'SCHZ-1234-GH7K-7864-FH89',
+      'ja': 'SCHZ-1234-GH7K-7864-FH89',
+      'ko': 'SCHZ-1234-GH7K-7864-FH89',
+      'pl': 'SCHZ-1234-GH7K-7864-FH89',
+      'ro': 'SCHZ-1234-GH7K-7864-FH89',
+      'zh_Hant': 'SCHZ-1234-GH7K-7864-FH89',
     },
     'ofi2qizw': {
       'en': '12:10 PM',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': '12:10 Uhr',
+      'fr': '12h10',
+      'it': '12:10 PM',
+      'ja': '午後12時10分',
+      'ko': '오후 12시 10분',
+      'pl': '12:10 po południu',
+      'ro': '12:10 PM',
+      'zh_Hant': '下午12:10',
     },
     'yu1shnwz': {
       'en': '500,000',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': '500.000',
+      'fr': '500 000',
+      'it': '500.000',
+      'ja': '50万',
+      'ko': '50만',
+      'pl': '500 000',
+      'ro': '500.000',
+      'zh_Hant': '500,000',
     },
     'zy0pjbko': {
       'en': 'SCHATZ',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'SCHATZ',
+      'fr': 'SCHATZ',
+      'it': 'SCHATZ',
+      'ja': 'シャッツ',
+      'ko': '샤츠',
+      'pl': 'SCHATZ',
+      'ro': 'SCHATZ',
+      'zh_Hant': '沙茨',
     },
     'h5czphxe': {
       'en': 'SCHZ-1234-GH7K-7864-FH89',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'SCHZ-1234-GH7K-7864-FH89',
+      'fr': 'SCHZ-1234-GH7K-7864-FH89',
+      'it': 'SCHZ-1234-GH7K-7864-FH89',
+      'ja': 'SCHZ-1234-GH7K-7864-FH89',
+      'ko': 'SCHZ-1234-GH7K-7864-FH89',
+      'pl': 'SCHZ-1234-GH7K-7864-FH89',
+      'ro': 'SCHZ-1234-GH7K-7864-FH89',
+      'zh_Hant': 'SCHZ-1234-GH7K-7864-FH89',
     },
     'ao6o8qgj': {
       'en': '12:10 PM',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': '12:10 Uhr',
+      'fr': '12h10',
+      'it': '12:10 PM',
+      'ja': '午後12時10分',
+      'ko': '오후 12시 10분',
+      'pl': '12:10 po południu',
+      'ro': '12:10 PM',
+      'zh_Hant': '下午12:10',
     },
     'dfpv03gc': {
       'en': '500,000',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': '500.000',
+      'fr': '500 000',
+      'it': '500.000',
+      'ja': '50万',
+      'ko': '50만',
+      'pl': '500 000',
+      'ro': '500.000',
+      'zh_Hant': '500,000',
     },
     'yib7n63a': {
       'en': 'SCHATZ',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'SCHATZ',
+      'fr': 'SCHATZ',
+      'it': 'SCHATZ',
+      'ja': 'シャッツ',
+      'ko': '샤츠',
+      'pl': 'SCHATZ',
+      'ro': 'SCHATZ',
+      'zh_Hant': '沙茨',
     },
     'cgssyxvz': {
       'en': '12:10 PM',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': '12:10 Uhr',
+      'fr': '12h10',
+      'it': '12:10 PM',
+      'ja': '午後12時10分',
+      'ko': '오후 12시 10분',
+      'pl': '12:10 po południu',
+      'ro': '12:10 PM',
+      'zh_Hant': '下午12:10',
     },
     '8sdf17ls': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -12370,20 +11442,18 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     '913y0frn': {
       'en': 'Media Quality',
-      'de': 'Seitentitel',
-      'es': 'Título de la página',
-      'fr': 'Titre de la page',
-      'it': 'Titolo della pagina',
-      'ja': 'ページタイトル',
-      'ko': '페이지 제목',
-      'pl': 'Tytuł strony',
-      'ro': 'Titlul paginii',
-      'zh_Hant': '頁面標題',
+      'de': 'Medienqualität',
+      'fr': 'Qualité des médias',
+      'it': 'Qualità dei media',
+      'ja': 'メディア品質',
+      'ko': '미디어 품질',
+      'pl': 'Jakość mediów',
+      'ro': 'Calitatea media',
+      'zh_Hant': '媒體品質',
     },
     'iq1bzqn4': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -12397,20 +11467,18 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     'uqothbwn': {
       'en': 'Scheduled calls',
-      'de': 'Seitentitel',
-      'es': 'Título de la página',
-      'fr': 'Titre de la page',
-      'it': 'Titolo della pagina',
-      'ja': 'ページタイトル',
-      'ko': '페이지 제목',
-      'pl': 'Tytuł strony',
-      'ro': 'Titlul paginii',
-      'zh_Hant': '頁面標題',
+      'de': 'Geplante Anrufe',
+      'fr': 'Appels programmés',
+      'it': 'chiamate programmate',
+      'ja': '予定された通話',
+      'ko': '예정된 통화',
+      'pl': 'Zaplanowane połączenia',
+      'ro': 'Apeluri programate',
+      'zh_Hant': '預定通話',
     },
     'k4jmlhz8': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -12425,7 +11493,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ueelsyh5': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -12439,20 +11506,18 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     'wpplqvg7': {
       'en': 'Group Members',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Gruppenmitglieder',
+      'fr': 'Membres du groupe',
+      'it': 'Membri del gruppo',
+      'ja': 'グループメンバー',
+      'ko': '그룹 구성원',
+      'pl': 'Członkowie grupy',
+      'ro': 'Membrii grupului',
+      'zh_Hant': '團隊成員',
     },
     'ak6i3k12': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -12467,7 +11532,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '77651bll': {
       'en': 'Page Title',
       'de': 'Seitentitel',
-      'es': 'Título de la página',
       'fr': 'Titre de la page',
       'it': 'Titolo della pagina',
       'ja': 'ページタイトル',
@@ -12479,7 +11543,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '95ddcly5': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -12493,20 +11556,18 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     '5jo8dq1m': {
       'en': 'Private Chat',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Privater Chat',
+      'fr': 'Discussion privée',
+      'it': 'Chat privata',
+      'ja': 'プライベートチャット',
+      'ko': '개인 채팅',
+      'pl': 'Prywatny czat',
+      'ro': 'Chat privat',
+      'zh_Hant': '私聊',
     },
     '9hlwlqto': {
       'en': 'Home',
       'de': 'Heim',
-      'es': 'Hogar',
       'fr': 'Maison',
       'it': 'Casa',
       'ja': '家',
@@ -12521,7 +11582,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'jl9mmc5j': {
       'en': 'Emma Johnson',
       'de': 'Emma Johnson',
-      'es': 'Emma Johnson',
       'fr': 'Emma Johnson',
       'it': 'Emma Johnson',
       'ja': 'エマ・ジョンソン',
@@ -12533,7 +11593,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '7x3trt9v': {
       'en': 'Online',
       'de': 'Online',
-      'es': 'En línea',
       'fr': 'En ligne',
       'it': 'Online',
       'ja': 'オンライン',
@@ -12547,12 +11606,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
           'jdjjfj jffkf fkkkkfk ssksk sksks sksks sksksks sksks sksms sksks sks sksks sksk',
       'de':
           'jdjjfj jffkf fkkkkfk ssksk sksks sksks sksksks sksks sksms sksks sks sksks sksk',
-      'es':
-          'jdjjfj jffkf fkkkkfk ssksk sksks sksks sksksks sksks sksms sksks sks sksks sksk',
       'fr':
           'jdjjfj jffkf fkkkkfk ssksk sksks sksks sksksks sksks sksms sks sks sksks sksk',
       'it':
-          'jdjjfj jffkf fkkkkfk ssksk sksks sksks sksksks sksks sksms sksks sks sksks sksk',
+          'jdjjfj jffkf fkkkkfk ssksk sksks sksks sksks sksks sksms sksks sks sksks sksk',
       'ja':
           'jdjjfj jffkf fkkkkfk ssksk sksks sksks sksksks sksks sksms sksks sks sksks sksk',
       'ko':
@@ -12567,7 +11624,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'asnkff7t': {
       'en': '12:10 PM',
       'de': '12:10 Uhr',
-      'es': '12:10 PM',
       'fr': '12h10',
       'it': '12:10 PM',
       'ja': '午後12時10分',
@@ -12581,8 +11637,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
           'Hello, how are you doing, i hope that \nyou fine, i pray that God help us, ',
       'de':
           'Hallo, wie geht es dir? Ich hoffe, es geht dir gut. Ich bete, dass Gott uns beisteht.',
-      'es':
-          'Hola, ¿cómo estás? Espero que estés bien. Rezo para que Dios nos ayude.',
       'fr':
           'Bonjour, comment allez-vous ? J\'espère que vous allez bien.\n\nJe prie pour que Dieu nous aide.',
       'it': 'Ciao, come stai? Spero che tu stia bene. Prego che Dio ci aiuti.',
@@ -12597,7 +11651,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '69a1rjrr': {
       'en': '12:10 PM',
       'de': '12:10 Uhr',
-      'es': '12:10 PM',
       'fr': '12h10',
       'it': '12:10 PM',
       'ja': '午後12時10分',
@@ -12611,8 +11664,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
           'Certain products require more information than the default request attributes. Here we list the additional requirements that needs to be inclu object of the gift card order request.',
       'de':
           'Für bestimmte Produkte werden mehr Informationen benötigt als die standardmäßigen Anfrageattribute. Hier listen wir die zusätzlichen Anforderungen auf, die im Rahmen der Geschenkkartenbestellung berücksichtigt werden müssen.',
-      'es':
-          'Algunos productos requieren más información que los atributos de solicitud predeterminados. A continuación, enumeramos los requisitos adicionales que deben incluirse en la solicitud de pedido de tarjeta de regalo.',
       'fr':
           'Certains produits nécessitent des informations supplémentaires par rapport aux attributs de requête par défaut. Vous trouverez ci-dessous la liste des exigences additionnelles à inclure dans l\'objet de la demande de commande de carte-cadeau.',
       'it':
@@ -12630,7 +11681,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'p1klkjyo': {
       'en': '12:10 PM',
       'de': '12:10 Uhr',
-      'es': '12:10 PM',
       'fr': '12h10',
       'it': '12:10 PM',
       'ja': '午後12時10分',
@@ -12642,7 +11692,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'fkqlxqpe': {
       'en': 'Archive',
       'de': 'Archiv',
-      'es': 'Archivo',
       'fr': 'Archive',
       'it': 'Archivio',
       'ja': 'アーカイブ',
@@ -12654,7 +11703,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'rc2ip2a2': {
       'en': 'Pin',
       'de': 'Stift',
-      'es': 'Alfiler',
       'fr': 'Épingle',
       'it': 'Spillo',
       'ja': 'ピン',
@@ -12666,7 +11714,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'xawa2vy0': {
       'en': 'Block',
       'de': 'Block',
-      'es': 'Bloquear',
       'fr': 'Bloc',
       'it': 'Bloccare',
       'ja': 'ブロック',
@@ -12678,7 +11725,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ttads89t': {
       'en': 'Share to story',
       'de': 'Zur Story teilen',
-      'es': 'Compartir en la historia',
       'fr': 'Partager l\'histoire',
       'it': 'Condividi nella storia',
       'ja': 'ストーリーにシェアする',
@@ -12690,7 +11736,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'z0809e55': {
       'en': 'Save Image',
       'de': 'Bild speichern',
-      'es': 'Salvar el imagen',
       'fr': 'Enregistrer l\'image',
       'it': 'Salva immagine',
       'ja': '画像を保存',
@@ -12705,7 +11750,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '809vpgcz': {
       'en': 'New user',
       'de': 'Neuer Benutzer',
-      'es': 'Nuevo usuario',
       'fr': 'Nouvel utilisateur',
       'it': 'Nuovo utente',
       'ja': '新規ユーザー',
@@ -12717,7 +11761,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'zjjnm6jl': {
       'en': 'Create group',
       'de': 'Gruppe erstellen',
-      'es': 'Crear grupo',
       'fr': 'Créer un groupe',
       'it': 'Crea gruppo',
       'ja': 'グループを作成する',
@@ -12732,7 +11775,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ncwevaw5': {
       'en': 'Create New Group',
       'de': 'Neue Gruppe erstellen',
-      'es': 'Crear nuevo grupo',
       'fr': 'Créer un nouveau groupe',
       'it': 'Crea un nuovo gruppo',
       'ja': '新しいグループを作成する',
@@ -12744,7 +11786,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'orlsknst': {
       'en': 'Create',
       'de': 'Erstellen',
-      'es': 'Crear',
       'fr': 'Créer',
       'it': 'Creare',
       'ja': '作成する',
@@ -12756,7 +11797,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'k3p0g1vv': {
       'en': 'Add Group Photo',
       'de': 'Gruppenfoto hinzufügen',
-      'es': 'Agregar foto de grupo',
       'fr': 'Ajouter une photo de groupe',
       'it': 'Aggiungi foto di gruppo',
       'ja': 'グループ写真を追加',
@@ -12768,7 +11808,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'd9vu18sl': {
       'en': 'JPG, PNG or GIF, Max 5MB',
       'de': 'JPG, PNG oder GIF, maximal 5 MB',
-      'es': 'JPG, PNG o GIF, máximo 5 MB',
       'fr': 'JPG, PNG ou GIF, 5 Mo maximum',
       'it': 'JPG, PNG o GIF, massimo 5 MB',
       'ja': 'JPG、PNG、またはGIF形式、最大5MB',
@@ -12780,20 +11819,25 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'oz7nbeml': {
       'en':
           'Calls, files and location are disabled. Only the creator or an admin can remove it, and removing it deletes the group.',
-      'de': 'JPG, PNG oder GIF, maximal 5 MB',
-      'es': 'JPG, PNG o GIF, máximo 5 MB',
-      'fr': 'JPG, PNG ou GIF, 5 Mo maximum',
-      'it': 'JPG, PNG o GIF, massimo 5 MB',
-      'ja': 'JPG、PNG、またはGIF形式、最大5MB',
-      'ko': 'JPG, PNG 또는 GIF 형식, 최대 5MB',
-      'pl': 'JPG, PNG lub GIF, maks. 5 MB',
-      'ro': 'JPG, PNG sau GIF, maxim 5 MB',
-      'zh_Hant': 'JPG、PNG 或 GIF 格式，最大 5MB',
+      'de':
+          'Anrufe, Dateien und Standort sind deaktiviert. Nur der Ersteller oder ein Administrator kann die Gruppe entfernen; durch das Entfernen wird die Gruppe gelöscht.',
+      'fr':
+          'Les appels, les fichiers et la géolocalisation sont désactivés. Seul le créateur ou un administrateur peut le supprimer, et sa suppression entraîne la suppression du groupe.',
+      'it':
+          'Chiamate, file e posizione sono disabilitati. Solo il creatore o un amministratore possono rimuoverlo e la rimozione comporta l\'eliminazione del gruppo.',
+      'ja':
+          '通話、ファイル、位置情報へのアクセスは無効になっています。削除できるのは作成者または管理者のみで、削除するとグループ自体も削除されます。',
+      'ko':
+          '통화, 파일 및 위치 접근이 비활성화됩니다. 생성자 또는 관리자만 이 기능을 해제할 수 있으며, 해제하면 그룹도 삭제됩니다.',
+      'pl':
+          'Połączenia, pliki i lokalizacja są wyłączone. Tylko twórca lub administrator może je usunąć, a ich usunięcie powoduje usunięcie grupy.',
+      'ro':
+          'Apelurile, fișierele și locația sunt dezactivate. Doar creatorul sau un administrator le poate elimina, iar eliminarea lor șterge grupul.',
+      'zh_Hant': '通話、文件和位置功能已停用。只有創建者或管理員才能刪除此功能，刪除後群組也會被刪除。',
     },
     '0wq8znsz': {
       'en': 'Group Name',
       'de': 'Gruppenname',
-      'es': 'Nombre del grupo',
       'fr': 'Nom du groupe',
       'it': 'Nome del gruppo',
       'ja': 'グループ名',
@@ -12805,7 +11849,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'a3ohonpv': {
       'en': 'Enter Group name...',
       'de': 'Geben Sie den Gruppennamen ein...',
-      'es': 'Introduzca el nombre del grupo...',
       'fr': 'Saisissez le nom du groupe...',
       'it': 'Inserisci il nome del gruppo...',
       'ja': 'グループ名を入力してください...',
@@ -12817,7 +11860,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '3qjokk7t': {
       'en': 'Add Members',
       'de': 'Mitglieder hinzufügen',
-      'es': 'Agregar miembros',
       'fr': 'Ajouter des membres',
       'it': 'Aggiungi membri',
       'ja': 'メンバーを追加する',
@@ -12829,7 +11871,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ai58gw0o': {
       'en': 'Enter Member\'s name...',
       'de': 'Geben Sie den Namen des Mitglieds ein...',
-      'es': 'Ingrese el nombre del miembro...',
       'fr': 'Veuillez saisir le nom du membre...',
       'it': 'Inserisci il nome del membro...',
       'ja': '会員名を入力してください...',
@@ -12844,7 +11885,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'smzwh7j6': {
       'en': 'SchatzApp',
       'de': 'SchatzApp',
-      'es': 'Aplicación Schatz',
       'fr': 'SchatzApp',
       'it': 'SchatzApp',
       'ja': 'SchatzApp',
@@ -12856,7 +11896,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '214zqod9': {
       'en': 'Secure . Verify . Trust',
       'de': 'Sichern. Überprüfen. Vertrauen.',
-      'es': 'Asegurar. Verificar. Confiar.',
       'fr': 'Sécuriser. Vérifier. Faire confiance.',
       'it': 'Sicuro. Verifica. Fidati.',
       'ja': '安全。検証。信頼。',
@@ -12868,7 +11907,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '8250a8nq': {
       'en': 'MAIN',
       'de': 'HAUPTSÄCHLICH',
-      'es': 'PRINCIPAL',
       'fr': 'PRINCIPAL',
       'it': 'PRINCIPALE',
       'ja': '主要',
@@ -12880,7 +11918,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'gpbk7pfj': {
       'en': 'Dashboard',
       'de': 'Armaturenbrett',
-      'es': 'Panel',
       'fr': 'Tableau de bord',
       'it': 'Pannello di controllo',
       'ja': 'ダッシュボード',
@@ -12892,7 +11929,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'jyqwmne9': {
       'en': 'Users',
       'de': 'Benutzer',
-      'es': 'Usuarios',
       'fr': 'Utilisateurs',
       'it': 'Utenti',
       'ja': 'ユーザー',
@@ -12904,7 +11940,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '58mtjfa0': {
       'en': 'Role & Permissions',
       'de': 'Rolle & Berechtigungen',
-      'es': 'Rol y permisos',
       'fr': 'Rôle et permissions',
       'it': 'Ruolo e autorizzazioni',
       'ja': '役割と権限',
@@ -12916,7 +11951,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'jtcvbhzb': {
       'en': 'KYC Verification',
       'de': 'KYC-Verifizierung',
-      'es': 'Verificación KYC',
       'fr': 'Vérification KYC',
       'it': 'Verifica KYC',
       'ja': 'KYC認証',
@@ -12928,7 +11962,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'x2cfqpge': {
       'en': 'Transactions',
       'de': 'Transaktionen',
-      'es': 'Actas',
       'fr': 'Transactions',
       'it': 'Transazioni',
       'ja': '取引',
@@ -12940,7 +11973,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '3ckuekb1': {
       'en': 'Wallets',
       'de': 'Geldbörsen',
-      'es': 'Carteras',
       'fr': 'Portefeuilles',
       'it': 'Portafogli',
       'ja': '財布',
@@ -12952,7 +11984,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '8hnf01z8': {
       'en': 'Reports',
       'de': 'Berichte',
-      'es': 'Informes',
       'fr': 'Rapports',
       'it': 'Rapporti',
       'ja': '報告書',
@@ -12964,7 +11995,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ap0rt3yp': {
       'en': 'Disputes',
       'de': 'Streitigkeiten',
-      'es': 'Disputas',
       'fr': 'Litiges',
       'it': 'Controversie',
       'ja': '紛争',
@@ -12976,7 +12006,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'hlo8xsdo': {
       'en': 'COMMUNICATION',
       'de': 'KOMMUNIKATION',
-      'es': 'COMUNICACIÓN',
       'fr': 'COMMUNICATION',
       'it': 'COMUNICAZIONE',
       'ja': 'コミュニケーション',
@@ -12988,7 +12017,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'cfhrgbjp': {
       'en': 'Notifications',
       'de': 'Benachrichtigungen',
-      'es': 'Notificaciones',
       'fr': 'Notifications',
       'it': 'Notifiche',
       'ja': '通知',
@@ -13000,8 +12028,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'w05jx94d': {
       'en': 'Support Tickets',
       'de': 'Support-Tickets',
-      'es': 'Tickets de soporte',
-      'fr': 'Tickets d\'assistance',
+      'fr': 'Billets d\'assistance',
       'it': 'Biglietti di supporto',
       'ja': 'サポートチケット',
       'ko': '지원 티켓',
@@ -13012,7 +12039,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'cq4lpmvd': {
       'en': 'SYSTEM',
       'de': 'SYSTEM',
-      'es': 'SISTEMA',
       'fr': 'SYSTÈME',
       'it': 'SISTEMA',
       'ja': 'システム',
@@ -13024,7 +12050,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '3vc2qm7b': {
       'en': 'Audit Logs',
       'de': 'Audit-Protokolle',
-      'es': 'Registros de auditoría',
       'fr': 'Journaux d\'audit',
       'it': 'Registri di controllo',
       'ja': '監査ログ',
@@ -13036,7 +12061,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'roy34sgc': {
       'en': 'System Settings',
       'de': 'Systemeinstellungen',
-      'es': 'Configuración del sistema',
       'fr': 'Paramètres système',
       'it': 'Impostazioni di sistema',
       'ja': 'システム設定',
@@ -13048,7 +12072,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'kcqdr6fk': {
       'en': 'Emma Johnson',
       'de': 'Emma Johnson',
-      'es': 'Emma Johnson',
       'fr': 'Emma Johnson',
       'it': 'Emma Johnson',
       'ja': 'エマ・ジョンソン',
@@ -13060,7 +12083,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'qiaa2cy1': {
       'en': 'Super Admin',
       'de': 'Super-Admin',
-      'es': 'Superadministrador',
       'fr': 'Super Administrateur',
       'it': 'Super amministratore',
       'ja': 'スーパー管理者',
@@ -13075,10 +12097,9 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'h5q77g5n': {
       'en': 'New call',
       'de': 'Neuer Anruf',
-      'es': 'Nueva llamada',
       'fr': 'Nouvel appel',
       'it': 'Nuova chiamata',
-      'ja': '新しい電話',
+      'ja': '新しい呼び出し',
       'ko': '새로운 전화',
       'pl': 'Nowe połączenie',
       'ro': 'Apel nou',
@@ -13090,7 +12111,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'zg49d2wy': {
       'en': 'Search Country',
       'de': 'Land suchen',
-      'es': 'Buscar país',
       'fr': 'Rechercher un pays',
       'it': 'Cerca Paese',
       'ja': '国を検索',
@@ -13102,7 +12122,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '771d10id': {
       'en': 'Search country name or Country code',
       'de': 'Ländernamen oder Ländercode suchen',
-      'es': 'Buscar nombre de país o código de país',
       'fr': 'Rechercher le nom du pays ou le code pays',
       'it': 'Cerca il nome del paese o il codice del paese',
       'ja': '国名または国コードで検索',
@@ -13117,7 +12136,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'out36hsh': {
       'en': 'Share Contact',
       'de': 'Kontakt teilen',
-      'es': 'Compartir contacto',
       'fr': 'Partager le contact',
       'it': 'Condividi Contatto',
       'ja': '連絡先を共有する',
@@ -13129,7 +12147,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'tko9w658': {
       'en': 'Clear Chat',
       'de': 'Chat löschen',
-      'es': 'Chat claro',
       'fr': 'Clear Chat',
       'it': 'Clear Chat',
       'ja': 'クリアチャット',
@@ -13141,7 +12158,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ndbcz9bs': {
       'en': 'Export Chat',
       'de': 'Chat exportieren',
-      'es': 'Exportar chat',
       'fr': 'Exporter le chat',
       'it': 'Chat di esportazione',
       'ja': 'チャットをエクスポート',
@@ -13156,7 +12172,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '3vdu8eft': {
       'en': 'Open link',
       'de': 'Link öffnen',
-      'es': 'Abrir enlace',
       'fr': 'Ouvrir le lien',
       'it': 'Apri il link',
       'ja': 'リンクを開く',
@@ -13168,7 +12183,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'phc07z39': {
       'en': 'Go to message',
       'de': 'Zur Nachricht gehen',
-      'es': 'Ir al mensaje',
       'fr': 'Aller au message',
       'it': 'Vai al messaggio',
       'ja': 'メッセージへ移動',
@@ -13180,7 +12194,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'vajopyhs': {
       'en': 'Mark as important',
       'de': 'Als wichtig markieren',
-      'es': 'Marcar como importante',
       'fr': 'Marquer comme important',
       'it': 'Contrassegna come importante',
       'ja': '重要としてマークする',
@@ -13192,7 +12205,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '1fgkf3jq': {
       'en': 'Share',
       'de': 'Aktie',
-      'es': 'Compartir',
       'fr': 'Partager',
       'it': 'Condividere',
       'ja': '共有',
@@ -13204,7 +12216,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'srbnbzuo': {
       'en': 'Delete',
       'de': 'Löschen',
-      'es': 'Borrar',
       'fr': 'Supprimer',
       'it': 'Eliminare',
       'ja': '消去',
@@ -13219,7 +12230,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'xxhk5c8c': {
       'en': 'SchatzApp',
       'de': 'SchatzApp',
-      'es': 'Aplicación Schatz',
       'fr': 'SchatzApp',
       'it': 'SchatzApp',
       'ja': 'SchatzApp',
@@ -13231,7 +12241,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'rifosbb3': {
       'en': 'Chats',
       'de': 'Chats',
-      'es': 'Chats',
       'fr': 'Discussions',
       'it': 'Chat',
       'ja': 'チャット',
@@ -13243,7 +12252,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'edy2xbn2': {
       'en': 'Calls',
       'de': 'Anrufe',
-      'es': 'Llamadas',
       'fr': 'Appels',
       'it': 'Chiamate',
       'ja': '電話',
@@ -13255,7 +12263,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'zdsbf82d': {
       'en': 'Wallets',
       'de': 'Geldbörsen',
-      'es': 'Carteras',
       'fr': 'Portefeuilles',
       'it': 'Portafogli',
       'ja': '財布',
@@ -13267,7 +12274,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'gn7487tl': {
       'en': 'Stories',
       'de': 'Geschichten',
-      'es': 'Historias',
       'fr': 'Histoires',
       'it': 'Abiti',
       'ja': '物語',
@@ -13279,7 +12285,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'lxcdiin3': {
       'en': 'Profile',
       'de': 'Profil',
-      'es': 'Perfil',
       'fr': 'Profil',
       'it': 'Profilo',
       'ja': 'プロフィール',
@@ -13294,7 +12299,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'sgqhwyu3': {
       'en': 'Select Country',
       'de': 'Land auswählen',
-      'es': 'Seleccione país',
       'fr': 'Sélectionner un pays',
       'it': 'Seleziona il Paese',
       'ja': '国を選択',
@@ -13306,7 +12310,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'qcif8jz4': {
       'en': 'Search For Countries',
       'de': 'Ländersuche',
-      'es': 'Buscar países',
       'fr': 'Recherche de pays',
       'it': 'Ricerca di Paesi',
       'ja': '国を検索する',
@@ -13321,7 +12324,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '3n09vn9o': {
       'en': 'Photos',
       'de': 'Fotos',
-      'es': 'Fotos',
       'fr': 'Photos',
       'it': 'Foto',
       'ja': '写真',
@@ -13333,7 +12335,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'fzixmkzj': {
       'en': 'Show All',
       'de': 'Alle anzeigen',
-      'es': 'Mostrar todo',
       'fr': 'Afficher tout',
       'it': 'Mostra tutto',
       'ja': 'すべて表示',
@@ -13345,7 +12346,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'gus1as5l': {
       'en': '1',
       'de': '1',
-      'es': '1',
       'fr': '1',
       'it': '1',
       'ja': '1',
@@ -13357,7 +12357,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'sg6p4qyo': {
       'en': 'Document',
       'de': 'Dokumentieren',
-      'es': 'Documento',
       'fr': 'Document',
       'it': 'Documento',
       'ja': '書類',
@@ -13369,7 +12368,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'xccinoiy': {
       'en': 'Location',
       'de': 'Standort',
-      'es': 'Ubicación',
       'fr': 'Emplacement',
       'it': 'Posizione',
       'ja': '位置',
@@ -13381,7 +12379,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'jcgs3xds': {
       'en': 'Schedule message',
       'de': 'Nachricht planen',
-      'es': 'Mensaje programado',
       'fr': 'Message programmé',
       'it': 'Messaggio programmato',
       'ja': 'スケジュールメッセージ',
@@ -13393,7 +12390,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'rpuzi7v2': {
       'en': 'Share Contact',
       'de': 'Kontakt teilen',
-      'es': 'Compartir contacto',
       'fr': 'Partager le contact',
       'it': 'Condividi Contatto',
       'ja': '連絡先を共有する',
@@ -13405,7 +12401,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '9xhg4d3m': {
       'en': '1',
       'de': '1',
-      'es': '1',
       'fr': '1',
       'it': '1',
       'ja': '1',
@@ -13417,7 +12412,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '6xv7wbgr': {
       'en': '1',
       'de': '1',
-      'es': '1',
       'fr': '1',
       'it': '1',
       'ja': '1',
@@ -13429,7 +12423,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'xjy9fi16': {
       'en': '1',
       'de': '1',
-      'es': '1',
       'fr': '1',
       'it': '1',
       'ja': '1',
@@ -13441,7 +12434,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'dm7rhuxj': {
       'en': '1',
       'de': '1',
-      'es': '1',
       'fr': '1',
       'it': '1',
       'ja': '1',
@@ -13453,7 +12445,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ikngwch0': {
       'en': '1',
       'de': '1',
-      'es': '1',
       'fr': '1',
       'it': '1',
       'ja': '1',
@@ -13465,7 +12456,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'rk003v4c': {
       'en': '1',
       'de': '1',
-      'es': '1',
       'fr': '1',
       'it': '1',
       'ja': '1',
@@ -13477,7 +12467,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'i1qho5ii': {
       'en': '1',
       'de': '1',
-      'es': '1',
       'fr': '1',
       'it': '1',
       'ja': '1',
@@ -13489,7 +12478,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ynnylqaw': {
       'en': '1',
       'de': '1',
-      'es': '1',
       'fr': '1',
       'it': '1',
       'ja': '1',
@@ -13504,7 +12492,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '3d8ik3p4': {
       'en': 'Reply',
       'de': 'Antwort',
-      'es': 'Responder',
       'fr': 'Répondre',
       'it': 'Rispondere',
       'ja': '返事',
@@ -13516,7 +12503,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'k4cph5ap': {
       'en': 'Forward',
       'de': 'Nach vorne',
-      'es': 'Adelante',
       'fr': 'Avant',
       'it': 'Inoltrare',
       'ja': 'フォワード',
@@ -13528,7 +12514,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ys7s349f': {
       'en': 'Copy',
       'de': 'Kopie',
-      'es': 'Copiar',
       'fr': 'Copie',
       'it': 'Copia',
       'ja': 'コピー',
@@ -13540,7 +12525,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'j9j9i7kd': {
       'en': 'Pin',
       'de': 'Stift',
-      'es': 'Alfiler',
       'fr': 'Épingle',
       'it': 'Spillo',
       'ja': 'ピン',
@@ -13552,7 +12536,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'g97n73fp': {
       'en': 'Mark as important',
       'de': 'Als wichtig markieren',
-      'es': 'Marcar como importante',
       'fr': 'Marquer comme important',
       'it': 'Contrassegna come importante',
       'ja': '重要としてマークする',
@@ -13564,7 +12547,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ucakczjh': {
       'en': 'Delete',
       'de': 'Löschen',
-      'es': 'Borrar',
       'fr': 'Supprimer',
       'it': 'Eliminare',
       'ja': '消去',
@@ -13579,7 +12561,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'dcbcsmb0': {
       'en': 'Exit this group',
       'de': 'Diese Gruppe verlassen',
-      'es': 'Salir de este grupo',
       'fr': 'Quitter ce groupe',
       'it': 'Esci da questo gruppo',
       'ja': 'このグループから退出する',
@@ -13591,7 +12572,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'zyvcaq0i': {
       'en': 'Exit and delete for me',
       'de': 'Beenden und löschen für mich',
-      'es': 'Salir y borrar por mí',
       'fr': 'Quittez et supprimez pour moi',
       'it': 'Esci ed elimina per me',
       'ja': '終了して削除してください',
@@ -13606,7 +12586,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'orz7nyad': {
       'en': 'Add Members To Group',
       'de': 'Mitglieder zur Gruppe hinzufügen',
-      'es': 'Agregar miembros al grupo',
       'fr': 'Ajouter des membres au groupe',
       'it': 'Aggiungi membri al gruppo',
       'ja': 'グループにメンバーを追加する',
@@ -13618,7 +12597,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'vhy27rab': {
       'en': 'Add',
       'de': 'Hinzufügen',
-      'es': 'Agregar',
       'fr': 'Ajouter',
       'it': 'Aggiungere',
       'ja': '追加',
@@ -13630,7 +12608,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'lc3301nd': {
       'en': 'Enter Member\'s name...',
       'de': 'Geben Sie den Namen des Mitglieds ein...',
-      'es': 'Ingrese el nombre del miembro...',
       'fr': 'Veuillez saisir le nom du membre...',
       'it': 'Inserisci il nome del membro...',
       'ja': '会員名を入力してください...',
@@ -13645,7 +12622,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'i2w7r3qc': {
       'en': 'End',
       'de': 'Ende',
-      'es': 'Fin',
       'fr': 'Fin',
       'it': 'FINE',
       'ja': '終わり',
@@ -13657,7 +12633,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'v14msdmt': {
       'en': 'Accept',
       'de': 'Akzeptieren',
-      'es': 'Aceptar',
       'fr': 'Accepter',
       'it': 'Accettare',
       'ja': '受け入れる',
@@ -13672,7 +12647,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '7ax8lyzn': {
       'en': 'Select chat',
       'de': 'Chat auswählen',
-      'es': 'Seleccionar chat',
       'fr': 'Sélectionnez une conversation',
       'it': 'Seleziona la chat',
       'ja': 'チャットを選択',
@@ -13684,7 +12658,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '19chacr3': {
       'en': 'Read all',
       'de': 'Lesen Sie alles',
-      'es': 'Leer todo',
       'fr': 'Lire tout',
       'it': 'Leggi tutto',
       'ja': 'すべて読む',
@@ -13699,7 +12672,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'v5vv45xj': {
       'en': 'Select call',
       'de': 'Anruf auswählen',
-      'es': 'Seleccionar llamada',
       'fr': 'Appel sélectionné',
       'it': 'Seleziona la chiamata',
       'ja': '選択通話',
@@ -13711,7 +12683,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'tbc0a1wu': {
       'en': 'Scheduled calls',
       'de': 'Geplante Anrufe',
-      'es': 'Llamadas programadas',
       'fr': 'Appels programmés',
       'it': 'chiamate programmate',
       'ja': '予定された通話',
@@ -13726,7 +12697,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '84y7ddut': {
       'en': 'Archive',
       'de': 'Archiv',
-      'es': 'Archivo',
       'fr': 'Archive',
       'it': 'Archivio',
       'ja': 'アーカイブ',
@@ -13738,7 +12708,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'mzog34sy': {
       'en': 'Delete',
       'de': 'Löschen',
-      'es': 'Borrar',
       'fr': 'Supprimer',
       'it': 'Eliminare',
       'ja': '消去',
@@ -13753,7 +12722,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'm05qgj2q': {
       'en': 'people viewed your story',
       'de': 'Menschen haben deine Geschichte angesehen',
-      'es': 'La gente vio tu historia',
       'fr': 'Des personnes ont consulté votre histoire',
       'it': 'persone hanno visualizzato la tua storia',
       'ja': 'あなたのストーリーを見た人は',
@@ -13765,7 +12733,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '6kjcxky1': {
       'en': 'Share',
       'de': 'Aktie',
-      'es': 'Compartir',
       'fr': 'Partager',
       'it': 'Condividere',
       'ja': '共有',
@@ -13777,7 +12744,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'vhdj6sfm': {
       'en': 'Search viewer...',
       'de': 'Suchanzeige...',
-      'es': 'visor de búsqueda...',
       'fr': 'Visionneuse de recherche...',
       'it': 'Visualizzatore di ricerca...',
       'ja': '検索ビューア...',
@@ -13792,7 +12758,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'a5zmu1z2': {
       'en': 'Search viewer...',
       'de': 'Suchanzeige...',
-      'es': 'visor de búsqueda...',
       'fr': 'Visionneuse de recherche...',
       'it': 'Visualizzatore di ricerca...',
       'ja': '検索ビューア...',
@@ -13804,7 +12769,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'y1urvw6s': {
       'en': 'Emma Johnson',
       'de': 'Emma Johnson',
-      'es': 'Emma Johnson',
       'fr': 'Emma Johnson',
       'it': 'Emma Johnson',
       'ja': 'エマ・ジョンソン',
@@ -13816,7 +12780,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'lk3dkneb': {
       'en': 'Mr wealth',
       'de': 'Herr Reichtum',
-      'es': 'Señor riqueza',
       'fr': 'Monsieur Richesse',
       'it': 'signor ricchezza',
       'ja': '富裕層',
@@ -13828,7 +12791,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '9k8st31y': {
       'en': 'Kelvin',
       'de': 'Kelvin',
-      'es': 'Kelvin',
       'fr': 'Kelvin',
       'it': 'Kelvin',
       'ja': 'ケルビン',
@@ -13840,7 +12802,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'jxvmeh3z': {
       'en': 'Emma Johnson',
       'de': 'Emma Johnson',
-      'es': 'Emma Johnson',
       'fr': 'Emma Johnson',
       'it': 'Emma Johnson',
       'ja': 'エマ・ジョンソン',
@@ -13855,7 +12816,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'n27sv1nx': {
       'en': 'Save',
       'de': 'Speichern',
-      'es': 'Ahorrar',
       'fr': 'Sauvegarder',
       'it': 'Salva',
       'ja': '保存',
@@ -13867,7 +12827,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'zkj0w6zn': {
       'en': 'Delete',
       'de': 'Löschen',
-      'es': 'Borrar',
       'fr': 'Supprimer',
       'it': 'Eliminare',
       'ja': '消去',
@@ -13882,7 +12841,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'er5inc4z': {
       'en': '46',
       'de': '46',
-      'es': '46',
       'fr': '46',
       'it': '46',
       'ja': '46',
@@ -13894,7 +12852,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'f6q0j5do': {
       'en': 'people can view your story',
       'de': 'Andere können Ihre Geschichte ansehen',
-      'es': 'La gente puede ver tu historia.',
       'fr': 'Les gens peuvent lire votre histoire',
       'it': 'le persone possono vedere la tua storia',
       'ja': '人々はあなたのストーリーを見ることができます',
@@ -13906,7 +12863,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'qeltb8lg': {
       'en': 'Everyone',
       'de': 'Alle',
-      'es': 'Todos',
       'fr': 'Tout le monde',
       'it': 'Tutti',
       'ja': 'みんな',
@@ -13918,7 +12874,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'smbm46da': {
       'en': 'Only people with my number',
       'de': 'Nur Leute mit meiner Nummer',
-      'es': 'Solo personas con mi número',
       'fr': 'Seules les personnes ayant mon numéro',
       'it': 'Solo le persone con il mio numero',
       'ja': '私の番号を知っている人だけ',
@@ -13930,7 +12885,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'bp3obc9q': {
       'en': '100 users found',
       'de': '100 Nutzer gefunden',
-      'es': 'Se encontraron 100 usuarios',
       'fr': '100 utilisateurs trouvés',
       'it': '100 utenti trovati',
       'ja': '100人のユーザーが見つかりました',
@@ -13942,7 +12896,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'l4w09rl3': {
       'en': 'Only share with',
       'de': 'Nur teilen mit',
-      'es': 'Solo compartir con',
       'fr': 'Partager uniquement avec',
       'it': 'Condividi solo con',
       'ja': '共有する',
@@ -13954,7 +12907,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '7tocp5aa': {
       'en': '0 included yet',
       'de': 'Noch keine enthalten',
-      'es': '0 incluidos aún',
       'fr': '0 inclus pour l\'instant',
       'it': '0 inclusi finora',
       'ja': 'まだ0件含まれています',
@@ -13966,7 +12918,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ezs0ct5y': {
       'en': 'Only people with my username',
       'de': 'Nur Personen mit meinem Benutzernamen',
-      'es': 'Solo personas con mi nombre de usuario',
       'fr': 'Seules les personnes ayant mon nom d\'utilisateur',
       'it': 'Solo le persone con il mio nome utente',
       'ja': '私のユーザー名を持つ人だけ',
@@ -13978,7 +12929,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '63q2fo2j': {
       'en': '50 users found',
       'de': '50 Benutzer gefunden',
-      'es': '50 usuarios encontrados',
       'fr': '50 utilisateurs trouvés',
       'it': '50 utenti trovati',
       'ja': '50人のユーザーが見つかりました',
@@ -13993,7 +12943,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '5e7e39q2': {
       'en': 'Get notification',
       'de': 'Benachrichtigung erhalten',
-      'es': 'Recibir notificación',
       'fr': 'Recevoir une notification',
       'it': 'Ricevi notifiche',
       'ja': '通知を受け取る',
@@ -14005,7 +12954,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '2eojxjmq': {
       'en': 'Repost',
       'de': 'Repost',
-      'es': 'Republicación',
       'fr': 'Republier',
       'it': 'Ripubblica',
       'ja': '再投稿',
@@ -14017,7 +12965,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '7hk0f6e2': {
       'en': 'Save',
       'de': 'Speichern',
-      'es': 'Ahorrar',
       'fr': 'Sauvegarder',
       'it': 'Salva',
       'ja': '保存',
@@ -14029,7 +12976,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '4uwx0nbf': {
       'en': 'Hide',
       'de': 'Verstecken',
-      'es': 'Esconder',
       'fr': 'Cacher',
       'it': 'Nascondere',
       'ja': '隠れる',
@@ -14044,7 +12990,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'f8lcr0xp': {
       'en': 'Duration',
       'de': 'Dauer',
-      'es': 'Duración',
       'fr': 'Durée',
       'it': 'Durata',
       'ja': '間隔',
@@ -14056,7 +13001,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'sgqfy9rt': {
       'en': 'Choose how long your story will be.',
       'de': 'Wähle die Länge deiner Geschichte.',
-      'es': 'Elige la extensión de tu historia.',
       'fr': 'Choisissez la longueur de votre histoire.',
       'it': 'Scegli la lunghezza della tua storia.',
       'ja': '物語の長さを選択してください。',
@@ -14068,7 +13012,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '30s14hkk': {
       'en': '12 Hours',
       'de': '12 Stunden',
-      'es': '12 horas',
       'fr': '12 heures',
       'it': '12 ore',
       'ja': '12時間',
@@ -14080,7 +13023,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'zbs8m0y1': {
       'en': '24 Hours',
       'de': '24 Stunden',
-      'es': '24 horas',
       'fr': '24 heures',
       'it': '24 ore',
       'ja': '24時間',
@@ -14092,7 +13034,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'tv0zk271': {
       'en': 'Recommended',
       'de': 'Empfohlen',
-      'es': 'Recomendado',
       'fr': 'Recommandé',
       'it': 'Raccomandato',
       'ja': '推奨',
@@ -14104,7 +13045,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '7c2sszmk': {
       'en': '36 Hours',
       'de': '36 Stunden',
-      'es': '36 horas',
       'fr': '36 heures',
       'it': '36 ore',
       'ja': '36時間',
@@ -14116,7 +13056,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '0qy3j8jy': {
       'en': '52 Hours',
       'de': '52 Stunden',
-      'es': '52 horas',
       'fr': '52 heures',
       'it': '52 ore',
       'ja': '52時間',
@@ -14131,7 +13070,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '4gor8dks': {
       'en': 'Status Privacy',
       'de': 'Datenschutzstatus',
-      'es': 'Estado de privacidad',
       'fr': 'Confidentialité du statut',
       'it': 'Stato della privacy',
       'ja': 'ステータス プライバシー',
@@ -14146,7 +13084,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '67hec0rz': {
       'en': 'Get notification?',
       'de': 'Benachrichtigung erhalten?',
-      'es': '¿Recibir notificaciones?',
       'fr': 'Recevoir une notification ?',
       'it': 'Desideri ricevere notifiche?',
       'ja': '通知を受け取りますか？',
@@ -14158,7 +13095,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'eomv7ewb': {
       'en': 'Get notification',
       'de': 'Benachrichtigung erhalten',
-      'es': 'Recibir notificación',
       'fr': 'Recevoir une notification',
       'it': 'Ricevi notifiche',
       'ja': '通知を受け取る',
@@ -14170,7 +13106,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'trhyqjos': {
       'en': 'Cancle',
       'de': 'Abbrechen',
-      'es': 'Cancelar',
       'fr': 'Annuler',
       'it': 'Annulla',
       'ja': 'カンクル',
@@ -14185,7 +13120,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'nky02o2o': {
       'en': 'Select Themes',
       'de': 'Designs auswählen',
-      'es': 'Seleccionar temas',
       'fr': 'Sélectionner les thèmes',
       'it': 'Seleziona i temi',
       'ja': 'テーマを選択',
@@ -14197,7 +13131,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '53vh7tpq': {
       'en': 'Choose from Photo',
       'de': 'Aus Foto auswählen',
-      'es': 'Elige entre las fotos',
       'fr': 'Choisissez parmi les photos',
       'it': 'Scegli dalla foto',
       'ja': '写真から選択',
@@ -14211,8 +13144,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
           'The chat bubble and wallpaper will change automatically when you choose your preferred option.\n',
       'de':
           'Die Sprechblase und das Hintergrundbild ändern sich automatisch, sobald Sie Ihre bevorzugte Option auswählen.',
-      'es':
-          'El icono de chat y el fondo de pantalla cambiarán automáticamente cuando elijas tu opción preferida.',
       'fr':
           'La bulle de dialogue et le fond d\'écran changeront automatiquement lorsque vous choisirez votre option préférée.',
       'it':
@@ -14231,7 +13162,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'jn6gq0q9': {
       'en': 'Scan QR coe',
       'de': 'QR-Code scannen',
-      'es': 'Escanee el código QR',
       'fr': 'Scannez le code QR',
       'it': 'Scansiona il codice QR',
       'ja': 'QRコードをスキャン',
@@ -14244,7 +13174,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Open web.schatzapp.com on your desktop or another device.',
       'de':
           'Öffnen Sie web.schatzapp.com auf Ihrem Desktop oder einem anderen Gerät.',
-      'es': 'Abre web.schatzapp.com en tu ordenador o en otro dispositivo.',
       'fr':
           'Ouvrez web.schatzapp.com sur votre ordinateur ou un autre appareil.',
       'it':
@@ -14258,7 +13187,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '8z30d5ig': {
       'en': 'You can also link your phone number.',
       'de': 'Sie können auch Ihre Telefonnummer verknüpfen.',
-      'es': 'También puedes vincular tu número de teléfono.',
       'fr': 'Vous pouvez également lier votre numéro de téléphone.',
       'it': 'È possibile collegare anche il proprio numero di telefono.',
       'ja': '電話番号を連携させることもできます。',
@@ -14267,13 +13195,34 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ro': 'De asemenea, puteți conecta numărul dvs. de telefon.',
       'zh_Hant': '您也可以關聯您的手機號碼。',
     },
+    '06l3w32t': {
+      'en': 'Scan QR code',
+      'de': '',
+      'fr': '',
+      'it': '',
+      'ja': '',
+      'ko': '',
+      'pl': '',
+      'ro': '',
+      'zh_Hant': '',
+    },
+    'qrkltmyx': {
+      'en': 'Cancel',
+      'de': '',
+      'fr': '',
+      'it': '',
+      'ja': '',
+      'ko': '',
+      'pl': '',
+      'ro': '',
+      'zh_Hant': '',
+    },
   },
   // StatusReactionBar
   {
     '7udrbfcq': {
       'en': 'Share',
       'de': 'Aktie',
-      'es': 'Compartir',
       'fr': 'Partager',
       'it': 'Condividere',
       'ja': '共有',
@@ -14285,7 +13234,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '2z8c7f6u': {
       'en': '53',
       'de': '53',
-      'es': '53',
       'fr': '53',
       'it': '53',
       'ja': '53',
@@ -14300,7 +13248,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'o8l5qfg3': {
       'en': 'Transactions Details',
       'de': 'Transaktionsdetails',
-      'es': 'Detalles de las transacciones',
       'fr': 'Détails des transactions',
       'it': 'Dettagli delle transazioni',
       'ja': '取引の詳細',
@@ -14315,7 +13262,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '3xr5aodk': {
       'en': 'Disappearing messages',
       'de': 'Verschwindende Nachrichten',
-      'es': 'Mensajes que desaparecen',
       'fr': 'Messages éphémères',
       'it': 'Messaggi che scompaiono',
       'ja': '消えるメッセージ',
@@ -14327,7 +13273,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'yfqyc0li': {
       'en': 'Select how long you want to keep a mesage.',
       'de': 'Wählen Sie aus, wie lange Sie eine Nachricht aufbewahren möchten.',
-      'es': 'Selecciona cuánto tiempo quieres que se conserve un mensaje.',
       'fr':
           'Choisissez la durée pendant laquelle vous souhaitez conserver un message.',
       'it': 'Seleziona per quanto tempo desideri conservare un messaggio.',
@@ -14340,7 +13285,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '7r84a1rl': {
       'en': 'Off',
       'de': 'Aus',
-      'es': 'Apagado',
       'fr': 'Désactivé',
       'it': 'Spento',
       'ja': 'オフ',
@@ -14352,7 +13296,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '4lshx3jj': {
       'en': 'Lock chat',
       'de': 'Chat sperren',
-      'es': 'Bloquear chat',
       'fr': 'Verrouiller la conversation',
       'it': 'Blocco chat',
       'ja': 'チャットをロックする',
@@ -14364,7 +13307,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ti6300l0': {
       'en': 'Lock and hide this chat on this device.',
       'de': 'Diesen Chat auf diesem Gerät sperren und ausblenden.',
-      'es': 'Bloquea y oculta este chat en este dispositivo.',
       'fr': 'Verrouiller et masquer cette conversation sur cet appareil.',
       'it': 'Blocca e nascondi questa chat su questo dispositivo.',
       'ja': 'この端末でこのチャットをロックして非表示にします。',
@@ -14379,7 +13321,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '2zci3k6f': {
       'en': 'Reset your app password if you’ve forgotten it. ',
       'de': 'Setzen Sie Ihr App-Passwort zurück, falls Sie es vergessen haben.',
-      'es': 'Restablece la contraseña de tu aplicación si la has olvidado.',
       'fr':
           'Réinitialisez le mot de passe de votre application si vous l\'avez oublié.',
       'it': 'Reimposta la password dell\'app se l\'hai dimenticata.',
@@ -14394,8 +13335,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
           'Warning: Resetting your password will permanently delete all locked chats and chat history.',
       'de':
           'Warnung: Durch das Zurücksetzen Ihres Passworts werden alle gesperrten Chats und der Chatverlauf dauerhaft gelöscht.',
-      'es':
-          'Advertencia: Restablecer su contraseña eliminará permanentemente todos los chats bloqueados y el historial de chat.',
       'fr':
           'Avertissement : La réinitialisation de votre mot de passe supprimera définitivement toutes les conversations verrouillées et l’historique des conversations.',
       'it':
@@ -14411,7 +13350,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'n5pm48qs': {
       'en': 'Cancle',
       'de': 'Abbrechen',
-      'es': 'Cancelar',
       'fr': 'Annuler',
       'it': 'Annulla',
       'ja': 'カンクル',
@@ -14423,7 +13361,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '1xzpwp8c': {
       'en': 'Continue',
       'de': 'Weitermachen',
-      'es': 'Continuar',
       'fr': 'Continuer',
       'it': 'Continuare',
       'ja': '続く',
@@ -14438,7 +13375,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '8pqhn2oe': {
       'en': 'Review Transfer',
       'de': 'Überprüfung der Übertragung',
-      'es': 'Revisar transferencia',
       'fr': 'Examen du transfert',
       'it': 'Revisione Trasferimento',
       'ja': '転送のレビュー',
@@ -14450,7 +13386,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'j92jf6ft': {
       'en': 'Please review your transfer',
       'de': 'Bitte überprüfen Sie Ihre Überweisung.',
-      'es': 'Por favor, revise su transferencia.',
       'fr': 'Veuillez vérifier votre transfert',
       'it': 'Si prega di rivedere il trasferimento',
       'ja': '送金内容をご確認ください。',
@@ -14463,8 +13398,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Make sure the recipient and amount are correct before continuing.',
       'de':
           'Bitte vergewissern Sie sich, dass Empfänger und Betrag korrekt sind, bevor Sie fortfahren.',
-      'es':
-          'Asegúrese de que el destinatario y el importe sean correctos antes de continuar.',
       'fr':
           'Veuillez vérifier que le destinataire et le montant sont corrects avant de continuer.',
       'it':
@@ -14480,7 +13413,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'n9hnb56l': {
       'en': 'Transfer details',
       'de': 'Überweisungsdetails',
-      'es': 'Detalles de la transferencia',
       'fr': 'Détails du transfert',
       'it': 'Dettagli del trasferimento',
       'ja': '送金の詳細',
@@ -14492,7 +13424,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'sd325kkz': {
       'en': 'Reciepient',
       'de': 'Empfänger',
-      'es': 'Destinatario',
       'fr': 'Destinataire',
       'it': 'Destinatario',
       'ja': '受取人',
@@ -14504,7 +13435,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '7qsu2pj9': {
       'en': 'Account Info',
       'de': 'Kontoinformationen',
-      'es': 'Información de la cuenta',
       'fr': 'Informations du compte',
       'it': 'Informazioni sull\'account',
       'ja': 'アカウント情報',
@@ -14516,7 +13446,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'm886wr8r': {
       'en': 'Purpose',
       'de': 'Zweck',
-      'es': 'Objetivo',
       'fr': 'But',
       'it': 'Scopo',
       'ja': '目的',
@@ -14528,7 +13457,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'yhjwp4sb': {
       'en': 'Amount',
       'de': 'Menge',
-      'es': 'Cantidad',
       'fr': 'Montant',
       'it': 'Quantità',
       'ja': '額',
@@ -14541,21 +13469,18 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Transfer may be difficult to reverse once sent.',
       'de':
           'Eine Überweisung kann nach dem Absenden unter Umständen nur schwer rückgängig gemacht werden.',
-      'es':
-          'Una vez enviada la transferencia, puede resultar difícil revertirla.',
       'fr': 'Il peut être difficile d\'annuler un transfert une fois envoyé.',
       'it':
           'Una volta inviato, il trasferimento potrebbe risultare difficile da annullare.',
-      'ja': '一度送金してしまうと、取り消しは難しい場合があります。',
+      'ja': '一度送金してしまうと、取り消しは困難な場合があります。',
       'ko': '일단 송금이 ​​이루어지면 되돌리기 어려울 수 있습니다.',
       'pl': 'Po wysłaniu przelewu cofnięcie go może być trudne.',
       'ro': 'Transferul poate fi dificil de anulat odată trimis.',
-      'zh_Hant': '轉帳一旦發出，可能很難撤銷。',
+      'zh_Hant': '轉帳一旦發出，可能難以撤銷。',
     },
     'hnd28o6v': {
       'en': 'Recheck',
       'de': 'Erneut prüfen',
-      'es': 'Vuelva a comprobar',
       'fr': 'revérifier',
       'it': 'Ricontrollare',
       'ja': '再確認',
@@ -14567,7 +13492,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'a41rle89': {
       'en': 'Continue',
       'de': 'Weitermachen',
-      'es': 'Continuar',
       'fr': 'Continuer',
       'it': 'Continuare',
       'ja': '続く',
@@ -14582,7 +13506,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'iabjdu8k': {
       'en': 'Transfer from',
       'de': 'Transfer von',
-      'es': 'Transferencia desde',
       'fr': 'Transfert depuis',
       'it': 'Trasferire da',
       'ja': '転送元',
@@ -14594,10 +13517,9 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'oqv7uhe3': {
       'en': 'Transfer to',
       'de': 'Transfer nach',
-      'es': 'Transferir a',
-      'fr': 'Transfert vers',
+      'fr': 'Transférer vers',
       'it': 'Trasferire a',
-      'ja': '転送',
+      'ja': '転送先',
       'ko': '이체하기',
       'pl': 'Przenieś do',
       'ro': 'Transfer către',
@@ -14606,7 +13528,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'nwte10xu': {
       'en': 'Deposit',
       'de': 'Kaution',
-      'es': 'Depósito',
       'fr': 'Dépôt',
       'it': 'Depositare',
       'ja': 'デポジット',
@@ -14618,7 +13539,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'op40s55i': {
       'en': 'Mobile Data',
       'de': 'Mobile Daten',
-      'es': 'Datos móviles',
       'fr': 'Données mobiles',
       'it': 'Dati mobili',
       'ja': 'モバイルデータ',
@@ -14630,7 +13550,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'nzt67wp9': {
       'en': 'Airtime',
       'de': 'Sendezeit',
-      'es': 'Tiempo en antena',
       'fr': 'Temps d\'antenne',
       'it': 'Tempo di trasmissione',
       'ja': '通話時間',
@@ -14642,7 +13561,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'sul5je12': {
       'en': 'Gift Card',
       'de': 'Geschenkgutschein',
-      'es': 'Tarjeta de regalo',
       'fr': 'Carte-cadeau',
       'it': 'Carta regalo',
       'ja': 'ギフトカード',
@@ -14657,7 +13575,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ukvqfqba': {
       'en': 'Successful',
       'de': 'Erfolgreich',
-      'es': 'Exitoso',
       'fr': 'Réussi',
       'it': 'Riuscito',
       'ja': '成功',
@@ -14669,7 +13586,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '7d5yt9ge': {
       'en': 'Pending',
       'de': 'Ausstehend',
-      'es': 'Pendiente',
       'fr': 'En attente',
       'it': 'In attesa di',
       'ja': '保留中',
@@ -14681,7 +13597,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'vfbohsah': {
       'en': 'Failed',
       'de': 'Fehlgeschlagen',
-      'es': 'Fallido',
       'fr': 'Échoué',
       'it': 'Fallito',
       'ja': '失敗した',
@@ -14693,7 +13608,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'gj1aasxn': {
       'en': 'To be paid',
       'de': 'Zu zahlen',
-      'es': 'Se pagará',
       'fr': 'À payer',
       'it': 'Da pagare',
       'ja': '支払われる',
@@ -14705,7 +13619,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'u2ik1z3y': {
       'en': 'Reversed',
       'de': 'Umgedreht',
-      'es': 'Invertido',
       'fr': 'Renversé',
       'it': 'Invertito',
       'ja': '逆',
@@ -14717,7 +13630,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '6okjn1pn': {
       'en': 'On hold',
       'de': 'In der Warteschleife',
-      'es': 'En espera',
       'fr': 'En attente',
       'it': 'In attesa',
       'ja': '保留中',
@@ -14732,7 +13644,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '2m550wvd': {
       'en': 'Choose Date',
       'de': 'Datum auswählen',
-      'es': 'Seleccione una fecha',
       'fr': 'Choisissez une date',
       'it': 'Scegli la data',
       'ja': '日付を選択',
@@ -14744,7 +13655,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     's86ia5yo': {
       'en': 'Confirm',
       'de': 'Bestätigen',
-      'es': 'Confirmar',
       'fr': 'Confirmer',
       'it': 'Confermare',
       'ja': '確認する',
@@ -14759,7 +13669,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'jdcqoyca': {
       'en': 'Data Plans',
       'de': 'Datentarife',
-      'es': 'Planes de datos',
       'fr': 'Forfaits de données',
       'it': 'Piani dati',
       'ja': 'データプラン',
@@ -14771,7 +13680,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'pyhho7ra': {
       'en': 'Best Offer',
       'de': 'Bestes Angebot',
-      'es': 'Mejor oferta',
       'fr': 'Meilleure offre',
       'it': 'Migliore offerta',
       'ja': 'ベストオファー',
@@ -14783,7 +13691,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'qsjuftcp': {
       'en': 'Daily',
       'de': 'Täglich',
-      'es': 'A diario',
       'fr': 'Tous les jours',
       'it': 'Quotidiano',
       'ja': '毎日',
@@ -14795,7 +13702,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'b4gwxjyp': {
       'en': 'Weekly',
       'de': 'Wöchentlich',
-      'es': 'Semanalmente',
       'fr': 'Hebdomadaire',
       'it': 'Settimanale',
       'ja': '毎週',
@@ -14807,7 +13713,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'qinloll5': {
       'en': 'Monthly',
       'de': 'Monatlich',
-      'es': 'Mensual',
       'fr': 'Mensuel',
       'it': 'Mensile',
       'ja': '月刊',
@@ -14822,7 +13727,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ti09wzo7': {
       'en': 'Create Account',
       'de': 'Benutzerkonto erstellen',
-      'es': 'Crear una cuenta',
       'fr': 'Créer un compte',
       'it': 'Creare un account',
       'ja': 'アカウントを作成する',
@@ -14834,7 +13738,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'lm40qg3z': {
       'en': 'Start your Journey with SchatzWallet.',
       'de': 'Starte deine Reise mit SchatzWallet.',
-      'es': 'Comienza tu aventura con SchatzWallet.',
       'fr': 'Commencez votre voyage avec SchatzWallet.',
       'it': 'Inizia il tuo viaggio con SchatzWallet.',
       'ja': 'SchatzWalletであなたの旅を始めましょう。',
@@ -14846,7 +13749,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'kg2nz6on': {
       'en': 'Display Name',
       'de': 'Anzeigename',
-      'es': 'Nombre para mostrar',
       'fr': 'Nom d\'affichage',
       'it': 'Nome da visualizzare',
       'ja': '表示名',
@@ -14858,7 +13760,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'aq06qpuj': {
       'en': 'Enter your preferred display name.',
       'de': 'Geben Sie Ihren bevorzugten Anzeigenamen ein.',
-      'es': 'Introduzca el nombre de usuario que prefiera.',
       'fr': 'Veuillez saisir le nom d\'affichage que vous préférez.',
       'it': 'Inserisci il nome che preferisci visualizzare.',
       'ja': '希望する表示名を入力してください。',
@@ -14870,7 +13771,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ey16rwm0': {
       'en': 'Email Address',
       'de': 'E-Mail-Adresse',
-      'es': 'Dirección de correo electrónico',
       'fr': 'Adresse email',
       'it': 'Indirizzo e-mail',
       'ja': '電子メールアドレス',
@@ -14882,7 +13782,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '91asqdku': {
       'en': 'Enter your email address',
       'de': 'Geben Sie Ihre E-Mail-Adresse ein.',
-      'es': 'Introduce tu dirección de correo electrónico',
       'fr': 'Saisissez votre adresse e-mail',
       'it': 'Inserisci il tuo indirizzo email',
       'ja': 'メールアドレスを入力してください',
@@ -14894,7 +13793,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'udm6r0w0': {
       'en': 'Phone Numbeer',
       'de': 'Telefonnummer',
-      'es': 'Número de teléfono',
       'fr': 'Numéro de téléphone',
       'it': 'Numero di telefono',
       'ja': '電話番号',
@@ -14906,19 +13804,17 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '3fyewruv': {
       'en': 'Enter your phone number',
       'de': 'Geben Sie Ihre Telefonnummer ein',
-      'es': 'Ingrese su número de teléfono',
       'fr': 'Saisissez votre numéro de téléphone',
       'it': 'Inserisci il tuo numero di telefono',
       'ja': '電話番号を入力してください',
       'ko': '전화번호를 입력하세요',
-      'pl': 'Wprowadź swój numer telefonu',
+      'pl': 'Podaj swój numer telefonu',
       'ro': 'Introduceți numărul dvs. de telefon',
       'zh_Hant': '請輸入您的電話號碼',
     },
     'tcc11yj2': {
       'en': ' Continue',
       'de': 'Weitermachen',
-      'es': 'Continuar',
       'fr': 'Continuer',
       'it': 'Continuare',
       'ja': '続く',
@@ -14933,7 +13829,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'd3ky7sc7': {
       'en': 'Verify',
       'de': 'Verifizieren',
-      'es': 'Verificar',
       'fr': 'Vérifier',
       'it': 'Verificare',
       'ja': '確認する',
@@ -14945,7 +13840,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '138ojfrf': {
       'en': 'Didn\'t receive the code?',
       'de': 'Sie haben den Code nicht erhalten?',
-      'es': '¿No recibiste el código?',
       'fr': 'Vous n\'avez pas reçu le code ?',
       'it': 'Non hai ricevuto il codice?',
       'ja': 'コードが届きませんでしたか？',
@@ -14957,7 +13851,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'cm7thjl1': {
       'en': 'Check spam or resend',
       'de': 'Prüfen Sie den Spam-Ordner oder senden Sie die Sendung erneut.',
-      'es': 'Revisa la carpeta de correo no deseado o vuelve a enviarla.',
       'fr': 'Vérifiez vos courriers indésirables ou renvoyez le message.',
       'it': 'Controlla la cartella spam o invia di nuovo',
       'ja': 'スパムフォルダを確認するか、再送信してください。',
@@ -14972,7 +13865,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '6x1jgyja': {
       'en': 'Verify',
       'de': 'Verifizieren',
-      'es': 'Verificar',
       'fr': 'Vérifier',
       'it': 'Verificare',
       'ja': '確認する',
@@ -14984,7 +13876,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '4dt1sdcs': {
       'en': 'Didn\'t receive the code?',
       'de': 'Sie haben den Code nicht erhalten?',
-      'es': '¿No recibiste el código?',
       'fr': 'Vous n\'avez pas reçu le code ?',
       'it': 'Non hai ricevuto il codice?',
       'ja': 'コードが届きませんでしたか？',
@@ -14996,7 +13887,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'xdd2smtw': {
       'en': 'Resend',
       'de': 'Erneut senden',
-      'es': 'Reenviar',
       'fr': 'Renvoyer',
       'it': 'Reinvia',
       'ja': '再送信',
@@ -15010,32 +13900,34 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     'ehr3wwrb': {
       'en': 'Email address / Phone number',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'E-Mail-Adresse / Telefonnummer',
+      'fr': 'Adresse e-mail / Numéro de téléphone',
+      'it': 'Indirizzo email / Numero di telefono',
+      'ja': 'メールアドレス／電話番号',
+      'ko': '이메일 주소 / 전화번호',
+      'pl': 'Adres e-mail / Numer telefonu',
+      'ro': 'Adresă de e-mail / Număr de telefon',
+      'zh_Hant': '電子郵件地址/電話號碼',
     },
     '5dp8r6dz': {
       'en': 'Enter any email or a registered SchatzAPP phone number.',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de':
+          'Geben Sie eine beliebige E-Mail-Adresse oder eine bei SchatzAPP registrierte Telefonnummer ein.',
+      'fr':
+          'Veuillez saisir une adresse e-mail ou un numéro de téléphone SchatzAPP enregistré.',
+      'it':
+          'Inserisci un indirizzo email qualsiasi o un numero di telefono registrato su SchatzAPP.',
+      'ja': 'メールアドレスまたは登録済みのSchatzAPP電話番号を入力してください。',
+      'ko': '이메일 주소 또는 SchatzAPP에 등록된 전화번호를 입력하세요.',
+      'pl':
+          'Wprowadź dowolny adres e-mail lub zarejestrowany numer telefonu SchatzAPP.',
+      'ro':
+          'Introduceți orice adresă de e-mail sau un număr de telefon SchatzAPP înregistrat.',
+      'zh_Hant': '輸入任何電子郵件地址或已註冊的 SchatzAPP 電話號碼。',
     },
     'em9irnaa': {
       'en': 'Recipient',
       'de': 'Empfänger',
-      'es': 'Beneficiario',
       'fr': 'Destinataire',
       'it': 'Destinatario',
       'ja': '受賞者',
@@ -15047,7 +13939,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'usk3g4ze': {
       'en': 'Recipient',
       'de': 'Empfänger',
-      'es': 'Beneficiario',
       'fr': 'Destinataire',
       'it': 'Destinatario',
       'ja': '受賞者',
@@ -15061,34 +13952,30 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     '8cei4fwd': {
       'en': 'Review Purchase',
-      'de': 'Überprüfung der Übertragung',
-      'es': 'Revisar transferencia',
-      'fr': 'Examen du transfert',
-      'it': 'Revisione Trasferimento',
-      'ja': '転送のレビュー',
-      'ko': '검토 및 전송',
-      'pl': 'Przejrzyj transfer',
-      'ro': 'Transfer de revizuire',
-      'zh_Hant': '審查轉移',
+      'de': 'Kauf bewerten',
+      'fr': 'Avis sur l\'achat',
+      'it': 'Recensione dell\'acquisto',
+      'ja': 'レビュー購入',
+      'ko': '구매 후기',
+      'pl': 'Recenzja zakupu',
+      'ro': 'Revizuirea achiziției',
+      'zh_Hant': '評論購買',
     },
     'aub3rn11': {
       'en': 'Please review your Purchase',
-      'de': 'Bitte überprüfen Sie Ihre Überweisung.',
-      'es': 'Por favor, revise su transferencia.',
-      'fr': 'Veuillez vérifier votre transfert',
-      'it': 'Si prega di rivedere il trasferimento',
-      'ja': '送金内容をご確認ください。',
-      'ko': '송금 내역을 확인해 주세요.',
-      'pl': 'Proszę sprawdzić swój przelew',
-      'ro': 'Vă rugăm să verificați transferul',
-      'zh_Hant': '請核對您的轉帳資訊。',
+      'de': 'Bitte überprüfen Sie Ihren Kauf.',
+      'fr': 'Veuillez vérifier votre achat',
+      'it': 'Si prega di rivedere il proprio acquisto.',
+      'ja': 'ご購入内容をご確認ください。',
+      'ko': '구매 내역을 검토해 주세요.',
+      'pl': 'Proszę sprawdzić swój zakup',
+      'ro': 'Vă rugăm să revizuiți achiziția dvs.',
+      'zh_Hant': '請核對您的購買記錄',
     },
     '9e6r574u': {
       'en': 'Make sure the recipient and amount are correct before continuing.',
       'de':
           'Bitte vergewissern Sie sich, dass Empfänger und Betrag korrekt sind, bevor Sie fortfahren.',
-      'es':
-          'Asegúrese de que el destinatario y el importe sean correctos antes de continuar.',
       'fr':
           'Veuillez vérifier que le destinataire et le montant sont corrects avant de continuer.',
       'it':
@@ -15103,44 +13990,40 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '6kzoannf': {
       'en': 'Purchae details',
-      'de': 'Überweisungsdetails',
-      'es': 'Detalles de la transferencia',
-      'fr': 'Détails du transfert',
-      'it': 'Dettagli del trasferimento',
-      'ja': '送金の詳細',
-      'ko': '송금 내역',
-      'pl': 'Szczegóły przelewu',
-      'ro': 'Detalii transfer',
-      'zh_Hant': '轉帳詳情',
+      'de': 'Kaufdetails',
+      'fr': 'Détails de l\'achat',
+      'it': 'Dettagli dell\'acquisto',
+      'ja': '購入の詳細',
+      'ko': '구매 내역',
+      'pl': 'Szczegóły zakupu',
+      'ro': 'Detalii achiziție',
+      'zh_Hant': '購買詳情',
     },
     '7nju33g3': {
       'en': 'Service Info',
-      'de': 'Kontoinformationen',
-      'es': 'Información de la cuenta',
-      'fr': 'Informations du compte',
-      'it': 'Informazioni sull\'account',
-      'ja': 'アカウント情報',
-      'ko': '계정 정보',
-      'pl': 'Informacje o koncie',
-      'ro': 'Informații despre cont',
-      'zh_Hant': '帳號資訊',
+      'de': 'Serviceinformationen',
+      'fr': 'Informations sur le service',
+      'it': 'Informazioni di servizio',
+      'ja': 'サービス情報',
+      'ko': '서비스 정보',
+      'pl': 'Informacje o usłudze',
+      'ro': 'Informații despre serviciu',
+      'zh_Hant': '服務資訊',
     },
     'srlwb4up': {
       'en': 'Recipient Email',
-      'de': 'Kontoinformationen',
-      'es': 'Información de la cuenta',
-      'fr': 'Informations du compte',
-      'it': 'Informazioni sull\'account',
-      'ja': 'アカウント情報',
-      'ko': '계정 정보',
-      'pl': 'Informacje o koncie',
-      'ro': 'Informații despre cont',
-      'zh_Hant': '帳號資訊',
+      'de': 'E-Mail-Adresse des Empfängers',
+      'fr': 'Courriel du destinataire',
+      'it': 'Indirizzo email del destinatario',
+      'ja': '受信者のメールアドレス',
+      'ko': '수신자 이메일',
+      'pl': 'Adres e-mail odbiorcy',
+      'ro': 'Adresă de e-mail destinatar',
+      'zh_Hant': '收件者電子郵件',
     },
     'qpbrfdip': {
       'en': 'Amount',
       'de': 'Menge',
-      'es': 'Cantidad',
       'fr': 'Montant',
       'it': 'Quantità',
       'ja': '額',
@@ -15152,22 +14035,18 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'tg72a70u': {
       'en': 'Transfer can not be reverse once sent.',
       'de':
-          'Eine Überweisung kann nach dem Absenden unter Umständen nur schwer rückgängig gemacht werden.',
-      'es':
-          'Una vez enviada la transferencia, puede resultar difícil revertirla.',
-      'fr': 'Il peut être difficile d\'annuler un transfert une fois envoyé.',
-      'it':
-          'Una volta inviato, il trasferimento potrebbe risultare difficile da annullare.',
-      'ja': '一度送金してしまうと、取り消しは難しい場合があります。',
-      'ko': '일단 송금이 ​​이루어지면 되돌리기 어려울 수 있습니다.',
-      'pl': 'Po wysłaniu przelewu cofnięcie go może być trudne.',
-      'ro': 'Transferul poate fi dificil de anulat odată trimis.',
-      'zh_Hant': '轉帳一旦發出，可能很難撤銷。',
+          'Eine Überweisung kann nach dem Absenden nicht mehr rückgängig gemacht werden.',
+      'fr': 'Un virement ne peut être annulé une fois effectué.',
+      'it': 'Una volta inviato, il trasferimento non può essere annullato.',
+      'ja': '一度送金された金額は取り消すことができません。',
+      'ko': '송금은 일단 전송되면 취소할 수 없습니다.',
+      'pl': 'Po wysłaniu przelewu nie można go cofnąć.',
+      'ro': 'Transferul nu poate fi inversat odată trimis.',
+      'zh_Hant': '轉帳一旦發出便無法撤銷。',
     },
     'gb1olyxd': {
       'en': 'Recheck',
       'de': 'Erneut prüfen',
-      'es': 'Vuelva a comprobar',
       'fr': 'revérifier',
       'it': 'Ricontrollare',
       'ja': '再確認',
@@ -15179,7 +14058,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'edb4oyj3': {
       'en': 'Continue',
       'de': 'Weitermachen',
-      'es': 'Continuar',
       'fr': 'Continuer',
       'it': 'Continuare',
       'ja': '続く',
@@ -15193,99 +14071,96 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     'fj94c3t6': {
       'en': 'Enter Payment PIN',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Zahlungs-PIN eingeben',
+      'fr': 'Saisissez votre code PIN de paiement',
+      'it': 'Inserisci il PIN di pagamento',
+      'ja': '支払い用PINを入力してください',
+      'ko': '결제 PIN을 입력하세요',
+      'pl': 'Wprowadź PIN płatności',
+      'ro': 'Introduceți codul PIN al plății',
+      'zh_Hant': '請輸入支付密碼',
     },
   },
   // Bank_top_up
   {
     '9jf5fu16': {
       'en': 'Name:',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Name:',
+      'fr': 'Nom:',
+      'it': 'Nome:',
+      'ja': '名前：',
+      'ko': '이름:',
+      'pl': 'Nazwa:',
+      'ro': 'Nume:',
+      'zh_Hant': '姓名：',
     },
     'ff8o0rjb': {
       'en': 'Bank:',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'Bank:',
+      'fr': 'Banque:',
+      'it': 'Banca:',
+      'ja': '銀行：',
+      'ko': '은행:',
+      'pl': 'Bank:',
+      'ro': 'Bancar:',
+      'zh_Hant': '銀行：',
     },
     '58lep2dl': {
       'en': 'IBAN: ',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'IBAN:',
+      'fr': 'IBAN :',
+      'it': 'IBAN:',
+      'ja': 'IBAN:',
+      'ko': '이반:',
+      'pl': 'IBAN:',
+      'ro': 'IBAN:',
+      'zh_Hant': '國際銀行帳戶：',
     },
     'o5itc27l': {
       'en':
           'Top-ups must come from an account in your legal name. Third-party transfers are rejected.',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de':
+          'Aufladungen müssen von einem Konto erfolgen, das auf Ihren vollständigen Namen lautet. Überweisungen von Dritten werden abgelehnt.',
+      'fr':
+          'Les recharges doivent provenir d\'un compte à votre nom légal. Les virements effectués par des tiers sont refusés.',
+      'it':
+          'Le ricariche devono provenire da un conto intestato al tuo nome legale. I trasferimenti da terzi vengono rifiutati.',
+      'ja': 'チャージは、ご本人名義の口座からのみ可能です。第三者による送金は受け付けておりません。',
+      'ko': '충전은 반드시 본인 명의의 계좌에서 이루어져야 합니다. 타인 명의의 이체는 허용되지 않습니다.',
+      'pl':
+          'Doładowania muszą pochodzić z konta zarejestrowanego na Twoje imię i nazwisko. Przelewy na rzecz osób trzecich są odrzucane.',
+      'ro':
+          'Încărcările trebuie să provină dintr-un cont pe numele dumneavoastră legal. Transferurile către terți sunt respinse.',
+      'zh_Hant': '儲值必須來自您本人名下的帳戶。我們不接受第三方轉帳。',
     },
   },
   // app_password_gate
   {
     '8hw0otk3': {
       'en': 'Enter App Password',
-      'de': '',
-      'es': '',
-      'fr': '',
-      'it': '',
-      'ja': '',
-      'ko': '',
-      'pl': '',
-      'ro': '',
-      'zh_Hant': '',
+      'de': 'App-Passwort eingeben',
+      'fr': 'Saisissez le mot de passe de l\'application',
+      'it': 'Inserisci la password dell\'app',
+      'ja': 'アプリのパスワードを入力してください',
+      'ko': '앱 비밀번호를 입력하세요',
+      'pl': 'Wprowadź hasło aplikacji',
+      'ro': 'Introduceți parola aplicației',
+      'zh_Hant': '輸入應用密碼',
     },
     '2ikj2cus': {
       'en': 'Enter app password',
-      'de': 'Altes App-Passwort eingeben',
-      'es': 'Introduce la contraseña de la aplicación anterior.',
-      'fr': 'Saisissez l\'ancien mot de passe de l\'application',
-      'it': 'Inserisci la vecchia password dell\'app',
-      'ja': '古いアプリのパスワードを入力してください',
-      'ko': '이전 앱 비밀번호를 입력하세요',
-      'pl': 'Wprowadź stare hasło aplikacji',
-      'ro': 'Introduceți vechea parolă a aplicației',
-      'zh_Hant': '輸入舊應用密碼',
+      'de': 'App-Passwort eingeben',
+      'fr': 'Saisissez le mot de passe de l\'application',
+      'it': 'Inserisci la password dell\'app',
+      'ja': 'アプリのパスワードを入力してください',
+      'ko': '앱 비밀번호를 입력하세요',
+      'pl': 'Wprowadź hasło aplikacji',
+      'ro': 'Introduceți parola aplicației',
+      'zh_Hant': '輸入應用密碼',
     },
     '9s8lrgca': {
       'en': 'Continue',
       'de': 'Weitermachen',
-      'es': 'Continuar',
       'fr': 'Continuer',
       'it': 'Continuare',
       'ja': '続く',
@@ -15299,34 +14174,30 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     '70qfia2f': {
       'en': 'Review Purchase',
-      'de': 'Überprüfung der Übertragung',
-      'es': 'Revisar transferencia',
-      'fr': 'Examen du transfert',
-      'it': 'Revisione Trasferimento',
-      'ja': '転送のレビュー',
-      'ko': '검토 및 전송',
-      'pl': 'Przejrzyj transfer',
-      'ro': 'Transfer de revizuire',
-      'zh_Hant': '審查轉移',
+      'de': 'Kauf bewerten',
+      'fr': 'Avis sur l\'achat',
+      'it': 'Recensione dell\'acquisto',
+      'ja': 'レビュー購入',
+      'ko': '구매 후기',
+      'pl': 'Recenzja zakupu',
+      'ro': 'Revizuirea achiziției',
+      'zh_Hant': '評論購買',
     },
     'ppbx7qdv': {
       'en': 'Please review your Giftcard Purchase',
-      'de': 'Bitte überprüfen Sie Ihre Überweisung.',
-      'es': 'Por favor, revise su transferencia.',
-      'fr': 'Veuillez vérifier votre transfert',
-      'it': 'Si prega di rivedere il trasferimento',
-      'ja': '送金内容をご確認ください。',
-      'ko': '송금 내역을 확인해 주세요.',
-      'pl': 'Proszę sprawdzić swój przelew',
-      'ro': 'Vă rugăm să verificați transferul',
-      'zh_Hant': '請核對您的轉帳資訊。',
+      'de': 'Bitte überprüfen Sie Ihren Geschenkkartenkauf.',
+      'fr': 'Veuillez vérifier votre achat de carte-cadeau',
+      'it': 'Si prega di verificare l\'acquisto della carta regalo.',
+      'ja': 'ギフトカードのご購入内容をご確認ください。',
+      'ko': '기프트카드 구매 내역을 확인해 주세요.',
+      'pl': 'Proszę sprawdzić zakup karty podarunkowej',
+      'ro': 'Vă rugăm să verificați achiziția cardului cadou',
+      'zh_Hant': '請核對您的禮品卡購買情況',
     },
     'lymsezv2': {
       'en': 'Make sure the recipient and amount are correct before continuing.',
       'de':
           'Bitte vergewissern Sie sich, dass Empfänger und Betrag korrekt sind, bevor Sie fortfahren.',
-      'es':
-          'Asegúrese de que el destinatario y el importe sean correctos antes de continuar.',
       'fr':
           'Veuillez vérifier que le destinataire et le montant sont corrects avant de continuer.',
       'it':
@@ -15341,44 +14212,40 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '2l0zcfyj': {
       'en': 'Purchae details',
-      'de': 'Überweisungsdetails',
-      'es': 'Detalles de la transferencia',
-      'fr': 'Détails du transfert',
-      'it': 'Dettagli del trasferimento',
-      'ja': '送金の詳細',
-      'ko': '송금 내역',
-      'pl': 'Szczegóły przelewu',
-      'ro': 'Detalii transfer',
-      'zh_Hant': '轉帳詳情',
+      'de': 'Kaufdetails',
+      'fr': 'Détails de l\'achat',
+      'it': 'Dettagli dell\'acquisto',
+      'ja': '購入の詳細',
+      'ko': '구매 내역',
+      'pl': 'Szczegóły zakupu',
+      'ro': 'Detalii achiziție',
+      'zh_Hant': '購買詳情',
     },
     '6ku10ufu': {
       'en': 'Service Info',
-      'de': 'Kontoinformationen',
-      'es': 'Información de la cuenta',
-      'fr': 'Informations du compte',
-      'it': 'Informazioni sull\'account',
-      'ja': 'アカウント情報',
-      'ko': '계정 정보',
-      'pl': 'Informacje o koncie',
-      'ro': 'Informații despre cont',
-      'zh_Hant': '帳號資訊',
+      'de': 'Serviceinformationen',
+      'fr': 'Informations sur le service',
+      'it': 'Informazioni di servizio',
+      'ja': 'サービス情報',
+      'ko': '서비스 정보',
+      'pl': 'Informacje o usłudze',
+      'ro': 'Informații despre serviciu',
+      'zh_Hant': '服務資訊',
     },
     'v7xq7ran': {
       'en': 'Recipient Email',
-      'de': 'Kontoinformationen',
-      'es': 'Información de la cuenta',
-      'fr': 'Informations du compte',
-      'it': 'Informazioni sull\'account',
-      'ja': 'アカウント情報',
-      'ko': '계정 정보',
-      'pl': 'Informacje o koncie',
-      'ro': 'Informații despre cont',
-      'zh_Hant': '帳號資訊',
+      'de': 'E-Mail-Adresse des Empfängers',
+      'fr': 'Courriel du destinataire',
+      'it': 'Indirizzo email del destinatario',
+      'ja': '受信者のメールアドレス',
+      'ko': '수신자 이메일',
+      'pl': 'Adres e-mail odbiorcy',
+      'ro': 'Adresă de e-mail destinatar',
+      'zh_Hant': '收件者電子郵件',
     },
     'lghaghqd': {
       'en': 'Amount',
       'de': 'Menge',
-      'es': 'Cantidad',
       'fr': 'Montant',
       'it': 'Quantità',
       'ja': '額',
@@ -15390,22 +14257,18 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'bw1wtqca': {
       'en': 'Transfer can not be reverse once sent.',
       'de':
-          'Eine Überweisung kann nach dem Absenden unter Umständen nur schwer rückgängig gemacht werden.',
-      'es':
-          'Una vez enviada la transferencia, puede resultar difícil revertirla.',
-      'fr': 'Il peut être difficile d\'annuler un transfert une fois envoyé.',
-      'it':
-          'Una volta inviato, il trasferimento potrebbe risultare difficile da annullare.',
-      'ja': '一度送金してしまうと、取り消しは難しい場合があります。',
-      'ko': '일단 송금이 ​​이루어지면 되돌리기 어려울 수 있습니다.',
-      'pl': 'Po wysłaniu przelewu cofnięcie go może być trudne.',
-      'ro': 'Transferul poate fi dificil de anulat odată trimis.',
-      'zh_Hant': '轉帳一旦發出，可能很難撤銷。',
+          'Eine Überweisung kann nach dem Absenden nicht mehr rückgängig gemacht werden.',
+      'fr': 'Un virement ne peut être annulé une fois effectué.',
+      'it': 'Una volta inviato, il trasferimento non può essere annullato.',
+      'ja': '一度送金された金額は取り消すことができません。',
+      'ko': '송금은 일단 전송되면 취소할 수 없습니다.',
+      'pl': 'Po wysłaniu przelewu nie można go cofnąć.',
+      'ro': 'Transferul nu poate fi inversat odată trimis.',
+      'zh_Hant': '轉帳一旦發出便無法撤銷。',
     },
     'qncjep7y': {
       'en': 'Recheck',
       'de': 'Erneut prüfen',
-      'es': 'Vuelva a comprobar',
       'fr': 'revérifier',
       'it': 'Ricontrollare',
       'ja': '再確認',
@@ -15417,7 +14280,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '1qj8166p': {
       'en': 'Continue',
       'de': 'Weitermachen',
-      'es': 'Continuar',
       'fr': 'Continuer',
       'it': 'Continuare',
       'ja': '続く',
@@ -15432,8 +14294,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'gzqp31gv': {
       'en': 'SchatzApp needs camera access for video calls',
       'de': 'SchatzApp benötigt Kamerazugriff für Videoanrufe',
-      'es':
-          'SchatzApp necesita acceso a la cámara para realizar videollamadas.',
       'fr':
           'L\'application SchatzApp a besoin d\'accéder à la caméra pour les appels vidéo.',
       'it':
@@ -15447,8 +14307,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'oihqpta2': {
       'en': 'SchatzApp needs microphone access for voice and video calls',
       'de': 'SchatzApp benötigt Mikrofonzugriff für Sprach- und Videoanrufe',
-      'es':
-          'SchatzApp necesita acceso al micrófono para realizar llamadas de voz y video.',
       'fr':
           'SchatzApp a besoin d\'un accès au microphone pour les appels vocaux et vidéo.',
       'it':
@@ -15464,7 +14322,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'q6a07ehj': {
       'en': '',
       'de': '',
-      'es': '',
       'fr': '',
       'it': '',
       'ja': '',
@@ -15477,7 +14334,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Allow access to your photos to send images in chat.',
       'de':
           'Erlauben Sie den Zugriff auf Ihre Fotos, um Bilder im Chat zu senden.',
-      'es': 'Permite el acceso a tus fotos para enviar imágenes en el chat.',
       'fr':
           'Autorisez l\'accès à vos photos pour envoyer des images dans le chat.',
       'it': 'Consenti l\'accesso alle tue foto per inviare immagini in chat.',
@@ -15493,7 +14349,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Allow access to your photos to send videos in chat.',
       'de':
           'Erlauben Sie den Zugriff auf Ihre Fotos, um Videos im Chat zu senden.',
-      'es': 'Permite el acceso a tus fotos para enviar vídeos en el chat.',
       'fr':
           'Autorisez l\'accès à vos photos pour envoyer des vidéos dans le chat.',
       'it': 'Consenti l\'accesso alle tue foto per inviare video in chat.',
@@ -15509,8 +14364,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Allow access to your photos to send media in chat.',
       'de':
           'Erlauben Sie den Zugriff auf Ihre Fotos, um Medien im Chat zu senden.',
-      'es':
-          'Permite el acceso a tus fotos para enviar contenido multimedia en el chat.',
       'fr':
           'Autorisez l\'accès à vos photos pour envoyer des médias dans le chat.',
       'it':
@@ -15528,8 +14381,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
           'SchatzApp needs contacts access to help you find friends already on the app',
       'de':
           'SchatzApp benötigt Zugriff auf Ihre Kontakte, damit Sie Freunde finden können, die die App bereits nutzen.',
-      'es':
-          'SchatzApp necesita acceso a tus contactos para ayudarte a encontrar amigos que ya están en la aplicación.',
       'fr':
           'SchatzApp a besoin d\'accéder à vos contacts pour vous aider à trouver vos amis déjà présents sur l\'application.',
       'it':
@@ -15544,8 +14395,19 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '3ryenmi7': {
       'en': 'SchatzApp needs  access to send notification',
+      'de': 'SchatzApp benötigt Zugriff, um Benachrichtigungen zu senden',
+      'fr':
+          'SchatzApp a besoin d\'accéder à l\'application pour envoyer des notifications.',
+      'it': 'SchatzApp necessita dell\'accesso per inviare le notifiche',
+      'ja': 'SchatzAppは通知を送信するためのアクセス権が必要です',
+      'ko': 'SchatzApp은 알림을 보내기 위해 접근 권한이 필요합니다.',
+      'pl': 'SchatzApp potrzebuje dostępu, aby wysyłać powiadomienia',
+      'ro': 'SchatzApp are nevoie de acces pentru a trimite notificări',
+      'zh_Hant': 'SchatzApp 需要存取權限才能發送通知',
+    },
+    'qlkxy1o0': {
+      'en': 'Allow Fingerprint/Face ID',
       'de': '',
-      'es': '',
       'fr': '',
       'it': '',
       'ja': '',
@@ -15557,7 +14419,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '2yzydg2q': {
       'en': '',
       'de': '',
-      'es': '',
       'fr': '',
       'it': '',
       'ja': '',
@@ -15569,7 +14430,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '6cmkpb8i': {
       'en': '',
       'de': '',
-      'es': '',
       'fr': '',
       'it': '',
       'ja': '',
@@ -15581,7 +14441,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'wsf4gic3': {
       'en': '',
       'de': '',
-      'es': '',
       'fr': '',
       'it': '',
       'ja': '',
@@ -15593,7 +14452,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'acc63tnh': {
       'en': '',
       'de': '',
-      'es': '',
       'fr': '',
       'it': '',
       'ja': '',
@@ -15605,7 +14463,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'nlge8tgv': {
       'en': '',
       'de': '',
-      'es': '',
       'fr': '',
       'it': '',
       'ja': '',
@@ -15617,7 +14474,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '3u5agich': {
       'en': '',
       'de': '',
-      'es': '',
       'fr': '',
       'it': '',
       'ja': '',
@@ -15629,7 +14485,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'l5caaatu': {
       'en': '',
       'de': '',
-      'es': '',
       'fr': '',
       'it': '',
       'ja': '',
@@ -15641,7 +14496,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'fjj55hti': {
       'en': '',
       'de': '',
-      'es': '',
       'fr': '',
       'it': '',
       'ja': '',
@@ -15653,7 +14507,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'p0eg8rsc': {
       'en': '',
       'de': '',
-      'es': '',
       'fr': '',
       'it': '',
       'ja': '',
@@ -15665,7 +14518,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '991zzz4y': {
       'en': '',
       'de': '',
-      'es': '',
       'fr': '',
       'it': '',
       'ja': '',
@@ -15677,7 +14529,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'qtrs7ef8': {
       'en': '',
       'de': '',
-      'es': '',
       'fr': '',
       'it': '',
       'ja': '',
@@ -15689,7 +14540,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'p0hkbnm4': {
       'en': '',
       'de': '',
-      'es': '',
       'fr': '',
       'it': '',
       'ja': '',
@@ -15701,7 +14551,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '5f8ojk2j': {
       'en': '',
       'de': '',
-      'es': '',
       'fr': '',
       'it': '',
       'ja': '',
@@ -15713,7 +14562,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'n6moljm5': {
       'en': '',
       'de': '',
-      'es': '',
       'fr': '',
       'it': '',
       'ja': '',
@@ -15725,7 +14573,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '27f6of5n': {
       'en': '',
       'de': '',
-      'es': '',
       'fr': '',
       'it': '',
       'ja': '',
@@ -15737,7 +14584,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '7dw6c0ca': {
       'en': '',
       'de': '',
-      'es': '',
       'fr': '',
       'it': '',
       'ja': '',
@@ -15749,7 +14595,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'f7ltvbts': {
       'en': '',
       'de': '',
-      'es': '',
       'fr': '',
       'it': '',
       'ja': '',
@@ -15761,7 +14606,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'txjwuflf': {
       'en': '',
       'de': '',
-      'es': '',
       'fr': '',
       'it': '',
       'ja': '',
@@ -15773,7 +14617,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'xmix3jzo': {
       'en': '',
       'de': '',
-      'es': '',
       'fr': '',
       'it': '',
       'ja': '',
@@ -15785,7 +14628,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'z2uy2vub': {
       'en': '',
       'de': '',
-      'es': '',
       'fr': '',
       'it': '',
       'ja': '',
@@ -15797,7 +14639,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'jdbjjnhg': {
       'en': '',
       'de': '',
-      'es': '',
       'fr': '',
       'it': '',
       'ja': '',
@@ -15809,7 +14650,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'n0qhtpuf': {
       'en': '',
       'de': '',
-      'es': '',
       'fr': '',
       'it': '',
       'ja': '',
@@ -15821,7 +14661,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '9sxfwglj': {
       'en': '',
       'de': '',
-      'es': '',
       'fr': '',
       'it': '',
       'ja': '',
@@ -15833,7 +14672,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '85oyuj0r': {
       'en': '',
       'de': '',
-      'es': '',
       'fr': '',
       'it': '',
       'ja': '',
@@ -15845,7 +14683,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '8itggkuf': {
       'en': '',
       'de': '',
-      'es': '',
       'fr': '',
       'it': '',
       'ja': '',
@@ -15857,7 +14694,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'dmv8bs2j': {
       'en': '',
       'de': '',
-      'es': '',
       'fr': '',
       'it': '',
       'ja': '',

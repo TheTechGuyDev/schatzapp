@@ -42,8 +42,6 @@ void _setTimeagoLocales() {
   timeago.setLocaleMessages('fr_short', timeago.FrShortMessages());
   timeago.setLocaleMessages('it', timeago.ItMessages());
   timeago.setLocaleMessages('it_short', timeago.ItShortMessages());
-  timeago.setLocaleMessages('es', timeago.EsMessages());
-  timeago.setLocaleMessages('es_short', timeago.EsShortMessages());
   timeago.setLocaleMessages('pl', timeago.PlMessages());
   timeago.setLocaleMessages('ro', timeago.RoMessages());
   timeago.setLocaleMessages('ro_short', timeago.RoShortMessages());

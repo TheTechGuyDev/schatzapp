@@ -226,3 +226,7 @@ export '/custom_code/actions/is_my_private_lock.dart' show isMyPrivateLock;
 export '/custom_code/actions/is_group_private.dart' show isGroupPrivate;
 export '/custom_code/actions/save_to_gallery_setting.dart'
     show saveToGallerySetting;
+export '/custom_code/actions/go_to_private_chat.dart' show goToPrivateChat;
+export '/custom_code/actions/confirm_remove_private_group.dart'
+    show confirmRemovePrivateGroup;
+export '/custom_code/actions/link_web_device.dart' show linkWebDevice;

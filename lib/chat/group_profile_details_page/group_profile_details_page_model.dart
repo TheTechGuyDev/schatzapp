@@ -30,18 +30,10 @@ class GroupProfileDetailsPageModel
   bool? avatarChanged;
   // State field(s) for Switch widget.
   bool? switchValue1;
-  // Stores action output result for [Custom Action - convertGroupToPrivate] action in Switch widget.
-  bool? convert2;
-  // Stores action output result for [Custom Action - removePrivateGroup] action in Switch widget.
-  bool? removed3;
-  // Stores action output result for [Custom Action - removePrivateGroup] action in Switch widget.
-  bool? removed4;
   // State field(s) for Switch widget.
   bool? switchValue2;
   // State field(s) for Switch widget.
   bool? switchValue3;
-  // State field(s) for Switch widget.
-  bool? switchValue4;
 
   @override
   void initState(BuildContext context) {}

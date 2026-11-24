@@ -1,3 +1,4 @@
 NSCameraUsageDescription = "SchatzApp needs camera access for video calls";
 NSContactsUsageDescription = "SchatzApp needs contacts access to help you find friends already on the app";
 PermissionGroupNotification = "SchatzApp needs  access to send notification";
+NSFaceIDUsageDescription = "Allow Fingerprint/Face ID";

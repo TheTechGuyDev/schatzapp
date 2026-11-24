@@ -230,8 +230,28 @@ class _ChatSearchPanelState extends State<ChatSearchPanel> {
     return DateFormat('MM/dd/yy').format(date);
   }
 
-  void _openPrivate() {
-    context.pushNamed('private_chat');
+  Future<void> _openPrivate() async {
+    await goToPrivateChat();
+  }
+
+  // True when the search text points at Private Chats: either a keyword
+  // ("private", "locked") or the name of a locked chat. The locked chat's own
+  // name and photo are never shown, only a generic row.
+  bool get _showPrivateRow {
+    final query = widget.query.trim().toLowerCase();
+    if (query.length < 2 || _passwordUnlocked) return false;
+    const keywords = [
+      'private chats',
+      'private chat',
+      'locked chats',
+      'locked chat'
+    ];
+    if (keywords.any((k) => k.startsWith(query) || query.startsWith(k))) {
+      return true;
+    }
+    return _chatRows
+        .where((r) => r['is_locked'] == true)
+        .any((r) => _resolveName(r).toLowerCase().contains(query));
   }
 
   void _openChat(String conversationId, bool isGroup, String otherUserId,
@@ -272,6 +292,7 @@ class _ChatSearchPanelState extends State<ChatSearchPanel> {
     final hasQuery = widget.query.trim().isNotEmpty;
     final noResults = hasQuery &&
         !_passwordUnlocked &&
+        !_showPrivateRow &&
         nameMatches.isEmpty &&
         _messageMatches.isEmpty;
 
@@ -298,7 +319,7 @@ class _ChatSearchPanelState extends State<ChatSearchPanel> {
       child: ListView(
         padding: const EdgeInsets.only(bottom: 70),
         children: [
-          if (_passwordUnlocked)
+          if (_passwordUnlocked || _showPrivateRow)
             InkWell(
               onTap: _openPrivate,
               child: Padding(
@@ -314,10 +335,21 @@ class _ChatSearchPanelState extends State<ChatSearchPanel> {
                     ),
                     const SizedBox(width: 12),
                     const Expanded(
-                      child: Text(
-                        'Open Private Chat',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 15),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Private Chats',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 15),
+                          ),
+                          SizedBox(height: 2),
+                          Text(
+                            'Password required',
+                            style: TextStyle(
+                                fontSize: 13, color: Color(0xFF8A8A8A)),
+                          ),
+                        ],
                       ),
                     ),
                     Icon(Icons.chevron_right, color: theme.secondaryText),
@@ -471,6 +503,10 @@ class _MessageMatch {
   final String snippet;
   final String timeLabel;
 }
+// Set your widget name, define your parameter, and then add the
+// boilerplate code using the `</>` button on the right!
+// Set your widget name, define your parameter, and then add the
+// boilerplate code using the `</>` button on the right!
 // Set your widget name, define your parameter, and then add the
 // boilerplate code using the `</>` button on the right!
 // Set your widget name, define your parameter, and then add the

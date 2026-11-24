@@ -7,7 +7,6 @@ import '/components/theme_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/settings_profile/app_password_gate/app_password_gate_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/index.dart';
@@ -92,8 +91,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
       }
     });
 
-    _model.switchValue1 = _model.myLock;
-    _model.switchValue2 = _model.saveGallery;
+    _model.switchValue = _model.saveGallery;
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -704,8 +702,13 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                                 MainAxisAlignment
                                                                     .center,
                                                             children: [
-                                                              Icon(
-                                                                Icons.sms,
+                                                              FaIcon(
+                                                                FaIconData(const IconData(
+                                                                    /* comment */ 0xf075,
+                                                                    fontFamily:
+                                                                        'FontAwesomeRegular',
+                                                                    fontPackage:
+                                                                        'font_awesome_flutter')),
                                                                 color: Color(
                                                                     0xFF935CCC),
                                                                 size: 26.0,
@@ -1344,309 +1347,113 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                               MainAxisAlignment
                                                                   .spaceBetween,
                                                           children: [
+                                                            Expanded(
+                                                              child: Row(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                children: [
+                                                                  Container(
+                                                                    width: 40.0,
+                                                                    height:
+                                                                        40.0,
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .tertiary,
+                                                                      shape: BoxShape
+                                                                          .circle,
+                                                                    ),
+                                                                    child: Icon(
+                                                                      Icons
+                                                                          .private_connectivity_outlined,
+                                                                      color: Color(
+                                                                          0xFF935CCC),
+                                                                      size:
+                                                                          32.0,
+                                                                    ),
+                                                                  ),
+                                                                  Expanded(
+                                                                    child:
+                                                                        Column(
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .max,
+                                                                      crossAxisAlignment:
+                                                                          CrossAxisAlignment
+                                                                              .start,
+                                                                      children: [
+                                                                        Padding(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                              0.0,
+                                                                              0.0,
+                                                                              0.0,
+                                                                              5.0),
+                                                                          child:
+                                                                              Text(
+                                                                            FFLocalizations.of(context).getText(
+                                                                              'qpy9suo1' /* Lock Chat */,
+                                                                            ),
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  font: GoogleFonts.plusJakartaSans(
+                                                                                    fontWeight: FontWeight.w600,
+                                                                                    fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                  ),
+                                                                                  fontSize: 15.0,
+                                                                                  letterSpacing: 0.0,
+                                                                                  fontWeight: FontWeight.w600,
+                                                                                  fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                ),
+                                                                          ),
+                                                                        ),
+                                                                        Expanded(
+                                                                          child:
+                                                                              Container(
+                                                                            decoration:
+                                                                                BoxDecoration(),
+                                                                            child:
+                                                                                Container(
+                                                                              width: double.infinity,
+                                                                              height: 20.0,
+                                                                              child: custom_widgets.PrivateLockSubtitle(
+                                                                                width: double.infinity,
+                                                                                height: 20.0,
+                                                                                conversationId: _model.profileStats!.conversationId,
+                                                                                isGroup: false,
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                ].divide(SizedBox(
+                                                                    width:
+                                                                        20.0)),
+                                                              ),
+                                                            ),
                                                             Row(
                                                               mainAxisSize:
                                                                   MainAxisSize
                                                                       .max,
                                                               children: [
                                                                 Container(
-                                                                  width: 40.0,
+                                                                  width: 60.0,
                                                                   height: 40.0,
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .tertiary,
-                                                                    shape: BoxShape
-                                                                        .circle,
-                                                                  ),
-                                                                  child: Icon(
-                                                                    Icons
-                                                                        .private_connectivity_outlined,
-                                                                    color: Color(
-                                                                        0xFF935CCC),
-                                                                    size: 32.0,
+                                                                  child: custom_widgets
+                                                                      .PrivateLockSwitch(
+                                                                    width: 60.0,
+                                                                    height:
+                                                                        40.0,
+                                                                    conversationId: _model
+                                                                        .profileStats!
+                                                                        .conversationId,
+                                                                    isGroup:
+                                                                        false,
                                                                   ),
                                                                 ),
-                                                                Column(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .start,
-                                                                  children: [
-                                                                    Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          5.0),
-                                                                      child:
-                                                                          Text(
-                                                                        FFLocalizations.of(context)
-                                                                            .getText(
-                                                                          'qpy9suo1' /* Lock Chat */,
-                                                                        ),
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .override(
-                                                                              font: GoogleFonts.plusJakartaSans(
-                                                                                fontWeight: FontWeight.w600,
-                                                                                fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                              ),
-                                                                              fontSize: 15.0,
-                                                                              letterSpacing: 0.0,
-                                                                              fontWeight: FontWeight.w600,
-                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                            ),
-                                                                      ),
-                                                                    ),
-                                                                    AutoSizeText(
-                                                                      FFLocalizations.of(
-                                                                              context)
-                                                                          .getText(
-                                                                        'xxmunmem' /* Lock and hide his chat on this... */,
-                                                                      ),
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .override(
-                                                                            font:
-                                                                                GoogleFonts.plusJakartaSans(
-                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                            ),
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).secondaryText,
-                                                                            fontSize:
-                                                                                13.0,
-                                                                            letterSpacing:
-                                                                                0.0,
-                                                                            fontWeight:
-                                                                                FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                            fontStyle:
-                                                                                FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                          ),
-                                                                    ),
-                                                                    AutoSizeText(
-                                                                      FFLocalizations.of(
-                                                                              context)
-                                                                          .getText(
-                                                                        'i4hj3awi' /* Unlock and unhide his chat on ... */,
-                                                                      ),
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .override(
-                                                                            font:
-                                                                                GoogleFonts.plusJakartaSans(
-                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                            ),
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).secondaryText,
-                                                                            fontSize:
-                                                                                13.0,
-                                                                            letterSpacing:
-                                                                                0.0,
-                                                                            fontWeight:
-                                                                                FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                            fontStyle:
-                                                                                FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                          ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ].divide(SizedBox(
-                                                                  width: 20.0)),
-                                                            ),
-                                                            Switch.adaptive(
-                                                              value: _model
-                                                                  .switchValue1!,
-                                                              onChanged:
-                                                                  (newValue) async {
-                                                                safeSetState(() =>
-                                                                    _model.switchValue1 =
-                                                                        newValue);
-                                                                if (newValue) {
-                                                                  await showModalBottomSheet(
-                                                                    isScrollControlled:
-                                                                        true,
-                                                                    backgroundColor:
-                                                                        Colors
-                                                                            .transparent,
-                                                                    enableDrag:
-                                                                        false,
-                                                                    context:
-                                                                        context,
-                                                                    builder:
-                                                                        (context) {
-                                                                      return GestureDetector(
-                                                                        onTap:
-                                                                            () {
-                                                                          FocusScope.of(context)
-                                                                              .unfocus();
-                                                                          FocusManager
-                                                                              .instance
-                                                                              .primaryFocus
-                                                                              ?.unfocus();
-                                                                        },
-                                                                        child:
-                                                                            Padding(
-                                                                          padding:
-                                                                              MediaQuery.viewInsetsOf(context),
-                                                                          child:
-                                                                              AppPasswordGateWidget(
-                                                                            onVerified:
-                                                                                (success) async {
-                                                                              if (success == true) {
-                                                                                _model.lockOk = await actions.setPrivateLock(
-                                                                                  _model.profileStats!.conversationId,
-                                                                                  true,
-                                                                                );
-                                                                                if (_model.lockOk == true) {
-                                                                                  FFAppState().privateUnlockedAt = getCurrentTimestamp;
-                                                                                  safeSetState(() {});
-
-                                                                                  context.pushNamed(PrivateChatWidget.routeName);
-                                                                                } else {
-                                                                                  ScaffoldMessenger.of(context).showSnackBar(
-                                                                                    SnackBar(
-                                                                                      content: Text(
-                                                                                        'Could not lock this chat',
-                                                                                        style: TextStyle(
-                                                                                          color: FlutterFlowTheme.of(context).primaryText,
-                                                                                        ),
-                                                                                      ),
-                                                                                      duration: Duration(milliseconds: 4000),
-                                                                                      backgroundColor: FlutterFlowTheme.of(context).secondary,
-                                                                                    ),
-                                                                                  );
-                                                                                }
-                                                                              } else {
-                                                                                if (Navigator.of(context).canPop()) {
-                                                                                  context.pop();
-                                                                                }
-                                                                                context.pushNamed(
-                                                                                  UserProfileWidget.routeName,
-                                                                                  queryParameters: {
-                                                                                    'otherUserId': serializeParam(
-                                                                                      widget.otherUserId,
-                                                                                      ParamType.String,
-                                                                                    ),
-                                                                                  }.withoutNulls,
-                                                                                );
-                                                                              }
-                                                                            },
-                                                                          ),
-                                                                        ),
-                                                                      );
-                                                                    },
-                                                                  ).then((value) =>
-                                                                      safeSetState(
-                                                                          () {}));
-
-                                                                  safeSetState(
-                                                                      () {});
-                                                                } else {
-                                                                  await showModalBottomSheet(
-                                                                    isScrollControlled:
-                                                                        true,
-                                                                    backgroundColor:
-                                                                        Colors
-                                                                            .transparent,
-                                                                    enableDrag:
-                                                                        false,
-                                                                    context:
-                                                                        context,
-                                                                    builder:
-                                                                        (context) {
-                                                                      return GestureDetector(
-                                                                        onTap:
-                                                                            () {
-                                                                          FocusScope.of(context)
-                                                                              .unfocus();
-                                                                          FocusManager
-                                                                              .instance
-                                                                              .primaryFocus
-                                                                              ?.unfocus();
-                                                                        },
-                                                                        child:
-                                                                            Padding(
-                                                                          padding:
-                                                                              MediaQuery.viewInsetsOf(context),
-                                                                          child:
-                                                                              AppPasswordGateWidget(
-                                                                            onVerified:
-                                                                                (success) async {
-                                                                              if (success == true) {
-                                                                                _model.unlockOk = await actions.setPrivateLock(
-                                                                                  _model.profileStats!.conversationId,
-                                                                                  false,
-                                                                                );
-                                                                                if (_model.unlockOk == true) {
-                                                                                  FFAppState().privateUnlockedAt = getCurrentTimestamp;
-                                                                                  safeSetState(() {});
-
-                                                                                  context.pushNamed(HomePageWidget.routeName);
-                                                                                } else {
-                                                                                  ScaffoldMessenger.of(context).showSnackBar(
-                                                                                    SnackBar(
-                                                                                      content: Text(
-                                                                                        'Could not unlock this chat',
-                                                                                        style: TextStyle(
-                                                                                          color: FlutterFlowTheme.of(context).primaryText,
-                                                                                        ),
-                                                                                      ),
-                                                                                      duration: Duration(milliseconds: 4000),
-                                                                                      backgroundColor: FlutterFlowTheme.of(context).secondary,
-                                                                                    ),
-                                                                                  );
-                                                                                }
-                                                                              } else {
-                                                                                if (Navigator.of(context).canPop()) {
-                                                                                  context.pop();
-                                                                                }
-                                                                                context.pushNamed(
-                                                                                  UserProfileWidget.routeName,
-                                                                                  queryParameters: {
-                                                                                    'otherUserId': serializeParam(
-                                                                                      widget.otherUserId,
-                                                                                      ParamType.String,
-                                                                                    ),
-                                                                                  }.withoutNulls,
-                                                                                );
-                                                                              }
-                                                                            },
-                                                                          ),
-                                                                        ),
-                                                                      );
-                                                                    },
-                                                                  ).then((value) =>
-                                                                      safeSetState(
-                                                                          () {}));
-
-                                                                  safeSetState(
-                                                                      () {});
-                                                                }
-                                                              },
-                                                              activeColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primary,
-                                                              activeTrackColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primary,
-                                                              inactiveTrackColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .alternate,
-                                                              inactiveThumbColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryBackground,
+                                                              ],
                                                             ),
                                                           ],
                                                         ),
@@ -1762,11 +1569,11 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                             ),
                                                             Switch.adaptive(
                                                               value: _model
-                                                                  .switchValue2!,
+                                                                  .switchValue!,
                                                               onChanged:
                                                                   (newValue) async {
                                                                 safeSetState(() =>
-                                                                    _model.switchValue2 =
+                                                                    _model.switchValue =
                                                                         newValue);
                                                                 if (newValue) {
                                                                   await actions
@@ -2928,76 +2735,72 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                         ),
                       ],
                     ),
-                    if (responsiveVisibility(
-                      context: context,
-                      phone: false,
-                    ))
-                      Stack(
-                        alignment: AlignmentDirectional(0.0, -1.0),
-                        children: [
-                          Align(
-                            alignment: AlignmentDirectional(-0.01, -1.0),
-                            child: Container(
-                              width: 150.0,
-                              height: 150.0,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                                shape: BoxShape.circle,
-                              ),
-                              child: Builder(
-                                builder: (context) {
-                                  if (stackProfilesRow?.avatarUrl != null &&
-                                      stackProfilesRow?.avatarUrl != '') {
-                                    return Container(
+                    Stack(
+                      alignment: AlignmentDirectional(0.0, -1.0),
+                      children: [
+                        Align(
+                          alignment: AlignmentDirectional(-0.01, -1.0),
+                          child: Container(
+                            width: 150.0,
+                            height: 150.0,
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                              shape: BoxShape.circle,
+                            ),
+                            child: Builder(
+                              builder: (context) {
+                                if (stackProfilesRow?.avatarUrl != null &&
+                                    stackProfilesRow?.avatarUrl != '') {
+                                  return Container(
+                                    width: 150.0,
+                                    height: 150.0,
+                                    child: custom_widgets.UserAvatarWidget(
                                       width: 150.0,
                                       height: 150.0,
-                                      child: custom_widgets.UserAvatarWidget(
-                                        width: 150.0,
-                                        height: 150.0,
-                                        avatarUrl: stackProfilesRow?.avatarUrl,
-                                        displayName: stackProfilesRow!.fullName,
-                                        radius: 75.0,
-                                      ),
-                                    );
-                                  } else {
-                                    return Container(
-                                      width: 1.0,
-                                      height: 1.0,
-                                      decoration: BoxDecoration(),
-                                    );
-                                  }
-                                },
+                                      avatarUrl: stackProfilesRow?.avatarUrl,
+                                      displayName: stackProfilesRow!.fullName,
+                                      radius: 75.0,
+                                    ),
+                                  );
+                                } else {
+                                  return Container(
+                                    width: 1.0,
+                                    height: 1.0,
+                                    decoration: BoxDecoration(),
+                                  );
+                                }
+                              },
+                            ),
+                          ),
+                        ),
+                        if (stackProfilesRow?.isOnline == true)
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                120.0, 110.0, 0.0, 0.0),
+                            child: Container(
+                              width: 25.0,
+                              height: 25.0,
+                              decoration: BoxDecoration(
+                                color: Color(0xFF2FFB4B),
+                                boxShadow: [
+                                  BoxShadow(
+                                    blurRadius: 0.0,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    offset: Offset(
+                                      0.0,
+                                      0.0,
+                                    ),
+                                    spreadRadius: 3.0,
+                                  )
+                                ],
+                                shape: BoxShape.circle,
                               ),
                             ),
                           ),
-                          if (stackProfilesRow?.isOnline == true)
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  120.0, 110.0, 0.0, 0.0),
-                              child: Container(
-                                width: 25.0,
-                                height: 25.0,
-                                decoration: BoxDecoration(
-                                  color: Color(0xFF2FFB4B),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      blurRadius: 0.0,
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
-                                      offset: Offset(
-                                        0.0,
-                                        0.0,
-                                      ),
-                                      spreadRadius: 3.0,
-                                    )
-                                  ],
-                                  shape: BoxShape.circle,
-                                ),
-                              ),
-                            ),
-                        ],
-                      ),
+                      ],
+                    ),
                   ],
                 );
               },

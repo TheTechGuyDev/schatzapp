@@ -1,2 +1,3 @@
 NSCameraUsageDescription = "SchatzApp richiede l'accesso alla fotocamera per le videochiamate.";
 NSContactsUsageDescription = "SchatzApp richiede l'accesso ai contatti per aiutarti a trovare gli amici già presenti sull'app.";
+PermissionGroupNotification = "SchatzApp necessita dell'accesso per inviare le notifiche";

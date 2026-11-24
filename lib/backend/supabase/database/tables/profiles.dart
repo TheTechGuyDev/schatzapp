@@ -139,4 +139,8 @@ class ProfilesRow extends SupabaseDataRow {
 
   String? get messagePolicy => getField<String>('message_policy');
   set messagePolicy(String? value) => setField<String>('message_policy', value);
+
+  String? get camouflageLastCombo => getField<String>('camouflage_last_combo');
+  set camouflageLastCombo(String? value) =>
+      setField<String>('camouflage_last_combo', value);
 }

@@ -3,6 +3,7 @@ import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
 import '/components/media_library_sheet_component_widget.dart';
 import '/components/web_chat_image_send_sheet_widget_widget.dart';
+import '/flutter_flow/ff_builtin_enums.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -186,8 +187,9 @@ class _ChatpageWidgetState extends State<ChatpageWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(
                           20.0, 15.0, 20.0, 25.0),
                       child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment:
+                            (FFMainAxisAlignment.center).flutterValue,
                         children: [
                           InkWell(
                             splashColor: Colors.transparent,
@@ -216,24 +218,24 @@ class _ChatpageWidgetState extends State<ChatpageWidget> {
                           ),
                           Icon(
                             Icons.call_outlined,
-                            color: FlutterFlowTheme.of(context).primaryText,
+                            color: FlutterFlowTheme.of(context).secondaryText,
                             size: 28.0,
                           ),
                           FaIcon(
                             FaIconData(const IconData(/* wallet */ 0xf555,
                                 fontFamily: 'FontAwesomeSolid',
                                 fontPackage: 'font_awesome_flutter')),
-                            color: FlutterFlowTheme.of(context).primaryText,
+                            color: FlutterFlowTheme.of(context).secondaryText,
                             size: 28.0,
                           ),
                           FaIcon(
                             FaIconData(const IconData(/* hornbill */ 0xf592,
                                 fontFamily: 'FontAwesomeBrands',
                                 fontPackage: 'font_awesome_flutter')),
-                            color: FlutterFlowTheme.of(context).primaryText,
+                            color: FlutterFlowTheme.of(context).secondaryText,
                             size: 28.0,
                           ),
-                        ],
+                        ].divide(SizedBox(width: 38.0)),
                       ),
                     ),
                   ],

@@ -30,10 +30,18 @@ class LocalVideoRenderer extends StatefulWidget {
   State<LocalVideoRenderer> createState() => _LocalVideoRendererState();
 }
 
+// Last known shape (width / height) of the camera picture, shared by every
+// renderer so a swap never starts from a guess.
+double _kLocalAspect = 3 / 4;
+
 class _LocalVideoRendererState extends State<LocalVideoRenderer> {
+  RtcEngineEventHandler? _sizeHandler;
   bool _engineReady = false;
   Timer? _refreshTimer;
   VideoViewController? _controller;
+  double? _controllerWidth;
+  double? _controllerHeight;
+  int _version = 0;
 
   @override
   void initState() {
@@ -47,8 +55,38 @@ class _LocalVideoRendererState extends State<LocalVideoRenderer> {
   @override
   void dispose() {
     _refreshTimer?.cancel();
+    final engine = AgoraCallManager.engine;
+    if (engine != null && _sizeHandler != null) {
+      try {
+        engine.unregisterEventHandler(_sizeHandler!);
+      } catch (_) {}
+    }
     _controller?.dispose();
     super.dispose();
+  }
+
+  void _setAspect(int w, int h, [int rotation = 0]) {
+    if (w <= 0 || h <= 0) return;
+    final turned = rotation == 90 || rotation == 270;
+    final a = turned ? h / w : w / h;
+    if ((a - _kLocalAspect).abs() < 0.001) return;
+    _kLocalAspect = a;
+    if (mounted) setState(() {});
+  }
+
+  void _listenForPictureSize(RtcEngine engine) {
+    if (_sizeHandler != null) return;
+    _sizeHandler = RtcEngineEventHandler(
+      onVideoSizeChanged: (connection, sourceType, uid, width, height, rot) {
+        if (uid == 0) _setAspect(width, height, rot);
+      },
+      onFirstLocalVideoFrame: (source, width, height, elapsed) {
+        _setAspect(width, height);
+      },
+    );
+    try {
+      engine.registerEventHandler(_sizeHandler!);
+    } catch (_) {}
   }
 
   Future<void> _waitForEngine() async {
@@ -59,9 +97,46 @@ class _LocalVideoRendererState extends State<LocalVideoRenderer> {
     if (mounted) setState(() => _engineReady = true);
   }
 
+  VideoViewController _makeController(RtcEngine engine) {
+    _version++;
+    return VideoViewController(
+      rtcEngine: engine,
+      canvas: const VideoCanvas(
+        uid: 0,
+        renderMode: RenderModeType.renderModeHidden,
+      ),
+    );
+  }
+
+  // Builds a fresh controller whenever the view changes size (small preview
+  // to full screen and back), then once more shortly after, so the newest
+  // setup always wins over the old view being torn down.
+  void _ensureController(RtcEngine engine) {
+    final changed = _controller == null ||
+        _controllerWidth != widget.width ||
+        _controllerHeight != widget.height;
+    if (!changed) return;
+
+    _controller?.dispose();
+    _controller = _makeController(engine);
+    _controllerWidth = widget.width;
+    _controllerHeight = widget.height;
+
+    final versionAtCreate = _version;
+    Future.delayed(const Duration(milliseconds: 300), () {
+      if (!mounted || versionAtCreate != _version) return;
+      final e = AgoraCallManager.engine;
+      if (e == null) return;
+      _controller?.dispose();
+      _controller = _makeController(e);
+      setState(() {});
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    if (!_engineReady || AgoraCallManager.engine == null) {
+    final engine = AgoraCallManager.engine;
+    if (!_engineReady || engine == null) {
       return Container(
         width: widget.width,
         height: widget.height,
@@ -69,21 +144,10 @@ class _LocalVideoRendererState extends State<LocalVideoRenderer> {
       );
     }
 
-    // Create the controller ONCE and keep AgoraVideoView permanently
-    // mounted for this widget's whole lifetime — including while video is
-    // toggled off. Swapping it out for a different widget on toggle was
-    // what caused Agora to lose track of its own view element (the "can
-    // not find AgoraSurfaceView_N" failure), which visually broke the
-    // rest of the call screen. Muting is handled at the Agora stream
-    // level (see toggleVideo/muteLocalVideoStream) — the view itself
-    // should never be torn down just because video is off.
-    _controller ??= VideoViewController(
-      rtcEngine: AgoraCallManager.engine!,
-      canvas: const VideoCanvas(
-        uid: 0,
-        renderMode: RenderModeType.renderModeHidden,
-      ),
-    );
+    // The view stays mounted for the whole call, including while video is
+    // off. Muting is handled at the Agora stream level (toggleVideo).
+    _listenForPictureSize(engine);
+    _ensureController(engine);
 
     final avatarSize = (widget.width ?? 60.0) * 0.5;
 
@@ -93,8 +157,34 @@ class _LocalVideoRendererState extends State<LocalVideoRenderer> {
       child: Stack(
         fit: StackFit.expand,
         children: [
-          AgoraVideoView(
-            controller: _controller!,
+          // The camera view is sized to the picture's own shape, then
+          // enlarged until it covers the whole area and trimmed at the
+          // edges, so it fills the screen with no black bars.
+          LayoutBuilder(
+            builder: (context, box) {
+              final w = box.maxWidth.isFinite ? box.maxWidth : 150.0;
+              final h = box.maxHeight.isFinite ? box.maxHeight : 200.0;
+              final a = _kLocalAspect;
+              final coverW = (w / h > a) ? w : h * a;
+              final coverH = (w / h > a) ? w / a : h;
+              return ClipRect(
+                child: OverflowBox(
+                  minWidth: coverW,
+                  maxWidth: coverW,
+                  minHeight: coverH,
+                  maxHeight: coverH,
+                  child: SizedBox(
+                    width: coverW,
+                    height: coverH,
+                    child: AgoraVideoView(
+                      key: ValueKey(
+                          'local-$_version-${coverW.round()}x${coverH.round()}'),
+                      controller: _controller!,
+                    ),
+                  ),
+                ),
+              );
+            },
           ),
           if (AgoraCallManager.isVideoOff)
             Container(

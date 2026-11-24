@@ -81,12 +81,8 @@ class _CreateagroupWidgetState extends State<CreateagroupWidget> {
                         width: 50.0,
                         height: 50.0,
                         decoration: BoxDecoration(
-                          color: Color(0x2CE0E3E7),
+                          color: FlutterFlowTheme.of(context).tertiary,
                           shape: BoxShape.circle,
-                          border: Border.all(
-                            color:
-                                FlutterFlowTheme.of(context).primaryBackground,
-                          ),
                         ),
                         child: InkWell(
                           splashColor: Colors.transparent,
@@ -98,7 +94,7 @@ class _CreateagroupWidgetState extends State<CreateagroupWidget> {
                           },
                           child: Icon(
                             Icons.chevron_left,
-                            color: FlutterFlowTheme.of(context).primaryText,
+                            color: FlutterFlowTheme.of(context).primary,
                             size: 24.0,
                           ),
                         ),
@@ -114,7 +110,7 @@ class _CreateagroupWidgetState extends State<CreateagroupWidget> {
                                     .bodyMedium
                                     .fontStyle,
                               ),
-                              fontSize: 20.0,
+                              fontSize: 19.0,
                               letterSpacing: 0.0,
                               fontWeight: FontWeight.bold,
                               fontStyle: FlutterFlowTheme.of(context)
@@ -456,7 +452,7 @@ class _CreateagroupWidgetState extends State<CreateagroupWidget> {
                 ),
                 Container(
                   width: double.infinity,
-                  height: 40.0,
+                  height: 45.0,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                     borderRadius: BorderRadius.circular(10.0),
@@ -619,7 +615,7 @@ class _CreateagroupWidgetState extends State<CreateagroupWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                   child: Container(
                     width: double.infinity,
-                    height: 40.0,
+                    height: 45.0,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
                       borderRadius: BorderRadius.circular(10.0),
@@ -775,16 +771,12 @@ class _CreateagroupWidgetState extends State<CreateagroupWidget> {
                             child: Container(
                               width: double.infinity,
                               decoration: BoxDecoration(
-                                color: Color(0x2CE0E3E7),
+                                color: FlutterFlowTheme.of(context).tertiary,
                                 borderRadius: BorderRadius.circular(20.0),
-                                border: Border.all(
-                                  color: FlutterFlowTheme.of(context)
-                                      .primaryBackground,
-                                ),
                               ),
                               child: Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 5.0, 0.0, 5.0),
+                                    0.0, 5.0, 10.0, 5.0),
                                 child: Builder(
                                   builder: (context) {
                                     final selectedMembersList =
@@ -803,23 +795,25 @@ class _CreateagroupWidgetState extends State<CreateagroupWidget> {
                                           return Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    10.0, 0.0, 10.0, 0.0),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              children: [
-                                                Expanded(
-                                                  child: Align(
+                                                    10.0, 0.0, 0.0, 0.0),
+                                            child: Container(
+                                              width: 90.0,
+                                              decoration: BoxDecoration(),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                children: [
+                                                  Align(
                                                     alignment:
                                                         AlignmentDirectional(
-                                                            1.0, -1.0),
+                                                            0.0, -1.0),
                                                     child: Stack(
                                                       children: [
                                                         Align(
                                                           alignment:
                                                               AlignmentDirectional(
-                                                                  1.0, -1.0),
+                                                                  0.0, -1.0),
                                                           child: Container(
                                                             width: 40.0,
                                                             height: 40.0,
@@ -844,12 +838,12 @@ class _CreateagroupWidgetState extends State<CreateagroupWidget> {
                                                         Align(
                                                           alignment:
                                                               AlignmentDirectional(
-                                                                  1.0, -1.0),
+                                                                  0.0, -1.0),
                                                           child: Padding(
                                                             padding:
                                                                 EdgeInsetsDirectional
                                                                     .fromSTEB(
-                                                                        20.0,
+                                                                        30.0,
                                                                         3.0,
                                                                         0.0,
                                                                         0.0),
@@ -889,8 +883,8 @@ class _CreateagroupWidgetState extends State<CreateagroupWidget> {
                                                                 Icons.close,
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .secondaryBackground,
-                                                                size: 20.0,
+                                                                    .primary,
+                                                                size: 23.0,
                                                               ),
                                                             ),
                                                           ),
@@ -898,50 +892,54 @@ class _CreateagroupWidgetState extends State<CreateagroupWidget> {
                                                       ],
                                                     ),
                                                   ),
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 5.0, 0.0, 0.0),
-                                                  child: Text(
-                                                    valueOrDefault<String>(
-                                                      selectedMembersListItem
-                                                          .memberName,
-                                                      'John smith',
-                                                    ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          font: GoogleFonts
-                                                              .plusJakartaSans(
-                                                            fontWeight:
-                                                                FlutterFlowTheme.of(
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 5.0,
+                                                                0.0, 0.0),
+                                                    child: Text(
+                                                      valueOrDefault<String>(
+                                                        selectedMembersListItem
+                                                            .memberName,
+                                                        'John smith jhhjhghgjkgyj',
+                                                      ),
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      maxLines: 1,
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                font: GoogleFonts
+                                                                    .plusJakartaSans(
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontStyle,
+                                                                ),
+                                                                fontSize: 10.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyMedium
                                                                     .fontWeight,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
+                                                                fontStyle: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyMedium
                                                                     .fontStyle,
-                                                          ),
-                                                          fontSize: 10.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
-                                                                  .fontStyle,
-                                                        ),
+                                                              ),
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                    ),
                                                   ),
-                                                ),
-                                              ],
+                                                ],
+                                              ),
                                             ),
                                           );
                                         }),

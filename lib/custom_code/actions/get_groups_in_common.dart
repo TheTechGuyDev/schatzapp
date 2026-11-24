@@ -14,12 +14,14 @@ Future<List<GroupInCommonStructStruct>> getGroupsInCommon(
   String currentUserId,
   String otherUserId,
 ) async {
+  // Only conversations where the person is still a member.
   final myConvRows = await SupaFlow.client
       .from('conversation_participants')
       .select('conversation_id')
-      .eq('user_id', currentUserId);
+      .eq('user_id', currentUserId)
+      .isFilter('left_at', null);
   final myConvIds =
-      myConvRows.map((r) => r['conversation_id'] as String).toList();
+      myConvRows.map((r) => r['conversation_id'] as String).toSet().toList();
 
   if (myConvIds.isEmpty) return [];
 
@@ -27,6 +29,7 @@ Future<List<GroupInCommonStructStruct>> getGroupsInCommon(
       .from('conversation_participants')
       .select('conversation_id')
       .eq('user_id', otherUserId)
+      .isFilter('left_at', null)
       .inFilter('conversation_id', myConvIds);
 
   final sharedIds =
@@ -41,26 +44,33 @@ Future<List<GroupInCommonStructStruct>> getGroupsInCommon(
 
   if (groupRows.isEmpty) return [];
 
-  final groupIds = groupRows.map((g) => g['id'] as String).toList();
+  // One entry per group id, whatever the database returns.
+  final byId = <String, Map<String, dynamic>>{};
+  for (final g in groupRows) {
+    byId[g['id'] as String] = Map<String, dynamic>.from(g);
+  }
+  final groupIds = byId.keys.toList();
 
   final memberRows = await SupaFlow.client
       .from('conversation_participants')
-      .select('conversation_id')
+      .select('conversation_id, user_id')
+      .isFilter('left_at', null)
       .inFilter('conversation_id', groupIds);
 
-  final memberCounts = <String, int>{};
+  // Count each member once per group.
+  final members = <String, Set<String>>{};
   for (final row in memberRows) {
     final id = row['conversation_id'] as String;
-    memberCounts[id] = (memberCounts[id] ?? 0) + 1;
+    members.putIfAbsent(id, () => <String>{}).add(row['user_id'] as String);
   }
 
-  return groupRows.map((g) {
-    final id = g['id'] as String;
+  return byId.entries.map((e) {
+    final g = e.value;
     return GroupInCommonStructStruct(
-      groupId: id,
+      groupId: e.key,
       groupName: (g['name'] as String?) ?? 'Group',
       groupAvatarUrl: (g['avatar_url'] as String?) ?? '',
-      memberCount: memberCounts[id] ?? 0,
+      memberCount: members[e.key]?.length ?? 0,
     );
   }).toList();
 }

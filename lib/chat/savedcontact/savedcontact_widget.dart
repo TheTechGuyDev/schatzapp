@@ -1,4 +1,5 @@
 import '/auth/supabase_auth/auth_util.dart';
+import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/custom_code/actions/index.dart' as actions;
@@ -7,6 +8,7 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'savedcontact_model.dart';
 export 'savedcontact_model.dart';
@@ -34,10 +36,13 @@ class SavedcontactWidget extends StatefulWidget {
   State<SavedcontactWidget> createState() => _SavedcontactWidgetState();
 }
 
-class _SavedcontactWidgetState extends State<SavedcontactWidget> {
+class _SavedcontactWidgetState extends State<SavedcontactWidget>
+    with TickerProviderStateMixin {
   late SavedcontactModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void initState() {
@@ -57,6 +62,21 @@ class _SavedcontactWidgetState extends State<SavedcontactWidget> {
         _model.isPrivateLocked = _model.lockCheck!;
         safeSetState(() {});
       }
+    });
+
+    animationsMap.addAll({
+      'imageOnPageLoadAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          RotateEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
+            begin: 0.0,
+            end: 1.0,
+          ),
+        ],
+      ),
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -92,8 +112,8 @@ class _SavedcontactWidgetState extends State<SavedcontactWidget> {
                     borderRadius: BorderRadius.only(),
                     child: Image.asset(
                       'assets/images/WhatsApp_Image_2026-08-20_at_6.28.58_PM-removebg-preview.png',
-                      width: 25.0,
-                      height: 25.0,
+                      width: 28.0,
+                      height: 28.0,
                       fit: BoxFit.contain,
                     ),
                   ),
@@ -121,7 +141,7 @@ class _SavedcontactWidgetState extends State<SavedcontactWidget> {
                               .fontStyle,
                         ),
                   ),
-                ].divide(SizedBox(width: 10.0)),
+                ].divide(SizedBox(width: 5.0)),
               ),
               actions: [],
               centerTitle: true,
@@ -142,15 +162,34 @@ class _SavedcontactWidgetState extends State<SavedcontactWidget> {
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(8.0),
-                          child: Image.asset(
-                            'assets/images/WhatsApp_Image_2026-08-19_at_10.03.55_AM-removebg-preview.png',
-                            width: 180.0,
-                            height: 180.0,
-                            fit: BoxFit.cover,
+                        InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            context.pushNamed(
+                              HomePageWidget.routeName,
+                              extra: <String, dynamic>{
+                                '__transition_info__': TransitionInfo(
+                                  hasTransition: true,
+                                  transitionType: PageTransitionType.fade,
+                                  duration: Duration(milliseconds: 0),
+                                ),
+                              },
+                            );
+                          },
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: Image.asset(
+                              'assets/images/WhatsApp_Image_2026-08-19_at_10.03.55_AM-removebg-preview.png',
+                              width: 180.0,
+                              height: 180.0,
+                              fit: BoxFit.cover,
+                            ),
                           ),
-                        ),
+                        ).animateOnPageLoad(
+                            animationsMap['imageOnPageLoadAnimation']!),
                         Text(
                           FFLocalizations.of(context).getText(
                             'pq9smydg' /* Contact saved! */,
@@ -208,7 +247,7 @@ class _SavedcontactWidgetState extends State<SavedcontactWidget> {
                           child: Text(
                             valueOrDefault<String>(
                               widget.savedName,
-                              'John Smith',
+                              'Null',
                             ),
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
@@ -237,7 +276,7 @@ class _SavedcontactWidgetState extends State<SavedcontactWidget> {
                                 .secondaryBackground,
                             borderRadius: BorderRadius.circular(20.0),
                             border: Border.all(
-                              color: FlutterFlowTheme.of(context).alternate,
+                              color: FlutterFlowTheme.of(context).tertiary,
                               width: 1.0,
                             ),
                           ),
@@ -354,7 +393,7 @@ class _SavedcontactWidgetState extends State<SavedcontactWidget> {
                                             Text(
                                               valueOrDefault<String>(
                                                 widget.savedName,
-                                                'John Smith',
+                                                'Null',
                                               ),
                                               style:
                                                   FlutterFlowTheme.of(context)
@@ -814,47 +853,79 @@ class _SavedcontactWidgetState extends State<SavedcontactWidget> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Container(
-                          width: double.infinity,
-                          height: 170.0,
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                            image: DecorationImage(
-                              fit: BoxFit.fill,
-                              image: Image.asset(
-                                'assets/images/WhatsApp_Image_2026-08-19_at_10.03.54_AM-removebg-preview.png',
-                              ).image,
+                        InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            context.pushNamed(
+                              HomePageWidget.routeName,
+                              extra: <String, dynamic>{
+                                '__transition_info__': TransitionInfo(
+                                  hasTransition: true,
+                                  transitionType: PageTransitionType.fade,
+                                  duration: Duration(milliseconds: 0),
+                                ),
+                              },
+                            );
+                          },
+                          child: Container(
+                            width: double.infinity,
+                            height: 170.0,
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                              image: DecorationImage(
+                                fit: BoxFit.fill,
+                                image: Image.asset(
+                                  'assets/images/WhatsApp_Image_2026-08-19_at_10.03.54_AM-removebg-preview.png',
+                                ).image,
+                              ),
                             ),
-                          ),
-                          alignment: AlignmentDirectional(0.0, 0.0),
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 20.0, 0.0, 0.0),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    ClipRRect(
-                                      borderRadius: BorderRadius.circular(8.0),
-                                      child: Image.asset(
-                                        'assets/images/WhatsApp_Image_2026-08-20_at_6.28.58_PM-removebg-preview.png',
-                                        width: 25.0,
-                                        height: 25.0,
-                                        fit: BoxFit.contain,
+                            alignment: AlignmentDirectional(0.0, 0.0),
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 20.0, 0.0, 0.0),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                        child: Image.asset(
+                                          'assets/images/WhatsApp_Image_2026-08-20_at_6.28.58_PM-removebg-preview.png',
+                                          width: 25.0,
+                                          height: 25.0,
+                                          fit: BoxFit.contain,
+                                        ),
                                       ),
-                                    ),
-                                    Text(
-                                      FFLocalizations.of(context).getText(
-                                        'md9u27sk' /* SchatzApp */,
-                                      ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .headlineMedium
-                                          .override(
-                                            font: GoogleFonts.plusJakartaSans(
+                                      Text(
+                                        FFLocalizations.of(context).getText(
+                                          'md9u27sk' /* SchatzApp */,
+                                        ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .headlineMedium
+                                            .override(
+                                              font: GoogleFonts.plusJakartaSans(
+                                                fontWeight:
+                                                    FlutterFlowTheme.of(context)
+                                                        .headlineMedium
+                                                        .fontWeight,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .headlineMedium
+                                                        .fontStyle,
+                                              ),
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                              fontSize: 22.0,
+                                              letterSpacing: 0.0,
                                               fontWeight:
                                                   FlutterFlowTheme.of(context)
                                                       .headlineMedium
@@ -864,46 +935,35 @@ class _SavedcontactWidgetState extends State<SavedcontactWidget> {
                                                       .headlineMedium
                                                       .fontStyle,
                                             ),
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            fontSize: 22.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .headlineMedium
-                                                    .fontWeight,
+                                      ),
+                                    ].divide(SizedBox(width: 10.0)),
+                                  ),
+                                  Text(
+                                    FFLocalizations.of(context).getText(
+                                      'vt9kre4i' /* Connect, Share, Together. */,
+                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          font: GoogleFonts.plusJakartaSans(
+                                            fontWeight: FontWeight.w500,
                                             fontStyle:
                                                 FlutterFlowTheme.of(context)
-                                                    .headlineMedium
+                                                    .bodyMedium
                                                     .fontStyle,
                                           ),
-                                    ),
-                                  ].divide(SizedBox(width: 10.0)),
-                                ),
-                                Text(
-                                  FFLocalizations.of(context).getText(
-                                    'vt9kre4i' /* Connect, Share, Together. */,
-                                  ),
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        font: GoogleFonts.plusJakartaSans(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          letterSpacing: 1.0,
                                           fontWeight: FontWeight.w500,
                                           fontStyle:
                                               FlutterFlowTheme.of(context)
                                                   .bodyMedium
                                                   .fontStyle,
                                         ),
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                        letterSpacing: 1.0,
-                                        fontWeight: FontWeight.w500,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontStyle,
-                                      ),
-                                ),
-                              ],
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),

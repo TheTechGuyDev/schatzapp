@@ -1,6 +1,9 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'scan_web_model.dart';
 export 'scan_web_model.dart';
@@ -160,6 +163,52 @@ class _ScanWebWidgetState extends State<ScanWebWidget> {
                     fontStyle:
                         FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                   ),
+            ),
+            FFButtonWidget(
+              onPressed: () async {
+                _model.scannedQr = await FlutterBarcodeScanner.scanBarcode(
+                  '#C62828', // scanning line color
+                  FFLocalizations.of(context).getText(
+                    'qrkltmyx' /* Cancel */,
+                  ), // cancel button text
+                  true, // whether to show the torch (camera LED) toggle icon
+                  ScanMode.QR,
+                );
+
+                if (_model.scannedQr != '') {
+                  await actions.linkWebDevice(
+                    _model.scannedQr,
+                  );
+                  Navigator.pop(context);
+                }
+
+                safeSetState(() {});
+              },
+              text: FFLocalizations.of(context).getText(
+                '06l3w32t' /* Scan QR code */,
+              ),
+              options: FFButtonOptions(
+                height: 40.0,
+                padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                color: FlutterFlowTheme.of(context).primary,
+                textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                      font: GoogleFonts.plusJakartaSans(
+                        fontWeight:
+                            FlutterFlowTheme.of(context).titleSmall.fontWeight,
+                        fontStyle:
+                            FlutterFlowTheme.of(context).titleSmall.fontStyle,
+                      ),
+                      color: Colors.white,
+                      letterSpacing: 0.0,
+                      fontWeight:
+                          FlutterFlowTheme.of(context).titleSmall.fontWeight,
+                      fontStyle:
+                          FlutterFlowTheme.of(context).titleSmall.fontStyle,
+                    ),
+                elevation: 0.0,
+                borderRadius: BorderRadius.circular(8.0),
+              ),
             ),
           ].divide(SizedBox(height: 30.0)),
         ),

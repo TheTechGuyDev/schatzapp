@@ -1,2 +1,3 @@
 NSCameraUsageDescription = "SchatzAppはビデオ通話のためにカメラへのアクセスが必要です";
 NSContactsUsageDescription = "SchatzAppは、アプリに登録済みの友達を見つけるために、連絡先へのアクセス権限を必要とします。";
+PermissionGroupNotification = "SchatzAppは通知を送信するためのアクセス権が必要です";

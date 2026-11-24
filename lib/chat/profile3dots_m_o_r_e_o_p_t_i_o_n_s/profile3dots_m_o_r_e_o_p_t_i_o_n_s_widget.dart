@@ -365,9 +365,7 @@ class _Profile3dotsMOREOPTIONSWidgetState
                                               FFAppState().privateUnlockedAt =
                                                   getCurrentTimestamp;
                                               safeSetState(() {});
-
-                                              context.goNamed(
-                                                  PrivateChatWidget.routeName);
+                                              await actions.goToPrivateChat();
                                             } else {
                                               ScaffoldMessenger.of(context)
                                                   .showSnackBar(
