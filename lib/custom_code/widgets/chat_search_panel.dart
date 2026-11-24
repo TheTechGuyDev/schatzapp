@@ -134,7 +134,8 @@ class _ChatSearchPanelState extends State<ChatSearchPanel> {
         if (conversationIds.isNotEmpty) {
           final messageRows = await SupaFlow.client
               .from('messages')
-              .select('id, conversation_id, content, sender_id, created_at')
+              .select(
+                  'id, conversation_id, content, sender_id, created_at, deleted_for_user_ids')
               .inFilter('conversation_id', conversationIds)
               .eq('is_deleted', false)
               .ilike('content', '%$query%')
@@ -148,6 +149,12 @@ class _ChatSearchPanelState extends State<ChatSearchPanel> {
             final chatRow = rowsById[conversationId];
             if (chatRow == null) continue;
             if (chatRow['is_locked'] == true) continue;
+            // Skip messages this user deleted for themselves.
+            final deletedFor = mRow['deleted_for_user_ids'];
+            if (deletedFor is List &&
+                deletedFor.map((e) => e.toString()).contains(widget.currentUserId)) {
+              continue;
+            }
 
             final isGroup = chatRow['type'] == 'group';
             final otherUserId = (chatRow['other_user_id'] as String?) ?? '';

@@ -11,26 +11,25 @@ import 'package:flutter/material.dart' hide RepeatMode;
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
 import '/flutter_flow/nav/nav.dart';
-import 'package:flutter/material.dart';
+import '/index.dart' show HomePageWidget, PrivateChatWidget;
 
+/// Resets the stack to Home, then pushes the Private Chat page on top,
+/// so Back from Private Chat always lands on Home.
 Future<void> goToPrivateChat() async {
   final ctx = appNavigatorKey.currentContext;
   if (ctx == null) return;
-  ctx.goNamed('HomePage');
+  ctx.goNamed(HomePageWidget.routeName);
+
+  // Let Home finish mounting before pushing on top of it.
   await Future.delayed(const Duration(milliseconds: 350));
   final next = appNavigatorKey.currentContext;
   if (next == null) return;
 
-  // The Private Chat page can be registered under either name.
-  for (final name in ['PrivateChat', 'private_chat']) {
-    try {
-      next.pushNamed(name);
-      return;
-    } catch (_) {}
+  try {
+    next.pushNamed(PrivateChatWidget.routeName);
+  } catch (_) {
+    ScaffoldMessenger.maybeOf(next)?.showSnackBar(
+      const SnackBar(content: Text('Could not open Private Chats')),
+    );
   }
-  ScaffoldMessenger.maybeOf(next)?.showSnackBar(
-    const SnackBar(content: Text('Could not open Private Chats')),
-  );
 }
-// Set your action name, define your arguments and return parameter,
-// and then add the boilerplate code using the `</>` button on the right!
