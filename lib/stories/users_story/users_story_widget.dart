@@ -1050,7 +1050,7 @@ class _UsersStoryWidgetState extends State<UsersStoryWidget>
                                                                   _model
                                                                       .currentStoryItemIndex))
                                                           ?.mediaType,
-                                                      '🤞',
+                                                      '✌️',
                                                     );
                                                   },
                                                   child: FaIcon(
