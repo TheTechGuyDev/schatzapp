@@ -4951,7 +4951,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'zh_Hant': 'SchatzApp',
     },
     'xx3acsfw': {
-      'en': 'Access your message, stories and\nmore - on any evice, anytime.',
+      'en': 'Access your messages, stories and\nmore - on any device, anytime.',
       'de':
           'Greifen Sie auf Ihre Nachrichten, Geschichten und mehr zu\n\n– jederzeit und auf jedem Gerät.',
       'fr':
@@ -13160,7 +13160,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   // scan_web
   {
     'jn6gq0q9': {
-      'en': 'Scan QR coe',
+      'en': 'Scan QR code',
       'de': 'QR-Code scannen',
       'fr': 'Scannez le code QR',
       'it': 'Scansiona il codice QR',

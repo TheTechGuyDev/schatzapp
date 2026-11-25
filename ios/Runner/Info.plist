@@ -59,7 +59,7 @@
 	<true/>
 
 	<key>NSCameraUsageDescription</key>
-    <string>SchatzApp needs camera access for video calls</string>
+    <string>SchatzApp needs camera access for video calls and to scan QR codes for linking devices.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
     <string>In order to upload data, this app requires permission to access the photo library.</string>
 	<key>NSContactsUsageDescription</key>
