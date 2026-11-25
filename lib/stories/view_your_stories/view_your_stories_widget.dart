@@ -965,7 +965,8 @@ class _ViewYourStoriesWidgetState extends State<ViewYourStoriesWidget> {
                                                         MainAxisAlignment
                                                             .spaceBetween,
                                                     children: [
-                                                      Row(
+                                                      Expanded(
+                                                        child: Row(
                                                         mainAxisSize:
                                                             MainAxisSize.max,
                                                         mainAxisAlignment:
@@ -1110,11 +1111,26 @@ class _ViewYourStoriesWidgetState extends State<ViewYourStoriesWidget> {
                                                             ),
                                                           ),
                                                         ],
+                                                        ),
                                                       ),
+                                                      // Reactions + "..." (pending request) or message icon.
                                                       custom_widgets
                                                           .ViewerMoreButton(
+                                                        key: ValueKey(
+                                                            '${viewedByItem.viewerId}_${_model.currentStoryIndex}'),
                                                         viewerId: viewedByItem
                                                             .viewerId,
+                                                        statusId: FFAppState()
+                                                            .myStoryGroup
+                                                            .items
+                                                            .elementAtOrNull(_model
+                                                                .currentStoryIndex)
+                                                            ?.id,
+                                                        displayName:
+                                                            viewedByItem
+                                                                .fullName,
+                                                        avatarUrl: viewedByItem
+                                                            .avatarUrl,
                                                         width: 40.0,
                                                         height: 40.0,
                                                       ),
