@@ -126,6 +126,8 @@ export '/custom_code/actions/toggle_reaction.dart'
         toggleReaction,
         ReactionLimitException,
         kReactionLimitMessage,
+        ReactionLockedException,
+        kReactionLockedMessage,
         kReactionTypes,
         kReactionEmoji;
 export '/custom_code/actions/get_reaction_summary.dart' show getReactionSummary;
@@ -236,3 +238,5 @@ export '/custom_code/actions/go_to_private_chat.dart' show goToPrivateChat;
 export '/custom_code/actions/confirm_remove_private_group.dart'
     show confirmRemovePrivateGroup;
 export '/custom_code/actions/link_web_device.dart' show linkWebDevice;
+export '/custom_code/actions/sort_chat_rows.dart'
+    show sortChatRowsWhatsApp, sortChatRowsLocal;

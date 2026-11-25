@@ -69,6 +69,12 @@ class _StatusReactionBarWidgetState extends State<StatusReactionBarWidget> {
     }
   }
 
+  void _snack(String text) {
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(SnackBar(content: Text(text)));
+  }
+
   void _showLimit() {
     ScaffoldMessenger.of(context)
       ..hideCurrentSnackBar()
@@ -88,19 +94,24 @@ class _StatusReactionBarWidgetState extends State<StatusReactionBarWidget> {
       return;
     }
 
-    safeSetState(() => _model.flip(type, !wasActive));
+    // Adding is instant. Removing waits for the server, because a reaction
+    // older than 3 seconds is locked and must stay highlighted.
+    if (!wasActive) safeSetState(() => _model.flip(type, true));
     try {
       await actions.toggleReaction(statusId, viewerId, type);
+      if (wasActive && mounted) safeSetState(() => _model.flip(type, false));
+    } on actions.ReactionLockedException {
+      if (!mounted) return;
+      if (!wasActive) safeSetState(() => _model.flip(type, false));
+      _snack(actions.kReactionLockedMessage);
     } on actions.ReactionLimitException {
       if (!mounted) return;
-      safeSetState(() => _model.flip(type, wasActive));
+      if (!wasActive) safeSetState(() => _model.flip(type, false));
       _showLimit();
     } catch (_) {
       if (!mounted) return;
-      safeSetState(() => _model.flip(type, wasActive));
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Could not save reaction. Try again.')),
-      );
+      if (!wasActive) safeSetState(() => _model.flip(type, false));
+      _snack('Could not save reaction. Try again.');
     }
   }
 

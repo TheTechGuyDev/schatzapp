@@ -39,9 +39,34 @@ class ReactionLimitException implements Exception {
   String toString() => kReactionLimitMessage;
 }
 
+/// Shown when the user tries to remove a reaction older than 3 seconds.
+const String kReactionLockedMessage =
+    "Reactions can't be changed after 3 seconds";
+
+/// A reaction can only be removed within this window (a DB trigger enforces
+/// the same rule).
+const Duration kReactionEditWindow = Duration(seconds: 3);
+
+/// Thrown when removing/changing a reaction after [kReactionEditWindow].
+class ReactionLockedException implements Exception {
+  const ReactionLockedException();
+  @override
+  String toString() => kReactionLockedMessage;
+}
+
+bool _isLockedError(PostgrestException e) {
+  final m = e.message.toLowerCase();
+  return m.contains('after 3 seconds') || m.contains("can't be changed");
+}
+
+bool _isLimitError(PostgrestException e) =>
+    e.message.toLowerCase().contains('up to 2 reactions');
+
 /// Toggles one reaction for the signed-in user on a status post.
 ///
-/// - Already picked: removes it. Removing 'laugh' also removes old 'thumbs'.
+/// - Already picked: removes it, but only within 3 seconds of adding it;
+///   after that it throws [ReactionLockedException] and nothing changes.
+///   Removing 'laugh' also removes old 'thumbs'.
 /// - Not picked: adds it, unless the user already has 2 reactions, in which
 ///   case it throws [ReactionLimitException] and saves nothing.
 ///   The database also blocks a 3rd insert (P0001); that is converted to
@@ -66,24 +91,46 @@ Future<void> toggleReaction(
 
   final mine = await SupaFlow.client
       .from('status_reactions')
-      .select('reaction_type')
+      .select('reaction_type, created_at')
       .eq('status_id', statusId)
       .eq('user_id', liveUserId);
 
   final myTypes = <String>{};
+  DateTime? oldestMatch;
   for (final row in mine) {
-    final t = row['reaction_type'] as String?;
-    if (t == null) continue;
-    myTypes.add(t == 'thumbs' ? 'laugh' : t);
+    final raw = row['reaction_type'] as String?;
+    if (raw == null) continue;
+    final t = raw == 'thumbs' ? 'laugh' : raw;
+    myTypes.add(t);
+    if (t == type) {
+      final at = DateTime.tryParse('${row['created_at'] ?? ''}');
+      if (at != null && (oldestMatch == null || at.isBefore(oldestMatch))) {
+        oldestMatch = at;
+      }
+    }
   }
 
   if (myTypes.contains(type)) {
-    await SupaFlow.client
-        .from('status_reactions')
-        .delete()
-        .eq('status_id', statusId)
-        .eq('user_id', liveUserId)
-        .inFilter('reaction_type', matchTypes);
+    // Locked after 3 seconds: don't even try the delete.
+    final age = oldestMatch == null
+        ? null
+        : DateTime.now().toUtc().difference(oldestMatch.toUtc());
+    if (oldestMatch == null || age! > kReactionEditWindow) {
+      throw const ReactionLockedException();
+    }
+    try {
+      await SupaFlow.client
+          .from('status_reactions')
+          .delete()
+          .eq('status_id', statusId)
+          .eq('user_id', liveUserId)
+          .inFilter('reaction_type', matchTypes);
+    } on PostgrestException catch (e) {
+      if (e.code == 'P0001' || _isLockedError(e)) {
+        throw const ReactionLockedException();
+      }
+      rethrow;
+    }
     return;
   }
 
@@ -98,9 +145,10 @@ Future<void> toggleReaction(
       'reaction_type': type,
     });
   } on PostgrestException catch (e) {
-    final isLimit = e.code == 'P0001' ||
-        e.message.toLowerCase().contains('up to 2 reactions');
-    if (isLimit) throw const ReactionLimitException();
+    if (_isLockedError(e)) throw const ReactionLockedException();
+    if (e.code == 'P0001' || _isLimitError(e)) {
+      throw const ReactionLimitException();
+    }
     rethrow;
   }
 }

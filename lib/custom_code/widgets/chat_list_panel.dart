@@ -190,10 +190,11 @@ class _ChatListPanelState extends State<ChatListPanel> {
     final data = await SupaFlow.client
         .from('chat_list_view')
         .select()
-        .order('is_pinned', ascending: false)
         .order('last_message_at', ascending: false);
 
-    final rows = List<Map<String, dynamic>>.from(data);
+    // Pinned first by pin time (newest pin on top), then by last message.
+    final rows = await sortChatRowsWhatsApp(
+        List<Map<String, dynamic>>.from(data));
 
     final otherUserIds = rows
         .where((r) => r['type'] != 'group')

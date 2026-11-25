@@ -53,11 +53,14 @@ class _FavoritesRowWidgetState extends State<FavoritesRowWidget> {
       !u.toLowerCase().contains('unsplash.com');
 
   Future<List<_FavContact>> _load() async {
-    final chatRows = await SupaFlow.client
+    final data = await SupaFlow.client
         .from('chat_list_view')
         .select()
         .eq('type', 'direct')
         .order('last_message_at', ascending: false);
+    // Same order as the chat list: pinned by pin time, then last message.
+    final chatRows =
+        await sortChatRowsWhatsApp(List<Map<String, dynamic>>.from(data));
 
     var blocked = <String>{};
     try {

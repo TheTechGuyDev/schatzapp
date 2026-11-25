@@ -111,7 +111,9 @@ class _PrivateChatHubState extends State<PrivateChatHub> {
           .select()
           .eq('is_locked', true)
           .order('last_message_at', ascending: false);
-      final rows = List<Map<String, dynamic>>.from(data);
+      // Pinned first by pin time (newest pin on top), then by last message.
+      final rows = await sortChatRowsWhatsApp(
+          List<Map<String, dynamic>>.from(data));
 
       final otherIds = rows
           .where((r) => r['type'] != 'group')

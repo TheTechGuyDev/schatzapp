@@ -109,20 +109,31 @@ Future<void> _toggleReactionUi({
     _showReactionLimit(context);
     return;
   }
-  update(() => state._flip(type, !wasActive));
+  // Adding is instant. Removing waits for the server, because a reaction
+  // older than 3 seconds is locked and must stay highlighted.
+  if (!wasActive) update(() => state._flip(type, true));
   try {
     await actions.toggleReaction(statusId, viewerId, type);
+    if (wasActive && isMounted()) update(() => state._flip(type, false));
+  } on actions.ReactionLockedException {
+    if (!isMounted()) return;
+    if (!wasActive) update(() => state._flip(type, false));
+    _showReactionSnack(context, actions.kReactionLockedMessage);
   } on actions.ReactionLimitException {
     if (!isMounted()) return;
-    update(() => state._flip(type, wasActive));
+    if (!wasActive) update(() => state._flip(type, false));
     _showReactionLimit(context);
   } catch (e) {
     if (!isMounted()) return;
-    update(() => state._flip(type, wasActive));
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Could not save reaction. Try again.')),
-    );
+    if (!wasActive) update(() => state._flip(type, false));
+    _showReactionSnack(context, 'Could not save reaction. Try again.');
   }
+}
+
+void _showReactionSnack(BuildContext context, String text) {
+  ScaffoldMessenger.of(context)
+    ..hideCurrentSnackBar()
+    ..showSnackBar(SnackBar(content: Text(text)));
 }
 
 class ForYouFeedWidget extends StatefulWidget {
