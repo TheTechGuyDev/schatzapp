@@ -22,24 +22,107 @@ import '/custom_code/widgets/story_player.dart';
 const Color kReactionPrimary = Color(0xFF935CCC);
 const Color kReactionHeart = Color(0xFFE0245E);
 
-Widget _reactionIcon(String type, bool active) {
-  switch (type) {
-    case 'favorite':
-      return Icon(active ? Icons.favorite : Icons.favorite_border);
-    case 'peace':
-      return FaIcon(active
-          ? FontAwesomeIcons.solidHandPeace
-          : FontAwesomeIcons.handPeace);
-    case 'thumbs':
-    default:
-      return FaIcon(
-          active ? FontAwesomeIcons.solidThumbsUp : FontAwesomeIcons.thumbsUp);
+/// Favorite keeps the heart icon; the others are emoji. Emoji can't be
+/// recoloured, so inactive ones are faded and active ones get a highlight.
+Widget _reactionIcon(String type, bool active, Color inactiveColor,
+    {double size = 25.0}) {
+  if (type == 'favorite') {
+    return Icon(
+      active ? Icons.favorite : Icons.favorite_border,
+      color: active ? kReactionHeart : inactiveColor,
+      size: size,
+    );
+  }
+  return Opacity(
+    opacity: active ? 1.0 : 0.6,
+    child: Text(
+      actions.kReactionEmoji[type] ?? '',
+      style: TextStyle(fontSize: size - 3, height: 1.15),
+    ),
+  );
+}
+
+/// Counts and the viewer's own picks for one status post.
+class _ReactionState {
+  final Map<String, int> counts = {
+    for (final t in actions.kReactionTypes) t: 0
+  };
+  final Set<String> mine = {};
+
+  void reset() {
+    for (final t in actions.kReactionTypes) {
+      counts[t] = 0;
+    }
+    mine.clear();
+  }
+
+  void fromSummary(ReactionSummaryStructStruct s) {
+    counts['favorite'] = s.favoriteCount;
+    counts['peace'] = s.peaceCount;
+    counts['laugh'] = s.laughCount;
+    counts['sad'] = s.sadCount;
+    counts['angry'] = s.angryCount;
+    mine
+      ..clear()
+      ..addAll([
+        if (s.favoriteActive) 'favorite',
+        if (s.peaceActive) 'peace',
+        if (s.laughActive) 'laugh',
+        if (s.sadActive) 'sad',
+        if (s.angryActive) 'angry',
+      ]);
+  }
+
+  void _flip(String type, bool on) {
+    final c = counts[type] ?? 0;
+    if (on) {
+      mine.add(type);
+      counts[type] = c + 1;
+    } else {
+      mine.remove(type);
+      counts[type] = c > 0 ? c - 1 : 0;
+    }
   }
 }
 
-Color _reactionColor(String type, bool active, Color inactiveColor) {
-  if (!active) return inactiveColor;
-  return type == 'favorite' ? kReactionHeart : kReactionPrimary;
+void _showReactionLimit(BuildContext context) {
+  ScaffoldMessenger.of(context)
+    ..hideCurrentSnackBar()
+    ..showSnackBar(
+      const SnackBar(content: Text(actions.kReactionLimitMessage)),
+    );
+}
+
+/// Optimistic toggle with the 2-reaction limit. [update] wraps setState.
+Future<void> _toggleReactionUi({
+  required BuildContext context,
+  required String statusId,
+  required String viewerId,
+  required String type,
+  required _ReactionState state,
+  required void Function(VoidCallback fn) update,
+  required bool Function() isMounted,
+}) async {
+  if (statusId.isEmpty) return;
+  final wasActive = state.mine.contains(type);
+  if (!wasActive && state.mine.length >= 2) {
+    _showReactionLimit(context);
+    return;
+  }
+  update(() => state._flip(type, !wasActive));
+  try {
+    await actions.toggleReaction(statusId, viewerId, type);
+  } on actions.ReactionLimitException {
+    if (!isMounted()) return;
+    update(() => state._flip(type, wasActive));
+    _showReactionLimit(context);
+  } catch (e) {
+    if (!isMounted()) return;
+    update(() => state._flip(type, wasActive));
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Could not save reaction. Try again.')),
+    );
+  }
 }
 
 class ForYouFeedWidget extends StatefulWidget {
@@ -297,12 +380,7 @@ class _ForYouCardState extends State<_ForYouCard> {
   final PageController _pageController = PageController();
   int _currentIndex = 0;
 
-  int _favoriteCount = 0;
-  int _peaceCount = 0;
-  int _thumbsCount = 0;
-  bool _favoriteActive = false;
-  bool _peaceActive = false;
-  bool _thumbsActive = false;
+  final _ReactionState _reactions = _ReactionState();
 
   StoryItemStruct? get _item =>
       widget.group.items.elementAtOrNull(_currentIndex);
@@ -323,12 +401,7 @@ class _ForYouCardState extends State<_ForYouCard> {
       if (_pageController.hasClients) {
         _pageController.jumpToPage(0);
       }
-      _favoriteCount = 0;
-      _peaceCount = 0;
-      _thumbsCount = 0;
-      _favoriteActive = false;
-      _peaceActive = false;
-      _thumbsActive = false;
+      _reactions.reset();
       _loadReactions();
       if (widget.isActiveVideo) _activateVideo();
       return;
@@ -351,12 +424,7 @@ class _ForYouCardState extends State<_ForYouCard> {
     _disposeVideo();
     setState(() {
       _currentIndex = index;
-      _favoriteCount = 0;
-      _peaceCount = 0;
-      _thumbsCount = 0;
-      _favoriteActive = false;
-      _peaceActive = false;
-      _thumbsActive = false;
+      _reactions.reset();
     });
     _loadReactions();
     if (widget.isActiveVideo) _activateVideo();
@@ -369,14 +437,7 @@ class _ForYouCardState extends State<_ForYouCard> {
       final summary =
           await actions.getReactionSummary(statusId, widget.viewerId);
       if (!mounted || _item?.id != statusId) return;
-      setState(() {
-        _favoriteCount = summary.favoriteCount;
-        _peaceCount = summary.peaceCount;
-        _thumbsCount = summary.thumbsCount;
-        _favoriteActive = summary.favoriteActive;
-        _peaceActive = summary.peaceActive;
-        _thumbsActive = summary.thumbsActive;
-      });
+      setState(() => _reactions.fromSummary(summary));
     } catch (_) {
       // Leave counts at their defaults if the summary fetch fails.
     }
@@ -385,44 +446,15 @@ class _ForYouCardState extends State<_ForYouCard> {
   Future<void> _toggle(String type) async {
     final statusId = _item?.id;
     if (statusId == null || statusId.isEmpty) return;
-
-    void apply(int sign) {
-      setState(() {
-        switch (type) {
-          case 'favorite':
-            _favoriteActive = !_favoriteActive;
-            _favoriteCount =
-                _favoriteCount + sign < 0 ? 0 : _favoriteCount + sign;
-            break;
-          case 'peace':
-            _peaceActive = !_peaceActive;
-            _peaceCount = _peaceCount + sign < 0 ? 0 : _peaceCount + sign;
-            break;
-          case 'thumbs':
-            _thumbsActive = !_thumbsActive;
-            _thumbsCount = _thumbsCount + sign < 0 ? 0 : _thumbsCount + sign;
-            break;
-        }
-      });
-    }
-
-    final wasActive = type == 'favorite'
-        ? _favoriteActive
-        : type == 'peace'
-            ? _peaceActive
-            : _thumbsActive;
-
-    apply(wasActive ? -1 : 1);
-
-    try {
-      await actions.toggleReaction(statusId, widget.viewerId, type);
-    } catch (e) {
-      if (!mounted) return;
-      apply(wasActive ? 1 : -1);
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Could not save reaction: $e')),
-      );
-    }
+    await _toggleReactionUi(
+      context: context,
+      statusId: statusId,
+      viewerId: widget.viewerId,
+      type: type,
+      state: _reactions,
+      update: setState,
+      isMounted: () => mounted && _item?.id == statusId,
+    );
   }
 
   Future<void> _activateVideo() async {
@@ -676,31 +708,25 @@ class _ForYouCardState extends State<_ForYouCard> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      _reactionButton(
-                        context,
-                        type: 'favorite',
-                        active: _favoriteActive,
-                        count: _favoriteCount,
-                        onTap: () => _toggle('favorite'),
+                  // Reactions scroll sideways on small screens so Share
+                  // always stays visible.
+                  Expanded(
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          for (final t in actions.kReactionTypes)
+                            _reactionButton(
+                              context,
+                              type: t,
+                              active: _reactions.mine.contains(t),
+                              count: _reactions.counts[t] ?? 0,
+                              onTap: () => _toggle(t),
+                            ),
+                        ].divide(const SizedBox(width: 2.0)),
                       ),
-                      _reactionButton(
-                        context,
-                        type: 'peace',
-                        active: _peaceActive,
-                        count: _peaceCount,
-                        onTap: () => _toggle('peace'),
-                      ),
-                      _reactionButton(
-                        context,
-                        type: 'thumbs',
-                        active: _thumbsActive,
-                        count: _thumbsCount,
-                        onTap: () => _toggle('thumbs'),
-                      ),
-                    ].divide(const SizedBox(width: 10.0)),
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -758,23 +784,25 @@ class _ForYouCardState extends State<_ForYouCard> {
     required int count,
     required VoidCallback onTap,
   }) {
-    final color = _reactionColor(
-        type, active, FlutterFlowTheme.of(context).secondaryText);
     return InkWell(
       splashColor: Colors.transparent,
       focusColor: Colors.transparent,
       hoverColor: Colors.transparent,
       highlightColor: Colors.transparent,
       onTap: onTap,
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 6.0),
+        decoration: BoxDecoration(
+          color: active
+              ? kReactionPrimary.withValues(alpha: 0.12)
+              : Colors.transparent,
+          borderRadius: BorderRadius.circular(14.0),
+        ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            IconTheme(
-              data: IconThemeData(color: color, size: 25.0),
-              child: _reactionIcon(type, active),
-            ),
+            _reactionIcon(
+                type, active, FlutterFlowTheme.of(context).secondaryText),
             Text(
               count.toString(),
               style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1043,12 +1071,7 @@ class _ReactionRail extends StatefulWidget {
 }
 
 class _ReactionRailState extends State<_ReactionRail> {
-  int _favoriteCount = 0;
-  int _peaceCount = 0;
-  int _thumbsCount = 0;
-  bool _favoriteActive = false;
-  bool _peaceActive = false;
-  bool _thumbsActive = false;
+  final _ReactionState _reactions = _ReactionState();
 
   @override
   void initState() {
@@ -1062,94 +1085,46 @@ class _ReactionRailState extends State<_ReactionRail> {
       final summary =
           await actions.getReactionSummary(widget.statusId, widget.viewerId);
       if (!mounted) return;
-      setState(() {
-        _favoriteCount = summary.favoriteCount;
-        _peaceCount = summary.peaceCount;
-        _thumbsCount = summary.thumbsCount;
-        _favoriteActive = summary.favoriteActive;
-        _peaceActive = summary.peaceActive;
-        _thumbsActive = summary.thumbsActive;
-      });
+      setState(() => _reactions.fromSummary(summary));
     } catch (_) {
       // Leave counts at their defaults if the summary fetch fails.
     }
   }
 
-  Future<void> _toggle(String type) async {
-    if (widget.statusId.isEmpty) return;
-
-    void apply(int sign) {
-      setState(() {
-        switch (type) {
-          case 'favorite':
-            _favoriteActive = !_favoriteActive;
-            _favoriteCount =
-                _favoriteCount + sign < 0 ? 0 : _favoriteCount + sign;
-            break;
-          case 'peace':
-            _peaceActive = !_peaceActive;
-            _peaceCount = _peaceCount + sign < 0 ? 0 : _peaceCount + sign;
-            break;
-          case 'thumbs':
-            _thumbsActive = !_thumbsActive;
-            _thumbsCount = _thumbsCount + sign < 0 ? 0 : _thumbsCount + sign;
-            break;
-        }
-      });
-    }
-
-    final wasActive = type == 'favorite'
-        ? _favoriteActive
-        : type == 'peace'
-            ? _peaceActive
-            : _thumbsActive;
-
-    apply(wasActive ? -1 : 1);
-
-    try {
-      await actions.toggleReaction(widget.statusId, widget.viewerId, type);
-    } catch (e) {
-      if (!mounted) return;
-      apply(wasActive ? 1 : -1);
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Could not save reaction: $e')),
+  Future<void> _toggle(String type) => _toggleReactionUi(
+        context: context,
+        statusId: widget.statusId,
+        viewerId: widget.viewerId,
+        type: type,
+        state: _reactions,
+        update: setState,
+        isMounted: () => mounted,
       );
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        _railButton(
-          type: 'favorite',
-          active: _favoriteActive,
-          count: _favoriteCount,
-          onTap: () => _toggle('favorite'),
-        ),
-        const SizedBox(height: 22),
-        _railButton(
-          type: 'peace',
-          active: _peaceActive,
-          count: _peaceCount,
-          onTap: () => _toggle('peace'),
-        ),
-        const SizedBox(height: 22),
-        _railButton(
-          type: 'thumbs',
-          active: _thumbsActive,
-          count: _thumbsCount,
-          onTap: () => _toggle('thumbs'),
-        ),
-        const SizedBox(height: 22),
-        _railButton(
-          type: 'share',
-          active: false,
-          count: null,
-          onTap: () {},
-        ),
-      ],
+    // Scrolls if 5 reactions + Share don't fit (small screens, landscape).
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          for (final t in actions.kReactionTypes) ...[
+            _railButton(
+              type: t,
+              active: _reactions.mine.contains(t),
+              count: _reactions.counts[t] ?? 0,
+              onTap: () => _toggle(t),
+            ),
+            const SizedBox(height: 10),
+          ],
+          _railButton(
+            type: 'share',
+            active: false,
+            count: null,
+            onTap: () {},
+          ),
+        ],
+      ),
     );
   }
 
@@ -1160,26 +1135,26 @@ class _ReactionRailState extends State<_ReactionRail> {
     required VoidCallback onTap,
   }) {
     final icon = type == 'share'
-        ? const FaIcon(FontAwesomeIcons.share)
-        : _reactionIcon(type, active);
-    final color = type == 'share'
-        ? Colors.white
-        : _reactionColor(type, active, Colors.white);
+        ? const FaIcon(FontAwesomeIcons.share, color: Colors.white, size: 28.0)
+        : _reactionIcon(type, active, Colors.white, size: 28.0);
     return InkWell(
       splashColor: Colors.transparent,
       focusColor: Colors.transparent,
       hoverColor: Colors.transparent,
       highlightColor: Colors.transparent,
       onTap: onTap,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
+      child: Container(
+        padding: const EdgeInsets.all(6.0),
+        decoration: BoxDecoration(
+          color: active
+              ? Colors.white.withValues(alpha: 0.22)
+              : Colors.transparent,
+          shape: BoxShape.circle,
+        ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            IconTheme(
-              data: IconThemeData(color: color, size: 28.0),
-              child: icon,
-            ),
+            icon,
             if (count != null) ...[
               const SizedBox(height: 4),
               Text(

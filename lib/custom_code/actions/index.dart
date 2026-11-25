@@ -121,7 +121,13 @@ export '/custom_code/actions/upload_staged_assets_with_edits.dart'
 export '/custom_code/actions/send_story_interaction.dart'
     show sendStoryInteraction;
 export '/custom_code/actions/get_for_you_feed.dart' show getForYouFeed;
-export '/custom_code/actions/toggle_reaction.dart' show toggleReaction;
+export '/custom_code/actions/toggle_reaction.dart'
+    show
+        toggleReaction,
+        ReactionLimitException,
+        kReactionLimitMessage,
+        kReactionTypes,
+        kReactionEmoji;
 export '/custom_code/actions/get_reaction_summary.dart' show getReactionSummary;
 export '/custom_code/actions/set_single_story_for_viewing.dart'
     show setSingleStoryForViewing;
