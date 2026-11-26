@@ -341,7 +341,7 @@ class _LinkPreviewCard extends StatelessWidget {
 
     Widget? hero;
     if (image.isNotEmpty) {
-      hero = Image.network(
+      hero = cachedNetworkImage(
         image,
         width: 230,
         height: heroHeight,
@@ -3071,7 +3071,7 @@ class _MessageBubble extends StatelessWidget {
                         child: const Icon(Icons.videocam,
                             size: 18, color: Colors.white70),
                       )
-                    : Image.network(
+                    : cachedNetworkImage(
                         mediaUrl,
                         width: 36,
                         height: 36,
@@ -3110,12 +3110,12 @@ class _MessageBubble extends StatelessWidget {
     final thumb = (dot > slash && url.contains('/upload_media/'))
         ? '${url.substring(0, dot)}_thumb.jpg'
         : url;
-    return Image.network(
+    return cachedNetworkImage(
       thumb,
       fit: BoxFit.cover,
       height: height,
       errorBuilder: (_, __, ___) =>
-          Image.network(url, fit: BoxFit.cover, height: height),
+          cachedNetworkImage(url, fit: BoxFit.cover, height: height),
     );
   }
 
@@ -3211,7 +3211,7 @@ class _MessageBubble extends StatelessWidget {
         child: SizedBox(
           width: 244,
           height: 244,
-          child: Image.network(
+          child: cachedNetworkImage(
             shown,
             fit: BoxFit.cover,
             filterQuality: FilterQuality.high,
@@ -3219,7 +3219,7 @@ class _MessageBubble extends StatelessWidget {
                 ? child
                 : Container(color: const Color(0xFFE5E7EB)),
             errorBuilder: (_, __, ___) => hasThumb
-                ? Image.network(url, fit: BoxFit.cover)
+                ? cachedNetworkImage(url, fit: BoxFit.cover)
                 : Container(color: const Color(0xFFE5E7EB)),
           ),
         ),
@@ -4056,7 +4056,7 @@ class _MultiForwardSheetState extends State<_MultiForwardSheet> {
                               radius: 22,
                               backgroundImage:
                                   (f['avatarUrl'] as String).isNotEmpty
-                                      ? NetworkImage(f['avatarUrl'])
+                                      ? cachedNetworkImageProvider(f['avatarUrl'])
                                       : null,
                             ),
                             title: Text(f['fullName']),
@@ -4301,7 +4301,7 @@ class _ShareSheetState extends State<_ShareSheet> {
                               radius: 22,
                               backgroundImage:
                                   (f['avatarUrl'] as String).isNotEmpty
-                                      ? NetworkImage(f['avatarUrl'])
+                                      ? cachedNetworkImageProvider(f['avatarUrl'])
                                       : null,
                             ),
                             title: Text(f['fullName']),
@@ -4417,7 +4417,7 @@ class _FullImageViewerState extends State<_FullImageViewer> {
                   scaleEnabled: true,
                   minScale: 1.0,
                   maxScale: 4.0,
-                  child: Image.network(widget.urls[i]),
+                  child: cachedNetworkImage(widget.urls[i]),
                 ),
               ),
             ),
@@ -4551,7 +4551,7 @@ class _StatusPreviewViewerState extends State<_StatusPreviewViewer> {
                   return _StatusPreviewVideo(url: status.mediaUrl ?? '');
                 }
                 return Center(
-                  child: Image.network(
+                  child: cachedNetworkImage(
                     status.mediaUrl ?? '',
                     errorBuilder: (_, __, ___) => const Icon(
                       Icons.broken_image,
@@ -4656,7 +4656,7 @@ class _VideoPreviewTileState extends State<_VideoPreviewTile> {
     Widget media = const SizedBox.shrink();
 
     if (_hasThumb) {
-      media = Image.network(
+      media = cachedNetworkImage(
         widget.thumbnailUrl!,
         fit: BoxFit.cover,
         errorBuilder: (_, __, ___) => const SizedBox.shrink(),
@@ -4736,7 +4736,7 @@ class _StatusPreviewVideoState extends State<_StatusPreviewVideo> {
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.networkUrl(Uri.parse(widget.url))
+    _controller = cachedVideoController(widget.url)
       ..initialize().then((_) {
         if (!mounted) return;
         setState(() => _ready = true);
@@ -4781,7 +4781,7 @@ class _FullVideoViewerState extends State<_FullVideoViewer> {
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.networkUrl(Uri.parse(widget.url))
+    _controller = cachedVideoController(widget.url)
       ..initialize().then((_) {
         if (!mounted) return;
         setState(() => _ready = true);
@@ -5082,7 +5082,7 @@ class _PhoneNumberActionSheetState extends State<_PhoneNumberActionSheet> {
                 color: theme.primary.withOpacity(0.85),
               ),
               child: hasAvatar
-                  ? Image.network(widget.targetAvatarUrl, fit: BoxFit.cover)
+                  ? cachedNetworkImage(widget.targetAvatarUrl, fit: BoxFit.cover)
                   : const Icon(Icons.person, color: Colors.white, size: 44),
             ),
             const SizedBox(height: 14),

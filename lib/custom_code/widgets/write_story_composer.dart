@@ -258,7 +258,7 @@ class _WriteStoryComposerState extends State<WriteStoryComposer> {
                                       backgroundImage: (friend['avatarUrl']
                                                   as String)
                                               .isNotEmpty
-                                          ? NetworkImage(friend['avatarUrl'])
+                                          ? cachedNetworkImageProvider(friend['avatarUrl'])
                                           : null,
                                     ),
                                     title: Text(friend['fullName']),

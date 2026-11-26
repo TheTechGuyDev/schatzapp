@@ -370,7 +370,7 @@ class _CallsTabViewState extends State<CallsTabView> {
     return CircleAvatar(
       radius: size / 2,
       backgroundColor: const Color(0xFFEFEBF2),
-      backgroundImage: ok ? NetworkImage(url) : null,
+      backgroundImage: ok ? cachedNetworkImageProvider(url) : null,
       child: ok
           ? null
           : Icon(Icons.person_outline, color: _purple, size: size * 0.55),

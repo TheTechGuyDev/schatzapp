@@ -389,7 +389,7 @@ class _ChatSearchPanelState extends State<ChatSearchPanel> {
                                     !avatarUrl
                                         .toLowerCase()
                                         .contains('unsplash.com'))
-                                ? NetworkImage(avatarUrl)
+                                ? cachedNetworkImageProvider(avatarUrl)
                                 : null,
                         child: (avatarUrl.toLowerCase().startsWith('http') &&
                                 !avatarUrl
@@ -443,7 +443,7 @@ class _ChatSearchPanelState extends State<ChatSearchPanel> {
                                     !match.avatarUrl
                                         .toLowerCase()
                                         .contains('unsplash.com'))
-                                ? NetworkImage(match.avatarUrl)
+                                ? cachedNetworkImageProvider(match.avatarUrl)
                                 : null,
                         child:
                             (match.avatarUrl.toLowerCase().startsWith('http') &&

@@ -482,7 +482,7 @@ class _SendGiftcardToFriendsWidgetState
                                           decoration: BoxDecoration(
                                             shape: BoxShape.circle,
                                           ),
-                                          child: Image.network(
+                                          child: cachedNetworkImage(
                                             valueOrDefault<String>(
                                               '',
                                               'https://plus.unsplash.com/premium_photo-1739786996022-5ed5b56834e2?q=80&w=580&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D',
@@ -669,7 +669,7 @@ class _SendGiftcardToFriendsWidgetState
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
                                     ),
-                                    child: Image.network(
+                                    child: cachedNetworkImage(
                                       valueOrDefault<String>(
                                         '',
                                         'https://plus.unsplash.com/premium_vector-1723553242231-c3d00a1c96c8?q=80&w=580&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D',

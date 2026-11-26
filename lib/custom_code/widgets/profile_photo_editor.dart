@@ -154,7 +154,7 @@ class _ProfilePhotoEditorState extends State<ProfilePhotoEditor> {
                     shape: BoxShape.circle,
                     image: _hasPhoto
                         ? DecorationImage(
-                            fit: BoxFit.cover, image: NetworkImage(_url))
+                            fit: BoxFit.cover, image: cachedNetworkImageProvider(_url))
                         : null,
                   ),
                   child: _hasPhoto

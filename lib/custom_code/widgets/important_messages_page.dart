@@ -394,7 +394,7 @@ class _ImportantMessagesPageState extends State<ImportantMessagesPage> {
                         url: url,
                         thumbnailUrl: item.thumbnailUrl,
                       )
-                    : Image.network(
+                    : cachedNetworkImage(
                         url,
                         fit: BoxFit.cover,
                         filterQuality: FilterQuality.high,
@@ -601,7 +601,7 @@ class _ImportantMessagesPageState extends State<ImportantMessagesPage> {
                                           ? DecorationImage(
                                               fit: BoxFit.cover,
                                               image:
-                                                  NetworkImage(item.avatarUrl),
+                                                  cachedNetworkImageProvider(item.avatarUrl),
                                             )
                                           : null,
                                       shape: BoxShape.circle,
@@ -799,7 +799,7 @@ class _ImportantVideoFrameState extends State<_ImportantVideoFrame> {
   @override
   Widget build(BuildContext context) {
     if (_hasThumb) {
-      return Image.network(widget.thumbnailUrl!,
+      return cachedNetworkImage(widget.thumbnailUrl!,
           fit: BoxFit.cover,
           errorBuilder: (_, __, ___) => const ColoredBox(color: Colors.black));
     }
@@ -836,8 +836,7 @@ class _ImportantMediaViewerState extends State<_ImportantMediaViewer> {
   void initState() {
     super.initState();
     if (widget.item.isVideo && widget.item.mediaUrls.isNotEmpty) {
-      final c = VideoPlayerController.networkUrl(
-          Uri.parse(widget.item.mediaUrls.first));
+      final c = cachedVideoController(widget.item.mediaUrls.first);
       _video = c;
       c.initialize().then((_) {
         if (!mounted) return;
@@ -888,7 +887,7 @@ class _ImportantMediaViewerState extends State<_ImportantMediaViewer> {
               minScale: 1,
               maxScale: 5,
               child: Center(
-                child: Image.network(u,
+                child: cachedNetworkImage(u,
                     fit: BoxFit.contain,
                     filterQuality: FilterQuality.high,
                     errorBuilder: (_, __, ___) => const Icon(Icons.broken_image,

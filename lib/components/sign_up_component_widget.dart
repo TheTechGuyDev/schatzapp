@@ -521,7 +521,7 @@ class _SignUpComponentWidgetState extends State<SignUpComponentWidget> {
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
                             ),
-                            child: Image.network(
+                            child: cachedNetworkImage(
                               valueOrDefault<String>(
                                 '${FFAppState().selectedCountry.flagUrl}',
                                 'https://plus.unsplash.com/premium_photo-1739786996022-5ed5b56834e2?w=300&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D',

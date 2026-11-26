@@ -265,7 +265,7 @@ class _IncomingCallBannerState extends State<IncomingCallBanner> {
             backgroundColor: const Color(0xFFEFEBF2),
             backgroundImage: (avatar.toLowerCase().startsWith('http') &&
                     !avatar.toLowerCase().contains('unsplash.com'))
-                ? NetworkImage(avatar)
+                ? cachedNetworkImageProvider(avatar)
                 : null,
             child: (avatar.toLowerCase().startsWith('http') &&
                     !avatar.toLowerCase().contains('unsplash.com'))

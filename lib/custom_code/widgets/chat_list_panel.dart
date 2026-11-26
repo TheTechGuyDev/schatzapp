@@ -629,7 +629,7 @@ class _ChatListPanelState extends State<ChatListPanel> {
                                           !displayAvatar
                                               .toLowerCase()
                                               .contains('unsplash.com'))
-                                      ? NetworkImage(displayAvatar)
+                                      ? cachedNetworkImageProvider(displayAvatar)
                                       : null,
                                   child: isBlockedPeer
                                       ? const Icon(Icons.person,

@@ -157,7 +157,7 @@ class _TransactionLeadIconState extends State<TransactionLeadIcon> {
       content = Padding(
         padding: EdgeInsets.all(_isLogo ? size * 0.14 : 0),
         child: ClipOval(
-          child: Image.network(
+          child: cachedNetworkImage(
             src,
             fit: _isLogo ? BoxFit.contain : BoxFit.cover,
             width: size,

@@ -493,7 +493,7 @@ class _AddbynumberWidgetState extends State<AddbynumberWidget> {
                                           .secondaryBackground,
                                       image: DecorationImage(
                                         fit: BoxFit.cover,
-                                        image: Image.network(
+                                        image: cachedNetworkImage(
                                           valueOrDefault<String>(
                                             FFAppState()
                                                 .selectedCountry

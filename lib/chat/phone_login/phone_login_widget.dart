@@ -463,7 +463,7 @@ class _PhoneLoginWidgetState extends State<PhoneLoginWidget>
                                           decoration: BoxDecoration(
                                             shape: BoxShape.circle,
                                           ),
-                                          child: Image.network(
+                                          child: cachedNetworkImage(
                                             valueOrDefault<String>(
                                               '${FFAppState().selectedCountry.flagUrl}',
                                               'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSllItAV0kDrD4CFX5enzH1t06UEIiACf3Ojg0YRrQvp2zpbSxL0JRB2WW9&s=10',

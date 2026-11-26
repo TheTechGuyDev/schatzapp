@@ -206,7 +206,7 @@ class _FavoritesRowWidgetState extends State<FavoritesRowWidget> {
                                       image: _hasPhoto(c.avatarUrl)
                                           ? DecorationImage(
                                               fit: BoxFit.cover,
-                                              image: NetworkImage(c.avatarUrl),
+                                              image: cachedNetworkImageProvider(c.avatarUrl),
                                             )
                                           : null,
                                     ),

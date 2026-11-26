@@ -248,7 +248,7 @@ class _CamouflageProfilePickerState extends State<CamouflageProfilePicker> {
                                     radius: 26,
                                     backgroundColor: _purple.withOpacity(0.18),
                                     backgroundImage: avatar.isNotEmpty
-                                        ? NetworkImage(avatar)
+                                        ? cachedNetworkImageProvider(avatar)
                                         : null,
                                     child: avatar.isEmpty
                                         ? Text(

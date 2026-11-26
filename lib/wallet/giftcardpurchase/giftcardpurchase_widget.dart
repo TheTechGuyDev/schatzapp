@@ -166,7 +166,7 @@ class _GiftcardpurchaseWidgetState extends State<GiftcardpurchaseWidget> {
                                     .secondaryBackground,
                                 image: DecorationImage(
                                   fit: BoxFit.cover,
-                                  image: Image.network(
+                                  image: cachedNetworkImage(
                                     valueOrDefault<String>(
                                       '${_model.logoUrl}',
                                       'https://images.unsplash.com/photo-1602934445884-da0fa1c9d3b3?q=80&w=658&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',

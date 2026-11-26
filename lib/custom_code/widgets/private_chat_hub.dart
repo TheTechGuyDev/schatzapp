@@ -422,7 +422,7 @@ class _PrivateChatHubState extends State<PrivateChatHub> {
       decoration:
           const BoxDecoration(shape: BoxShape.circle, color: Color(0xFFE9DDF5)),
       child: has
-          ? Image.network(url,
+          ? cachedNetworkImage(url,
               fit: BoxFit.cover,
               errorBuilder: (_, __, ___) =>
                   const Icon(Icons.person, color: _purple))
@@ -714,7 +714,7 @@ class _PickerSheetState extends State<_PickerSheet> {
       decoration:
           const BoxDecoration(shape: BoxShape.circle, color: Color(0xFFE9DDF5)),
       child: has
-          ? Image.network(url,
+          ? cachedNetworkImage(url,
               fit: BoxFit.cover,
               errorBuilder: (_, __, ___) =>
                   const Icon(Icons.person, color: _purple))

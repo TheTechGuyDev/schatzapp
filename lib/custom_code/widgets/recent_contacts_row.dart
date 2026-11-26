@@ -182,7 +182,7 @@ class _RecentContactsRowState extends State<RecentContactsRow> {
                                   !contact.avatarUrl
                                       .toLowerCase()
                                       .contains('unsplash.com'))
-                              ? NetworkImage(contact.avatarUrl)
+                              ? cachedNetworkImageProvider(contact.avatarUrl)
                               : null,
                       child:
                           (contact.avatarUrl.toLowerCase().startsWith('http') &&

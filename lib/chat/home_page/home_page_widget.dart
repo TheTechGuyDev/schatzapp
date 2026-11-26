@@ -930,7 +930,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                             image:
                                                                                 DecorationImage(
                                                                               fit: BoxFit.cover,
-                                                                              image: Image.network(
+                                                                              image: cachedNetworkImage(
                                                                                 valueOrDefault<String>(
                                                                                   storyItem.avatarUrl,
                                                                                   'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YXZhdGFyfGVufDB8fDB8fHww',
@@ -5728,7 +5728,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                           fit: BoxFit
                                                                               .cover,
                                                                           image:
-                                                                              Image.network(
+                                                                              cachedNetworkImage(
                                                                             'https://picsum.photos/seed/156/600',
                                                                           ).image,
                                                                         ),
@@ -6044,7 +6044,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                               decoration: BoxDecoration(
                                                                                 image: DecorationImage(
                                                                                   fit: BoxFit.cover,
-                                                                                  image: Image.network(
+                                                                                  image: cachedNetworkImage(
                                                                                     valueOrDefault<String>(
                                                                                       '${recentStoriesItem.avatarUrl}',
                                                                                       'https://plus.unsplash.com/premium_photo-1689551670902-19b441a6afde?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
@@ -6294,7 +6294,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                               decoration: BoxDecoration(
                                                                                 image: DecorationImage(
                                                                                   fit: BoxFit.cover,
-                                                                                  image: Image.network(
+                                                                                  image: cachedNetworkImage(
                                                                                     valueOrDefault<String>(
                                                                                       '${viewedStoriesItem.avatarUrl}',
                                                                                       'https://plus.unsplash.com/premium_photo-1689551670902-19b441a6afde?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
@@ -6580,7 +6580,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                             image:
                                                                                 DecorationImage(
                                                                               fit: BoxFit.cover,
-                                                                              image: Image.network(
+                                                                              image: cachedNetworkImage(
                                                                                 valueOrDefault<String>(
                                                                                   '${hiddenListItem.avatarUrl}',
                                                                                   'https://plus.unsplash.com/premium_photo-1689551670902-19b441a6afde?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
@@ -6825,7 +6825,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                     decoration: BoxDecoration(
                                                       shape: BoxShape.circle,
                                                     ),
-                                                    child: Image.network(
+                                                    child: cachedNetworkImage(
                                                       valueOrDefault<String>(
                                                         rowProfilesRow
                                                             ?.avatarUrl,

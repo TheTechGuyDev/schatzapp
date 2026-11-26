@@ -304,7 +304,7 @@ class _SavedcontactWidgetState extends State<SavedcontactWidget>
                                                 color: Color(0xFFE4DAEF),
                                                 image: DecorationImage(
                                                   fit: BoxFit.cover,
-                                                  image: Image.network(
+                                                  image: cachedNetworkImage(
                                                     valueOrDefault<String>(
                                                       '${widget.matchedAvatarUrl}',
                                                       'https://plus.unsplash.com/premium_photo-1705009607118-5216fbbf8820?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',

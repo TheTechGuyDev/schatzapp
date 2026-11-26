@@ -118,7 +118,7 @@ class _WalletProfileWidgetState extends State<WalletProfileWidget> {
                               FlutterFlowTheme.of(context).secondaryBackground,
                           image: DecorationImage(
                             fit: BoxFit.cover,
-                            image: Image.network(
+                            image: cachedNetworkImage(
                               valueOrDefault<String>(
                                 _model
                                     .profileQueryResult?.firstOrNull?.avatarUrl,

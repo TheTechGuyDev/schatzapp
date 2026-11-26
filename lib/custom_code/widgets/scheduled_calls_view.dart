@@ -457,7 +457,7 @@ class _ScheduledCallsViewState extends State<ScheduledCallsView> {
               height: 48,
               child: (avatar.toLowerCase().startsWith('http') &&
                       !avatar.toLowerCase().contains('unsplash.com'))
-                  ? Image.network(avatar,
+                  ? cachedNetworkImage(avatar,
                       fit: BoxFit.cover,
                       errorBuilder: (_, __, ___) => _initialBox(initial))
                   : _initialBox(initial),

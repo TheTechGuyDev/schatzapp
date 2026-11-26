@@ -481,7 +481,7 @@ class _ForYouCardState extends State<_ForYouCard> {
     // Videos can take a while to open on mobile data: wait up to 30 seconds
     // and try twice before giving up.
     for (var attempt = 0; attempt < 2; attempt++) {
-      final vc = VideoPlayerController.networkUrl(Uri.parse(item.mediaUrl));
+      final vc = cachedVideoController(item.mediaUrl);
       try {
         await vc.initialize().timeout(const Duration(seconds: 30));
         if (!mounted || !widget.isActiveVideo || _item?.id != item.id) {
@@ -575,7 +575,7 @@ class _ForYouCardState extends State<_ForYouCard> {
                                 .secondaryBackground,
                             image: DecorationImage(
                               fit: BoxFit.cover,
-                              image: Image.network(
+                              image: cachedNetworkImage(
                                 valueOrDefault<String>(
                                   widget.group.avatarUrl,
                                   'https://plus.unsplash.com/premium_photo-1705009607118-5216fbbf8820?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
@@ -855,7 +855,7 @@ class _ForYouCardState extends State<_ForYouCard> {
     if (item.mediaUrl.isEmpty) {
       return Container(color: Colors.black12);
     }
-    return Image.network(
+    return cachedNetworkImage(
       item.mediaUrl,
       fit: BoxFit.cover,
       loadingBuilder: (context, child, loadingProgress) {
@@ -1023,7 +1023,7 @@ class _ForYouStoryViewerPageState extends State<_ForYouStoryViewerPage> {
                       color: Colors.white24,
                       image: widget.group.avatarUrl.isNotEmpty
                           ? DecorationImage(
-                              image: NetworkImage(widget.group.avatarUrl),
+                              image: cachedNetworkImageProvider(widget.group.avatarUrl),
                               fit: BoxFit.cover,
                             )
                           : null,

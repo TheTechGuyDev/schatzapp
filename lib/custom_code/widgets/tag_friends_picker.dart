@@ -174,7 +174,7 @@ class _TagFriendsPickerState extends State<TagFriendsPicker> {
                                 radius: 22,
                                 backgroundImage:
                                     (friend['avatarUrl'] as String).isNotEmpty
-                                        ? NetworkImage(friend['avatarUrl'])
+                                        ? cachedNetworkImageProvider(friend['avatarUrl'])
                                         : null,
                               ),
                               title: Text(friend['fullName']),

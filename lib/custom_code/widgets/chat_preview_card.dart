@@ -241,7 +241,7 @@ class _ChatPreviewCardState extends State<ChatPreviewCard> {
           child: Stack(
             alignment: Alignment.bottomRight,
             children: [
-              Image.network(url,
+              cachedNetworkImage(url,
                   width: 170,
                   height: 150,
                   fit: BoxFit.cover,
@@ -346,7 +346,7 @@ class _ChatPreviewCardState extends State<ChatPreviewCard> {
           child: Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                  image: NetworkImage(wallpaper), fit: BoxFit.cover),
+                  image: cachedNetworkImageProvider(wallpaper), fit: BoxFit.cover),
             ),
             child: StreamBuilder<List<MessagesRow>>(
               stream: _messagesStream,
@@ -659,7 +659,7 @@ class _ChatPreviewCardState extends State<ChatPreviewCard> {
                                   !widget.displayAvatar
                                       .toLowerCase()
                                       .contains('unsplash.com'))
-                              ? NetworkImage(widget.displayAvatar)
+                              ? cachedNetworkImageProvider(widget.displayAvatar)
                               : null,
                           child: (widget.displayAvatar
                                       .toLowerCase()

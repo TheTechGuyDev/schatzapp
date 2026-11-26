@@ -388,7 +388,7 @@ class _BubbleBodyState extends State<_BubbleBody> {
                     width: 44,
                     height: 44,
                     child: widget.avatar.startsWith('http')
-                        ? Image.network(widget.avatar,
+                        ? cachedNetworkImage(widget.avatar,
                             fit: BoxFit.cover,
                             errorBuilder: (_, __, ___) => Container(
                                 color: Colors.white24,
@@ -1122,7 +1122,7 @@ class _ModernCallViewState extends State<ModernCallView>
         ),
         child: ClipOval(
           child: url.startsWith('http')
-              ? Image.network(url,
+              ? cachedNetworkImage(url,
                   fit: BoxFit.cover,
                   errorBuilder: (_, __, ___) => _initialBox(initial))
               : _initialBox(initial),
@@ -1198,7 +1198,7 @@ class _ModernCallViewState extends State<ModernCallView>
                         width: 44,
                         height: 44,
                         child: url.startsWith('http')
-                            ? Image.network(url,
+                            ? cachedNetworkImage(url,
                                 fit: BoxFit.cover,
                                 errorBuilder: (_, __, ___) =>
                                     _initialBox(initial))

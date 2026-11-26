@@ -1,5 +1,7 @@
 import 'package:supabase_flutter/supabase_flutter.dart' hide Provider;
 
+import 'offline_http_client.dart';
+
 export 'database/database.dart';
 export 'storage/storage.dart';
 
@@ -16,12 +18,17 @@ class SupaFlow {
   final _supabase = Supabase.instance.client;
   static SupabaseClient get client => instance._supabase;
 
-  static Future initialize() => Supabase.initialize(
+  static Future initialize() async {
+    // Offline-first reads: last answers are served when there's no network.
+    await OfflineHttpClient.init();
+    return Supabase.initialize(
         url: _kSupabaseUrl,
         anonKey: _kSupabaseAnonKey,
+        httpClient: OfflineHttpClient(),
         headers: {'X-Client-Info': 'flutterflow'},
         debug: false,
         authOptions:
             FlutterAuthClientOptions(authFlowType: AuthFlowType.implicit),
       );
+  }
 }

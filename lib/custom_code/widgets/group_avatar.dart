@@ -44,7 +44,7 @@ class GroupAvatar extends StatelessWidget {
         width: s,
         height: s,
         child: url.toLowerCase().startsWith('http')
-            ? Image.network(
+            ? cachedNetworkImage(
                 url,
                 width: s,
                 height: s,

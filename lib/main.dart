@@ -11,6 +11,7 @@ import 'auth/supabase_auth/auth_util.dart';
 import '/backend/supabase/supabase.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/internationalization.dart';
+import '/custom_code/actions/init_offline_store.dart' show initOfflineStore;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,6 +19,9 @@ void main() async {
   usePathUrlStrategy();
 
   await SupaFlow.initialize();
+
+  // Offline store, outbox and connectivity checks (no waiting on network).
+  initOfflineStore();
 
   await FFLocalizations.initialize();
 
