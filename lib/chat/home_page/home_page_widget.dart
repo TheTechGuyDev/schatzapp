@@ -239,6 +239,14 @@ class _HomePageWidgetState extends State<HomePageWidget>
                       Column(
                         children: [
                           Expanded(
+                            child: Stack(
+                              children: [
+                          Positioned.fill(
+                            // iOS/web: tabs run a little under the floating
+                            // glass nav so its blur has content behind it.
+                            bottom: custom_widgets.useGlassNavBar()
+                                ? 58.0
+                                : 0.0,
                             child: TabBarView(
                               controller: _model.tabBarController1,
                               physics: const NeverScrollableScrollPhysics(),
@@ -8495,6 +8503,56 @@ class _HomePageWidgetState extends State<HomePageWidget>
                               ],
                             ),
                           ),
+                          if (custom_widgets.useGlassNavBar())
+                            Positioned(
+                              left: 14.0,
+                              right: 14.0,
+                              bottom: 10.0,
+                              child: custom_widgets.GlassNavBar(
+                                controller: _model.tabBarController1!,
+                                currentUserId: currentUserUid,
+                                items: [
+                                  custom_widgets.GlassNavItem(
+                                    label: FFLocalizations.of(context)
+                                        .getText('b5vbixz0' /* Chats */),
+                                    icon: FaIcon(FaIconData(const IconData(
+                                        /* comment */ 0xf075,
+                                        fontFamily: 'FontAwesomeRegular',
+                                        fontPackage: 'font_awesome_flutter'))),
+                                  ),
+                                  custom_widgets.GlassNavItem(
+                                    label: FFLocalizations.of(context)
+                                        .getText('kankqcjl' /* Calls */),
+                                    icon: const Icon(Icons.call_outlined),
+                                  ),
+                                  custom_widgets.GlassNavItem(
+                                    label: FFLocalizations.of(context)
+                                        .getText('vcge69ha' /* Wallets */),
+                                    icon: FaIcon(FaIconData(const IconData(
+                                        /* wallet */ 0xf555,
+                                        fontFamily: 'FontAwesomeSolid',
+                                        fontPackage: 'font_awesome_flutter'))),
+                                  ),
+                                  custom_widgets.GlassNavItem(
+                                    label: FFLocalizations.of(context)
+                                        .getText('snaoubt0' /* Stories */),
+                                    icon: FaIcon(FaIconData(const IconData(
+                                        /* hornbill */ 0xf592,
+                                        fontFamily: 'FontAwesomeBrands',
+                                        fontPackage: 'font_awesome_flutter'))),
+                                  ),
+                                  custom_widgets.GlassNavItem(
+                                    label: FFLocalizations.of(context)
+                                        .getText('gbmkx8os' /* Profile */),
+                                    icon: const Icon(Icons.person_3_outlined),
+                                  ),
+                                ],
+                              ),
+                            ),
+                              ],
+                            ),
+                          ),
+                          if (!custom_widgets.useGlassNavBar())
                           Align(
                             alignment: Alignment(0.0, 0),
                             child: TabBar(
@@ -8611,6 +8669,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                           ),
                         ],
                       ),
+                      if (!custom_widgets.useGlassNavBar())
                       Align(
                         alignment: AlignmentDirectional(0.0, 1.0),
                         child: Padding(
