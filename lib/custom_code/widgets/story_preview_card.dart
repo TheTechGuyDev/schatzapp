@@ -97,7 +97,7 @@ class _StoryPreviewCardState extends State<StoryPreviewCard> {
       );
     } else {
       content = widget.item.mediaUrl.isNotEmpty
-          ? cachedNetworkImage(widget.item.mediaUrl, fit: BoxFit.cover)
+          ? Image.network(widget.item.mediaUrl, fit: BoxFit.cover)
           : Container(color: Colors.black26);
     }
 

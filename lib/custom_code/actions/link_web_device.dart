@@ -55,11 +55,7 @@ String _formatTime(dynamic iso) {
 
 // Scanned QR text -> device details -> Link / Cancel. Returns true when the
 // web browser was approved.
-//
-// confirm: true shows the "Link this device?" dialog first (default).
-// confirm: false links straight away (used by the live scanner sheet, which
-// closes as soon as the scan succeeds, like WhatsApp).
-Future<bool> linkWebDevice(String qr, {bool confirm = true}) async {
+Future<bool> linkWebDevice(String qr) async {
   final code = qr.trim();
   if (code.isEmpty) return false;
   if (!code.startsWith('schatzapp://link-device')) {
@@ -73,21 +69,10 @@ Future<bool> linkWebDevice(String qr, {bool confirm = true}) async {
     return false;
   }
 
-  final device = '${info['device_name'] ?? 'Unknown device'}';
-
-  if (!confirm) {
-    final res = await _callWebLogin('approve', code);
-    if (res['ok'] == true) {
-      _toast('$device linked. Signing you in on the computer.');
-      return true;
-    }
-    _toast('${res['message'] ?? 'Could not link this device.'}');
-    return false;
-  }
-
   final ctx = appNavigatorKey.currentContext;
   if (ctx == null) return false;
 
+  final device = '${info['device_name'] ?? 'Unknown device'}';
   final location = '${info['location'] ?? ''}';
   final time = _formatTime(info['requested_at']);
   final active = info['active_devices'] ?? 0;

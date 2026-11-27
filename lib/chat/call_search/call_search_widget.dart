@@ -358,7 +358,7 @@ class _CallSearchWidgetState extends State<CallSearchWidget> {
                                                 decoration: BoxDecoration(
                                                   shape: BoxShape.circle,
                                                 ),
-                                                child: cachedNetworkImage(
+                                                child: Image.network(
                                                   valueOrDefault<String>(
                                                     '${callHistoryItemItem.otherPartyAvatar}',
                                                     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuTHMouALM9GtFV92ULCO9KzgU-wSj3lyUHD1wwSlQwLylW3ma4zqU8Ms&s=10',
@@ -901,7 +901,7 @@ class _CallSearchWidgetState extends State<CallSearchWidget> {
                                               decoration: BoxDecoration(
                                                 shape: BoxShape.circle,
                                               ),
-                                              child: cachedNetworkImage(
+                                              child: Image.network(
                                                 valueOrDefault<String>(
                                                   '${listViewConversationParticipantsDirectoryRow.avatarUrl}',
                                                   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSx0B9pTygIDAf0Vb9ypFWTtV5QtE4VlNGQ_U7H8u_ZA&s=10',

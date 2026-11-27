@@ -2735,72 +2735,76 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                         ),
                       ],
                     ),
-                    Stack(
-                      alignment: AlignmentDirectional(0.0, -1.0),
-                      children: [
-                        Align(
-                          alignment: AlignmentDirectional(-0.01, -1.0),
-                          child: Container(
-                            width: 150.0,
-                            height: 150.0,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                              shape: BoxShape.circle,
-                            ),
-                            child: Builder(
-                              builder: (context) {
-                                if (stackProfilesRow?.avatarUrl != null &&
-                                    stackProfilesRow?.avatarUrl != '') {
-                                  return Container(
-                                    width: 150.0,
-                                    height: 150.0,
-                                    child: custom_widgets.UserAvatarWidget(
+                    if (responsiveVisibility(
+                      context: context,
+                      phone: false,
+                    ))
+                      Stack(
+                        alignment: AlignmentDirectional(0.0, -1.0),
+                        children: [
+                          Align(
+                            alignment: AlignmentDirectional(-0.01, -1.0),
+                            child: Container(
+                              width: 150.0,
+                              height: 150.0,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                shape: BoxShape.circle,
+                              ),
+                              child: Builder(
+                                builder: (context) {
+                                  if (stackProfilesRow?.avatarUrl != null &&
+                                      stackProfilesRow?.avatarUrl != '') {
+                                    return Container(
                                       width: 150.0,
                                       height: 150.0,
-                                      avatarUrl: stackProfilesRow?.avatarUrl,
-                                      displayName: stackProfilesRow!.fullName,
-                                      radius: 75.0,
-                                    ),
-                                  );
-                                } else {
-                                  return Container(
-                                    width: 1.0,
-                                    height: 1.0,
-                                    decoration: BoxDecoration(),
-                                  );
-                                }
-                              },
-                            ),
-                          ),
-                        ),
-                        if (stackProfilesRow?.isOnline == true)
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                120.0, 110.0, 0.0, 0.0),
-                            child: Container(
-                              width: 25.0,
-                              height: 25.0,
-                              decoration: BoxDecoration(
-                                color: Color(0xFF2FFB4B),
-                                boxShadow: [
-                                  BoxShadow(
-                                    blurRadius: 0.0,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                    offset: Offset(
-                                      0.0,
-                                      0.0,
-                                    ),
-                                    spreadRadius: 3.0,
-                                  )
-                                ],
-                                shape: BoxShape.circle,
+                                      child: custom_widgets.UserAvatarWidget(
+                                        width: 150.0,
+                                        height: 150.0,
+                                        avatarUrl: stackProfilesRow?.avatarUrl,
+                                        displayName: stackProfilesRow!.fullName,
+                                        radius: 75.0,
+                                      ),
+                                    );
+                                  } else {
+                                    return Container(
+                                      width: 1.0,
+                                      height: 1.0,
+                                      decoration: BoxDecoration(),
+                                    );
+                                  }
+                                },
                               ),
                             ),
                           ),
-                      ],
-                    ),
+                          if (stackProfilesRow?.isOnline == true)
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  120.0, 110.0, 0.0, 0.0),
+                              child: Container(
+                                width: 25.0,
+                                height: 25.0,
+                                decoration: BoxDecoration(
+                                  color: Color(0xFF2FFB4B),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      blurRadius: 0.0,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      offset: Offset(
+                                        0.0,
+                                        0.0,
+                                      ),
+                                      spreadRadius: 3.0,
+                                    )
+                                  ],
+                                  shape: BoxShape.circle,
+                                ),
+                              ),
+                            ),
+                        ],
+                      ),
                   ],
                 );
               },

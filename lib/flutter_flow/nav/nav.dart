@@ -330,11 +330,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => QrcodeWidget(),
         ),
         FFRoute(
-          name: SchatzAppWebLoginWidget.routeName,
-          path: SchatzAppWebLoginWidget.routePath,
-          builder: (context, params) => SchatzAppWebLoginWidget(),
-        ),
-        FFRoute(
           name: PhoneLoginWidget.routeName,
           path: PhoneLoginWidget.routePath,
           builder: (context, params) => PhoneLoginWidget(),
@@ -827,6 +822,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: PrivateChatWidget.routeName,
           path: PrivateChatWidget.routePath,
           builder: (context, params) => PrivateChatWidget(),
+        ),
+        FFRoute(
+          name: CloseAccountWidget.routeName,
+          path: CloseAccountWidget.routePath,
+          builder: (context, params) => CloseAccountWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

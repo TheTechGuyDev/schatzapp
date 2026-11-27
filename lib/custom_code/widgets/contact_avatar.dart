@@ -93,7 +93,7 @@ class _ContactAvatarState extends State<ContactAvatar> {
         height: s,
         child: _url.isEmpty
             ? _fallback(s)
-            : cachedNetworkImage(
+            : Image.network(
                 _url,
                 width: s,
                 height: s,

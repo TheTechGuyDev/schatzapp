@@ -303,7 +303,7 @@ class _CreateagroupWidgetState extends State<CreateagroupWidget> {
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                               ),
-                              child: cachedNetworkImage(
+                              child: Image.network(
                                 valueOrDefault<String>(
                                   '${_model.groupPhotoUrl}',
                                   'https://picsum.photos/seed/705/600',
@@ -825,7 +825,7 @@ class _CreateagroupWidgetState extends State<CreateagroupWidget> {
                                                                   .circle,
                                                             ),
                                                             child:
-                                                                cachedNetworkImage(
+                                                                Image.network(
                                                               valueOrDefault<
                                                                   String>(
                                                                 '${selectedMembersListItem.memberAvatar}',

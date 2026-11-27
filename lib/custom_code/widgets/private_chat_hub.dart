@@ -111,9 +111,7 @@ class _PrivateChatHubState extends State<PrivateChatHub> {
           .select()
           .eq('is_locked', true)
           .order('last_message_at', ascending: false);
-      // Pinned first by pin time (newest pin on top), then by last message.
-      final rows = await sortChatRowsWhatsApp(
-          List<Map<String, dynamic>>.from(data));
+      final rows = List<Map<String, dynamic>>.from(data);
 
       final otherIds = rows
           .where((r) => r['type'] != 'group')
@@ -422,7 +420,7 @@ class _PrivateChatHubState extends State<PrivateChatHub> {
       decoration:
           const BoxDecoration(shape: BoxShape.circle, color: Color(0xFFE9DDF5)),
       child: has
-          ? cachedNetworkImage(url,
+          ? Image.network(url,
               fit: BoxFit.cover,
               errorBuilder: (_, __, ___) =>
                   const Icon(Icons.person, color: _purple))
@@ -714,7 +712,7 @@ class _PickerSheetState extends State<_PickerSheet> {
       decoration:
           const BoxDecoration(shape: BoxShape.circle, color: Color(0xFFE9DDF5)),
       child: has
-          ? cachedNetworkImage(url,
+          ? Image.network(url,
               fit: BoxFit.cover,
               errorBuilder: (_, __, ___) =>
                   const Icon(Icons.person, color: _purple))

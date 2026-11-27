@@ -231,7 +231,7 @@ class _ThemeSelectorWidgetState extends State<ThemeSelectorWidget> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
                   image: DecorationImage(
-                    image: cachedNetworkImageProvider(bundle.wallpaperUrl),
+                    image: NetworkImage(bundle.wallpaperUrl),
                     fit: BoxFit.cover,
                   ),
                   border: Border.all(
@@ -369,7 +369,7 @@ class _ThemeSelectorWidgetState extends State<ThemeSelectorWidget> {
                         else if (_wallpaperUrl != null)
                           ClipRRect(
                             borderRadius: BorderRadius.circular(6),
-                            child: cachedNetworkImage(_wallpaperUrl!,
+                            child: Image.network(_wallpaperUrl!,
                                 width: 32, height: 32, fit: BoxFit.cover),
                           )
                         else

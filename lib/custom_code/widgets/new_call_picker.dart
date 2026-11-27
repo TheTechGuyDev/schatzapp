@@ -428,7 +428,7 @@ class _NewCallPickerState extends State<NewCallPicker> {
             backgroundColor: const Color(0xFFEFEBF2),
             backgroundImage: (avatar.toLowerCase().startsWith('http') &&
                     !avatar.toLowerCase().contains('unsplash.com'))
-                ? cachedNetworkImageProvider(avatar)
+                ? NetworkImage(avatar)
                 : null,
             child: (avatar.toLowerCase().startsWith('http') &&
                     !avatar.toLowerCase().contains('unsplash.com'))

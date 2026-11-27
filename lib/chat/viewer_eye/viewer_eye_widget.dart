@@ -1,5 +1,4 @@
 import '/backend/schema/structs/index.dart';
-import '/components/old_share_to_contact_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/custom_code/actions/index.dart' as actions;
@@ -176,54 +175,25 @@ class _ViewerEyeWidgetState extends State<ViewerEyeWidget> {
                         color: Color(0x38935CCC),
                         borderRadius: BorderRadius.circular(20.0),
                       ),
-                      child: InkWell(
-                        splashColor: Colors.transparent,
-                        focusColor: Colors.transparent,
-                        hoverColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
-                        onTap: () async {
-                          await showModalBottomSheet(
-                            isScrollControlled: true,
-                            backgroundColor: Colors.transparent,
-                            enableDrag: false,
-                            context: context,
-                            builder: (context) {
-                              return Padding(
-                                padding: MediaQuery.viewInsetsOf(context),
-                                child: OldShareToContactWidget(),
-                              );
-                            },
-                          ).then((value) => safeSetState(() {}));
-                        },
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            FaIcon(
-                              FaIconData(const IconData(/* share */ 0xf064,
-                                  fontFamily: 'FontAwesomeSolid',
-                                  fontPackage: 'font_awesome_flutter')),
-                              color: Color(0xFF935CCC),
-                              size: 14.0,
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          FaIcon(
+                            FaIconData(const IconData(/* share */ 0xf064,
+                                fontFamily: 'FontAwesomeSolid',
+                                fontPackage: 'font_awesome_flutter')),
+                            color: Color(0xFF935CCC),
+                            size: 14.0,
+                          ),
+                          Text(
+                            FFLocalizations.of(context).getText(
+                              '6kjcxky1' /* Share */,
                             ),
-                            Text(
-                              FFLocalizations.of(context).getText(
-                                '6kjcxky1' /* Share */,
-                              ),
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    font: GoogleFonts.plusJakartaSans(
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontStyle,
-                                    ),
-                                    color: Color(0xFF935CCC),
-                                    fontSize: 13.0,
-                                    letterSpacing: 0.0,
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  font: GoogleFonts.plusJakartaSans(
                                     fontWeight: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .fontWeight,
@@ -231,9 +201,18 @@ class _ViewerEyeWidgetState extends State<ViewerEyeWidget> {
                                         .bodyMedium
                                         .fontStyle,
                                   ),
-                            ),
-                          ].divide(SizedBox(width: 5.0)),
-                        ),
+                                  color: Color(0xFF935CCC),
+                                  fontSize: 13.0,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .fontStyle,
+                                ),
+                          ),
+                        ].divide(SizedBox(width: 5.0)),
                       ),
                     ),
                   ],
@@ -421,7 +400,7 @@ class _ViewerEyeWidgetState extends State<ViewerEyeWidget> {
                                                   decoration: BoxDecoration(
                                                     shape: BoxShape.circle,
                                                   ),
-                                                  child: cachedNetworkImage(
+                                                  child: Image.network(
                                                     valueOrDefault<String>(
                                                       '${statusViewerItem.avatarUrl}',
                                                       'https://plus.unsplash.com/premium_photo-1689551670902-19b441a6afde?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',

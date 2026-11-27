@@ -553,7 +553,7 @@ class _MediaLinksFilesViewState extends State<MediaLinksFilesView>
           children: [
             e.isVideo
                 ? _VideoFrame(url: e.url, thumbnailUrl: e.thumbnailUrl)
-                : cachedNetworkImage(
+                : Image.network(
                     e.url,
                     fit: BoxFit.cover,
                     filterQuality: FilterQuality.high,
@@ -919,7 +919,7 @@ class _VideoFrameState extends State<_VideoFrame> {
   @override
   Widget build(BuildContext context) {
     if (_hasThumb) {
-      return cachedNetworkImage(widget.thumbnailUrl!,
+      return Image.network(widget.thumbnailUrl!,
           fit: BoxFit.cover,
           errorBuilder: (_, __, ___) => const ColoredBox(color: Colors.black));
     }
@@ -966,7 +966,7 @@ class _MediaPager extends StatelessWidget {
               minScale: 1,
               maxScale: 5,
               child: Center(
-                child: cachedNetworkImage(e.url,
+                child: Image.network(e.url,
                     fit: BoxFit.contain,
                     filterQuality: FilterQuality.high,
                     errorBuilder: (_, __, ___) => const Icon(Icons.broken_image,
@@ -995,7 +995,7 @@ class _PagerVideoState extends State<_PagerVideo> {
   @override
   void initState() {
     super.initState();
-    _c = cachedVideoController(widget.url);
+    _c = VideoPlayerController.networkUrl(Uri.parse(widget.url));
     _c.initialize().then((_) {
       if (!mounted) return;
       setState(() => _ready = true);

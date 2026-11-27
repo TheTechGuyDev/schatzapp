@@ -28,8 +28,6 @@ export '/wallet/data/data_widget.dart' show DataWidget;
 export '/wallet/transaction_details/transaction_details_widget.dart'
     show TransactionDetailsWidget;
 export '/wallet/qrcode/qrcode_widget.dart' show QrcodeWidget;
-export '/schatz_app_web_login/schatz_app_web_login_widget.dart'
-    show SchatzAppWebLoginWidget;
 export '/chat/phone_login/phone_login_widget.dart' show PhoneLoginWidget;
 export '/chat/verify_mobile_number/verify_mobile_number_widget.dart'
     show VerifyMobileNumberWidget;
@@ -155,3 +153,4 @@ export '/chat/group_members_page/group_members_page_widget.dart'
 export '/join_group_page/join_group_page_widget.dart' show JoinGroupPageWidget;
 export '/privatechat/private_chat/private_chat_widget.dart'
     show PrivateChatWidget;
+export '/close_account/close_account_widget.dart' show CloseAccountWidget;

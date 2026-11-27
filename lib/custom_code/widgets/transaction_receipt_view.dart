@@ -502,7 +502,7 @@ class _TransactionReceiptViewState extends State<TransactionReceiptView> {
       clipBehavior: Clip.antiAlias,
       child: url.isEmpty
           ? Icon(Icons.receipt_long_rounded, color: _green, size: 30)
-          : cachedNetworkImage(
+          : Image.network(
               url,
               fit: _avatarUrl.isNotEmpty ? BoxFit.cover : BoxFit.contain,
               errorBuilder: (_, __, ___) =>
@@ -810,7 +810,7 @@ class _FriendPickerSheetState extends State<_FriendPickerSheet> {
                               backgroundColor: const Color(0xFFE5E7EB),
                               backgroundImage: avatar.isEmpty
                                   ? null
-                                  : cachedNetworkImageProvider(buildImageProxyUrl(avatar)),
+                                  : NetworkImage(buildImageProxyUrl(avatar)),
                               child: avatar.isEmpty
                                   ? Text(name.isEmpty
                                       ? '?'

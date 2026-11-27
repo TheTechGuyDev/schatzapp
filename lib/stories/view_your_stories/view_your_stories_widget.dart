@@ -106,7 +106,7 @@ class _ViewYourStoriesWidgetState extends State<ViewYourStoriesWidget> {
                                   .secondaryBackground,
                               image: DecorationImage(
                                 fit: BoxFit.cover,
-                                image: cachedNetworkImage(
+                                image: Image.network(
                                   valueOrDefault<String>(
                                     '${FFAppState().myStoryGroup.avatarUrl}',
                                     'https://plus.unsplash.com/premium_photo-1689551670902-19b441a6afde?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
@@ -273,10 +273,7 @@ class _ViewYourStoriesWidgetState extends State<ViewYourStoriesWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              if (Navigator.of(context).canPop()) {
-                                context.pop();
-                              }
-                              context.pushNamed(HomePageWidget.routeName);
+                              context.pop();
                             },
                             child: Icon(
                               Icons.close,
@@ -965,8 +962,7 @@ class _ViewYourStoriesWidgetState extends State<ViewYourStoriesWidget> {
                                                         MainAxisAlignment
                                                             .spaceBetween,
                                                     children: [
-                                                      Expanded(
-                                                        child: Row(
+                                                      Row(
                                                         mainAxisSize:
                                                             MainAxisSize.max,
                                                         mainAxisAlignment:
@@ -1111,26 +1107,11 @@ class _ViewYourStoriesWidgetState extends State<ViewYourStoriesWidget> {
                                                             ),
                                                           ),
                                                         ],
-                                                        ),
                                                       ),
-                                                      // Reactions + "..." (pending request) or message icon.
                                                       custom_widgets
                                                           .ViewerMoreButton(
-                                                        key: ValueKey(
-                                                            '${viewedByItem.viewerId}_${_model.currentStoryIndex}'),
                                                         viewerId: viewedByItem
                                                             .viewerId,
-                                                        statusId: FFAppState()
-                                                            .myStoryGroup
-                                                            .items
-                                                            .elementAtOrNull(_model
-                                                                .currentStoryIndex)
-                                                            ?.id,
-                                                        displayName:
-                                                            viewedByItem
-                                                                .fullName,
-                                                        avatarUrl: viewedByItem
-                                                            .avatarUrl,
                                                         width: 40.0,
                                                         height: 40.0,
                                                       ),

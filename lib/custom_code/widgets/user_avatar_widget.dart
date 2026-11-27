@@ -90,7 +90,7 @@ class _UserAvatarWidgetState extends State<UserAvatarWidget> {
     return CircleAvatar(
       radius: r,
       backgroundColor: const Color(0xFFEFEBF2),
-      backgroundImage: cachedNetworkImageProvider(url),
+      backgroundImage: NetworkImage(url),
     );
   }
 }

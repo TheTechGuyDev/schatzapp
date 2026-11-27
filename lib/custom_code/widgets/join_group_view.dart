@@ -111,7 +111,7 @@ class _JoinGroupViewState extends State<JoinGroupView> {
         borderRadius: BorderRadius.circular(28),
       ),
       child: has
-          ? cachedNetworkImage(_avatar,
+          ? Image.network(_avatar,
               fit: BoxFit.cover,
               errorBuilder: (_, __, ___) =>
                   const Icon(Icons.groups, size: 56, color: _purple))

@@ -66,11 +66,10 @@ class _ChatSearchPanelState extends State<ChatSearchPanel> {
     final data = await SupaFlow.client
         .from('chat_list_view')
         .select()
+        .order('is_pinned', ascending: false)
         .order('last_message_at', ascending: false);
 
-    // Pinned first by pin time (newest pin on top), then by last message.
-    final rows = await sortChatRowsWhatsApp(
-        List<Map<String, dynamic>>.from(data));
+    final rows = List<Map<String, dynamic>>.from(data);
 
     final otherUserIds = rows
         .where((r) => r['type'] != 'group')
@@ -135,8 +134,7 @@ class _ChatSearchPanelState extends State<ChatSearchPanel> {
         if (conversationIds.isNotEmpty) {
           final messageRows = await SupaFlow.client
               .from('messages')
-              .select(
-                  'id, conversation_id, content, sender_id, created_at, deleted_for_user_ids')
+              .select('id, conversation_id, content, sender_id, created_at')
               .inFilter('conversation_id', conversationIds)
               .eq('is_deleted', false)
               .ilike('content', '%$query%')
@@ -150,12 +148,6 @@ class _ChatSearchPanelState extends State<ChatSearchPanel> {
             final chatRow = rowsById[conversationId];
             if (chatRow == null) continue;
             if (chatRow['is_locked'] == true) continue;
-            // Skip messages this user deleted for themselves.
-            final deletedFor = mRow['deleted_for_user_ids'];
-            if (deletedFor is List &&
-                deletedFor.map((e) => e.toString()).contains(widget.currentUserId)) {
-              continue;
-            }
 
             final isGroup = chatRow['type'] == 'group';
             final otherUserId = (chatRow['other_user_id'] as String?) ?? '';
@@ -389,7 +381,7 @@ class _ChatSearchPanelState extends State<ChatSearchPanel> {
                                     !avatarUrl
                                         .toLowerCase()
                                         .contains('unsplash.com'))
-                                ? cachedNetworkImageProvider(avatarUrl)
+                                ? NetworkImage(avatarUrl)
                                 : null,
                         child: (avatarUrl.toLowerCase().startsWith('http') &&
                                 !avatarUrl
@@ -443,7 +435,7 @@ class _ChatSearchPanelState extends State<ChatSearchPanel> {
                                     !match.avatarUrl
                                         .toLowerCase()
                                         .contains('unsplash.com'))
-                                ? cachedNetworkImageProvider(match.avatarUrl)
+                                ? NetworkImage(match.avatarUrl)
                                 : null,
                         child:
                             (match.avatarUrl.toLowerCase().startsWith('http') &&

@@ -313,7 +313,7 @@ class _ChatImportantViewState extends State<ChatImportantView> {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: Stack(fit: StackFit.expand, children: [
-                        cachedNetworkImage(shown[i],
+                        Image.network(shown[i],
                             fit: BoxFit.cover,
                             errorBuilder: (_, __, ___) => const ColoredBox(
                                 color: Colors.black12,
@@ -348,7 +348,7 @@ class _ChatImportantViewState extends State<ChatImportantView> {
               aspectRatio: 1.4,
               child: Stack(fit: StackFit.expand, children: [
                 m.thumbUrl.isNotEmpty
-                    ? cachedNetworkImage(m.thumbUrl,
+                    ? Image.network(m.thumbUrl,
                         fit: BoxFit.cover,
                         errorBuilder: (_, __, ___) =>
                             const ColoredBox(color: Colors.black))
@@ -675,7 +675,7 @@ class _StarMediaViewerState extends State<_StarMediaViewer> {
   void initState() {
     super.initState();
     if (widget.video) {
-      final c = cachedVideoController(widget.urls.first);
+      final c = VideoPlayerController.networkUrl(Uri.parse(widget.urls.first));
       _c = c;
       c.initialize().then((_) {
         if (!mounted) return;
@@ -721,7 +721,7 @@ class _StarMediaViewerState extends State<_StarMediaViewer> {
           minScale: 1,
           maxScale: 5,
           child: Center(
-            child: cachedNetworkImage(widget.urls[i],
+            child: Image.network(widget.urls[i],
                 fit: BoxFit.contain,
                 errorBuilder: (_, __, ___) => const Icon(Icons.broken_image,
                     color: Colors.white54, size: 48)),

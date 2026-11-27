@@ -194,7 +194,7 @@ class _ContactsListWidgetState extends State<ContactsListWidget> {
                           color: theme.alternate,
                         ),
                         child: row.avatarUrl != null
-                            ? cachedNetworkImage(row.avatarUrl!, fit: BoxFit.cover)
+                            ? Image.network(row.avatarUrl!, fit: BoxFit.cover)
                             : Icon(Icons.person,
                                 color: theme.secondaryText, size: 26),
                       ),

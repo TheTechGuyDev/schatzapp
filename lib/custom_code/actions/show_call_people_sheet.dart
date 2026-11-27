@@ -232,7 +232,7 @@ class _PeopleSheetState extends State<_PeopleSheet> {
     return CircleAvatar(
       radius: 22,
       backgroundColor: _purple.withOpacity(0.18),
-      backgroundImage: url.isNotEmpty ? cachedNetworkImageProvider(url) : null,
+      backgroundImage: url.isNotEmpty ? NetworkImage(url) : null,
       child: url.isEmpty
           ? Text(name.isNotEmpty ? name[0].toUpperCase() : '?',
               style:

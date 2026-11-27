@@ -57,7 +57,7 @@ class _ForYouDummyTestWidgetState extends State<ForYouDummyTestWidget> {
               automaticallyImplyLeading: false,
               title: Text(
                 FFLocalizations.of(context).getText(
-                  'p6sk2d5r' /* Page Title */,
+                  'ffj9wy84' /* Page Title */,
                 ),
                 style: FlutterFlowTheme.of(context).headlineMedium.override(
                       font: GoogleFonts.plusJakartaSans(
@@ -170,7 +170,7 @@ class _ForYouDummyTestWidgetState extends State<ForYouDummyTestWidget> {
                                               .secondaryBackground,
                                           image: DecorationImage(
                                             fit: BoxFit.cover,
-                                            image: cachedNetworkImage(
+                                            image: Image.network(
                                               'https://plus.unsplash.com/premium_photo-1705009607118-5216fbbf8820?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                                             ).image,
                                           ),
@@ -200,7 +200,7 @@ class _ForYouDummyTestWidgetState extends State<ForYouDummyTestWidget> {
                                                       .secondaryBackground,
                                                   image: DecorationImage(
                                                     fit: BoxFit.cover,
-                                                    image: cachedNetworkImage(
+                                                    image: Image.network(
                                                       'https://plus.unsplash.com/premium_photo-1705009607118-5216fbbf8820?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                                                     ).image,
                                                   ),

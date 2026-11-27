@@ -106,7 +106,7 @@ class _StoryPlayerState extends State<StoryPlayer>
       // mobile connection, so wait up to 30 seconds and try twice.
       for (var attempt = 0; attempt < 2; attempt++) {
         final candidate =
-            cachedVideoController(_current.mediaUrl);
+            VideoPlayerController.networkUrl(Uri.parse(_current.mediaUrl));
         _videoController = candidate;
         try {
           await candidate.initialize().timeout(const Duration(seconds: 30));
@@ -302,7 +302,7 @@ class _StoryPlayerState extends State<StoryPlayer>
                                 // First frame saved beside the video, shown
                                 // while the video itself loads.
                                 if (_posterUrl(item.mediaUrl).isNotEmpty)
-                                  cachedNetworkImage(
+                                  Image.network(
                                     _posterUrl(item.mediaUrl),
                                     fit: BoxFit.cover,
                                     errorBuilder: (_, __, ___) =>
@@ -379,7 +379,7 @@ class _StoryPlayerState extends State<StoryPlayer>
                               ),
                             )
                           : (item.mediaUrl.isNotEmpty
-                              ? cachedNetworkImage(
+                              ? Image.network(
                                   item.mediaUrl,
                                   fit: BoxFit.cover,
                                   loadingBuilder:

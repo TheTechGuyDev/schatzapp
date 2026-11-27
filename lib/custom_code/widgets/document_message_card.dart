@@ -112,7 +112,7 @@ class DocumentMessageCard extends StatelessWidget {
             if (hasThumb)
               SizedBox(
                 height: 130,
-                child: cachedNetworkImage(
+                child: Image.network(
                   thumbnailUrl!,
                   fit: BoxFit.cover,
                   alignment: Alignment.topCenter,

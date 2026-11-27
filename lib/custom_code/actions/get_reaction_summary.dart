@@ -10,9 +10,6 @@ import 'package:flutter/material.dart' hide RepeatMode;
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-/// Counts each reaction type on a status post and flags the viewer's picks.
-/// Old 'thumbs' rows count as 'laugh'. Each user counts once per type, so a
-/// user with both a 'thumbs' and a 'laugh' row adds 1 to laugh, not 2.
 Future<ReactionSummaryStructStruct> getReactionSummary(
   String statusId,
   String viewerId,
@@ -22,37 +19,52 @@ Future<ReactionSummaryStructStruct> getReactionSummary(
       .select('user_id, reaction_type')
       .eq('status_id', statusId);
 
-  final usersByType = <String, Set<String>>{
-    'favorite': <String>{},
-    'peace': <String>{},
-    'laugh': <String>{},
-    'sad': <String>{},
-    'angry': <String>{},
-  };
+  int favoriteCount = 0;
+  int peaceCount = 0;
+  int thumbsCount = 0;
+
+  bool favoriteActive = false;
+  bool peaceActive = false;
+  bool thumbsActive = false;
 
   for (final row in rows) {
-    var type = row['reaction_type'] as String?;
+    final type = row['reaction_type'] as String?;
     final userId = row['user_id'] as String?;
-    if (type == null || userId == null) continue;
-    if (type == 'thumbs') type = 'laugh';
-    usersByType[type]?.add(userId);
+
+    if (type == null || userId == null) {
+      continue;
+    }
+
+    switch (type) {
+      case 'favorite':
+        favoriteCount++;
+        if (userId == viewerId) {
+          favoriteActive = true;
+        }
+        break;
+
+      case 'peace':
+        peaceCount++;
+        if (userId == viewerId) {
+          peaceActive = true;
+        }
+        break;
+
+      case 'thumbs':
+        thumbsCount++;
+        if (userId == viewerId) {
+          thumbsActive = true;
+        }
+        break;
+    }
   }
 
-  int count(String t) => usersByType[t]!.length;
-  bool active(String t) => usersByType[t]!.contains(viewerId);
-
   return ReactionSummaryStructStruct(
-    favoriteCount: count('favorite'),
-    peaceCount: count('peace'),
-    laughCount: count('laugh'),
-    sadCount: count('sad'),
-    angryCount: count('angry'),
-    favoriteActive: active('favorite'),
-    peaceActive: active('peace'),
-    laughActive: active('laugh'),
-    sadActive: active('sad'),
-    angryActive: active('angry'),
+    favoriteCount: favoriteCount,
+    peaceCount: peaceCount,
+    thumbsCount: thumbsCount,
+    favoriteActive: favoriteActive,
+    peaceActive: peaceActive,
+    thumbsActive: thumbsActive,
   );
 }
-// Set your action name, define your arguments and return parameter,
-// and then add the boilerplate code using the `</>` button on the right!

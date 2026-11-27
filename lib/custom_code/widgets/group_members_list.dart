@@ -208,7 +208,7 @@ class _GroupMembersListState extends State<GroupMembersList> {
       decoration:
           const BoxDecoration(shape: BoxShape.circle, color: Color(0xFFE9DDF5)),
       child: has
-          ? cachedNetworkImage(url,
+          ? Image.network(url,
               fit: BoxFit.cover,
               errorBuilder: (_, __, ___) =>
                   const Icon(Icons.person, color: _purple))

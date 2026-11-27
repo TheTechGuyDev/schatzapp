@@ -111,4 +111,3 @@ export '/custom_code/widgets/private_lock_subtitle.dart'
     show PrivateLockSubtitle;
 export '/custom_code/widgets/linked_web_devices.dart' show LinkedWebDevices;
 export '/custom_code/widgets/link_with_code_view.dart' show LinkWithCodeView;
-export 'glass_nav_bar.dart' show GlassNavBar, GlassNavItem, useGlassNavBar;

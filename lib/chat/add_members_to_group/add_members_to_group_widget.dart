@@ -435,7 +435,7 @@ class _AddMembersToGroupWidgetState extends State<AddMembersToGroupWidget> {
                                                                     .circle,
                                                               ),
                                                               child:
-                                                                  cachedNetworkImage(
+                                                                  Image.network(
                                                                 valueOrDefault<
                                                                     String>(
                                                                   '${selectedMembersListItem.memberAvatar}',
@@ -663,7 +663,7 @@ class _AddMembersToGroupWidgetState extends State<AddMembersToGroupWidget> {
                                                                   .circle,
                                                             ),
                                                             child:
-                                                                cachedNetworkImage(
+                                                                Image.network(
                                                               valueOrDefault<
                                                                   String>(
                                                                 columnContactsDirectoryRow

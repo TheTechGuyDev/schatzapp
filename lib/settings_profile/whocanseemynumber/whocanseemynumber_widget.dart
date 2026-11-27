@@ -52,7 +52,7 @@ class _WhocanseemynumberWidgetState extends State<WhocanseemynumberWidget> {
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
             appBar: AppBar(
-              backgroundColor: Color(0xFF935CCC),
+              backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
               automaticallyImplyLeading: false,
               leading: FlutterFlowIconButton(
                 borderColor: Colors.transparent,
@@ -81,7 +81,7 @@ class _WhocanseemynumberWidgetState extends State<WhocanseemynumberWidget> {
                             .headlineMedium
                             .fontStyle,
                       ),
-                      color: Colors.white,
+                      color: FlutterFlowTheme.of(context).primaryText,
                       fontSize: 22.0,
                       letterSpacing: 0.0,
                       fontWeight: FlutterFlowTheme.of(context)
@@ -93,7 +93,7 @@ class _WhocanseemynumberWidgetState extends State<WhocanseemynumberWidget> {
               ),
               actions: [],
               centerTitle: true,
-              elevation: 2.0,
+              elevation: 0.0,
             ),
             body: SafeArea(
               top: true,

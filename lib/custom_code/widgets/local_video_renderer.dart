@@ -192,7 +192,7 @@ class _LocalVideoRendererState extends State<LocalVideoRenderer> {
               alignment: Alignment.center,
               child: currentUserPhoto.isNotEmpty
                   ? ClipOval(
-                      child: cachedNetworkImage(
+                      child: Image.network(
                         currentUserPhoto,
                         width: avatarSize,
                         height: avatarSize,

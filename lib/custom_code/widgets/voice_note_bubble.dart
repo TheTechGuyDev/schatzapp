@@ -138,7 +138,7 @@ class _VoiceNoteBubbleState extends State<VoiceNoteBubble> {
             children: [
               ClipOval(
                 child: widget.avatarUrl.isNotEmpty
-                    ? cachedNetworkImage(
+                    ? Image.network(
                         widget.avatarUrl,
                         width: 40,
                         height: 40,

@@ -124,7 +124,7 @@ class _AddLinkPageWidgetState extends State<AddLinkPageWidget> {
                               0.0, 0.0, 0.0, 40.0),
                           child: Text(
                             FFLocalizations.of(context).getText(
-                              'xwuhdg9u' /* Share your website, socail med... */,
+                              'xwuhdg9u' /* Share your website, social med... */,
                             ),
                             textAlign: TextAlign.center,
                             style: FlutterFlowTheme.of(context)
@@ -894,12 +894,7 @@ class _AddLinkPageWidgetState extends State<AddLinkPageWidget> {
                           width: double.infinity,
                           height: 45.0,
                           decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                            borderRadius: BorderRadius.circular(20.0),
-                            border: Border.all(
-                              color: Color(0xFFEFEBF2),
-                            ),
+                            borderRadius: BorderRadius.only(),
                           ),
                           child: custom_widgets.ProfileLinksList(
                             width: double.infinity,

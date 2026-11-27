@@ -251,7 +251,7 @@ class _AddPeopleSheetState extends State<_AddPeopleSheet> {
             CircleAvatar(
               radius: 22,
               backgroundColor: _purple.withOpacity(0.18),
-              backgroundImage: avatar.isNotEmpty ? cachedNetworkImageProvider(avatar) : null,
+              backgroundImage: avatar.isNotEmpty ? NetworkImage(avatar) : null,
               child: avatar.isEmpty
                   ? Text(name.isNotEmpty ? name[0].toUpperCase() : '?',
                       style: const TextStyle(

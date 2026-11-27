@@ -223,7 +223,7 @@ class _GroupsInCommonWidgetState extends State<GroupsInCommonWidget> {
                                                     decoration: BoxDecoration(
                                                       image: DecorationImage(
                                                         fit: BoxFit.cover,
-                                                        image: cachedNetworkImage(
+                                                        image: Image.network(
                                                           valueOrDefault<
                                                               String>(
                                                             '${groupsListViewItem.groupAvatarUrl}',

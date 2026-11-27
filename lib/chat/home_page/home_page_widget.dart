@@ -239,14 +239,6 @@ class _HomePageWidgetState extends State<HomePageWidget>
                       Column(
                         children: [
                           Expanded(
-                            child: Stack(
-                              children: [
-                          Positioned.fill(
-                            // iOS/web: tabs run a little under the floating
-                            // glass nav so its blur has content behind it.
-                            bottom: custom_widgets.useGlassNavBar()
-                                ? 58.0
-                                : 0.0,
                             child: TabBarView(
                               controller: _model.tabBarController1,
                               physics: const NeverScrollableScrollPhysics(),
@@ -428,7 +420,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                     1.0, 0.0, 1.0, 20.0),
                                             child: Container(
                                               width: double.infinity,
-                                              height: 50.0,
+                                              height: 45.0,
                                               decoration: BoxDecoration(
                                                 color: Color(0x2CE0E3E7),
                                                 borderRadius:
@@ -444,14 +436,14 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                     padding:
                                                         EdgeInsetsDirectional
                                                             .fromSTEB(15.0, 0.0,
-                                                                10.0, 0.0),
+                                                                0.0, 0.0),
                                                     child: Icon(
                                                       Icons.search,
                                                       color:
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .secondaryText,
-                                                      size: 24.0,
+                                                      size: 28.0,
                                                     ),
                                                   ),
                                                   Expanded(
@@ -505,143 +497,137 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                   AlignmentDirectional(
                                                                       -1.0,
                                                                       0.0),
-                                                              child: Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            10.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
+                                                              child: Container(
+                                                                width: 200.0,
                                                                 child:
-                                                                    Container(
-                                                                  width: 200.0,
-                                                                  child:
-                                                                      TextFormField(
-                                                                    controller:
-                                                                        _model
-                                                                            .textForSearchTextController,
-                                                                    focusNode:
-                                                                        _model
-                                                                            .textForSearchFocusNode,
-                                                                    autofocus:
-                                                                        false,
-                                                                    enabled:
-                                                                        false,
-                                                                    readOnly:
+                                                                    TextFormField(
+                                                                  controller: _model
+                                                                      .textForSearchTextController,
+                                                                  focusNode: _model
+                                                                      .textForSearchFocusNode,
+                                                                  autofocus:
+                                                                      false,
+                                                                  enabled:
+                                                                      false,
+                                                                  readOnly:
+                                                                      true,
+                                                                  obscureText:
+                                                                      false,
+                                                                  decoration:
+                                                                      InputDecoration(
+                                                                    isDense:
                                                                         true,
-                                                                    obscureText:
-                                                                        false,
-                                                                    decoration:
-                                                                        InputDecoration(
-                                                                      isDense:
-                                                                          true,
-                                                                      labelStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .override(
-                                                                            font:
-                                                                                GoogleFonts.plusJakartaSans(
-                                                                              fontWeight: FontWeight.w600,
-                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                            ),
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).secondaryText,
-                                                                            letterSpacing:
-                                                                                0.0,
-                                                                            fontWeight:
-                                                                                FontWeight.w600,
-                                                                            fontStyle:
-                                                                                FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                          ),
-                                                                      hintText:
-                                                                          FFLocalizations.of(context)
-                                                                              .getText(
-                                                                        '4m7udor0' /* Search messages or people */,
-                                                                      ),
-                                                                      hintStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .labelMedium
-                                                                          .override(
-                                                                            font:
-                                                                                GoogleFonts.plusJakartaSans(
-                                                                              fontWeight: FlutterFlowTheme.of(context).labelMedium.fontWeight,
-                                                                              fontStyle: FlutterFlowTheme.of(context).labelMedium.fontStyle,
-                                                                            ),
-                                                                            letterSpacing:
-                                                                                0.0,
-                                                                            fontWeight:
-                                                                                FlutterFlowTheme.of(context).labelMedium.fontWeight,
-                                                                            fontStyle:
-                                                                                FlutterFlowTheme.of(context).labelMedium.fontStyle,
-                                                                          ),
-                                                                      enabledBorder:
-                                                                          OutlineInputBorder(
-                                                                        borderSide:
-                                                                            BorderSide(
-                                                                          color:
-                                                                              Color(0x00000000),
-                                                                          width:
-                                                                              0.0,
-                                                                        ),
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(8.0),
-                                                                      ),
-                                                                      focusedBorder:
-                                                                          OutlineInputBorder(
-                                                                        borderSide:
-                                                                            BorderSide(
-                                                                          color:
-                                                                              Color(0x00000000),
-                                                                          width:
-                                                                              0.0,
-                                                                        ),
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(8.0),
-                                                                      ),
-                                                                      errorBorder:
-                                                                          OutlineInputBorder(
-                                                                        borderSide:
-                                                                            BorderSide(
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).error,
-                                                                          width:
-                                                                              0.0,
-                                                                        ),
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(8.0),
-                                                                      ),
-                                                                      focusedErrorBorder:
-                                                                          OutlineInputBorder(
-                                                                        borderSide:
-                                                                            BorderSide(
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).error,
-                                                                          width:
-                                                                              0.0,
-                                                                        ),
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(8.0),
-                                                                      ),
-                                                                      filled:
-                                                                          true,
-                                                                      fillColor:
-                                                                          Color(
-                                                                              0x00B0C2D0),
-                                                                    ),
-                                                                    style: FlutterFlowTheme.of(
+                                                                    labelStyle: FlutterFlowTheme.of(
                                                                             context)
                                                                         .bodyMedium
                                                                         .override(
                                                                           font:
                                                                               GoogleFonts.plusJakartaSans(
                                                                             fontWeight:
-                                                                                FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                FontWeight.w600,
                                                                             fontStyle:
                                                                                 FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                           ),
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).secondaryText,
                                                                           letterSpacing:
                                                                               0.0,
+                                                                          fontWeight:
+                                                                              FontWeight.w600,
+                                                                          fontStyle: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .fontStyle,
+                                                                        ),
+                                                                    hintText: FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      '4m7udor0' /* Search messages or people */,
+                                                                    ),
+                                                                    hintStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelMedium
+                                                                        .override(
+                                                                          font:
+                                                                              GoogleFonts.plusJakartaSans(
+                                                                            fontWeight:
+                                                                                FontWeight.w500,
+                                                                            fontStyle:
+                                                                                FlutterFlowTheme.of(context).labelMedium.fontStyle,
+                                                                          ),
+                                                                          fontSize:
+                                                                              13.0,
+                                                                          letterSpacing:
+                                                                              0.0,
+                                                                          fontWeight:
+                                                                              FontWeight.w500,
+                                                                          fontStyle: FlutterFlowTheme.of(context)
+                                                                              .labelMedium
+                                                                              .fontStyle,
+                                                                        ),
+                                                                    enabledBorder:
+                                                                        OutlineInputBorder(
+                                                                      borderSide:
+                                                                          BorderSide(
+                                                                        color: Color(
+                                                                            0x00000000),
+                                                                        width:
+                                                                            0.0,
+                                                                      ),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              8.0),
+                                                                    ),
+                                                                    focusedBorder:
+                                                                        OutlineInputBorder(
+                                                                      borderSide:
+                                                                          BorderSide(
+                                                                        color: Color(
+                                                                            0x00000000),
+                                                                        width:
+                                                                            0.0,
+                                                                      ),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              8.0),
+                                                                    ),
+                                                                    errorBorder:
+                                                                        OutlineInputBorder(
+                                                                      borderSide:
+                                                                          BorderSide(
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .error,
+                                                                        width:
+                                                                            0.0,
+                                                                      ),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              8.0),
+                                                                    ),
+                                                                    focusedErrorBorder:
+                                                                        OutlineInputBorder(
+                                                                      borderSide:
+                                                                          BorderSide(
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .error,
+                                                                        width:
+                                                                            0.0,
+                                                                      ),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              8.0),
+                                                                    ),
+                                                                    filled:
+                                                                        true,
+                                                                    fillColor:
+                                                                        Color(
+                                                                            0x00B0C2D0),
+                                                                  ),
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .override(
+                                                                        font: GoogleFonts
+                                                                            .plusJakartaSans(
                                                                           fontWeight: FlutterFlowTheme.of(context)
                                                                               .bodyMedium
                                                                               .fontWeight,
@@ -649,16 +635,25 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                               .bodyMedium
                                                                               .fontStyle,
                                                                         ),
-                                                                    cursorColor:
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .primaryText,
-                                                                    enableInteractiveSelection:
-                                                                        true,
-                                                                    validator: _model
-                                                                        .textForSearchTextControllerValidator
-                                                                        .asValidator(
-                                                                            context),
-                                                                  ),
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        fontWeight: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .fontWeight,
+                                                                        fontStyle: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .fontStyle,
+                                                                      ),
+                                                                  cursorColor:
+                                                                      FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primaryText,
+                                                                  enableInteractiveSelection:
+                                                                      true,
+                                                                  validator: _model
+                                                                      .textForSearchTextControllerValidator
+                                                                      .asValidator(
+                                                                          context),
                                                                 ),
                                                               ),
                                                             ),
@@ -749,244 +744,298 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                           Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 20.0),
+                                                    0.0, 0.0, 0.0, 15.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
+                                              crossAxisAlignment:
+                                                  (FFCrossAxisAlignment.start)
+                                                      .flutterValue,
+                                              textBaseline:
+                                                  TextBaseline.alphabetic,
                                               children: [
                                                 Padding(
                                                   padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 15.0, 0.0),
-                                                  child: InkWell(
-                                                    splashColor:
-                                                        Colors.transparent,
-                                                    focusColor:
-                                                        Colors.transparent,
-                                                    hoverColor:
-                                                        Colors.transparent,
-                                                    highlightColor:
-                                                        Colors.transparent,
-                                                    onTap: () async {
-                                                      context.pushNamed(
-                                                          WriteStoryWidget
-                                                              .routeName);
-                                                    },
-                                                    child: Container(
-                                                      width: 60.0,
-                                                      height: 60.0,
-                                                      decoration: BoxDecoration(
-                                                        color: FlutterFlowTheme
-                                                                .of(context)
-                                                            .secondaryBackground,
-                                                        shape: BoxShape.circle,
-                                                        border: Border.all(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primary,
-                                                          width: 2.0,
-                                                        ),
-                                                      ),
-                                                      child: Padding(
-                                                        padding:
-                                                            EdgeInsets.all(2.0),
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        (FFMainAxisAlignment
+                                                                .spaceBetween)
+                                                            .flutterValue,
+                                                    children: [
+                                                      InkWell(
+                                                        splashColor:
+                                                            Colors.transparent,
+                                                        focusColor:
+                                                            Colors.transparent,
+                                                        hoverColor:
+                                                            Colors.transparent,
+                                                        highlightColor:
+                                                            Colors.transparent,
+                                                        onTap: () async {
+                                                          context.pushNamed(
+                                                              WriteStoryWidget
+                                                                  .routeName);
+                                                        },
                                                         child: Container(
-                                                          width: 55.0,
-                                                          height: 55.0,
+                                                          width: 60.0,
+                                                          height: 60.0,
                                                           decoration:
                                                               BoxDecoration(
-                                                            gradient:
-                                                                LinearGradient(
-                                                              colors: [
-                                                                Color(
-                                                                    0xFFD239EF),
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondary
-                                                              ],
-                                                              stops: [0.0, 1.0],
-                                                              begin:
-                                                                  AlignmentDirectional(
-                                                                      0.0,
-                                                                      -1.0),
-                                                              end:
-                                                                  AlignmentDirectional(
-                                                                      0, 1.0),
-                                                            ),
-                                                            shape:
-                                                                BoxShape.circle,
-                                                          ),
-                                                          child: Icon(
-                                                            Icons.add,
                                                             color: FlutterFlowTheme
                                                                     .of(context)
                                                                 .secondaryBackground,
-                                                            size: 35.0,
+                                                            shape:
+                                                                BoxShape.circle,
+                                                            border: Border.all(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primary,
+                                                              width: 2.0,
+                                                            ),
+                                                          ),
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsets.all(
+                                                                    2.0),
+                                                            child: Container(
+                                                              width: 55.0,
+                                                              height: 55.0,
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                gradient:
+                                                                    LinearGradient(
+                                                                  colors: [
+                                                                    Color(
+                                                                        0xFFD239EF),
+                                                                    FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondary
+                                                                  ],
+                                                                  stops: [
+                                                                    0.0,
+                                                                    1.0
+                                                                  ],
+                                                                  begin:
+                                                                      AlignmentDirectional(
+                                                                          0.0,
+                                                                          -1.0),
+                                                                  end:
+                                                                      AlignmentDirectional(
+                                                                          0,
+                                                                          1.0),
+                                                                ),
+                                                                shape: BoxShape
+                                                                    .circle,
+                                                              ),
+                                                              child: Icon(
+                                                                Icons.add,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryBackground,
+                                                                size: 35.0,
+                                                              ),
+                                                            ),
                                                           ),
                                                         ),
                                                       ),
-                                                    ),
+                                                      Text(
+                                                        FFLocalizations.of(
+                                                                context)
+                                                            .getText(
+                                                          'yv1fbyjc' /* Add Story */,
+                                                        ),
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .bodyMedium
+                                                            .override(
+                                                              font: GoogleFonts
+                                                                  .plusJakartaSans(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                fontStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontStyle,
+                                                              ),
+                                                              fontSize: 11.0,
+                                                              letterSpacing:
+                                                                  0.0,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                              fontStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontStyle,
+                                                            ),
+                                                      ),
+                                                    ].divide(
+                                                        SizedBox(height: 3.0)),
                                                   ),
                                                 ),
                                                 Expanded(
-                                                  child: Builder(
-                                                    builder: (context) {
-                                                      final story = _model
-                                                          .storyRing
-                                                          .toList();
+                                                  child: Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                0.0, 6.0),
+                                                    child: Builder(
+                                                      builder: (context) {
+                                                        final story = _model
+                                                            .storyRing
+                                                            .toList();
 
-                                                      return SingleChildScrollView(
-                                                        scrollDirection:
-                                                            Axis.horizontal,
-                                                        child: Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          children:
-                                                              List.generate(
-                                                                  story.length,
-                                                                  (storyIndex) {
-                                                            final storyItem =
-                                                                story[
-                                                                    storyIndex];
-                                                            return Padding(
-                                                              padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          10.0,
-                                                                          0.0),
-                                                              child: Stack(
-                                                                alignment:
-                                                                    AlignmentDirectional(
-                                                                        1.0,
-                                                                        1.0),
-                                                                children: [
-                                                                  Container(
-                                                                    width: 65.0,
-                                                                    height:
-                                                                        65.0,
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .secondaryBackground,
-                                                                      shape: BoxShape
-                                                                          .circle,
-                                                                      border:
-                                                                          Border
-                                                                              .all(
-                                                                        color: storyItem.hasUnviewed ==
-                                                                                true
-                                                                            ? FlutterFlowTheme.of(context).primary
-                                                                            : Color(0xFF3F4A52),
-                                                                        width:
-                                                                            2.0,
-                                                                      ),
-                                                                    ),
-                                                                    child:
-                                                                        Padding(
-                                                                      padding:
-                                                                          EdgeInsets.all(
-                                                                              2.0),
-                                                                      child:
-                                                                          InkWell(
-                                                                        splashColor:
-                                                                            Colors.transparent,
-                                                                        focusColor:
-                                                                            Colors.transparent,
-                                                                        hoverColor:
-                                                                            Colors.transparent,
-                                                                        highlightColor:
-                                                                            Colors.transparent,
-                                                                        onTap:
-                                                                            () async {
-                                                                          if (functions.hasFriendStory(FFAppState().friendsStoriesList.toList(), storyItem.userId!) ==
-                                                                              true) {
-                                                                            context.pushNamed(
-                                                                              UsersStoryWidget.routeName,
-                                                                              queryParameters: {
-                                                                                'groupIndex': serializeParam(
-                                                                                  functions.friendsStoryIndex(FFAppState().friendsStoriesList.toList(), storyItem.userId!),
-                                                                                  ParamType.int,
-                                                                                ),
-                                                                                'currentUserId': serializeParam(
-                                                                                  currentUserUid,
-                                                                                  ParamType.String,
-                                                                                ),
-                                                                              }.withoutNulls,
-                                                                            );
-                                                                          }
-                                                                        },
-                                                                        child:
-                                                                            Container(
+                                                        return SingleChildScrollView(
+                                                          scrollDirection:
+                                                              Axis.horizontal,
+                                                          child: Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            children:
+                                                                List.generate(
+                                                                    story
+                                                                        .length,
+                                                                    (storyIndex) {
+                                                              final storyItem =
+                                                                  story[
+                                                                      storyIndex];
+                                                              return Padding(
+                                                                padding:
+                                                                    EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0.0,
+                                                                            0.0,
+                                                                            10.0,
+                                                                            0.0),
+                                                                child: Stack(
+                                                                  alignment:
+                                                                      AlignmentDirectional(
+                                                                          1.0,
+                                                                          1.0),
+                                                                  children: [
+                                                                    Container(
+                                                                      width:
+                                                                          65.0,
+                                                                      height:
+                                                                          65.0,
+                                                                      decoration:
+                                                                          BoxDecoration(
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .secondaryBackground,
+                                                                        shape: BoxShape
+                                                                            .circle,
+                                                                        border:
+                                                                            Border.all(
+                                                                          color: storyItem.hasUnviewed == true
+                                                                              ? FlutterFlowTheme.of(context).primary
+                                                                              : Color(0xFF3F4A52),
                                                                           width:
-                                                                              55.0,
-                                                                          height:
-                                                                              55.0,
-                                                                          decoration:
-                                                                              BoxDecoration(
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).primary,
-                                                                            image:
-                                                                                DecorationImage(
-                                                                              fit: BoxFit.cover,
-                                                                              image: cachedNetworkImage(
-                                                                                valueOrDefault<String>(
-                                                                                  storyItem.avatarUrl,
-                                                                                  'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YXZhdGFyfGVufDB8fDB8fHww',
-                                                                                ),
-                                                                              ).image,
-                                                                            ),
-                                                                            shape:
-                                                                                BoxShape.circle,
-                                                                          ),
+                                                                              2.0,
                                                                         ),
                                                                       ),
-                                                                    ),
-                                                                  ),
-                                                                  if (storyItem
-                                                                          .isOnline ==
-                                                                      true)
-                                                                    Align(
-                                                                      alignment:
-                                                                          AlignmentDirectional(
-                                                                              1.0,
-                                                                              1.0),
                                                                       child:
                                                                           Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            3.0,
-                                                                            5.0),
+                                                                        padding:
+                                                                            EdgeInsets.all(2.0),
                                                                         child:
-                                                                            Container(
-                                                                          width:
-                                                                              13.0,
-                                                                          height:
-                                                                              13.0,
-                                                                          decoration:
-                                                                              BoxDecoration(
-                                                                            color:
-                                                                                Color(0xFF2FFB4B),
-                                                                            shape:
-                                                                                BoxShape.circle,
-                                                                            border:
-                                                                                Border.all(
-                                                                              color: FlutterFlowTheme.of(context).secondaryBackground,
-                                                                              width: 3.0,
+                                                                            InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onTap:
+                                                                              () async {
+                                                                            if (functions.hasFriendStory(FFAppState().friendsStoriesList.toList(), storyItem.userId!) ==
+                                                                                true) {
+                                                                              context.pushNamed(
+                                                                                UsersStoryWidget.routeName,
+                                                                                queryParameters: {
+                                                                                  'groupIndex': serializeParam(
+                                                                                    functions.friendsStoryIndex(FFAppState().friendsStoriesList.toList(), storyItem.userId!),
+                                                                                    ParamType.int,
+                                                                                  ),
+                                                                                  'currentUserId': serializeParam(
+                                                                                    currentUserUid,
+                                                                                    ParamType.String,
+                                                                                  ),
+                                                                                }.withoutNulls,
+                                                                              );
+                                                                            }
+                                                                          },
+                                                                          child:
+                                                                              Container(
+                                                                            width:
+                                                                                55.0,
+                                                                            height:
+                                                                                55.0,
+                                                                            decoration:
+                                                                                BoxDecoration(
+                                                                              color: FlutterFlowTheme.of(context).primary,
+                                                                              image: DecorationImage(
+                                                                                fit: BoxFit.cover,
+                                                                                image: Image.network(
+                                                                                  valueOrDefault<String>(
+                                                                                    storyItem.avatarUrl,
+                                                                                    'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YXZhdGFyfGVufDB8fDB8fHww',
+                                                                                  ),
+                                                                                ).image,
+                                                                              ),
+                                                                              shape: BoxShape.circle,
                                                                             ),
                                                                           ),
                                                                         ),
                                                                       ),
                                                                     ),
-                                                                ],
-                                                              ),
-                                                            );
-                                                          }),
-                                                        ),
-                                                      );
-                                                    },
+                                                                    if (storyItem
+                                                                            .isOnline ==
+                                                                        true)
+                                                                      Align(
+                                                                        alignment: AlignmentDirectional(
+                                                                            1.0,
+                                                                            1.0),
+                                                                        child:
+                                                                            Padding(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                              0.0,
+                                                                              0.0,
+                                                                              3.0,
+                                                                              5.0),
+                                                                          child:
+                                                                              Container(
+                                                                            width:
+                                                                                13.0,
+                                                                            height:
+                                                                                13.0,
+                                                                            decoration:
+                                                                                BoxDecoration(
+                                                                              color: Color(0xFF2FFB4B),
+                                                                              shape: BoxShape.circle,
+                                                                              border: Border.all(
+                                                                                color: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                width: 3.0,
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                  ],
+                                                                ),
+                                                              );
+                                                            }),
+                                                          ),
+                                                        );
+                                                      },
+                                                    ),
                                                   ),
                                                 ),
                                               ],
@@ -5576,7 +5625,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                   20.0),
                                                       child: Container(
                                                         width: double.infinity,
-                                                        height: 50.0,
+                                                        height: 45.0,
                                                         decoration:
                                                             BoxDecoration(
                                                           color:
@@ -5600,14 +5649,14 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                       .fromSTEB(
                                                                           10.0,
                                                                           0.0,
-                                                                          10.0,
+                                                                          0.0,
                                                                           0.0),
                                                               child: Icon(
                                                                 Icons.search,
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .secondaryText,
-                                                                size: 24.0,
+                                                                size: 28.0,
                                                               ),
                                                             ),
                                                             Expanded(
@@ -5728,7 +5777,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                           fit: BoxFit
                                                                               .cover,
                                                                           image:
-                                                                              cachedNetworkImage(
+                                                                              Image.network(
                                                                             'https://picsum.photos/seed/156/600',
                                                                           ).image,
                                                                         ),
@@ -5900,7 +5949,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                     0.0,
                                                                     40.0,
                                                                     0.0,
-                                                                    20.0),
+                                                                    15.0),
                                                         child: Text(
                                                           FFLocalizations.of(
                                                                   context)
@@ -5915,7 +5964,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                     .plusJakartaSans(
                                                                   fontWeight:
                                                                       FontWeight
-                                                                          .bold,
+                                                                          .w600,
                                                                   fontStyle: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMedium
@@ -5924,12 +5973,12 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .secondaryText,
-                                                                fontSize: 15.0,
+                                                                fontSize: 14.0,
                                                                 letterSpacing:
                                                                     0.0,
                                                                 fontWeight:
                                                                     FontWeight
-                                                                        .bold,
+                                                                        .w600,
                                                                 fontStyle: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyMedium
@@ -6044,7 +6093,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                               decoration: BoxDecoration(
                                                                                 image: DecorationImage(
                                                                                   fit: BoxFit.cover,
-                                                                                  image: cachedNetworkImage(
+                                                                                  image: Image.network(
                                                                                     valueOrDefault<String>(
                                                                                       '${recentStoriesItem.avatarUrl}',
                                                                                       'https://plus.unsplash.com/premium_photo-1689551670902-19b441a6afde?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
@@ -6116,6 +6165,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                                             fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                                           ),
                                                                                           color: FlutterFlowTheme.of(context).secondaryText,
+                                                                                          fontSize: 13.0,
                                                                                           letterSpacing: 0.0,
                                                                                           fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
                                                                                           fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
@@ -6154,7 +6204,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                     0.0,
                                                                     40.0,
                                                                     0.0,
-                                                                    20.0),
+                                                                    15.0),
                                                         child: Text(
                                                           FFLocalizations.of(
                                                                   context)
@@ -6169,7 +6219,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                     .plusJakartaSans(
                                                                   fontWeight:
                                                                       FontWeight
-                                                                          .bold,
+                                                                          .w600,
                                                                   fontStyle: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMedium
@@ -6178,12 +6228,12 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .secondaryText,
-                                                                fontSize: 15.0,
+                                                                fontSize: 14.0,
                                                                 letterSpacing:
                                                                     0.0,
                                                                 fontWeight:
                                                                     FontWeight
-                                                                        .bold,
+                                                                        .w600,
                                                                 fontStyle: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyMedium
@@ -6294,7 +6344,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                               decoration: BoxDecoration(
                                                                                 image: DecorationImage(
                                                                                   fit: BoxFit.cover,
-                                                                                  image: cachedNetworkImage(
+                                                                                  image: Image.network(
                                                                                     valueOrDefault<String>(
                                                                                       '${viewedStoriesItem.avatarUrl}',
                                                                                       'https://plus.unsplash.com/premium_photo-1689551670902-19b441a6afde?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
@@ -6429,7 +6479,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                       font: GoogleFonts
                                                                           .plusJakartaSans(
                                                                         fontWeight:
-                                                                            FontWeight.bold,
+                                                                            FontWeight.w600,
                                                                         fontStyle: FlutterFlowTheme.of(context)
                                                                             .bodyMedium
                                                                             .fontStyle,
@@ -6441,7 +6491,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                           0.0,
                                                                       fontWeight:
                                                                           FontWeight
-                                                                              .bold,
+                                                                              .w600,
                                                                       fontStyle: FlutterFlowTheme.of(
                                                                               context)
                                                                           .bodyMedium
@@ -6580,7 +6630,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                             image:
                                                                                 DecorationImage(
                                                                               fit: BoxFit.cover,
-                                                                              image: cachedNetworkImage(
+                                                                              image: Image.network(
                                                                                 valueOrDefault<String>(
                                                                                   '${hiddenListItem.avatarUrl}',
                                                                                   'https://plus.unsplash.com/premium_photo-1689551670902-19b441a6afde?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
@@ -6825,7 +6875,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                     decoration: BoxDecoration(
                                                       shape: BoxShape.circle,
                                                     ),
-                                                    child: cachedNetworkImage(
+                                                    child: Image.network(
                                                       valueOrDefault<String>(
                                                         rowProfilesRow
                                                             ?.avatarUrl,
@@ -8365,16 +8415,8 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                   highlightColor:
                                                       Colors.transparent,
                                                   onTap: () async {
-                                                    GoRouter.of(context)
-                                                        .prepareAuthEvent();
-                                                    await authManager.signOut();
-                                                    GoRouter.of(context)
-                                                        .clearRedirectLocation();
-
-                                                    context.goNamedAuth(
-                                                        SplashScreenWidget
-                                                            .routeName,
-                                                        context.mounted);
+                                                    await launchURL(
+                                                        'https://schatzapp.com/');
                                                   },
                                                   child: Row(
                                                     mainAxisSize:
@@ -8503,56 +8545,6 @@ class _HomePageWidgetState extends State<HomePageWidget>
                               ],
                             ),
                           ),
-                          if (custom_widgets.useGlassNavBar())
-                            Positioned(
-                              left: 14.0,
-                              right: 14.0,
-                              bottom: 10.0,
-                              child: custom_widgets.GlassNavBar(
-                                controller: _model.tabBarController1!,
-                                currentUserId: currentUserUid,
-                                items: [
-                                  custom_widgets.GlassNavItem(
-                                    label: FFLocalizations.of(context)
-                                        .getText('b5vbixz0' /* Chats */),
-                                    icon: FaIcon(FaIconData(const IconData(
-                                        /* comment */ 0xf075,
-                                        fontFamily: 'FontAwesomeRegular',
-                                        fontPackage: 'font_awesome_flutter'))),
-                                  ),
-                                  custom_widgets.GlassNavItem(
-                                    label: FFLocalizations.of(context)
-                                        .getText('kankqcjl' /* Calls */),
-                                    icon: const Icon(Icons.call_outlined),
-                                  ),
-                                  custom_widgets.GlassNavItem(
-                                    label: FFLocalizations.of(context)
-                                        .getText('vcge69ha' /* Wallets */),
-                                    icon: FaIcon(FaIconData(const IconData(
-                                        /* wallet */ 0xf555,
-                                        fontFamily: 'FontAwesomeSolid',
-                                        fontPackage: 'font_awesome_flutter'))),
-                                  ),
-                                  custom_widgets.GlassNavItem(
-                                    label: FFLocalizations.of(context)
-                                        .getText('snaoubt0' /* Stories */),
-                                    icon: FaIcon(FaIconData(const IconData(
-                                        /* hornbill */ 0xf592,
-                                        fontFamily: 'FontAwesomeBrands',
-                                        fontPackage: 'font_awesome_flutter'))),
-                                  ),
-                                  custom_widgets.GlassNavItem(
-                                    label: FFLocalizations.of(context)
-                                        .getText('gbmkx8os' /* Profile */),
-                                    icon: const Icon(Icons.person_3_outlined),
-                                  ),
-                                ],
-                              ),
-                            ),
-                              ],
-                            ),
-                          ),
-                          if (!custom_widgets.useGlassNavBar())
                           Align(
                             alignment: Alignment(0.0, 0),
                             child: TabBar(
@@ -8669,7 +8661,6 @@ class _HomePageWidgetState extends State<HomePageWidget>
                           ),
                         ],
                       ),
-                      if (!custom_widgets.useGlassNavBar())
                       Align(
                         alignment: AlignmentDirectional(0.0, 1.0),
                         child: Padding(
